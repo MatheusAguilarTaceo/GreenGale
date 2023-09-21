@@ -18,7 +18,7 @@
 // echo $json_data;
 ?>
 
-<section  id ='table-1'>
+<section  id ='table-content-1'>
     <div>
         <select id="boxfiltro" onchange="redirecionar()">
             <option value="">Plataforma</option>
@@ -26,11 +26,11 @@
             <option value="pagina2.html">Página 2</option>
             <option value="pagina3.html">Página 3</option>
         </select>
-        <input class = "main-combobox-date"type="date" name="" id="date" lang="pt-BR">
+        <input class = "main-btn-vela"type="date" name="" id="date" lang="pt-BR">
     </div>
     <div>
-        <input class="main-btn-vela" type="text" id="Num" placeholder="Vela">
-        <input class="main-btn-time" type="time" id="Num" placeholder="Hora">
+        <input class="main-btn-vela" type="text" id="candle" placeholder="Vela">
+        <input class="main-btn-vela" type="time" id="time" placeholder="Hora">
         <!-- <input class ="main-btn-time"type="text" id="hora" maxlength="5" placeholder ="HH:MM"oninput="formatarHora(this)"> -->
     </div>
     <table>
@@ -45,19 +45,19 @@
         
     </table>
     <ul class='tablePagination'>
-        <button first-page ="first-page"><<</button>
-        <button previous-page ="previous-page"><</button>
-        <button id-page ="1">1</button>
-        <button id-page ="2">2</button>
-        <button id-page ="3">3</button>   
-        <button id-page ="4">4</button>
-        <button id-page ="5">5</button>
-        <button data-page ="...">...</button>
-        <button next-page ="next-page">></button>
-        <button last-page ="last-page">>></button>
+        <button class = 'tableButton'first-page ="first-page"><<</button>
+        <button class = 'tableButton'previous-page ="previous-page"><</button>
+        <button class = 'tableButton'id-page ="1">1</button>
+        <button class = 'tableButton'id-page ="2">2</button>
+        <button class = 'tableButton'id-page ="3">3</button>   
+        <button class = 'tableButton'id-page ="4">4</button>
+        <button class = 'tableButton'id-page ="5">5</button>
+        <button class = 'tableButton'data-page ="...">...</button>
+        <button class = 'tableButton'next-page ="next-page">></button>
+        <button class = 'tableButton'last-page ="last-page">>></button>
     </ul>    
 </section>    
-<section id = 'table-2' >
+<section id = 'table-content-2'>
     <div>
         <select id="boxfiltro" onchange="redirecionar()">
             <option value="">Plataforma</option>
@@ -68,8 +68,8 @@
         <input class = "main-combobox-date"type="date" name="" id="date" lang="pt-BR">
     </div>
     <div>
-        <input class="main-btn-vela" type="text" id="Num" placeholder="Vela">
-        <input class="main-btn-time" type="time" id="Num" placeholder="Hora">
+        <input class="main-btn-vela" type="text" id="candle" placeholder="Vela">
+        <input class="main-btn-time" type="time" id="time" placeholder="Hora">
         <!-- <input class ="main-btn-time"type="text" id="hora" maxlength="5" placeholder ="HH:MM"oninput="formatarHora(this)"> -->
     </div>
     <table>
@@ -84,16 +84,16 @@
         
     </table>
     <ul class='tablePagination'>
-        <button first-page ="first-page"><<</button>
-        <button previous-page ="previous-page"><</button>
-        <button id-page ="1">1</button>
-        <button id-page ="2">2</button>
-        <button id-page ="3">3</button>   
-        <button id-page ="4">4</button>
-        <button id-page ="5">5</button>
-        <button data-page ="...">...</button>
-        <button next-page ="next-page">></button>
-        <button last-page ="last-page">>></button>
+        <button class = 'tableButton' first-page ="first-page"><<</button>
+        <button class = 'tableButton' previous-page ="previous-page"><</button>
+        <button class = 'tableButton' id-page ="1">1</button>
+        <button class = 'tableButton' id-page ="2">2</button>
+        <button class = 'tableButton' id-page ="3">3</button>   
+        <button class = 'tableButton' id-page ="4">4</button>
+        <button class = 'tableButton' id-page ="5">5</button>
+        <button class = 'tableButton' data-page ="...">...</button>
+        <button class = 'tableButton' next-page ="next-page">></button>
+        <button class = 'tableButton' last-page ="last-page">>></button>
     </ul>    
 </section>
 
