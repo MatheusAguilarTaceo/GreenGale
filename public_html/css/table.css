@@ -6,6 +6,10 @@ section{
     text-align: center;
     
 }
+#table-content-1{
+    /* display: inline; */
+    /* position: absolute; */
+}
 
 .main-btn-vela{
     text-align: center;
