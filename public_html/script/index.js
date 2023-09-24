@@ -3,8 +3,10 @@
 
 // MOSTRA DATA ATUAL
 
-function indexTable(){
+function indexTable(start_table){
     let numberOfTables = 0
+    // let table_block = false
+
     function initializeData(){
         numberOfTables++
         let table = document.querySelector(`[id="table-content-${numberOfTables}"]`)
@@ -170,11 +172,19 @@ function indexTable(){
         return {tableFilter}
     }
 
-    function createTableContent(){
-        console.log('NUMERO DA TABELA = ',numberOfTables)
+    function createTableStructure(){
         let section = document.createElement('section')
-        let last_table_content = document.querySelector(`#table-content-${numberOfTables}`)
-        last_table_content.insertAdjacentElement('afterend', section);
+        if(numberOfTables % 2 == 0){
+            let main  = document.querySelector("main")
+            let div_table_block = document.createElement('div')
+            main.appendChild(div_table_block)
+            div_table_block.className = 'table-block'
+            div_table_block.appendChild(section)
+        }else{
+            let last_table_content = document.querySelector(`#table-content-${numberOfTables}`)
+            last_table_content.insertAdjacentElement('afterend', section);
+        }
+        console.log('NUMERO DA TABELA = ',numberOfTables)
 
         section.id = `table-content-${numberOfTables+1}` 
 
@@ -260,7 +270,6 @@ function indexTable(){
         
         let id_page = 1
         buttons.forEach((button, index) =>{
-            ul.appendChild(button)
             if(index > 1 && index < 7){
                 button.className ='tableButton'
                 button.setAttribute('id-page', id_page)
@@ -292,38 +301,33 @@ function indexTable(){
                 button.setAttribute('last-page', 'last-page')
                 button.innerText = '>>'
             }
-            
+            ul.appendChild(button)
+            button.style.marginRight = '0.4px';
         })
     }
 
-    return {initializeData, createTableContent}
+    return {initializeData, createTableStructure}
 }
 
-let tables = indexTable()
-let table = tables.initializeData()
-table.tableFilter()
+function createNewTable(){
+    let  buttonNewTable = document.querySelector('.new-table')
+    buttonNewTable.addEventListener('click', function(){ 
+       start_table.createTableStructure()
+       let table = start_table.initializeData()
+       table.tableFilter()
+    })
+}
 
-tables.createTableContent()
-let table2 = tables.initializeData()
+
+let start_table = indexTable()
+let table = start_table.initializeData()
+table.tableFilter() 
+
+let table2 = start_table.initializeData()
 table2.tableFilter()
 
-tables.createTableContent()
-let table3 = tables.initializeData()
-table3.tableFilter()
+createNewTable(start_table)
 
-tables.createTableContent()
-let table4 = tables.initializeData()
-table4.tableFilter()
-
-
-// tables  = document.querySelectorAll('[id ^="table-content-"]')
-
-// tables.forEach((table) =>{
-//     let data = initializeData(table)
-//     data.tableFilter()
-// })
-
-// createTableContent()
 
 
 

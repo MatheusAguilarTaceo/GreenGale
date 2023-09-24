@@ -1,15 +1,36 @@
+.new-table{
+    background-color:darkgreen;
+    color:white;   
+    padding: 10px;
+    border: solid 1px black;
+    margin-top: 50px;
+}
+.new-table:hover{
+    background-color: brown;
+}
+
+.table-block{
+    background-color: rgb(43, 226, 52);
+    /* background-image: url(/); */
+    border: solid 5px black;
+    padding: 50px;
+    text-align: center;
+
+}
+
 section{        
-    margin: auto;
+    margin-left: 100px;
+    margin-right: 100px; 
     border:10px solid black;
-    background-color: blueviolet;
+    background-color: rgb(226, 162, 43);
     padding: 10px;;
     text-align: center;
+    display: inline-block; 
     
 }
-#table-content-1{
-    /* display: inline; */
-    /* position: absolute; */
-}
+/* #table-content-1{
+    display: inline-block; 
+} */
 
 .main-btn-vela{
     text-align: center;
@@ -56,17 +77,25 @@ thead{
     background-color: aquamarine;
 }
 .aviatorTb{
-    background-color: skyblue;
+    background-color: rgb(238, 238, 238);
     font-family: Arial, Helvetica, sans-serif;
 }
 
 
-
 th, td{
+    font-weight: bolder;
     width: 150px;
     text-align: center;
     border: 1px solid rebeccapurple;
     border-radius: 4px;
+
+}
+
+tr:nth-child(even){
+    background-color: rgb(185, 197, 192);
+    padding: 2px 11px;
+    border-radius: 11px;
+    color: rgb(12, 12, 12);
     
 }
 
@@ -75,8 +104,10 @@ th, td{
     margin: auto;
     padding-top: 5px;
     width: fit-content;
+
 }
 .tableButton{
+    display: inline-block;
     margin: -3px;
     padding: 8px 12px;
     background-color: rgb(228, 178, 14);
@@ -84,3 +115,11 @@ th, td{
     border: solid 2px black;
 }
 
+
+.teste{
+    border-radius: 3px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: blueviolet;
+
+}
