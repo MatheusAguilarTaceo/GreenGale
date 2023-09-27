@@ -169,7 +169,7 @@ function indexTable(start_table){
                 let tbody = table_content.querySelector('tbody')
                 let remove_table = table_content.querySelectorAll('.aviatorTb > tr');
                 remove_table.forEach($value => $value.remove());
-                page_quantity = Math.floor(data.page_quantity/15) +1;
+                page_quantity = Math.ceil(data.page_quantity/15);
                 data.table.forEach($value => {
                     let tr = document.createElement('tr');
                     let td =  document.createElement('td');

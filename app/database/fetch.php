@@ -48,22 +48,25 @@ function findTableData($table, $selectFields, $whereFields, $limit, $offset){
             $query = $query->fetch_all(MYSQLI_ASSOC);
             return $query;
         }
-        $table = 'vazio';
-        $sql = "SELECT {$selectFields} FROM {$table} LIMIT {$limit}";
-        $query = $conect->query($sql);
-        $query = $query->fetch_all(MYSQLI_ASSOC);
+        $query = [];        
         return $query;
-
+        
     }catch(Exception $e){
         echo "Exceção capturada: " . $e->getMessage();  
         return $e;
      } // }catch (Error $e) {
-    //     echo "Erro capturado: " . $e->getMessage();
-    //     return $e;
-    // }
-    
+         //     echo "Erro capturado: " . $e->getMessage();
+         //     return $e;
+         // }
+         
 }
+        
+// function findEmptyTable($table, $selectFields, $limit){
+//     $sql = "SELECT {$selectFields} FROM {$table} LIMIT {$limit}";
+//     $query = $conect->query($sql);
+//     $query = $query->fetch_all(MYSQLI_ASSOC);
 
+// }
 
 
 

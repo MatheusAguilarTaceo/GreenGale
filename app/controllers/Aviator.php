@@ -40,7 +40,13 @@ class Aviator{
         $offset = $limit * ($page - 1);
         
         $query = findTableData( $table, $selectFields, $whereFields, $limit, $offset);   
-        
+        if(empty($query)){
+            $table = 'vazio';
+            $whereFields['candle'] = '0';
+            $whereFields['hour'] = '00:00:00';
+            $whereFields['date'] = '0000-00-00';
+            $query = findTableData( $table, $selectFields, $whereFields, $limit, $offset);   
+        }
         $selectFields = 'count(*) as count';
         $offset = 0;
         $page_quantity = findTableData($table, $selectFields, $whereFields, $limit, $offset);
