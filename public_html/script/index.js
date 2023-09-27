@@ -9,163 +9,191 @@ function indexTable(start_table){
 
     function initializeData(){
         numberOfTables++
-        let table = document.querySelector(`[id="table-content-${numberOfTables}"]`)
+        let table_content = document.querySelector(`[id="table-content-${numberOfTables}"]`)
         console.log('INICIO = ', this)
     
-        let data = new Date()
-        let dia = data.getDate()
-        let mes = data.getMonth()+1
-        let ano = data.getFullYear()
-        if(mes < 10){
-            mes = '0'+mes   
+        let date_current = new Date()
+        let year = date_current.getFullYear()
+        let month = date_current.getMonth()+1
+        let day = date_current.getDate()
+        if(month < 10){
+            month = '0'+month  
         }
-        console.log("TABELA ATUAL =", table)
-        let time = table.querySelector("#time")
-        time.addEventListener('input', function(){
-            this.value = this.value.substring(0,2)+":00"
-            hour = this.value
-            console.log("TIME = ", this.value)
+
+        let betting_house = table_content.querySelector("#boxfiltro")
+        console.log("CASA DE APOSTA = ", betting_house.value)
+        betting_house.addEventListener('input', function(){
+            table = `${betting_house.value}_${year}_${month}`
             tableFilter()
         })
-        let candle = table.querySelector('#candle')
-        candle.addEventListener('input', function(){
-            numer = this.value;
+
+        let date = table_content.querySelector("#date")
+        date.value = `${year}-${month}-${day}`
+        date.addEventListener('input', function(){
+            [year, month, day] = date.value.split('-')
+            table = `${betting_house.value}_${year}_${month}`
             tableFilter()
         })
-        table.querySelector("#date").value = `${ano}-${mes}-${dia}` 
-        table.querySelector('#candle').value = '1.00'
-        table.querySelector("#time").value = '00:00:00'
-        table.querySelector('[id-page="1"]').style.color = 'black'
         
-        const button_list = table.querySelectorAll(".tablePagination > button"); 
-        let numer = 1;
-        let hour = time.value;
+        let candle = table_content.querySelector('#candle')
+        candle.value = '1.00'
+        candle.addEventListener('input', function(){
+            tableFilter()
+        })
+
+        let hour = table_content.querySelector("#time")
+        hour.value  ='00:00:00'
+        hour.addEventListener('input', function(){
+            this.value = this.value.substring(0,2)+":00"
+            tableFilter()
+        })
+        
+        table_content.querySelector('[id-page="1"]').style.color = 'black'
+        
+        const button_list = table_content.querySelectorAll(".tablePagination > button"); 
+        
+        let table = `${betting_house.value}_${year}_${month}`
         let page = 1;
         let page_quantity = 0;  
-    
+
+        console.log('TABLE BD = ', table)
+        console.log('PAGE = ', page)
+        console.log("DATE = ", date.value)
+        console.log("CANDLE = ", candle.value)
+        console.log("HOURS = ", hour.value)
+
         // function paginacao(){
-            button_list.forEach((button) =>{ 
-            button.addEventListener("click", function(){
-                    let quick_navigation = button.attributes[1].value
-                    let chosen_page = null
-                    let i = 0
-                    switch(quick_navigation){
-                        case 'first-page':
-                            chosen_page = 1
-                            break
-                        case 'previous-page':
-                            chosen_page = page
-                            button_list.forEach(button =>{
-                                if((button.innerText == page-1)){
-                                    chosen_page = Number(button.innerText)
-                                }
-                            })    
-                            break
-                        case 'next-page':
-                            chosen_page = page
-                            button_list.forEach(button =>{
-                                if((button.innerText == page+1)){
-                                    chosen_page = Number(button.innerText)
-                                }
-                        })   
-                            break
-                        case 'last-page':
-                            chosen_page = page_quantity
-                            break
-                        default:
-                            chosen_page = Number(button.innerText)
-                            
-                    }
-                    if(chosen_page>= 5 && button.innerText != page && chosen_page <= page_quantity - 4){
-                        i = 0
-                        button_list.forEach((button) =>  {
-                            button.style.color = 'white'
-                            if(!isNaN(Number(button.innerText)) ) {
-                                button.innerText = chosen_page - 2 + i
-                                i++;
-                            }    
-                        })
-                        center_position = table.querySelector('[id-page="3"]')
-                        center_position.style.color = 'black'
-                    }else if(chosen_page != page && chosen_page < 5){
-                        i = 1
-                        button_list.forEach((button) =>{
-                            button.style.color = 'white'
-                            if(!isNaN(Number(button.innerText))){   
-                                button.innerText = i
-                                i++  
+        button_list.forEach((button) =>{ 
+        button.addEventListener("click", function(){
+                let quick_navigation = button.attributes[1].value
+                let chosen_page = null
+                let i = 0
+                switch(quick_navigation){
+                    case 'first-page':
+                        chosen_page = 1
+                        break
+                    case 'previous-page':
+                        chosen_page = page
+                        button_list.forEach(button =>{
+                            if((button.innerText == page-1)){
+                                chosen_page = Number(button.innerText)
                             }
-                        })
-                        
-                        button_list.forEach(button => { 
-                            if(button.innerText == chosen_page){
-                                button.style.color = 'black';
+                        })    
+                        break
+                    case 'next-page':
+                        chosen_page = page
+                        button_list.forEach(button =>{
+                            if((button.innerText == page+1)){
+                                chosen_page = Number(button.innerText)
                             }
-                        })
-                       
-                    }else if(chosen_page > page_quantity - 4){
-                        i = page_quantity - 4;
-                        button_list.forEach((button) =>{
-                            button.style.color = 'white'
-                            if(!isNaN(Number(button.innerText))){   
-                                button.innerText = i
-                                i++
-                            }
-                        })
+                    })   
+                        break
+                    case 'last-page':
+                        chosen_page = page_quantity
+                        break
+                    default:
+                        chosen_page = Number(button.innerText)
                         
-                        button_list.forEach(button => { 
-                            if(button.innerText == chosen_page){
-                            button.style.color = 'black'; 
-                        }
-                        
-                    })
                 }
-                
-                page =  chosen_page
-                console.log("============")
-                console.log('PAGE QUANTITY = ', page_quantity)
-                console.log('PAGE  = ', page)
-                console.log('hours = ', hour)
-                console.log('NUMER = ', numer)
-                tableFilter()
-            });    
-            });
+                if(chosen_page>= 5 && button.innerText != page && chosen_page <= page_quantity - 4){
+                    i = 0
+                    button_list.forEach((button) =>  {
+                        button.style.color = 'white'
+                        if(!isNaN(Number(button.innerText)) ) {
+                            button.innerText = chosen_page - 2 + i
+                            i++;
+                        }    
+                    })
+                    center_position = table_content.querySelector('[id-page="3"]')
+                    center_position.style.color = 'black'
+                }else if(chosen_page != page && chosen_page < 5){
+                    i = 1
+                    button_list.forEach((button) =>{
+                        button.style.color = 'white'
+                        if(!isNaN(Number(button.innerText))){   
+                            button.innerText = i
+                            i++  
+                        }
+                    })
+                    
+                    button_list.forEach(button => { 
+                        if(button.innerText == chosen_page){
+                            button.style.color = 'black';
+                        }
+                    })
+                    
+                }else if(chosen_page > page_quantity - 4){
+                    i = page_quantity - 4;
+                    button_list.forEach((button) =>{
+                        button.style.color = 'white'
+                        if(!isNaN(Number(button.innerText))){   
+                            button.innerText = i
+                            i++
+                        }
+                    })
+                    
+                    button_list.forEach(button => { 
+                        if(button.innerText == chosen_page){
+                        button.style.color = 'black'; 
+                    }
+                    
+                })
+            }
+            
+            page =  chosen_page
+            console.log("============")
+            console.log('PAGE QUANTITY = ', page_quantity)
+            console.log('PAGE  = ', page)
+            console.log('hours = ', hour)
+            console.log('NUMER = ', candle)
+            tableFilter()
+        });    
+        });
         // }
     
         function tableFilter(){
-            console.log("Table = ", table)
-            console.log("AQUI = ", )
+            console.log('DATA ESCOLHIDA =', date.value)
+            console.log("Table = ", table_content)
+            console.log("Nome Da Tabela no BD = ", table)
             fetch("/site_php/public_html/index.php/aviator/pagbet",{
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({page: page, fields: {candle: numer, hours: hour}}),
+                body: JSON.stringify({table: table, page: page, fields: {candle: candle.value, hour: hour.value, date: date.value}}),
             })
+           
             .then(response => response.json())
             .then(data => {
-                console.log("Verificando = ", table)
-                let tbody = table.querySelector('tbody')
-                console.log('TBODY = ', tbody)
-                let remove_table = table.querySelectorAll('.aviatorTb > tr');
+                console.log("Verificando = ", data)
+                let tbody = table_content.querySelector('tbody')
+                let remove_table = table_content.querySelectorAll('.aviatorTb > tr');
                 remove_table.forEach($value => $value.remove());
                 page_quantity = Math.floor(data.page_quantity/15) +1;
                 data.table.forEach($value => {
                     let tr = document.createElement('tr');
                     let td =  document.createElement('td');
-
-                    td.textContent = $value.candle ; 
+                    let span = document.createElement('span')
+                    if($value.candle < 2){
+                        span.className ="candle-blue"
+                    }else if($value.candle < 10 ){
+                        span.className ="candle-purple"
+                    }else{
+                        span.className ="candle-pink"
+                    }
+                    span.textContent = $value.candle ; 
                     tbody.appendChild(tr);  
                     tr.appendChild(td);
+                    td.appendChild(span)
                     
                     td =  document.createElement('td');
-                    td.textContent = $value.hours ; 
-                    tbody.appendChild(tr);  
+                    td.textContent = $value.hour ;
                     tr.appendChild(td);
                 }); 
             })
             .catch(error => {
-                console.error("Erro ao fazer a requisição:", error);
+                // console.error("Erro ao fazer a requisição:", error);
+                throw new Error('Erro na requisição: ' + error.status);
             }); 
         }
        

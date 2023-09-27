@@ -4,7 +4,7 @@ function connect(){
     $dbHostname = 'LocalHost';
     $dbUsername = 'root';
     $dbPassword = '';
-    $dbName = 'cadastro_usuarios';
+    $dbName = 'gg_aviator';
     
     $conexao =  new mysqli($dbHostname, $dbUsername, $dbPassword, $dbName);  
     

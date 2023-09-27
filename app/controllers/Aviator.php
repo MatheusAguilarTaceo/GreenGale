@@ -31,19 +31,21 @@ class Aviator{
     public function tablePageFilter(){   
         $json = file_get_contents('php://input');
         $data =  json_decode($json, true);
-
-        $selectFields = 'candle, hours';
+        $table = $data['table'];
+        $page = $data['page'];
         $whereFields = $data['fields'];
+
+        $selectFields = 'candle, hour';
         $limit = 15;
-        $offset = $limit * ( $data['page'] - 1);
+        $offset = $limit * ($page - 1);
         
-        $table = findTableData('new_table', $selectFields, $whereFields, $limit, $offset);   
+        $query = findTableData( $table, $selectFields, $whereFields, $limit, $offset);   
         
         $selectFields = 'count(*) as count';
         $offset = 0;
-        $page_quantity = findTableData('new_table', $selectFields, $whereFields, $limit, $offset);
+        $page_quantity = findTableData($table, $selectFields, $whereFields, $limit, $offset);
 
-        $array_data = ['table' => $table, 'page_quantity' => [$page_quantity[0]['count']]];
+        $array_data = ['table' => $query, 'page_quantity' => [$page_quantity[0]['count']]];
         $json_data = json_encode($array_data);
         echo $json_data;
     }
