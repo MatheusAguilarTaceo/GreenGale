@@ -88,15 +88,12 @@ th, td{
     height: 20px;
     text-align: center;
     border: 1px solid rebeccapurple;
-    /* border-radius: 4px; */
 
 }
 
 
 .aviatorTb > tr:nth-child(even){
-    /* background-color: rgb(115, 122, 111); */
     background-color: rgb(43, 41, 41);
-    /* padding: 2px 11px; */
     border: 100px;    
 }
 .aviatorTb > tr:nth-child(odd){

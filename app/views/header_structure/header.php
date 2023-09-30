@@ -1,19 +1,27 @@
+<div class="header-logo">
+    <img src="<?php echo IMGS?>jpg/LOGOH.jpg" alt="Imagem">
+    </div>
+        
+    <nav class="header-container">
+        <ul class="header-ul-menu">
+                        
+            <li class="header-icon"><a> <img src="<?php echo IMGS?>png/casa.png" alt=""></a></li>
+            <li class="header-menu"><a href="#" id="pag">Home</a></li>
+                
+            <li class="header-icon"><a> <img src="<?php echo IMGS?>png/novo.png" alt=""></a></li>
+            <li class="header-menu"><a href="#" id="pag">New</a></li>
+            <li class="header-icon"><a> <img src="<?php echo IMGS?>png/grafico-button.png" alt=""></a></li>
+            <li class="header-menu"><a href="#" id="pag">Estatistica</a></li>
 
-<div class="logop">
-    <img src= <?php echo IMGS."jpg/LOGOH.jpg"?> alt="LOGOTIPO">
-</div>
+            <li class="header-icon"><a> <img src="<?php echo IMGS?>png/sobre.png" alt=""></a></li>
+            <li class="header-menu"><a href="#" id="pag">Sobre</a></li>
 
-<nav class="navBar">
-    <ul>
-        <a class="icon1"> <img src="/img/home.png" alt=""></a>
-        <li id="ler-pagina">Home</li>
-        <a class="icon1"> <img src="/img/new.png" alt=""></a>
-        <li>New</li>
-        <a class="icon1"> <img src="/img/statistics.png" alt=""></a>
-        <li>Estatistica</li>
-        <a class="icon1"> <img src="/img/sobre1.png" alt=""></a>
-        <li>Sobre</li>
-        <a class="log1">Entrar</a>
-        <a class="log2">cadastre-se</a>
-    </ul>
-</nav>    
+                <!--BOTÃO MENU-->
+                
+            <li class="header-cad1"><a class="header-anc1" href="#">cadastre-se</a></li>
+            <li class="header-cad2"><a class="header-anc2" href="#">Entrar</a></li>
+            
+        </ul>    
+    </nav>    
+
+        <div id="conteudo"></div>

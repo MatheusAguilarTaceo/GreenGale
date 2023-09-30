@@ -12,17 +12,16 @@
            
 </head>
 <body>
-    <header class ="header">
+    <header>
         <?php require 'header_structure/header.php'?>
     </header>
     <main>
-        <h1 class="main-txt"><?php echo $data['title']?></h1>
+        <!-- <h1 class="main-txt"><?php echo $data['title']?></h1> -->
         <?php require $views; ?> 
     </main>
     <footer>
         <p>Cabeçalho</p>
     </footer>
-    <!-- <script>src="<?php echo JS?>"</script>     -->
     <script src=<?php echo JS?>></script>    
 
 </body> 
