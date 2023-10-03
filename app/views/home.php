@@ -50,7 +50,7 @@
         <span class="box-resource">
         
             <img src="<?php echo IMGS?>png/coroa.png" alt="">        
-            <h3 class="h3">100% grátis para usar</h3>
+            <h3 class="h3">1000% grátis para usar</h3>
             <p class="text">Gree-Gale é totalmente gratuito para usar - para sempre. Basta clicar no seu jogo favorito abaixo para ver as estatísticas em tempo real desse jogo instantaneamente.</p>
         </span>
     </div>
