@@ -1,6 +1,6 @@
 <?php 
 
-function insert($elements, $table){
+function insert($dataBase, $table, $elements){
     $fields = implode(',', array_keys($elements));
     $values = '';
         for($i = 0; $i < count($elements); $i++){
@@ -8,10 +8,10 @@ function insert($elements, $table){
         }
     $values = substr($values,0, -1);
 
-    $connection = connect();
+    $connection = connect($dataBase);
     $sql = "INSERT INTO $table ($fields) VALUES ($values)";
-    var_dump($elements);
-    echo $sql.'<br>';
+    // var_dump($elements);
+    // echo $sql.'<br>';
     $sequenceOfTypes =  dataTypeString($elements);
     $prepare = $connection->prepare($sql);
 
@@ -20,7 +20,6 @@ function insert($elements, $table){
     if($prepare){
         call_user_func_array([$prepare, 'bind_param'], makeValuesReferenced($values));
         $prepare->execute();
-    die();  
     }
 }
 

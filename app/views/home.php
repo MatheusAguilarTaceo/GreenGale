@@ -19,7 +19,7 @@
         </li>
         <li  class="box-button">
             <img src="<?php echo IMGS?>png/grafico-button.png" alt="">
-            <a href="#">Ver estatistica</a>
+            <a href="<?php echo PUBLIC_HTML?>index.php/aviator">Ver estatistica</a>
         </li>
     </ul>
 
@@ -28,7 +28,7 @@
 
         <span class="box-resource">
 
-            <img src="img/Nuvem.png" alt="">
+            <img src="<?php echo IMGS?>png/Nuvem.png" alt="">
             <h3 class="h3">Nenhum download necessário</h3>
             <p class="text">Visualize todos os dados por meio de seu navegador em seu desktop, tablet ou dispositivo móvel instantaneamente, sem nenhum download. Você nem precisa de uma conta!</p>
         </span>

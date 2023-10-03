@@ -1,10 +1,10 @@
 <?php
    
-function connect(){  
+function connect($dataBase){  
     $dbHostname = 'LocalHost';
     $dbUsername = 'root';
     $dbPassword = '';
-    $dbName = 'gg_aviator';
+    $dbName = $dataBase;
     
     $conexao =  new mysqli($dbHostname, $dbUsername, $dbPassword, $dbName);  
     

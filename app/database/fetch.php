@@ -1,6 +1,6 @@
 <?php
 
-function findAll($table, $fields = '*'){
+function findAll($dataBase, $table, $fields = '*'){
     try{
         $connect = connect();
         $sql = "SELECT {$fields} FROM $table ";
@@ -13,8 +13,8 @@ function findAll($table, $fields = '*'){
         var_dump($e->getMessage());
     }
 }
-function findBy($table, $whereField, $value, $selectFields = "*", $operator = "="){
-    $connect = connect();
+function findBy($dataBase, $table, $whereField, $value, $selectFields = "*", $operator = "="){
+    $connect = connect($dataBase);
     static $contador = 0;
     $contador++;
     try{
@@ -32,8 +32,8 @@ function findBy($table, $whereField, $value, $selectFields = "*", $operator = "=
     }
 }
 
-function findTableData($table, $selectFields, $whereFields, $limit, $offset){
-    $conect = connect();
+function findTableData($dataBase, $table, $selectFields, $whereFields, $limit, $offset){
+    $conect = connect($dataBase);
     [$candle, $hour, $date] = array_keys($whereFields);
     
     try{

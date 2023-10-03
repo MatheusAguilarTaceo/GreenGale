@@ -41,7 +41,7 @@ function email($field){
 
 function unique($field, $table){
     $data  = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
-    $result = findBy($table, $field, $data, $field);  
+    $result = findBy('gg_users', $table, $field, $data, $field);  
     if(isset($result->email)){
         setFlash($field, 'Email já cadastrado');
         return false;

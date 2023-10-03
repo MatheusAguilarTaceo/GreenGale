@@ -11,16 +11,15 @@
 
 .table-block{
     background-color: rgb(43, 226, 52);
-    /* background-image: url(/); */
     border: solid 5px black;
     padding: 50px;
     text-align: center;
 
 }
 
-section{        
-    margin-left: 75px;
-    margin-right: 75px; 
+.table-content{        
+    margin-left:  70px;
+    margin-right: 70px; 
     border:10px solid black;
     background-color: rgb(226, 162, 43);
     padding: 10px;;
@@ -28,11 +27,15 @@ section{
     display: inline-block; 
     
 }
-/* #table-content-1{
-    display: inline-block; 
-} */
 
-.main-btn-vela{
+.box_filtro{
+    width: 154px;
+    height: 29px;
+    border: solid 2px black;  
+    text-align: center  ;
+}
+
+.input_filters{
     text-align: center;
     width: 150px;
     height: 25px;
@@ -40,14 +43,6 @@ section{
     margin-bottom: 2px;
 }
 
-.main-btn-time {
-    text-align: center ;
-    width: 150px;
-    height: 25px;
-    border: 2px solid black;
-    margin-bottom: 2px;
-    
-}
 .main-combobox-date{
     height: 25px;
     width: 150px;
@@ -57,12 +52,6 @@ section{
     border: solid 2px black;  
 }   
 
-select{
-    width: 154px;
-    height: 29px;
-    border: solid 2px black;  
-    text-align: center  ;
-}
 table{
     width:fit-content;
     border-collapse: collapse;
@@ -107,6 +96,7 @@ th, td{
 
 .tablePagination{
     margin: auto;
+    padding: 0px;
     padding-top: 5px;
     width: fit-content;
 

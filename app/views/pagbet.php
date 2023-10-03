@@ -60,7 +60,7 @@
             </thead>
             <tbody class="aviatorTb">
                     
-            </tbody>
+        </tbody>
         </table>
         <ul class='tablePagination'>
             <button class = 'tableButton' first-page ="first-page"><<</button>

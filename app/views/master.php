@@ -16,7 +16,6 @@
         <?php require 'header_structure/header.php'?>
     </header>
     <main>
-        <!-- <h1 class="main-txt"><?php echo $data['title']?></h1> -->
         <?php require $views; ?> 
     </main>
     <footer>

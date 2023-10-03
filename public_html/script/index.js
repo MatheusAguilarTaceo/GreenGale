@@ -19,11 +19,15 @@ function indexTable(start_table){
         if(month < 10){
             month = '0'+month  
         }
+        if(day < 10){
+            day = '0'+day  
+        }
+        
 
-        let betting_house = table_content.querySelector("#boxfiltro")
+        let betting_house = table_content.querySelector(".box_filtro")
         console.log("CASA DE APOSTA = ", betting_house.value)
         betting_house.addEventListener('input', function(){
-            table = `${betting_house.value}_${year}_${month}`
+            table = `${day}/${month}/${year}/${betting_house.value}`;
             tableFilter()
         })
 
@@ -31,7 +35,7 @@ function indexTable(start_table){
         date.value = `${year}-${month}-${day}`
         date.addEventListener('input', function(){
             [year, month, day] = date.value.split('-')
-            table = `${betting_house.value}_${year}_${month}`
+            table = `${day}/${month}/${year}/${betting_house.value}`;
             tableFilter()
         })
         
@@ -52,10 +56,9 @@ function indexTable(start_table){
         
         const button_list = table_content.querySelectorAll(".tablePagination > button"); 
         
-        let table = `${betting_house.value}_${year}_${month}`
+        let table = `${day}/${month}/${year}/${betting_house.value}`;
         let page = 1;
         let page_quantity = 0;  
-
         console.log('TABLE BD = ', table)
         console.log('PAGE = ', page)
         console.log("DATE = ", date.value)
@@ -95,52 +98,54 @@ function indexTable(start_table){
                         chosen_page = Number(button.innerText)
                         
                 }
-                if(chosen_page>= 5 && button.innerText != page && chosen_page <= page_quantity - 4){
-                    i = 0
-                    button_list.forEach((button) =>  {
-                        button.style.color = 'white'
-                        if(!isNaN(Number(button.innerText)) ) {
-                            button.innerText = chosen_page - 2 + i
-                            i++;
-                        }    
-                    })
-                    center_position = table_content.querySelector('[id-page="3"]')
-                    center_position.style.color = 'black'
-                }else if(chosen_page != page && chosen_page < 5){
-                    i = 1
-                    button_list.forEach((button) =>{
-                        button.style.color = 'white'
-                        if(!isNaN(Number(button.innerText))){   
-                            button.innerText = i
-                            i++  
-                        }
-                    })
-                    
-                    button_list.forEach(button => { 
-                        if(button.innerText == chosen_page){
-                            button.style.color = 'black';
-                        }
-                    })
-                    
-                }else if(chosen_page > page_quantity - 4){
-                    i = page_quantity - 4;
-                    button_list.forEach((button) =>{
-                        button.style.color = 'white'
-                        if(!isNaN(Number(button.innerText))){   
-                            button.innerText = i
-                            i++
-                        }
-                    })
-                    
-                    button_list.forEach(button => { 
-                        if(button.innerText == chosen_page){
-                        button.style.color = 'black'; 
+                if(chosen_page != page){
+                    if(chosen_page>= 5 && button.innerText != page && chosen_page <= page_quantity - 4){
+                        i = 0
+                        button_list.forEach((button) =>  {
+                            button.style.color = 'white'
+                            if(!isNaN(Number(button.innerText)) ) {
+                                button.innerText = chosen_page - 2 + i
+                                i++;
+                            }    
+                        })
+                        center_position = table_content.querySelector('[id-page="3"]')
+                        center_position.style.color = 'black'
+                    }else if(chosen_page != page && chosen_page < 5){
+                        i = 1
+                        button_list.forEach((button) =>{
+                            button.style.color = 'white'
+                            if(!isNaN(Number(button.innerText))){   
+                                button.innerText = i
+                                i++  
+                            }
+                        })
+                        
+                        button_list.forEach(button => { 
+                            if(button.innerText == chosen_page){
+                                button.style.color = 'black';
+                            }
+                        })
+                        
+                    }else if(chosen_page > page_quantity - 4){
+                        i = page_quantity - 4;
+                        button_list.forEach((button) =>{
+                            button.style.color = 'white'
+                            if(!isNaN(Number(button.innerText))){   
+                                button.innerText = i
+                                i++
+                            }
+                        })
+                        
+                        button_list.forEach(button => { 
+                            if(button.innerText == chosen_page){
+                            button.style.color = 'black'; 
+                            }
+                        
+                        })
                     }
-                    
-                })
-            }
+                    page =  chosen_page
+                }
             
-            page =  chosen_page
             console.log("============")
             console.log('PAGE QUANTITY = ', page_quantity)
             console.log('PAGE  = ', page)
@@ -170,6 +175,7 @@ function indexTable(start_table){
                 let remove_table = table_content.querySelectorAll('.aviatorTb > tr');
                 remove_table.forEach($value => $value.remove());
                 page_quantity = Math.ceil(data.page_quantity/15);
+                console.log('PAGE QUANTITY ATUAL = ', page_quantity)
                 data.table.forEach($value => {
                     let tr = document.createElement('tr');
                     let td =  document.createElement('td');
@@ -213,7 +219,7 @@ function indexTable(start_table){
             last_table_content.insertAdjacentElement('afterend', section);
         }
         console.log('NUMERO DA TABELA = ',numberOfTables)
-
+        section.className = 'table-content'
         section.id = `table-content-${numberOfTables+1}` 
 
         let div_1 = document.createElement('div')
@@ -221,7 +227,7 @@ function indexTable(start_table){
         
         let select = document.createElement('select')
         div_1.appendChild(select)
-        select.id = 'boxfiltro'
+        select.className = 'box_filtro'
     
         let option_1 = document.createElement('option')
         select.appendChild(option_1)
@@ -247,7 +253,7 @@ function indexTable(start_table){
         
         let input_1 = document.createElement('input')
         div_1.appendChild(input_1)
-        input_1.className = 'main-btn-vela'
+        input_1.className = 'input_filters'
         input_1.id = 'date'
         input_1.type = 'date'
         
@@ -256,13 +262,13 @@ function indexTable(start_table){
         
         let input_2 = document.createElement('input') 
         div_2.appendChild(input_2)
-        input_2.className  = 'main-btn-vela'
+        input_2.className  = 'input_filters'
         input_2.id = 'candle'
         input_2.type = 'text'
         
         let input_3 = document.createElement('input')
         div_2.appendChild(input_3)
-        input_3.className  = 'main-btn-vela'
+        input_3.className  = 'input_filters'
         input_3.id = 'time'
         input_3.type = 'time'
         
