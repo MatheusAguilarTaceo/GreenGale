@@ -3,7 +3,7 @@ return [
     'POST'=> [
         '/login' => 'Login@store',
         '/register' => 'Register@create',
-        '/aviator/[a-z]+' => 'Aviator@tablePageFilter'
+        '/aviator' => 'Aviator@tablePageFilter'
     ],
     'GET' =>[
         '/' => 'Home@index',    

@@ -19,7 +19,7 @@
         </li>
         <li  class="box-button">
             <img src="<?php echo IMGS?>png/grafico-button.png" alt="">
-            <a href="<?php echo PUBLIC_HTML?>index.php/aviator">Ver estatistica</a>
+            <a href="aviator">Ver estatistica</a>
         </li>
     </ul>
 

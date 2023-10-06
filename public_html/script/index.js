@@ -155,12 +155,11 @@ function indexTable(start_table){
         });    
         });
         // }
-    
         function tableFilter(){
             console.log('DATA ESCOLHIDA =', date.value)
             console.log("Table = ", table_content)
             console.log("Nome Da Tabela no BD = ", table)
-            fetch("/site_php/public_html/index.php/aviator/pagbet",{
+            fetch("aviator",{
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json"

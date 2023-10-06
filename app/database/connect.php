@@ -2,8 +2,8 @@
    
 function connect($dataBase){  
     $dbHostname = 'LocalHost';
-    $dbUsername = 'root';
-    $dbPassword = '';
+    $dbUsername = 'gg_aviator';
+    $dbPassword = 'Teu292112@ma';
     $dbName = $dataBase;
     
     $conexao =  new mysqli($dbHostname, $dbUsername, $dbPassword, $dbName);  

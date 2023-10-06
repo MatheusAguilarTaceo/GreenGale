@@ -1,6 +1,5 @@
 <?php
 require 'bootstrap.php';
-
 try{
     $metadata = router();   
     extract($metadata);

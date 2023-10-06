@@ -3,11 +3,10 @@
     </div>
         
     <nav class="header-container">
-        <ul class="header-ul-menu">
-                        
+        <ul class="header-ul-menu">            
             <li class="header-icon"><a> <img src="<?php echo IMGS?>png/casa.png" alt=""></a></li>
-            <li class="header-menu"><a href="<?php echo PUBLIC_HTML?>index.php" id="pag">Home</a></li>
-                
+            <li class="header-menu"><a href="." id="pag">Home</a></li>
+
             <li class="header-icon"><a> <img src="<?php echo IMGS?>png/novo.png" alt=""></a></li>
             <li class="header-menu"><a href="#" id="pag">New</a></li>
             <li class="header-icon"><a> <img src="<?php echo IMGS?>png/grafico-button.png" alt=""></a></li>
@@ -18,9 +17,8 @@
 
                 <!--BOTÃO MENU-->
                 
-            <li class="header-cad1"><a class="header-anc1" href="<?php echo PUBLIC_HTML?>index.php/register">cadastre-se</a></li>
-            <li class="header-cad2"><a class="header-anc2" href="<?php echo PUBLIC_HTML?>index.php/login">Entrar</a></li>
-            
+            <li class="header-cad1"><a class="header-anc1" href="register">cadastre-se</a></li>
+            <li class="header-cad2"><a class="header-anc2" href="login">Entrar</a></li>
         </ul>    
     </nav>    
 

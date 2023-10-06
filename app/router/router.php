@@ -41,15 +41,8 @@ function paramsFormat($uri, $params){
 }    
 
 function router(){
-
-    $url = $_SERVER['REQUEST_URI'];
-    $indexPosition = strpos($url, 'index.php');
-    $uri = substr($url, $indexPosition + strlen('index.php'));
-    if($uri == ""){
-        $uri = '/';
-    }
-  
     $routes = routes();
+    $uri = $_SERVER['REQUEST_URI'];
     $requesMethod = $_SERVER['REQUEST_METHOD'];
 
     $mathchedUri = exactMathUriInArrays($uri, $routes[$requesMethod]);
