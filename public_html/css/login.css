@@ -1,43 +1,38 @@
-
-
-.container {
+.loginn{
+    margin-right: 503px;
+    margin-top: 117px;
+    float: right;
+    color: #007bff;
     max-width: 400px;
     padding: 20px;
     padding-left: 20px;
-    padding-bottom: 40px;
-    height: 229px;
+    padding-bottom: 45px;
+    height: 250px;
     width: 316px;
     padding-right: 30px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(52, 46, 46, 0.1);
-    margin: auto;
-    margin-top: 50px;
-    color: black;
-}
+    
+  }
 
-.container-h2{
+
+  h1{
+
     text-align: center;
     margin-bottom: 20px;
-}
+    color: rgb(0, 0, 0);
+  }
 
-.container-label {
-    display: block;
-    font-weight: bold;
-}
-
-input[type="password"],
-input[type="email"]{
+  input{
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
     padding-right: 0;
     border: 1px solid #ccc;
     border-radius: 3px;
-}
-
-
-.container-button{
+  }
+  .inputSubmit{
+    
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -46,4 +41,19 @@ input[type="email"]{
     cursor: pointer;
     height: 36px;
     width: 328px;
-}
+  }
+
+ .voltar{
+
+    list-style-type: none;
+ }
+
+ .element{
+
+    color: #007bff;
+    margin-left: 104px;
+ }
+  .inputSubmit:hover{
+      background-color: blueviolet;
+      cursor: pointer;
+  }
