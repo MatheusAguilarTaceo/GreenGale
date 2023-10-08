@@ -6,7 +6,7 @@ class Account{
     public function index(){
         return[
             'views' => 'account.php',
-            'data' => ['title' => 'Account']
+            'data' => ['title' => 'Account', 'css' => '']
         ];
     }
 }

@@ -9,7 +9,7 @@ class Login{
         }
         return[
             'views' => 'login.php',
-            'data' => ['title' => 'Login' ]
+            'data' => ['title' => 'Login', 'css' => 'login.css' ]
         ];
     }
     

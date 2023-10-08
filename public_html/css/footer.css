@@ -1,0 +1,42 @@
+:root{
+    --bg-color:#081b29;
+    --second-bg-color:#112e42;
+    --text-color:#ededed;
+    --main-color:#00abf0;
+    --cor-fundo:#d9e1e4;
+    --cor-botao:  #60c05d;
+}
+
+footer{
+
+    text-align: center;
+    
+}
+
+.container-footer {
+
+    margin: 20px;
+    border: 1px solid var(--bg-color);
+    margin-top: 53px;
+    display: inline-block;
+    background-color: var(--cor-botao);
+    
+    color: #081b29;
+    text-align: center;
+    width: 50px; /* Defina a largura desejada */
+    height: 50px; /* Defina a altura desejada */
+    overflow: hidden; /* Para esconder as partes da imagem fora do círculo */
+    border-radius: 50%; /* Torna a imagem um círculo definindo o raio como 50% da largura/altura */
+}
+.container-footer img {
+    list-style-type: none;
+    width: 100%; /* Garante que a imagem preencha todo o espaço do elemento pai */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Remove margens brancas adicionais */
+}
+
+.direitos{
+
+    color: #081b29;
+    text-align: center;
+}

@@ -8,7 +8,10 @@
     <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
             crossorigin="anonymous"></script> -->
-    <link rel="stylesheet" href= <?php echo CSS?>>
+    <link rel="stylesheet" href= <?php echo HEADER?>>
+    <link rel="stylesheet" href= <?php echo CSS.$data['css']?>>
+    <link rel="stylesheet" href= <?php echo FOOTER?>>
+
            
 </head>
 <body>
@@ -19,7 +22,7 @@
         <?php require $views; ?> 
     </main>
     <footer>
-        <p>Cabeçalho</p>
+        <?php require 'footer.php'; ?> 
     </footer>
     <script src=<?php echo JS?>></script>    
 

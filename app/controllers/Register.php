@@ -6,7 +6,7 @@ class Register{
     public function index(){
         return [
             'views' => 'register.php',
-            'data' => ['title' => 'Registrar-se']
+            'data' => ['title' => 'Registrar-se', 'css' => 'register.css']
         ]; 
     }    
 
