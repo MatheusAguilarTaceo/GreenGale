@@ -1,38 +1,128 @@
 <style>
-    select {
-      color: black;
-      padding: 10px;
-      font-size: 16px;
-      border: 2px solid #007BFF;
-      border-radius: 8px;
-      background-color:var(--main-color);
-    }
+    /* Estilos para o menu */
+.container-dropdown {
+    list-style-type: none;
+    float: right;
+    margin: 0;
+    padding: 0;
+    margin-top: -27 px;
+    cursor: pointer;
+    
+}
 
-    select:hover {
-      background-color:  var(--main-color);
-    }
+.acount img{
 
-    select:focus {
-      outline: none;
-      box-shadow: 0 0 5px darkgreen;
-    }
+    width: 20px;
+    text-align: center;
+    margin-top: 15px;
+    
+}
 
-    option{
-        color: black;
-    }
+.acount1 img{
 
-    .user{
-      color: black;
-      padding: 3px;
-      text-decoration: None;
-      position: relative;
-      border: solid black 1px;
-      border-radius: 5px;
-      background-color: violet;
-      margin: 10px;
-      
-    }
+    width: 7px;
+}
+
+.acount , .dropdown-menu{
+
+
+    display: inline-block;
+    margin-top: -3px;
+}
+
+.dropdown {
+    
+    align-items: center;
+    display: inline-block;
+    margin-right: 31px;
+    
+} 
+.dropdown-menu{
+
+    text-align: center;
+    
+    
+}
+
+.dropdown-menu {
+    text-decoration: none;
+    text-align: center;
+    color: #f7f3f3;
+    display: inline-block;
+    margin-left: 2px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    width: 48px;
+    height: 19px;
+    padding-top: 1px;
+    padding-bottom: 0px;
+    border-bottom-width: 0px;
+}
+
+
+
+/* Estilos para o menu suspenso */
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f7f3f3;
+    min-width: 20px;
+    width: 144px;
+    height: 99px;
+    z-index: 1;
+    border-radius: 4px;
+    list-style-type: none;
+    padding-left: 4px;
+    left: 1199px;
+
+    
+
+    
+}
+
+.dropdown:hover {
+    display: block;
+}
+
+.dropdown-content li {
+    
+
+    padding-top: 16px;
+    height: 26px;
+    width: 50px;
+    
+
+    
+}
+
+.dropdown-interno {
+    color: #090909;
+    padding: 5px 5px;
+    text-decoration: none;
+    list-style-type: none;
+    
+    
+}
+
+.dropdown-interno , .dropdown-interno img{
+
+    display: inline-block;
+    width: 15px;
+
+}
 </style>
 
-<a href= "<?php echo PUBLIC_HTML ?>index.php/account" class="user">Account</a>
-<a href= "<?php echo PUBLIC_HTML ?>index.php/logout" class="user">Logout</a>
+<!-- <li class="header-cad1"><a class="header-anc1" href="<?php // echo PUBLIC_HTML?>index.php/register">Conta</a></li>
+<li class="header-cad2"><a class="header-anc2" href="<?php //echo PUBLIC_HTML?>index.php/logout">Sair</a></li> -->
+<ul class="container-dropdown">
+  <li class="dropdown">
+    <a class="acount" href="#"><img src="<?php echo IMGS?>png/perfil (1).png" alt=""></a>
+    <a class="dropdown-menu" href="#" >Conta</a>
+    <a class="acount1" href="#"><img src="<?php echo IMGS?>png/-seta-para-baixo.png" alt=""></a>
+      <ul class="dropdown-content">
+                                
+        <li><a class="dropdown-interno" href="#"><img src="<?php echo IMGS?>png/configuracao.png" alt=""></a><a class="dropdown-interno" href="#">configurações</a></li>
+        <li><a class="dropdown-interno" href="<?php echo PUBLIC_HTML?>index.php/logout"><img src="/img/sair.png" alt=""></a><a class="dropdown-interno" href="<?php echo PUBLIC_HTML?>index.php/logout">logout</a></li>
+      </ul>
+  </li>
+</ul>

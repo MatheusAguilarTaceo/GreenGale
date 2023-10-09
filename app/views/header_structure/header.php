@@ -1,5 +1,5 @@
 <div class="header-logo">
-    <img src="<?php echo IMGS?>jpg/LOGOH.jpg" alt="Imagem">
+    <img src="<?php echo IMGS?>png/logo-novo.png" alt="Imagem">
     </div>
         
     <nav class="header-container">

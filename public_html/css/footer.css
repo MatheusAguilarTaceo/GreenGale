@@ -16,15 +16,15 @@ footer{
 .container-footer {
 
     margin: 20px;
-    border: 1px solid var(--bg-color);
+    border: 1px solid var(--cor-fundo);
     margin-top: 53px;
     display: inline-block;
     background-color: var(--cor-botao);
     
-    color: #081b29;
+    color: var(--bg-color);
     text-align: center;
-    width: 50px; /* Defina a largura desejada */
-    height: 50px; /* Defina a altura desejada */
+    width: 30px; /* Defina a largura desejada */
+    height: 30px; /* Defina a altura desejada */
     overflow: hidden; /* Para esconder as partes da imagem fora do círculo */
     border-radius: 50%; /* Torna a imagem um círculo definindo o raio como 50% da largura/altura */
 }
@@ -37,6 +37,6 @@ footer{
 
 .direitos{
 
-    color: #081b29;
+    color: var(--bg-color);
     text-align: center;
 }
