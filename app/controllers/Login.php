@@ -5,7 +5,7 @@ namespace app\controllers;
 class Login{
     public function index($params){
         if(isset($_SESSION[LOGGED])){
-            redirect(PUBLIC_HTML.'index.php');
+            redirect('.');
         }
         return[
             'views' => 'login.php',
@@ -20,7 +20,7 @@ class Login{
         if(empty($email) || empty($password)){
             return setMessageAndRedirect('messageLogin', 'Email ou senha incorretos', 'login');
         }
-        $user = findBy('cad_user', 'email', $email);
+        $user = findBy('gg_users','registered_users', 'email', $email);
         
         if(!$user){
             return setMessageAndRedirect('messageLogin', 'Email ou senha incorretos', 'login');

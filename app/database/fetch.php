@@ -2,7 +2,7 @@
 
 function findAll($dataBase, $table, $fields = '*'){
     try{
-        $connect = connect();
+        $connect = connect($dataBase);
         $sql = "SELECT {$fields} FROM $table ";
         $query = $connect->query($sql);
         $query = $query->fetch_all(MYSQLI_ASSOC);

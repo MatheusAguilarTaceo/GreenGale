@@ -1,8 +1,8 @@
 <?php
    
 function connect($dataBase){  
-    $dbHostname = 'LocalHost';
-    $dbUsername = 'gg_aviator';
+    $dbHostname = 'Localhost';
+    $dbUsername = 'db_app_gg';
     $dbPassword = 'Teu292112@ma';
     $dbName = $dataBase;
     

@@ -6,7 +6,8 @@
         <input type="email" id="email" name="email" required>
         
         <label class="container-label" for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required>
+        <?php echo getFlash('password')?>
+        <input type="password" id="senha" name="password" required>
         
         <button class="container-button" type="submit">Entrar</button>
     </form>
