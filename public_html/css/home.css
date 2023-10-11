@@ -1,20 +1,3 @@
-:root{
-    --bg-color:#081b29;
-    --second-bg-color:#112e42;
-    --text-color:#ededed;
-    --main-color:#00abf0;
-    --cor-fundo:#d9e1e4;
-    --cor-botao:  #60c05d;
-}
-
-main{
-    margin-top: -141px;
-}
-
-.main-h1{
-
-    margin-left: 6rem;
-}
 
 .box-main-jogo{
 
@@ -112,11 +95,8 @@ main{
 
 
 .container-resoucer{
-    display: inline-block;
     text-align: center;
-    
-
-    
+    margin: auto;
 }
 
 .box-resource{

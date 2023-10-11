@@ -4,6 +4,7 @@ body{
     margin: 0;
     padding: 0;
     color: var(--text-color);
+    background-color: var(--cor-fundo);
 }
 
 
@@ -14,15 +15,18 @@ body{
     --text-color:#ededed;
     --main-color:#00abf0;
     --cor-fundo:#d9e1e4;
-    --cor-botao:#69c4ee;;
+    --cor-botao:  #60c05d;
     --cor-botao1:#f1ff27;
     --cor-botao2:#0ad414;
 }
 
-.temp{
+main{
+    margin-top: -141px;
+}
 
-    color: #0ad414;
-    
+.main-h1{
+
+    margin-left: 6rem;
 }
 
 .container-fluid{

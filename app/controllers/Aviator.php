@@ -6,7 +6,7 @@ class Aviator{
     public function index(){
         return[
             'views' => 'aviator.php',
-            'data' => ['title' => 'Casas de aposta', 'css' => 'table.css']
+            'data' => ['title' => 'Casas de aposta', 'css' => 'aviator.css']
         ];
     }
 
