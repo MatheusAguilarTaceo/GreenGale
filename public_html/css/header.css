@@ -1,16 +1,12 @@
 
-main{
-    margin-top: -8.5rem;
-    margin-bottom: 4rem;
-}
 body{
-    
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgb(227, 227, 228);
     color: var(--text-color);
+    background-color: var(--cor-fundo);
 }
+
 
 
 :root{
@@ -19,15 +15,23 @@ body{
     --text-color:#ededed;
     --main-color:#00abf0;
     --cor-fundo:#d9e1e4;
-    --cor-botao:#69c4ee;;
+    --cor-botao:  #60c05d;
     --cor-botao1:#f1ff27;
     --cor-botao2:#0ad414;
 }
 
-.temp{
+main{
+    margin-top: -141px;
+}
 
-    color: #0ad414;
-    
+.main-h1{
+
+    margin-left: 6rem;
+}
+
+.container-fluid{
+    max-width: 1600px;
+    margin: auto;
 }
 
 header{
@@ -37,27 +41,26 @@ header{
 }
 
 .header-logo{
-
-    width: 299px;
-    height: 84px;
-    margin-left: 43px;
-
+    /* height: fit-content; */
+    /* width: 100px; */
+    /* height: 84px; */
+    /* margin-left: 43px; */
 }
 .header-logo img{
-
-    height: 84px;
-    
-    
+    width: 233px;
+    height: 157px;
+    margin-top: -40px;
+    margin-bottom:-40px ;
 }
 
 .header-container{
-
     margin-top: 4px;
     border: 1px solid var(--text-color);
     border-left: none;
     border-right: none;
     background-color: var(--bg-color);
     float: inline-start;
+    height: 50px;
     
     
 }
@@ -66,9 +69,6 @@ header{
     list-style: none;
     margin-top: 0;
     padding: 2px;
-
-    
-    
 }
 
 .header-icon{
