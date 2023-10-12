@@ -7,8 +7,6 @@ function connect($dbName, $dbUsername, $dbPassword){
     if($conexao->connect_errno){
         return $conexao->error;
     }else{
-        // echo("Conexão efetuada com sucesso");
-        // die();
         return $conexao;
     }
 

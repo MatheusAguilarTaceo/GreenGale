@@ -7,7 +7,9 @@
             "email": "theusaguilar2@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    },
     "autoload": {  
         "files": [
             "app/router/router.php",
@@ -29,4 +31,3 @@
         }
     }
 }
-  
