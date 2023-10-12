@@ -9,3 +9,4 @@ define('MAIN', 'css/');
 define('FOOTER', 'css/footer.css');
 define('JS', 'script/index.js');
 define('LOGGED', 'LOGGED');
+define('TABLE_USERS', 'registered_users');
