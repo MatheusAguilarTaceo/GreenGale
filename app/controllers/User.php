@@ -7,8 +7,14 @@ class User{
         if(!isset($params['user'])){   
             return  [];
         }
-
-        $users = findBy('cad_user',"id", $params["user"] , "*");
+        
+        $dbName = '';
+        $dbUsername = '';
+        $dbPassword = '';
+        $table = '';
+        
+        $users = findBy($dbName, $dbUsername, $dbPassword, $table,  "id" , $params["user"]);
+        
         return[
             'views' => 'user.php',
             'data' => ['title' => 'User', 'users' => $users]

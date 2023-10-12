@@ -1,8 +1,8 @@
 <?php
 
-function findAll($dataBase, $table, $fields = '*'){
+function findAll($dbName, $dbUsername, $dbPassword,$table, $fields = '*'){
     try{
-        $connect = connect($dataBase);
+        $connect = connect($dbName, $dbUsername, $dbPassword);
         $sql = "SELECT {$fields} FROM $table ";
         $query = $connect->query($sql);
         $query = $query->fetch_all(MYSQLI_ASSOC);
@@ -13,8 +13,8 @@ function findAll($dataBase, $table, $fields = '*'){
         var_dump($e->getMessage());
     }
 }
-function findBy($dataBase, $table, $whereField, $value, $selectFields = "*", $operator = "="){
-    $connect = connect($dataBase);
+function findBy($dbName, $dbUsername, $dbPassword, $table, $whereField, $value, $selectFields = "*", $operator = "="){
+    $connect = connect($dbName, $dbUsername, $dbPassword,);
     static $contador = 0;
     $contador++;
     try{
@@ -32,8 +32,8 @@ function findBy($dataBase, $table, $whereField, $value, $selectFields = "*", $op
     }
 }
 
-function findTableData($dataBase, $table, $selectFields, $whereFields, $limit, $offset){
-    $conect = connect($dataBase);
+function findTableData($dbName, $dbUsername, $dbPassword, $table, $selectFields, $whereFields, $limit, $offset){
+    $conect = connect($dbName, $dbUsername, $dbPassword);
     [$candle, $hour, $date] = array_keys($whereFields);
     
     try{
@@ -54,19 +54,7 @@ function findTableData($dataBase, $table, $selectFields, $whereFields, $limit, $
     }catch(Exception $e){
         echo "Exceção capturada: " . $e->getMessage();  
         return $e;
-     } // }catch (Error $e) {
-         //     echo "Erro capturado: " . $e->getMessage();
-         //     return $e;
-         // }
-         
+    }    
 }
-        
-// function findEmptyTable($table, $selectFields, $limit){
-//     $sql = "SELECT {$selectFields} FROM {$table} LIMIT {$limit}";
-//     $query = $conect->query($sql);
-//     $query = $query->fetch_all(MYSQLI_ASSOC);
-
-// }
-
 
 

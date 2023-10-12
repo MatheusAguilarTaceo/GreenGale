@@ -22,7 +22,12 @@ class Register{
         }
 
         $validate['password'] = password_hash($validate['password'], PASSWORD_DEFAULT);
-        insert('gg_users', 'registered_users', $validate);
+        $dbName = '';
+        $dbUsername = '';
+        $dbPassword = '';
+        $table = '';
+        insert($dbName, $dbUsername, $dbPassword, $table, $validate);
+        
         redirect('.');
     }       
 

@@ -20,13 +20,19 @@ class Login{
         if(empty($email) || empty($password)){
             return setMessageAndRedirect('messageLogin', 'Email ou senha incorretos', 'login');
         }
-        $user = findBy('gg_users','registered_users', 'email', $email);
+
+        $dbName = '';
+        $dbUsername = '';
+        $dbPassword = '';
+        $table = '';
+
+        $user = findBy($dbName,$dbUsername, $dbPassword, $table, 'email', $email);
         
         if(!$user){
             return setMessageAndRedirect('messageLogin', 'Email ou senha incorretos', 'login');
         }
     
-        if(!password_verify($password,$user->password)){
+        if(!password_verify($password, $user->password)){
             return  setMessageAndRedirect('messageLogin', 'Email ou senha incorretos', 'login');    
             
         }
