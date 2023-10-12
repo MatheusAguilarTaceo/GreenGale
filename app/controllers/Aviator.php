@@ -31,9 +31,9 @@ class Aviator{
     public function tablePageFilter(){   
         $json = file_get_contents('php://input');
         $data =  json_decode($json, true);
-        $dbName = '';
-        $dbUsername = '';
-        $dbPassword = '';
+        $dbName = $_ENV['DB_NAME_AVIATOR'];
+        $dbUsername = $_ENV['DB_USERNAME_AVIATOR'];
+        $dbPassword = $_ENV['DB_PASSWORD_AVIATOR'];
         $table =  explode('/', $data['table']);
         $table = implode('_', array_reverse(array_splice($table, 1, 4)));
         $page = $data['page'];
