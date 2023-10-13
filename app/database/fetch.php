@@ -38,7 +38,7 @@ function findTableData($dbName, $dbUsername, $dbPassword, $table, $selectFields,
     
     try{
         $sql = "SELECT {$selectFields} FROM {$table}
-        WHERE {$candle} >= ? AND {$hour} >= ? AND  {$date} = ? LIMIT {$limit} OFFSET {$offset}";
+        WHERE {$candle} >= ? AND {$hour} >= ? AND  {$date} = ?  ORDER BY id desc LIMIT {$limit} OFFSET {$offset}";
         $prepare = $conect->prepare($sql);
         if($prepare){
             $params = array_merge([str_repeat('s', count($whereFields))], array_values($whereFields));

@@ -40,7 +40,7 @@ class Aviator{
         $whereFields = $data['fields'];
 
         $selectFields = 'candle, hour';
-        $limit = 15;
+        $limit = 12;
         $offset = $limit * ($page - 1);
         
         $query = findTableData($dbName, $dbUsername, $dbPassword, $table, $selectFields, $whereFields, $limit, $offset);   
