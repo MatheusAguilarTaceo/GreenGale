@@ -25,6 +25,7 @@
         <?php require 'footer.php'; ?> 
     </footer>
     <script src=<?php echo JS?>></script>    
+    <script src=<?php echo JS2?>></script>    
 
 </body> 
 
