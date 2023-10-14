@@ -22,7 +22,7 @@ class Register{
         }
 
         $validate['password'] = password_hash($validate['password'], PASSWORD_DEFAULT);
-        $validate['token'] = bin2hex(random_bytes(30)); 
+        $validate['token'] = bin2hex(random_bytes(30));
         $validate['email_confirmation_id']  = 1;
         $dbName = $_ENV['DB_NAME_USERS'];
         $dbUsername = $_ENV['DB_USERNAME_USERS'];
@@ -30,7 +30,8 @@ class Register{
         $table = TABLE_USERS;
         $result = insert($dbName, $dbUsername, $dbPassword, $table, $validate);
         if($result){
-            echo $_SESSION["error"] = $result;
+            # erro de chave estrangeira
+            $_SESSION["error"] = $result;
             redirect('register');
         }else{
             redirect('.');
