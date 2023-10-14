@@ -112,17 +112,20 @@
 }
 </style>
 
-<!-- <li class="header-cad1"><a class="header-anc1" href="<?php // echo PUBLIC_HTML?>index.php/register">Conta</a></li>
-<li class="header-cad2"><a class="header-anc2" href="<?php //echo PUBLIC_HTML?>index.php/logout">Sair</a></li> -->
 <ul class="container-dropdown">
   <li class="dropdown">
     <a class="acount" href="#"><img src="<?php echo IMGS?>png/perfil (1).png" alt=""></a>
     <a class="dropdown-menu" href="#" >Conta</a>
     <a class="acount1" href="#"><img src="<?php echo IMGS?>png/-seta-para-baixo.png" alt=""></a>
-      <ul class="dropdown-content">
-                                
-        <li><a class="dropdown-interno" href="#"><img src="<?php echo IMGS?>png/configuracao.png" alt=""></a><a class="dropdown-interno" href="#">configurações</a></li>
-        <li><a class="dropdown-interno" href="<?php echo PUBLIC_HTML?>index.php/logout"><img src="/img/sair.png" alt=""></a><a class="dropdown-interno" href="<?php echo PUBLIC_HTML?>index.php/logout">logout</a></li>
+      <ul class="dropdown-content">                        
+        <li>
+            <a class="dropdown-interno" href="#"><img src="<?php echo IMGS?>png/configuracao.png" alt=""></a>
+            <a class="dropdown-interno" href="#">configurações</a>
+        </li>
+        <li>
+            <a class="dropdown-interno" href="logout"><img src="/img/sair.png" alt=""></a>
+            <a class="dropdown-interno" href="logout">logout</a>
+        </li>
       </ul>
   </li>
 </ul>

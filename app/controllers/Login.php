@@ -21,10 +21,10 @@ class Login{
             return setMessageAndRedirect('messageLogin', 'Email ou senha incorretos', 'login');
         }
 
-        $dbName = '';
-        $dbUsername = '';
-        $dbPassword = '';
-        $table = '';
+        $dbName = $_ENV['DB_NAME_USERS'];
+        $dbUsername = $_ENV['DB_USERNAME_USERS'];
+        $dbPassword = $_ENV['DB_PASSWORD_USERS'];
+        $table = TABLE_USERS;
 
         $user = findBy($dbName,$dbUsername, $dbPassword, $table, 'email', $email);
         
@@ -38,7 +38,7 @@ class Login{
         }
 
         $_SESSION[LOGGED] = $user;
-        return redirect(PUBLIC_HTML.'index.php');
+        return redirect('.');
 
 
     }
@@ -46,7 +46,7 @@ class Login{
     public function logout(){
         if(isset($_SESSION[LOGGED])){
             unset($_SESSION[LOGGED]);
-            return redirect(PUBLIC_HTML.'index.php');
+            return redirect('.');
         }
     }
 

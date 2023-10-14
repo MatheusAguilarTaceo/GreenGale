@@ -22,13 +22,20 @@ class Register{
         }
 
         $validate['password'] = password_hash($validate['password'], PASSWORD_DEFAULT);
-        $dbName = '';
-        $dbUsername = '';
-        $dbPassword = '';
-        $table = '';
-        insert($dbName, $dbUsername, $dbPassword, $table, $validate);
-        
-        redirect('.');
+        $validate['token'] = bin2hex(random_bytes(30));
+        $validate['email_confirmation_id']  = 1;
+        $dbName = $_ENV['DB_NAME_USERS'];
+        $dbUsername = $_ENV['DB_USERNAME_USERS'];
+        $dbPassword = $_ENV['DB_PASSWORD_USERS'];
+        $table = TABLE_USERS;
+        $result = insert($dbName, $dbUsername, $dbPassword, $table, $validate);
+        if($result){
+            # erro de chave estrangeira
+            $_SESSION["error"] = $result;
+            redirect('register');
+        }else{
+            redirect('.');
+        }
     }       
 
 }

@@ -40,8 +40,13 @@ function email($field){
 }
 
 function unique($field, $table){
+    #14/10/2023, organizar os nomes dos parametros
     $data  = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
-    $result = findBy('gg_users', $table, $field, $data, $field);  
+    $dbName = $_ENV['DB_NAME_USERS'];
+    $dbUsername = $_ENV['DB_USERNAME_USERS'];
+    $dbPassword = $_ENV['DB_PASSWORD_USERS'];
+    $table = TABLE_USERS;
+    $result = findBy($dbName, $dbUsername, $dbPassword, $table, $field, $data, $field);  
     if(isset($result->email)){
         setFlash($field, 'Email já cadastrado');
         return false;
