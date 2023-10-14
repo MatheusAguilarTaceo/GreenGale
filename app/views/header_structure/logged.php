@@ -1,6 +1,6 @@
 <style>
     /* Estilos para o menu */
-.container-dropdown {
+/* .container-dropdown {
     list-style-type: none;
     float: right;
     margin: 0;
@@ -57,12 +57,12 @@
     padding-top: 1px;
     padding-bottom: 0px;
     border-bottom-width: 0px;
-}
+} */
 
 
 
 /* Estilos para o menu suspenso */
-.dropdown-content{
+/* .dropdown-content{
     display: none;
     position: absolute;
     background-color: #f7f3f3;
@@ -109,23 +109,29 @@
     display: inline-block;
     width: 15px;
 
-}
+} */
 </style>
 
 <ul class="container-dropdown">
   <li class="dropdown">
-    <a class="acount" href="#"><img src="<?php echo IMGS?>png/perfil (1).png" alt=""></a>
+    <a class="acount" href="#"><img src="<?php echo IMGS?>png/coroa.png" alt=""></a>
     <a class="dropdown-menu" href="#" >Conta</a>
-    <a class="acount1" href="#"><img src="<?php echo IMGS?>png/-seta-para-baixo.png" alt=""></a>
+    <a class="acount1" href="#"><img src="<?php echo IMGS?>png/biscoito.png" alt=""></a>
       <ul class="dropdown-content">                        
         <li>
-            <a class="dropdown-interno" href="#"><img src="<?php echo IMGS?>png/configuracao.png" alt=""></a>
-            <a class="dropdown-interno" href="#">configurações</a>
+            <a class="dropdown-interno" href="#">
+                <img src="<?php echo IMGS?>png/facebook.png" alt="">
+                <span class="dropdown-interno" href="#">configurações</span>
+            </a>
         </li>
         <li>
-            <a class="dropdown-interno" href="logout"><img src="/img/sair.png" alt=""></a>
-            <a class="dropdown-interno" href="logout">logout</a>
+            <a class="dropdown-interno" href="logout">
+                <img src="<?php echo IMGS?>png/facebook.png" alt="">
+                <a class="dropdown-interno" href="logout">logout</a>
+            </a>
         </li>
+        
+
       </ul>
   </li>
 </ul>
