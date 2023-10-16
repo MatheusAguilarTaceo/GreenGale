@@ -19,6 +19,7 @@ return array(
     'eb8aa912ff95de5d18447cecc1d053e9' => $baseDir . '/app/helpers/table.php',
     'a0d297f62610ac4f6f4709950244d0e2' => $baseDir . '/app/helpers/send_email.php',
     '4654ec7f0cc8b19e1f8221a0ba617115' => $baseDir . '/app/database/connect.php',
-    'e657ef5a0940a2d2e8a2e423f87b6206' => $baseDir . '/app/database/fetch.php',
+    'aca3bda958b6163fdfd38969edf45404' => $baseDir . '/app/database/select.php',
     '672240fa1a263e26bf92a8db5ce29a46' => $baseDir . '/app/database/insert.php',
+    'a0a56ef35bb2cbd521bee3e417c43162' => $baseDir . '/app/database/update.php',
 );

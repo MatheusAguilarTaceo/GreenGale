@@ -23,8 +23,9 @@
             "app/helpers/table.php",
             "app/helpers/send_email.php",
             "app/database/connect.php",
-            "app/database/fetch.php",
-            "app/database/insert.php"
+            "app/database/select.php",
+            "app/database/insert.php",
+            "app/database/update.php"
         ],
 
         "psr-4": {

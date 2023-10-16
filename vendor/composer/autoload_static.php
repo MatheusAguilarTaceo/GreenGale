@@ -20,8 +20,9 @@ class ComposerStaticInit6824f6380820a776b68d1e35702dc1d4
         'eb8aa912ff95de5d18447cecc1d053e9' => __DIR__ . '/../..' . '/app/helpers/table.php',
         'a0d297f62610ac4f6f4709950244d0e2' => __DIR__ . '/../..' . '/app/helpers/send_email.php',
         '4654ec7f0cc8b19e1f8221a0ba617115' => __DIR__ . '/../..' . '/app/database/connect.php',
-        'e657ef5a0940a2d2e8a2e423f87b6206' => __DIR__ . '/../..' . '/app/database/fetch.php',
+        'aca3bda958b6163fdfd38969edf45404' => __DIR__ . '/../..' . '/app/database/select.php',
         '672240fa1a263e26bf92a8db5ce29a46' => __DIR__ . '/../..' . '/app/database/insert.php',
+        'a0a56ef35bb2cbd521bee3e417c43162' => __DIR__ . '/../..' . '/app/database/update.php',
     );
 
     public static $prefixLengthsPsr4 = array (
