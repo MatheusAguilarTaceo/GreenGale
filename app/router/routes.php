@@ -9,6 +9,7 @@ return [
         '/' => 'Home@index',    
         '/user/[a-z0-9]+' => 'User@index',
         '/register' => 'Register@index',
+        '/?token=[a-z0-9]+' => 'Register@emailConfirmation',
         '/login' => 'Login@index',
         '/logout' => 'Login@logout',
         '/account' => 'Account@index',

@@ -4,9 +4,6 @@
         echo "<span style = color:red> {$_SESSION['error']} </span>";
         unset($_SESSION['error']);
     }
-    $token = bin2hex(random_bytes(30)); 
-    echo $token.'<br>';
-    echo strlen($token)
 ?>
 <div class="container">
     <form action="register" method="POST">

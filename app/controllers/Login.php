@@ -27,9 +27,11 @@ class Login{
         $table = TABLE_USERS;
 
         $user = findBy($dbName,$dbUsername, $dbPassword, $table, 'email', $email);
-        
         if(!$user){
             return setMessageAndRedirect('messageLogin', 'Email ou senha incorretos', 'login');
+        }
+        if($user->email_confirmation_id == 1){ 
+            return setMessageAndRedirect('messageLogin', 'Email não confirmado, confirme seu email e tente novamente', 'login');
         }
     
         if(!password_verify($password, $user->password)){

@@ -32,10 +32,20 @@ class Register{
         if($result){
             # erro de chave estrangeira
             $_SESSION["error"] = $result;
-            redirect('register');
-        }else{
-            redirect('.');
+            return redirect('register');
         }
-    }       
+        send_mail($validate['email'], $validate['name'], $validate['token']);
+        redirect('.');
+    }
+    
+    public function emailConfirmation(){
+        $db_name = $_ENV['DB_NAME_USERS'];
+        $db_username = $_ENV['DB_USERNAME_USERS'];
+        $db_password = $_ENV['DB_PASSWORD_USERS'];
+        $table = TABLE_USERS;
+        $where_field = 'token';
+        $token = $_GET['key'];
+        findBy($db_name, $db_username, $db_password, $table, $where_field, $token);
+    }
 
 }

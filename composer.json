@@ -8,7 +8,8 @@
         }
     ],
     "require": {
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "phpmailer/phpmailer": "^6.8.1"
     },
     "autoload": {  
         "files": [
@@ -20,10 +21,10 @@
             "app/helpers/sessions.php",
             "app/helpers/validate.php",
             "app/helpers/table.php",
+            "app/helpers/send_email.php",
             "app/database/connect.php",
             "app/database/fetch.php",
             "app/database/insert.php"
-
         ],
 
         "psr-4": {
