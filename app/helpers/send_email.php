@@ -45,7 +45,8 @@ function send_mail($email,$name,  $token){
         Estamos muito felizes em confirmar o seu cadastro em nosso site.
         Você está a um passo de aproveitar todos os recursos e benefícios que oferecemos.<br>
         Para ativar sua conta, por favor, clique no link de confirmação abaixo:<br>
-        https://greengale.com.br?key=$token";
+        http://localhost:5000/?key=$token";
+        // https://greengale.com.br?key=$token";
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
     
         $mail->send();
