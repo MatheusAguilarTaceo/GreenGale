@@ -9,7 +9,8 @@ class Login{
         }
         return[
             'views' => 'login.php',
-            'data' => ['title' => 'Login', 'css' => 'login.css' ]
+            'data' => ['title-menu' => 'Sua Conta', 
+            'css' => 'login.css' ]
         ];
     }
     
@@ -21,15 +22,17 @@ class Login{
             return setMessageAndRedirect('messageLogin', 'Email ou senha incorretos', 'login');
         }
 
-        $dbName = '';
-        $dbUsername = '';
-        $dbPassword = '';
-        $table = '';
+        $dbName = $_ENV['DB_NAME_USERS'];
+        $dbUsername = $_ENV['DB_USERNAME_USERS'];
+        $dbPassword = $_ENV['DB_PASSWORD_USERS'];
+        $table = TABLE_USERS;
 
         $user = findBy($dbName,$dbUsername, $dbPassword, $table, 'email', $email);
-        
         if(!$user){
             return setMessageAndRedirect('messageLogin', 'Email ou senha incorretos', 'login');
+        }
+        if($user->email_confirmation_id == 1){ 
+            return setMessageAndRedirect('messageLogin', 'Email não confirmado, confirme seu email e tente novamente', 'login');
         }
     
         if(!password_verify($password, $user->password)){
@@ -38,7 +41,7 @@ class Login{
         }
 
         $_SESSION[LOGGED] = $user;
-        return redirect(PUBLIC_HTML.'index.php');
+        return redirect('.');
 
 
     }
@@ -46,7 +49,7 @@ class Login{
     public function logout(){
         if(isset($_SESSION[LOGGED])){
             unset($_SESSION[LOGGED]);
-            return redirect(PUBLIC_HTML.'index.php');
+            return redirect('.');
         }
     }
 

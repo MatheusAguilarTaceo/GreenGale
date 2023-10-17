@@ -1,7 +1,7 @@
 
         
 <div class="container-footer">
-    <a href=""><img src= "<?php echo IMGS?>png/faceboo.png" alt="Imagem"></a>
+    <a href=""><img src= "<?php echo IMGS?>png/facebook.png" alt="Imagem"></a>
 </div>    
 <div class="container-footer">
     <a href=""><img src= "<?php echo IMGS?>png/twitter.png" alt="Imagem"></a>

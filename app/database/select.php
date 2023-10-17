@@ -9,23 +9,26 @@ function findAll($dbName, $dbUsername, $dbPassword,$table, $fields = '*'){
         $query = json_decode(json_encode($query));
         return $query;
     }catch(mysqli_sql_exception $e){
-        echo 'erro';
         var_dump($e->getMessage());
     }
 }
 function findBy($dbName, $dbUsername, $dbPassword, $table, $whereField, $value, $selectFields = "*", $operator = "="){
-    $connect = connect($dbName, $dbUsername, $dbPassword,);
-    static $contador = 0;
-    $contador++;
+    $connect = connect($dbName, $dbUsername, $dbPassword,);    
     try{
         $sql = "SELECT {$selectFields} FROM {$table} WHERE {$whereField} {$operator} ?";
         $prepare = $connect->prepare($sql);
         if($prepare){
             $prepare->bind_param("s", $value);
             $prepare->execute();
+            $result = $prepare->get_result(); 
+            if($result->num_rows == 1){
+                return $result->fetch_object();
+            }else{
+                $result = $result->fetch_all(MYSQLI_ASSOC);
+                return json_decode(json_encode($result));
+            }
         }
-        $prepare = $prepare->get_result(); 
-        return $prepare->fetch_object();
+        return [];
     }catch(mysqli_sql_exception $error){ 
         echo "erro $error";
         return $error;

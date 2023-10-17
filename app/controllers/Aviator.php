@@ -6,7 +6,9 @@ class Aviator{
     public function index(){
         return[
             'views' => 'aviator.php',
-            'data' => ['title' => 'Casas de aposta', 'css' => 'aviator.css']
+            'data' => ['title-menu' => 'Histórico das casas de apostas | Aviator',
+            'title-page' => 'Aviator Histórico',
+            'css' => 'aviator.css']
         ];
     }
 

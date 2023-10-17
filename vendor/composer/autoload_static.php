@@ -18,9 +18,11 @@ class ComposerStaticInit6824f6380820a776b68d1e35702dc1d4
         '3dc310cd0a35800592d6ffd4493cd19e' => __DIR__ . '/../..' . '/app/helpers/sessions.php',
         '2cc073fa285373802f9bf9eadf23191d' => __DIR__ . '/../..' . '/app/helpers/validate.php',
         'eb8aa912ff95de5d18447cecc1d053e9' => __DIR__ . '/../..' . '/app/helpers/table.php',
+        'a0d297f62610ac4f6f4709950244d0e2' => __DIR__ . '/../..' . '/app/helpers/send_email.php',
         '4654ec7f0cc8b19e1f8221a0ba617115' => __DIR__ . '/../..' . '/app/database/connect.php',
-        'e657ef5a0940a2d2e8a2e423f87b6206' => __DIR__ . '/../..' . '/app/database/fetch.php',
+        'aca3bda958b6163fdfd38969edf45404' => __DIR__ . '/../..' . '/app/database/select.php',
         '672240fa1a263e26bf92a8db5ce29a46' => __DIR__ . '/../..' . '/app/database/insert.php',
+        'a0a56ef35bb2cbd521bee3e417c43162' => __DIR__ . '/../..' . '/app/database/update.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -37,6 +39,7 @@ class ComposerStaticInit6824f6380820a776b68d1e35702dc1d4
         'P' => 
         array (
             'PhpOption\\' => 10,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'G' => 
         array (
@@ -68,6 +71,10 @@ class ComposerStaticInit6824f6380820a776b68d1e35702dc1d4
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'GrahamCampbell\\ResultType\\' => 
         array (
@@ -126,6 +133,13 @@ class ComposerStaticInit6824f6380820a776b68d1e35702dc1d4
         'GrahamCampbell\\ResultType\\Error' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Error.php',
         'GrahamCampbell\\ResultType\\Result' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Result.php',
         'GrahamCampbell\\ResultType\\Success' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Success.php',
+        'PHPMailer\\PHPMailer\\DSNConfigurator' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/DSNConfigurator.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\OAuthTokenProvider' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuthTokenProvider.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'PhpOption\\LazyOption' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/LazyOption.php',
         'PhpOption\\None' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/None.php',
         'PhpOption\\Option' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/Option.php',
