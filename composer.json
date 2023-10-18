@@ -7,7 +7,10 @@
             "email": "theusaguilar2@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "vlucas/phpdotenv": "^5.5",
+        "phpmailer/phpmailer": "^6.8.1"
+    },
     "autoload": {  
         "files": [
             "app/router/router.php",
@@ -18,10 +21,11 @@
             "app/helpers/sessions.php",
             "app/helpers/validate.php",
             "app/helpers/table.php",
+            "app/helpers/send_email.php",
             "app/database/connect.php",
-            "app/database/fetch.php",
-            "app/database/insert.php"
-
+            "app/database/select.php",
+            "app/database/insert.php",
+            "app/database/update.php"
         ],
 
         "psr-4": {
@@ -29,4 +33,3 @@
         }
     }
 }
-  

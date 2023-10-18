@@ -1,5 +1,5 @@
 <div class = "container-fluid">
-    <h1 class="main-h1"><?php echo $data['title']?></h1>
+    <h1 class="main-h1"><?php echo $data['title-page']?></h1>
     
         <ul class="main-aviator">
     

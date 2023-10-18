@@ -7,7 +7,7 @@ try{
     if(!isset($data)){
         throw new Exception("O indice data não existe ");
     }
-    if(!isset($data['title'])){
+    if(!isset($data['title-menu'])){
         throw new Exception("O indice title não existe ");
     }
     

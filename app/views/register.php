@@ -1,12 +1,17 @@
 
+<?php
+    if(isset($_SESSION['error'])){
+        echo "<span style = color:red> {$_SESSION['error']} </span>";
+        unset($_SESSION['error']);
+    }
+?>
 <div class="container">
     <form action="register" method="POST">
-        
             <h2>Cadastro de Usuário</h2>
             <br><br>
             <div class="inputBox"> 
-                <label for="nome">Nome completo</label>
-                <input type="text" id="nome" name="nome">
+                <label for="name">Nome completo</label>
+                <input type="text" id="name" name="name">
                 <?php echo getFlash('name')?>
                  
             </div>
@@ -19,8 +24,8 @@
             </div>
             <br><br>
             <div class="inputBox">
-                <label for="senha">Senha</label>
-                <input type="password" id="senha" name="password" >
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" >
                 <?php echo getFlash('password')?>
 
             </div>    

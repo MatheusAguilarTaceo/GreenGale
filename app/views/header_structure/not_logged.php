@@ -1,3 +1,3 @@
 
-<a href="<?php echo PUBLIC_HTML ?>index.php/login" class="b">Entrar</a>
-<a href="index.php/register" class="b">Inscrever-se</a>
+ <li class="header-cad1"><a class="header-anc1" href="register">cadastre-se</a></li>
+ <li class="header-cad2"><a class="header-anc2" href="login">Entrar</a></li>

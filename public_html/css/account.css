@@ -1,0 +1,56 @@
+.tab {
+    display: flex;
+    border: 1px solid #ccc;
+    background-color: cadetblue;
+    border: solid 3px black;
+    margin: 15px;
+}
+
+/* Estilos do botão da aba */
+.tab-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.tab-button:hover {
+    background-color: cadetblue;;
+}
+
+.tab-button.active {
+    background-color: rgb(255, 251, 0);
+}
+
+/* Estilos do conteúdo da aba */
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+/* Exibir conteúdo quando o botão da aba estiver ativo */
+.tab-content.active {
+    display: block;
+    border: solid black;
+    margin: 15px;
+    padding-inline: 30px;  
+    width: 20%;
+    min-width: 350px;
+    background-color: cadetblue;
+}
+
+.letras{
+    color: black;
+}
+
+.divAccount{
+    border: solid black;
+    position: relative;
+    padding-left: 35%;
+    padding-right: 37%;
+    padding-bottom: 20%;    
+}

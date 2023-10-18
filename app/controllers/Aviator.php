@@ -6,7 +6,9 @@ class Aviator{
     public function index(){
         return[
             'views' => 'aviator.php',
-            'data' => ['title' => 'Casas de aposta', 'css' => 'aviator.css']
+            'data' => ['title-menu' => 'Histórico das casas de apostas | Aviator',
+            'title-page' => 'Aviator Histórico',
+            'css' => 'aviator.css']
         ];
     }
 
@@ -31,27 +33,29 @@ class Aviator{
     public function tablePageFilter(){   
         $json = file_get_contents('php://input');
         $data =  json_decode($json, true);
-        $dataBase = 'gg_aviator';
+        $dbName = $_ENV['DB_NAME_AVIATOR'];
+        $dbUsername = $_ENV['DB_USERNAME_AVIATOR'];
+        $dbPassword = $_ENV['DB_PASSWORD_AVIATOR'];
         $table =  explode('/', $data['table']);
         $table = implode('_', array_reverse(array_splice($table, 1, 4)));
         $page = $data['page'];
         $whereFields = $data['fields'];
 
         $selectFields = 'candle, hour';
-        $limit = 15;
+        $limit = 12;
         $offset = $limit * ($page - 1);
         
-        $query = findTableData($dataBase, $table, $selectFields, $whereFields, $limit, $offset);   
+        $query = findTableData($dbName, $dbUsername, $dbPassword, $table, $selectFields, $whereFields, $limit, $offset);   
         if(empty($query)){
             $table = 'vazio';
             $whereFields['candle'] = '0';
             $whereFields['hour'] = '00:00:00';
             $whereFields['date'] = '0000-00-00';
-            $query = findTableData($dataBase, $table, $selectFields, $whereFields, $limit, $offset);   
+            $query = findTableData($dbName, $dbUsername, $dbPassword, $table, $selectFields, $whereFields, $limit, $offset);   
         }
         $selectFields = 'count(*) as count';
         $offset = 0;
-        $page_quantity = findTableData($dataBase, $table, $selectFields, $whereFields, $limit, $offset);
+        $page_quantity = findTableData($dbName, $dbUsername, $dbPassword, $table, $selectFields, $whereFields, $limit, $offset);
 
         $array_data = ['table' => $query, 'page_quantity' => [$page_quantity[0]['count']]];
         $json_data = json_encode($array_data);

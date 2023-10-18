@@ -6,7 +6,10 @@ class Register{
     public function index(){
         return [
             'views' => 'register.php',
-            'data' => ['title' => 'Registrar-se', 'css' => 'register.css']
+            'data' => [
+                'title-menu' => 'Registrar-se | Greengale', 
+                'css' => 'register.css'
+            ]
         ]; 
     }    
 
@@ -22,8 +25,38 @@ class Register{
         }
 
         $validate['password'] = password_hash($validate['password'], PASSWORD_DEFAULT);
-        insert('gg_users', 'registered_users', $validate);
+        $validate['token'] = bin2hex(random_bytes(30));
+        $validate['email_confirmation_id']  = 1;
+        $dbName = $_ENV['DB_NAME_USERS'];
+        $dbUsername = $_ENV['DB_USERNAME_USERS'];
+        $dbPassword = $_ENV['DB_PASSWORD_USERS'];
+        $table = TABLE_USERS;
+        $result = insert($dbName, $dbUsername, $dbPassword, $table, $validate);
+        if($result){
+            # erro de chave estrangeira
+            $_SESSION["error"] = $result;
+            return redirect('register');
+        }
+        send_mail($validate['email'], $validate['name'], $validate['token']);
         redirect('.');
-    }       
+    }
+    
+    public function emailConfirmation(){
+        $db_name = $_ENV['DB_NAME_USERS'];
+        $db_username = $_ENV['DB_USERNAME_USERS'];
+        $db_password = $_ENV['DB_PASSWORD_USERS'];
+        $table = TABLE_USERS;
+        $where_field = 'token';
+        $token = $_GET['key'];
+        $result = findBy($db_name, $db_username, $db_password, $table, $where_field, $token);
+        if(isset($result->id)){
+            $set_fields_values = ['token' => NULL, 'email_confirmation_id' => '2'];
+            $where_fields_values = ['id' => $result->id];
+            update($db_name, $db_username, $db_password, $table, $set_fields_values, $where_fields_values);
+            
+            return redirect('register'); 
+        }
+        setMessageAndRedirect('msg_error', $result, 'register');
+    }
 
 }
