@@ -1,5 +1,10 @@
 
+
 <div class = "container-fluid">
+    <section class= "info-aviator">
+        <p>Sobre o jogo</p>
+        <img src="" alt="">
+    </section>
     <button class="new-table">Nova Tabela</button>
     <div class="table-block">
         <section class="table-content" id ='table-content-1'>

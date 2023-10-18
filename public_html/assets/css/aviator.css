@@ -1,4 +1,18 @@
 
+.info-aviator{
+    background-color: var(--bg-color);
+    min-height: 250px; 
+    margin-left: 50px;
+    margin-right:50px;
+    border-radius: 20px;
+    position: relative;
+}
+.info-aviator > p{
+    position: absolute;
+    margin-left: 50px;
+    margin-top: 40px;
+}
+
 .new-table{
     background-color:var(--bg-color);
     color:var(--text-color);   
