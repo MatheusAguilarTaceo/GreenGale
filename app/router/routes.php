@@ -14,6 +14,11 @@ return [
         '/logout' => 'Login@logout',
         '/account' => 'Account@index',
         '/aviator' => 'Aviator@index',
-        '/aviator/[a-z]+' => 'Aviator@show'
+        '/aviator/[a-z]+' => 'Aviator@show',
+        '/plans' => 'Plan@index',
+        '/plans?selected=basic' => 'Plan@basic',
+        '/plans?selected=medium' => 'Plan@medium',
+        '/plans?selected=high' => 'Plan@high'
+        
     ]
     ];
