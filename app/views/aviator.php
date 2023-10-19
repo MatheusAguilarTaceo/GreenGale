@@ -2,8 +2,20 @@
 
 <div class = "container-fluid">
     <section class= "info-aviator">
-        <p>Sobre o jogo</p>
-        <img src="" alt="">
+        <h1>Sobre o jogo</h1>
+        <div class = content>
+            <div class = "content-text">
+                <img src=<?php echo IMGS."png/aviator-logo.png"?> alt="aviator-logo">
+               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, quia pariatur. Veniam, ad sapiente culpa saepe fugit dicta doloribus animi expedita pariatur dolorum minima rerum ex nemo ab illum reiciendis?</p>
+            </div>
+            <div class = "content-text">
+               <img src=<?php echo IMGS."png/spribe-logo.png"?> alt="spribe-logo">
+               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, quia pariatur. Veniam, ad sapiente culpa saepe fugit dicta doloribus animi expedita pariatur dolorum minima rerum ex nemo ab illum reiciendis?</p>
+            </div>
+        </div>
+        <div class = "content-image">
+           <img src=<?php echo IMGS."png/aviator-amostra.png"?> alt="aviator-logo">
+        </div>
     </section>
     <button class="new-table">Nova Tabela</button>
     <div class="table-block">

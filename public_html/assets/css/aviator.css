@@ -1,17 +1,57 @@
 
 .info-aviator{
     background-color: var(--bg-color);
-    min-height: 250px; 
     margin-left: 50px;
     margin-right:50px;
+    padding-bottom: 80px;
     border-radius: 20px;
-    position: relative;
 }
-.info-aviator > p{
-    position: absolute;
+.info-aviator > h1{
+    padding-top: 50px;
+    padding-left: 100px;
+    padding-right: 50px;
+    margin: 0px;
+    text-align: left;
+}
+
+.content{
+    display: inline-block;
+}
+
+.content-text{
+    /* background-color: rgb(39, 78, 78); */
+    display: inline-block;
     margin-left: 50px;
-    margin-top: 40px;
+    padding-left: 20px;
+    width: 275px;
+    height: 250px;
 }
+.content-text > img{
+    width: 100px;
+    float: left;
+}
+.content-text > p{
+    font-size: small;
+    float: inline-end;
+    text-align:justify;
+    max-width: 300px;
+}
+
+.content-image{
+    background-color: rgb(39, 78, 78);
+    display: inline-block;
+    margin-left: 40px;
+
+    
+}
+.content-image > img{
+    width: 450px ;
+}
+
+
+
+
+
 
 .new-table{
     background-color:var(--bg-color);
