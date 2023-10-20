@@ -5,6 +5,7 @@
     margin-right:50px;
     padding-bottom: 80px;
     border-radius: 20px;
+    
 }
 .info-aviator > h1{
     padding-top: 50px;
@@ -19,7 +20,6 @@
 }
 
 .content-text{
-    /* background-color: rgb(39, 78, 78); */
     display: inline-block;
     margin-left: 50px;
     padding-left: 20px;
@@ -34,15 +34,15 @@
     font-size: small;
     float: inline-end;
     text-align:justify;
-    max-width: 300px;
 }
 
 .content-image{
     background-color: rgb(39, 78, 78);
     display: inline-block;
-    margin-left: 40px;
-
-    
+    margin-right: 40px;
+    height: 250px;
+    width: 450px;
+    float: right;
 }
 .content-image > img{
     width: 450px ;
@@ -69,11 +69,10 @@
     color: var(--main-color);
 }
 
-.table-block{
-    /* background-color: rgb(227, 227, 228); */
+.aviator-statistics{
     padding: 50px;
-    text-align: center;
-
+    /* text-align: center; */
+    border: 2px solid black;
 }
 
 .table-content{        
@@ -83,10 +82,8 @@
     border-radius: 5px;
     background-color: var(--bg-color);
     padding: 10px;;
+    display: inline-block;  
     text-align: center;
-    display: inline-block; 
-    margin-top: -85px;
-    
 }
 
 .box_filtro{
@@ -127,7 +124,7 @@ table{
 thead{
     background-color: var(--main-color);
 }
-.aviatorTb{
+.candle-tbody{
     background-color: rgb(238, 238, 238);
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -139,18 +136,9 @@ th, td{
     height: 27px;
     text-align: center;
     border: 1px solid rgb(0, 0, 0);
-
 }
 
-
-.aviatorTb{
-    background-color: rgb(243, 238, 238);
-     
-}
-
-
-
-.aviatorTb > tr > td{
+.candle-tbody > tr > td{
     color: rgb(0, 0, 0);
     
 }
@@ -160,7 +148,6 @@ th, td{
     padding: 0px;
     padding-top: 5px;
     width: fit-content;
-
 }
 .tableButton{
     display: inline-block;
@@ -190,5 +177,45 @@ th, td{
     color: rgb(174, 0, 255);
 }
 .candle-pink{
+    color: rgb(255, 32, 144);
+}
+
+
+.content-graphic{
+    display: inline-block;
+}
+
+.piechart{
+    display: block; width: 200px;
+     height: 250px;
+}
+
+.content-candles-rare{
+    /* background-color: rgb(42, 136, 136); */
+    display: inline-block;
+    margin-left: 30px;
+}
+.teste{
+    /* align-items: center; */
+}
+
+.candles-rare{
+    background-color: var(--bg-color);
+    width: 150px; 
+    height: 80px;
+    margin: 50px 25px;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.candles-rare > span{
+    position: absolute;
+    width: 150px; 
+    height: 80px;
+    display: flex;
+    justify-content: center; /* Centralizar horizontalmente */
+    align-items: center; /* Centralizar verticalmente */
+    font-size:xx-large;
     color: rgb(255, 32, 144);
 }

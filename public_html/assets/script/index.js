@@ -171,7 +171,7 @@ function indexTable(start_table){
             .then(data => {
                 console.log("Verificando = ", data)
                 let tbody = table_content.querySelector('tbody')
-                let remove_table = table_content.querySelectorAll('.aviatorTb > tr');
+                let remove_table = table_content.querySelectorAll('.candle-tbody > tr');
                 remove_table.forEach($value => $value.remove());
                 page_quantity = Math.ceil(data.page_quantity/15);
                 console.log('PAGE QUANTITY ATUAL = ', page_quantity)
@@ -290,7 +290,7 @@ function indexTable(start_table){
         
         let tbody = document.createElement('tbody')
         table.appendChild(tbody)
-        tbody.className = 'aviatorTb'
+        tbody.className = 'candle-tbody'
         
         let ul = document.createElement('ul')
         section.appendChild(ul)
@@ -356,18 +356,47 @@ let start_table = indexTable()
 let table = start_table.initializeData()
 table.tableFilter() 
 
-let table2 = start_table.initializeData()
-table2.tableFilter()
-
 createNewTable(start_table)
 
 
 
+// Gráficos
+
+
+function drawChart() {
+
+    
+    var data = google.visualization.arrayToDataTable([
+      ['Task', 'Hours per Day'],
+      ['Work',     11],
+      ['Eat',      2],
+      ['Commute',  2],
+      ['Watch TV', 2],
+      ['Sleep',    7]
+    ]);
+
+    var options = {
+        pieHole: 0.4,
+        legend: 'none', 
+        backgroundColor: {
+            fill: 'none',
+            stroke: 'black', // Cor da borda
+            strokeWidth: 0.1,   // Largura da borda
+        },
+        position: 'bottom',
+        
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart-1'));
+    chart.draw(data, options);
+
+    chart = new google.visualization.PieChart(document.getElementById('piechart-2'));
+    chart.draw(data, options);
+  }
 
 
 
-
-
+  
 
 
 

@@ -8,7 +8,7 @@
     <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
             crossorigin="anonymous"></script> -->
-    <link rel="stylesheet" href= <?php echo HEADER?>>
+    <link rel="stylesheet" href= <?php // echo HEADER?>>
     <link rel="stylesheet" href= <?php echo MAIN.$data['css']?>>
     <link rel="stylesheet" href= <?php echo FOOTER?>>
 
@@ -16,7 +16,7 @@
 </head>
 <body>
     <header>
-        <?php require 'header_structure/header.php'?>
+        <?php //require 'header_structure/header.php'?>
     </header>
     <main>
         <?php require $views; ?> 
@@ -26,6 +26,11 @@
     </footer>
     <script src=<?php echo JS?>></script>    
     <script src=<?php echo JS2?>></script>    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+    </script>
 
 </body> 
 
