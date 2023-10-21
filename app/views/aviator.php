@@ -3,18 +3,21 @@
 <div class = "container-fluid">
     <section class= "info-aviator">
         <h1>Sobre o jogo</h1>
-        <div class = content>
-            <div class = "content-text">
-                <img src=<?php echo IMGS."png/aviator-logo.png"?> alt="aviator-logo">
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, quia pariatur. Veniam, ad sapiente culpa saepe fugit dicta doloribus animi expedita pariatur dolorum minima rerum ex nemo ab illum reiciendis?</p>
+        <!-- <div style=" padding: 20px; text-align: center;"> -->
+        <div style="text-align: center">
+            <div class = content>
+                <div class = "content-text">
+                    <img src=<?php echo IMGS."png/aviator-logo.png"?> alt="aviator-logo">
+                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, quia pariatur. Veniam, ad sapiente culpa saepe fugit dicta doloribus animi expedita pariatur dolorum minima rerum ex nemo ab illum reiciendis?</p>
+                </div>
+                <div class = "content-text">
+                   <img src=<?php echo IMGS."png/spribe-logo.png"?> alt="spribe-logo">
+                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, quia pariatur. Veniam, ad sapiente culpa saepe fugit dicta doloribus animi expedita pariatur dolorum minima rerum ex nemo ab illum reiciendis?</p>
+                </div>
             </div>
-            <div class = "content-text">
-               <img src=<?php echo IMGS."png/spribe-logo.png"?> alt="spribe-logo">
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, quia pariatur. Veniam, ad sapiente culpa saepe fugit dicta doloribus animi expedita pariatur dolorum minima rerum ex nemo ab illum reiciendis?</p>
+            <div class = "content-image">
+               <img src=<?php echo IMGS."png/aviator-amostra.png"?> alt="aviator-logo">
             </div>
-        </div>
-        <div class = "content-image">
-           <img src=<?php echo IMGS."png/aviator-amostra.png"?> alt="aviator-logo">
         </div>
     </section>
     <!-- <button class="new-table">Nova Tabela</button> -->
@@ -62,28 +65,34 @@
             <div class = 'piechart' id="piechart-2" ></div>
         </section>
         <section class = "content-candles-rare">
-            <div class = 'teste'>
+            <div>
                 <div class="candles-rare ">
                     <span >10X</span>
+                    <p>Há 4 velas atrás</p>
                 </div>
                 <div class="candles-rare">
-                <span>50X</span>
+                    <span>50X</span>
+                    <p>Há 4 velas atrás</p>
                 </div>
             </div>
-            <div class = 'teste'>
+            <div>
                 <div class="candles-rare">
-                <span>100X</span>
+                    <span>100X</span>
+                    <p>Há 4 velas atrás</p>
                 </div>        
                 <div class="candles-rare">
-                <span>200X</span>
+                    <span>200X</span>
+                    <p>Há 4 velas atrás</p>
                 </div>
             </div>
-            <div class = 'teste'>
+            <div>
                 <div class="candles-rare">
-                <span>400X</span>
+                    <span>400X</span>
+                    <p>Há 4 velas atrás</p>
                 </div>
                 <div class="candles-rare">
-                <span>800X</span>
+                    <span>800X</span>
+                    <p>Há 4 velas atrás</p>
                 </div>
             </div>
            
