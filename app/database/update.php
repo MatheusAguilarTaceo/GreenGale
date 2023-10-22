@@ -1,12 +1,10 @@
 <?php
 function update($db_name, $db_username, $db_password, $table, $set_fields_values, $where_fields_values){
-    echo $db_name;
     $connect = connect($db_name, $db_username, $db_password);
     foreach($set_fields_values as $field => $value){
         $array_set[] = "{$field} = ?";
         $set_values[] = $value;
-    }
-  
+    }  
     $str_set = implode(',', $array_set); 
   
     foreach($where_fields_values as $field => $value){

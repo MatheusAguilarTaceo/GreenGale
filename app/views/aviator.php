@@ -20,7 +20,7 @@
             </div>
         </div>
     </section>
-    <!-- <button class="new-table">Nova Tabela</button> -->
+    <button class="new-table">Nova Tabela</button>
     <div class="aviator-statistics">
         <section class="table-content" id ='table-content-1'>
             <div>

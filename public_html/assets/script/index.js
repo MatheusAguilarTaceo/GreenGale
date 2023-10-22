@@ -155,18 +155,19 @@ function indexTable(start_table){
         });    
         });
         // }
+
+
         function tableFilter(){
             console.log('DATA ESCOLHIDA =', date.value)
             console.log("Table = ", table_content)
             console.log("Nome Da Tabela no BD = ", table)
-            fetch("aviator",{
+            fetch("aviator/table",{
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({table: table, page: page, fields: {candle: candle.value, hour: hour.value, date: date.value}}),
             })
-           
             .then(response => response.json())
             .then(data => {
                 console.log("Verificando = ", data)
@@ -201,7 +202,27 @@ function indexTable(start_table){
                 throw new Error('Erro na requisição: ' + error.status);
             }); 
         }
-       
+
+        function graphicFilter(){
+            console.log('grafico tabela = ',table)
+            console.log('grafico data = ',date.value)
+            fetch('aviator/graphic', {
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },                            
+                body: JSON.stringify({table: '25/09/2023/pagbet', date: '2023-09-25'})
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('GRAFICO AQUI AQUI AQUI AQUI')
+                console.log(data)
+            })
+            .catch(error => {
+                throw new Error('Erro na requisição: ' + error.status);
+            })
+        }
+        graphicFilter();
         return {tableFilter}
     }
 
@@ -231,23 +252,23 @@ function indexTable(start_table){
         let option_1 = document.createElement('option')
         select.appendChild(option_1)
     
-        option_1.value = 'pagbet.html'
+        option_1.value = 'pagbet'
         option_1.innerText = 'PAGBET'
         
         
         let option_2 = document.createElement('option')
         select.appendChild(option_2)
-        option_2.value = '2xbet.html'
+        option_2.value = '2xbet'
         option_2.innerText = '2XBET'
         
         let option_3 = document.createElement('option')
         select.appendChild(option_3)
-        option_3.value = 'ssgames.html'
+        option_3.value = 'ssgames'
         option_3.innerText = 'SSGAMES'
         
         let option_4 = document.createElement('option')
         select.appendChild(option_4)
-        option_4.value = 'betNacional.html'
+        option_4.value = 'betNacional'
         option_4.innerText = 'BETNACIONAL'
         
         let input_1 = document.createElement('input')
@@ -342,7 +363,7 @@ function indexTable(start_table){
     return {initializeData, createTableStructure}
 }
 
-function createNewTable(){
+function createNewTable(start_table){
     let  buttonNewTable = document.querySelector('.new-table')
     buttonNewTable.addEventListener('click', function(){ 
        start_table.createTableStructure()
@@ -363,8 +384,8 @@ createNewTable(start_table)
 // Gráficos
 
 
-function drawChart() {
-
+function drawChart(data) {
+    console.log('GRAFICO GRAFICO GRAFICO GRAFICO ')
     
     var data = google.visualization.arrayToDataTable([
       ['Task', 'Hours per Day'],
@@ -392,7 +413,7 @@ function drawChart() {
 
     chart = new google.visualization.PieChart(document.getElementById('piechart-2'));
     chart.draw(data, options);
-  }
+}
 
 
 
