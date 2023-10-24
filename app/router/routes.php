@@ -4,7 +4,8 @@ return [
         '/login' => 'Login@store',
         '/register' => 'Register@create',
         '/aviator/table' => 'Aviator@tableFilter',
-        '/aviator/graphic' => 'Aviator@graphicFilter'
+        '/aviator/graphic=all' => 'Aviator@graphicFilterAll',
+        '/aviator/graphic=by' => 'Aviator@graphicFilterBy'
     ],
     'GET' =>[
         '/' => 'Home@index',    

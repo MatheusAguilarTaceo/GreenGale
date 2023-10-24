@@ -69,6 +69,8 @@
     color: var(--main-color);
 }
 
+
+
 .aviator-statistics{
     padding: 50px;
     text-align: center;
@@ -76,7 +78,6 @@
 }
 
 .table-content{        
-    margin-left:  70px;
     margin-right: 70px; 
     border:2px solid var(--bg-color);
     border-radius: 5px;
@@ -84,6 +85,7 @@
     padding: 10px;;
     display: inline-block;  
     text-align: center;
+    
 }
 
 .box_filtro{
@@ -111,13 +113,11 @@
 }   
 
 table{
-    
-
     border-collapse: 2px;
     border: 2px solid black;
     border-radius: 5px;
     background-color: aliceblue;
-    
+    display: inline-table;
     
 }
 
@@ -132,11 +132,12 @@ thead{
 
 th, td{
     font-weight: bolder;
-    width: 200px;
-    height: 27px;
+    width: 180px;
+    height: 25px;
     text-align: center;
     border: 1px solid rgb(0, 0, 0);
 }
+
 
 .candle-tbody > tr > td{
     color: rgb(0, 0, 0);
@@ -186,8 +187,8 @@ th, td{
 }
 
 .piechart{
-    display: block; width: 200px;
-     height: 250px;
+    display: block; width: 250px;
+    height: 250px;
 }
 
 .content-candles-rare{

@@ -3,14 +3,150 @@
 
 // MOSTRA DATA ATUAL
 
-function indexTable(start_table){
-    let numberOfTables = 0
-    // let table_block = false
+function indexData(){
+    let number_of_tables = 0
+
+    function createStructure(){
+        function tableStructure(){
+            let section = document.createElement('section')
+            if(numberOfTables % 2 == 0){
+                let main  = document.querySelector("main")
+                let div_table_block = document.createElement('div')
+                main.appendChild(div_table_block)
+                div_table_block.className = 'table-block'
+                div_table_block.appendChild(section)
+            }else{
+                let last_table_content = document.querySelector(`#table-content-${numberOfTables}`)
+                last_table_content.insertAdjacentElement('afterend', section);
+            }
+            section.className = 'table-content'
+            section.id = `table-content-${numberOfTables+1}` 
+    
+            let div_1 = document.createElement('div')
+            section.appendChild(div_1)
+            
+            let select = document.createElement('select')
+            div_1.appendChild(select)
+            select.className = 'box_filtro'
+        
+            let option_1 = document.createElement('option')
+            select.appendChild(option_1)
+        
+            option_1.value = 'pagbet'
+            option_1.innerText = 'PAGBET'
+            
+            
+            let option_2 = document.createElement('option')
+            select.appendChild(option_2)
+            option_2.value = '2xbet'
+            option_2.innerText = '2XBET'
+            
+            let option_3 = document.createElement('option')
+            select.appendChild(option_3)
+            option_3.value = 'ssgames'
+            option_3.innerText = 'SSGAMES'
+            
+            let option_4 = document.createElement('option')
+            select.appendChild(option_4)
+            option_4.value = 'betNacional'
+            option_4.innerText = 'BETNACIONAL'
+            
+            let input_1 = document.createElement('input')
+            div_1.appendChild(input_1)
+            input_1.className = 'input_filters'
+            input_1.id = 'date'
+            input_1.type = 'date'
+            
+            let div_2 = document.createElement('div')
+            section.appendChild(div_2)
+            
+            let input_2 = document.createElement('input') 
+            div_2.appendChild(input_2)
+            input_2.className  = 'input_filters'
+            input_2.id = 'candle'
+            input_2.type = 'text'
+            
+            let input_3 = document.createElement('input')
+            div_2.appendChild(input_3)
+            input_3.className  = 'input_filters'
+            input_3.id = 'time'
+            input_3.type = 'time'
+            
+            let table = document.createElement('table')
+            section.appendChild(table)
+            
+            let thead = document.createElement('thead')
+            table.appendChild(thead)
+            
+            let tr = document.createElement('tr')
+            thead.appendChild(tr)
+            
+            let th_candle = document.createElement('th') 
+            tr.appendChild(th_candle)
+            th_candle.innerText = 'CANDLE' 
+            
+            let th_time = document.createElement('th') 
+            tr.appendChild(th_time) 
+            th_time.innerText = 'HOURS'
+            
+            let tbody = document.createElement('tbody')
+            table.appendChild(tbody)
+            tbody.className = 'candle-tbody'
+            
+            let ul = document.createElement('ul')
+            section.appendChild(ul)
+            ul.className = 'tablePagination'
+            
+            let buttons = []
+            for (let i = 0; i < 10; i++){
+                buttons.push(document.createElement('button'))
+            }  
+            
+            let id_page = 1
+            buttons.forEach((button, index) =>{
+                if(index > 1 && index < 7){
+                    button.className ='tableButton'
+                    button.setAttribute('id-page', id_page)
+                    button.innerText = id_page
+                    id_page++
+                }
+                else if(index == 0){
+                    button.className ='tableButton'
+                    button.setAttribute('first-page', 'first-page')
+                    button.innerText = '<<'
+                }
+                else if(index == 1){
+                    button.className ='tableButton'
+                    button.setAttribute('previous-page', 'previous-page')
+                    button.innerText = '<'
+                }
+                else if(index == 7){
+                    button.className ='tableButton'
+                    button.setAttribute('data-page', '...')
+                    button.innerText = '...'
+                }
+                else if(index == 8){
+                    button.className ='tableButton'
+                    button.setAttribute('next-page', 'next-page')
+                    button.innerText = '>'
+                }
+                else if(index == 9){
+                    button.className ='tableButton'
+                    button.setAttribute('last-page', 'last-page')
+                    button.innerText = '>>'
+                }
+                ul.appendChild(button)
+                button.style.marginRight = '0.4px';
+            })
+        }
+        function graphicStructure(){
+            
+        }
+    }
 
     function initializeData(){
-        numberOfTables++
-        let table_content = document.querySelector(`[id="table-content-${numberOfTables}"]`)
-        console.log('INICIO = ', this)
+        number_of_tables++
+        let table_content = document.querySelector(`[id="table-content-${number_of_tables}"]`)
     
         let date_current = new Date()
         let year = date_current.getFullYear()
@@ -23,12 +159,12 @@ function indexTable(start_table){
             day = '0'+day  
         }
         
-
         let betting_house = table_content.querySelector(".box_filtro")
-        console.log("CASA DE APOSTA = ", betting_house.value)
         betting_house.addEventListener('input', function(){
             table = `${day}/${month}/${year}/${betting_house.value}`;
             tableFilter()
+            graphicFilterAll()
+            graphicFilterBy()
         })
 
         let date = table_content.querySelector("#date")
@@ -37,19 +173,25 @@ function indexTable(start_table){
             [year, month, day] = date.value.split('-')
             table = `${day}/${month}/${year}/${betting_house.value}`;
             tableFilter()
+            graphicFilterAll()
+            graphicFilterBy()
         })
         
         let candle = table_content.querySelector('#candle')
         candle.value = '1.00'
         candle.addEventListener('input', function(){
             tableFilter()
+            graphicFilterAll()
+            graphicFilterBy()
         })
 
         let hour = table_content.querySelector("#time")
-        hour.value  ='00:00:00'
+        hour.value ='00:00:00'
         hour.addEventListener('input', function(){
             this.value = this.value.substring(0,2)+":00"
             tableFilter()
+            graphicFilterAll()
+            graphicFilterBy()
         })
         
         table_content.querySelector('[id-page="1"]').style.color = 'black'
@@ -59,11 +201,6 @@ function indexTable(start_table){
         let table = `${day}/${month}/${year}/${betting_house.value}`;
         let page = 1;
         let page_quantity = 0;  
-        console.log('TABLE BD = ', table)
-        console.log('PAGE = ', page)
-        console.log("DATE = ", date.value)
-        console.log("CANDLE = ", candle.value)
-        console.log("HOURS = ", hour.value)
 
         // function paginacao(){
         button_list.forEach((button) =>{ 
@@ -146,21 +283,16 @@ function indexTable(start_table){
                     page =  chosen_page
                 }
             
-            console.log("============")
-            console.log('PAGE QUANTITY = ', page_quantity)
-            console.log('PAGE  = ', page)
-            console.log('hours = ', hour)
-            console.log('NUMER = ', candle)
             tableFilter()
+            graphicFilterAll()
+
         });    
         });
         // }
 
 
         function tableFilter(){
-            console.log('DATA ESCOLHIDA =', date.value)
-            console.log("Table = ", table_content)
-            console.log("Nome Da Tabela no BD = ", table)
+            
             fetch("aviator/table",{
                 method:"POST",
                 headers: {
@@ -170,12 +302,12 @@ function indexTable(start_table){
             })
             .then(response => response.json())
             .then(data => {
-                console.log("Verificando = ", data)
                 let tbody = table_content.querySelector('tbody')
                 let remove_table = table_content.querySelectorAll('.candle-tbody > tr');
                 remove_table.forEach($value => $value.remove());
-                page_quantity = Math.ceil(data.page_quantity/15);
-                console.log('PAGE QUANTITY ATUAL = ', page_quantity)
+                page_quantity = Math.ceil(data.quantity_of_candles/12); //  Total velas/linhas por pagina = quantidade de paginas 
+                console.log(data)
+                console.log("Quantidade de Paginas = ", page_quantity)
                 data.table.forEach($value => {
                     let tr = document.createElement('tr');
                     let td =  document.createElement('td');
@@ -203,217 +335,143 @@ function indexTable(start_table){
             }); 
         }
 
-        function graphicFilter(){
-            console.log('grafico tabela = ',table)
-            console.log('grafico data = ',date.value)
-            fetch('aviator/graphic', {
+        function graphicFilterAll(){
+            fetch('aviator/graphic=all', {
                 method:"POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    'Content-Type': 'application/json'
                 },                            
-                body: JSON.stringify({table: '25/09/2023/pagbet', date: '2023-09-25'})
+                body: JSON.stringify({table: table, date: date.value})
             })
             .then(response => response.json())
             .then(data => {
-                console.log('GRAFICO AQUI AQUI AQUI AQUI')
                 console.log(data)
+                // console.log("TESTE DE TIPO = ", typeof(data.pink))
+                data = google.visualization.arrayToDataTable([
+                    ['Candles', 'Frequencia'],
+                    ['Blue', Number(data.blue)],
+                    ['Purple',Number(data.purple)],
+                    ['Pink', Number(data.pink)]
+                  ]);
+
+                let options = {
+                    colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
+                    pieHole: 0.4,
+                    pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
+                    legend: 'none', 
+                    pieSliceText: 'value',
+                    pieSliceBorderColor: 'black',
+                    backgroundColor: {
+                        fill: 'none',
+                        stroke: 'black ', // Cor da borda
+                        strokeWidth: 0.1,   // Largura da borda
+                    },
+                    position: 'bottom'            
+                };  
+
+                let chart = new google.visualization.PieChart(document.getElementById('piechart-1'));
+                chart.draw(data, options);
             })
             .catch(error => {
                 throw new Error('Erro na requisição: ' + error.status);
             })
         }
-        graphicFilter();
-        return {tableFilter}
-    }
 
-    function createTableStructure(){
-        let section = document.createElement('section')
-        if(numberOfTables % 2 == 0){
-            let main  = document.querySelector("main")
-            let div_table_block = document.createElement('div')
-            main.appendChild(div_table_block)
-            div_table_block.className = 'table-block'
-            div_table_block.appendChild(section)
-        }else{
-            let last_table_content = document.querySelector(`#table-content-${numberOfTables}`)
-            last_table_content.insertAdjacentElement('afterend', section);
+        function graphicFilterBy(){
+            fetch('aviator/graphic=by', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({table:table, date:date.value, candle:candle.value, hour:hour.value})
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                data = google.visualization.arrayToDataTable([
+                    ['Candles', 'Frequencia'],
+                    ['Blue', Number(data.blue)],
+                    ['Purple',Number(data.purple)],
+                    ['Pink', Number(data.pink)]
+                  ]);
+
+                let options = {
+                    colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
+                    pieHole: 0.4,
+                    pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
+                    legend: 'none', 
+                    pieSliceText: 'value',
+                    pieSliceBorderColor: 'black',
+                    backgroundColor: {
+                        fill: 'none',
+                        stroke: 'black ', // Cor da borda
+                        strokeWidth: 0.1,   // Largura da borda
+                    },
+                    position: 'bottom'            
+                };  
+
+                let chart = new google.visualization.PieChart(document.getElementById('piechart-2'));
+                chart.draw(data, options);
+            })
         }
-        console.log('NUMERO DA TABELA = ',numberOfTables)
-        section.className = 'table-content'
-        section.id = `table-content-${numberOfTables+1}` 
 
-        let div_1 = document.createElement('div')
-        section.appendChild(div_1)
-        
-        let select = document.createElement('select')
-        div_1.appendChild(select)
-        select.className = 'box_filtro'
-    
-        let option_1 = document.createElement('option')
-        select.appendChild(option_1)
-    
-        option_1.value = 'pagbet'
-        option_1.innerText = 'PAGBET'
-        
-        
-        let option_2 = document.createElement('option')
-        select.appendChild(option_2)
-        option_2.value = '2xbet'
-        option_2.innerText = '2XBET'
-        
-        let option_3 = document.createElement('option')
-        select.appendChild(option_3)
-        option_3.value = 'ssgames'
-        option_3.innerText = 'SSGAMES'
-        
-        let option_4 = document.createElement('option')
-        select.appendChild(option_4)
-        option_4.value = 'betNacional'
-        option_4.innerText = 'BETNACIONAL'
-        
-        let input_1 = document.createElement('input')
-        div_1.appendChild(input_1)
-        input_1.className = 'input_filters'
-        input_1.id = 'date'
-        input_1.type = 'date'
-        
-        let div_2 = document.createElement('div')
-        section.appendChild(div_2)
-        
-        let input_2 = document.createElement('input') 
-        div_2.appendChild(input_2)
-        input_2.className  = 'input_filters'
-        input_2.id = 'candle'
-        input_2.type = 'text'
-        
-        let input_3 = document.createElement('input')
-        div_2.appendChild(input_3)
-        input_3.className  = 'input_filters'
-        input_3.id = 'time'
-        input_3.type = 'time'
-        
-        let table = document.createElement('table')
-        section.appendChild(table)
-        
-        let thead = document.createElement('thead')
-        table.appendChild(thead)
-        
-        let tr = document.createElement('tr')
-        thead.appendChild(tr)
-        
-        let th_candle = document.createElement('th') 
-        tr.appendChild(th_candle)
-        th_candle.innerText = 'CANDLE' 
-        
-        let th_time = document.createElement('th') 
-        tr.appendChild(th_time) 
-        th_time.innerText = 'HOURS'
-        
-        let tbody = document.createElement('tbody')
-        table.appendChild(tbody)
-        tbody.className = 'candle-tbody'
-        
-        let ul = document.createElement('ul')
-        section.appendChild(ul)
-        ul.className = 'tablePagination'
-        
-        let buttons = []
-        for (let i = 0; i < 10; i++){
-            buttons.push(document.createElement('button'))
-        }  
-        
-        let id_page = 1
-        buttons.forEach((button, index) =>{
-            if(index > 1 && index < 7){
-                button.className ='tableButton'
-                button.setAttribute('id-page', id_page)
-                button.innerText = id_page
-                id_page++
-            }
-            else if(index == 0){
-                button.className ='tableButton'
-                button.setAttribute('first-page', 'first-page')
-                button.innerText = '<<'
-            }
-            else if(index == 1){
-                button.className ='tableButton'
-                button.setAttribute('previous-page', 'previous-page')
-                button.innerText = '<'
-            }
-            else if(index == 7){
-                button.className ='tableButton'
-                button.setAttribute('data-page', '...')
-                button.innerText = '...'
-            }
-            else if(index == 8){
-                button.className ='tableButton'
-                button.setAttribute('next-page', 'next-page')
-                button.innerText = '>'
-            }
-            else if(index == 9){
-                button.className ='tableButton'
-                button.setAttribute('last-page', 'last-page')
-                button.innerText = '>>'
-            }
-            ul.appendChild(button)
-            button.style.marginRight = '0.4px';
-        })
+
+        return {tableFilter, graphicFilterAll, graphicFilterBy}
     }
 
-    return {initializeData, createTableStructure}
+    return {createStructure, initializeData}
 }
 
-function createNewTable(start_table){
-    let  buttonNewTable = document.querySelector('.new-table')
-    buttonNewTable.addEventListener('click', function(){ 
-       start_table.createTableStructure()
-       let table = start_table.initializeData()
-       table.tableFilter()
-    })
-}
+// function createNewTable(start_table){
+//     let  buttonNewTable = document.querySelector('.new-table')
+//     buttonNewTable.addEventListener('click', function(){ 
+//        start_table.createTableStructure()
+//        let table = start_table.initializeData()
+//        table.tableFilter()
+//     })
+// }
 
+let aviator_statitistics = indexData()
+let table = aviator_statitistics.initializeData()
 
-let start_table = indexTable()
-let table = start_table.initializeData()
-table.tableFilter() 
+table.tableFilter()
+table.graphicFilterAll()
+table.graphicFilterBy()
 
-createNewTable(start_table)
-
+// createNewTable(aviator_statitistics)
 
 
 // Gráficos
 
 
-function drawChart(data) {
-    console.log('GRAFICO GRAFICO GRAFICO GRAFICO ')
+// function drawChart(data) {
+//     console.log('GRAFICO GRAFICO GRAFICO GRAFICO ')
     
-    var data = google.visualization.arrayToDataTable([
-      ['Task', 'Hours per Day'],
-      ['Work',     11],
-      ['Eat',      2],
-      ['Commute',  2],
-      ['Watch TV', 2],
-      ['Sleep',    7]
-    ]);
+//     var data = google.visualization.arrayToDataTable([
+//       ['Task', 'Hours per Day'],
+//       ['Work',     11],
+//       ['Eat',      2],
+//       ['Commute',  2],
+//       ['Watch TV', 2],
+//       ['Sleep',    7]
+//     ]);
 
-    var options = {
-        pieHole: 0.4,
-        legend: 'none', 
-        backgroundColor: {
-            fill: 'none',
-            stroke: 'black', // Cor da borda
-            strokeWidth: 0.1,   // Largura da borda
-        },
-        position: 'bottom',
+//     var options = {
+//         pieHole: 0.4,
+//         legend: 'none', 
+//         backgroundColor: {
+//             fill: 'none',
+//             stroke: 'black', // Cor da borda
+//             strokeWidth: 0.1,   // Largura da borda
+//         },
+//         position: 'bottom',
         
-    };
+//     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('piechart-1'));
-    chart.draw(data, options);
+//     var chart = new google.visualization.PieChart(document.getElementById('piechart-1'));
+//     chart.draw(data, options);
 
-    chart = new google.visualization.PieChart(document.getElementById('piechart-2'));
-    chart.draw(data, options);
-}
+//     chart = new google.visualization.PieChart(document.getElementById('piechart-2'));
+//     chart.draw(data, options);
+// }
 
 
 
