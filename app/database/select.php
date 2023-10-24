@@ -12,13 +12,24 @@ function findAll($dbName, $dbUsername, $dbPassword,$table, $fields = '*'){
         var_dump($e->getMessage());
     }
 }
-function findBy($dbName, $dbUsername, $dbPassword, $table, $whereField, $value, $selectFields = "*", $operator = "="){
-    $connect = connect($dbName, $dbUsername, $dbPassword,);    
+function findBy($db_name, $db_username, $db_password, $table, $where_fields_values, $select_fields = '*', $operator = ['=']){
+    $connect = connect($db_name, $db_username, $db_password,);    
     try{
-        $sql = "SELECT {$selectFields} FROM {$table} WHERE {$whereField} {$operator} ?";
+        $i = 0;
+        forEach($where_fields_values as $field => $array){
+            forEach($array as $value){
+                $array_where[] = "{$field} {$operator[$i]} ?";
+                $where_values[] = $value; 
+                $i++;
+            }   
+        }
+        $array_where = implode(' AND ', $array_where);
+
+        $sql = "SELECT {$select_fields} FROM {$table} WHERE {$array_where}";
         $prepare = $connect->prepare($sql);
         if($prepare){
-            $prepare->bind_param("s", $value);
+            $params = array_merge( [str_repeat('s', count($where_values))] , $where_values);
+            $prepare->bind_param(...$params);
             $prepare->execute();
             $result = $prepare->get_result(); 
             if($result->num_rows == 1){

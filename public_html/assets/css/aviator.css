@@ -1,4 +1,58 @@
 
+.info-aviator{
+    background-color: var(--bg-color);
+    margin-left: 25px;
+    margin-right:25px;
+    padding-bottom: 80px;
+    border-radius: 20px;
+    
+}
+.info-aviator > h1{
+    padding-top: 50px;
+    padding-left: 100px;
+    padding-right: 50px;
+    margin: 0px;
+    text-align: left;
+}
+
+.content{
+    display: inline-block;
+}
+
+.content-text{
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 275px;
+    height: 250px;
+}
+.content-text > img{
+    width: 100px;
+    float: left;
+}
+.content-text > p{
+    font-size: small;
+    float: inline-end;
+    text-align:justify;
+}
+
+.content-image{
+    background-color: rgb(39, 78, 78);
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+    margin-left: 50px;
+}
+.content-image > img{
+    width: 400px ;    
+}
+
+
+
+
+
+
 .new-table{
     background-color:var(--bg-color);
     color:var(--text-color);   
@@ -15,23 +69,22 @@
     color: var(--main-color);
 }
 
-.table-block{
-    /* background-color: rgb(227, 227, 228); */
+
+
+.aviator-statistics{
     padding: 50px;
     text-align: center;
-
+    /* border: 2px solid black; */
 }
 
 .table-content{        
-    margin-left:  70px;
     margin-right: 70px; 
     border:2px solid var(--bg-color);
     border-radius: 5px;
     background-color: var(--bg-color);
     padding: 10px;;
+    display: inline-block;  
     text-align: center;
-    display: inline-block; 
-    margin-top: -85px;
     
 }
 
@@ -60,20 +113,18 @@
 }   
 
 table{
-    
-
     border-collapse: 2px;
     border: 2px solid black;
     border-radius: 5px;
     background-color: aliceblue;
-    
+    display: inline-table;
     
 }
 
 thead{
     background-color: var(--main-color);
 }
-.aviatorTb{
+.candle-tbody{
     background-color: rgb(238, 238, 238);
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -81,22 +132,14 @@ thead{
 
 th, td{
     font-weight: bolder;
-    width: 200px;
-    height: 27px;
+    width: 180px;
+    height: 25px;
     text-align: center;
     border: 1px solid rgb(0, 0, 0);
-
 }
 
 
-.aviatorTb{
-    background-color: rgb(243, 238, 238);
-     
-}
-
-
-
-.aviatorTb > tr > td{
+.candle-tbody > tr > td{
     color: rgb(0, 0, 0);
     
 }
@@ -106,7 +149,6 @@ th, td{
     padding: 0px;
     padding-top: 5px;
     width: fit-content;
-
 }
 .tableButton{
     display: inline-block;
@@ -137,4 +179,45 @@ th, td{
 }
 .candle-pink{
     color: rgb(255, 32, 144);
+}
+
+
+.content-graphic{
+    display: inline-block;
+}
+
+.piechart{
+    display: block; width: 250px;
+    height: 250px;
+}
+
+.content-candles-rare{
+    /* background-color: rgb(42, 136, 136); */
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.candles-rare{
+    display: inline-block;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    width: 150px; 
+    height: 120px;
+    margin: 30px 25px;      
+    border-radius: 10px;
+    text-align: center;
+}
+
+.candles-rare > span{
+    background-color: var(--bg-color);
+    color: rgb(255, 32, 144);
+    width: 100px; 
+    height: 35px;
+    display: flex;
+    justify-content: center; /* Centralizar horizontalmente */
+    align-items: center; /* Centralizar verticalmente */
+    font-size:x-large;
+    margin: 30px auto;
+    border-radius: 100px;
 }
