@@ -5,7 +5,8 @@ return [
         '/register' => 'Register@create',
         '/aviator/table' => 'Aviator@tableFilter',
         '/aviator/graphic=all' => 'Aviator@graphicFilterAll',
-        '/aviator/graphic=by' => 'Aviator@graphicFilterBy'
+        '/aviator/graphic=by' => 'Aviator@graphicFilterBy',
+        '/aviator/candle-rare' => 'Aviator@candleRare'        
     ],
     'GET' =>[
         '/' => 'Home@index',    

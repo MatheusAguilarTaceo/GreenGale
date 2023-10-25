@@ -165,6 +165,7 @@ function indexData(){
             tableFilter()
             graphicFilterAll()
             graphicFilterBy()
+            candleRare()
         })
 
         let date = table_content.querySelector("#date")
@@ -175,6 +176,7 @@ function indexData(){
             tableFilter()
             graphicFilterAll()
             graphicFilterBy()
+            candleRare()
         })
         
         let candle = table_content.querySelector('#candle')
@@ -183,6 +185,7 @@ function indexData(){
             tableFilter()
             graphicFilterAll()
             graphicFilterBy()
+            candleRare()
         })
 
         let hour = table_content.querySelector("#time")
@@ -192,6 +195,7 @@ function indexData(){
             tableFilter()
             graphicFilterAll()
             graphicFilterBy()
+            candleRare()
         })
         
         table_content.querySelector('[id-page="1"]').style.color = 'black'
@@ -285,6 +289,8 @@ function indexData(){
             
             tableFilter()
             graphicFilterAll()
+            graphicFilterBy()
+            candleRare()
 
         });    
         });
@@ -411,6 +417,24 @@ function indexData(){
                 let chart = new google.visualization.PieChart(document.getElementById('piechart-2'));
                 chart.draw(data, options);
             })
+            .catch(error => {
+                throw new Error('Erro na requisição: ' + error.status);
+            })
+        }
+
+        function candleRare(){
+            fetch('aviator/candle-rare', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({table: table, date: date.value})
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('AS VELAS RARAS = ',data)
+            })
+            .catch(error => {
+                throw new Error('Erro na requisição: ' + error.status)
+            })
         }
 
 
@@ -435,6 +459,7 @@ let table = aviator_statitistics.initializeData()
 table.tableFilter()
 table.graphicFilterAll()
 table.graphicFilterBy()
+table.candleRare()
 
 // createNewTable(aviator_statitistics)
 
