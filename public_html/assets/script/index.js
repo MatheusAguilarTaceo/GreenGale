@@ -1,23 +1,20 @@
-// const caminhoAtual = window.location.pathname;
-// console.log("Caminho atual:", caminhoAtual);
-
-// MOSTRA DATA ATUAL
 
 function indexData(){
-    let number_of_tables = 0
+    let number_of_houses = 0
 
     function createStructure(){
+        
         function tableStructure(){
             let section = document.createElement('section')
-            if(numberOfTables % 2 == 0){
+            if(content_house % 2 == 0){
                 let main  = document.querySelector("main")
                 let div_table_block = document.createElement('div')
                 main.appendChild(div_table_block)
                 div_table_block.className = 'table-block'
                 div_table_block.appendChild(section)
             }else{
-                let last_table_content = document.querySelector(`#table-content-${numberOfTables}`)
-                last_table_content.insertAdjacentElement('afterend', section);
+                let last_content_house = document.querySelector(`#table-content-${content_house+1}`)
+                last_content_house.insertAdjacentElement('afterend', section);
             }
             section.className = 'table-content'
             section.id = `table-content-${numberOfTables+1}` 
@@ -145,8 +142,9 @@ function indexData(){
     }
 
     function initializeData(){
-        number_of_tables++
-        let table_content = document.querySelector(`[id="table-content-${number_of_tables}"]`)
+        number_of_houses++
+        let content_house = document.getElementById(`content-house-${number_of_houses}`)
+        console.log(content_house)
     
         let date_current = new Date()
         let year = date_current.getFullYear()
@@ -159,50 +157,55 @@ function indexData(){
             day = '0'+day  
         }
         
-        let betting_house = table_content.querySelector(".box_filtro")
+        let betting_house = content_house.querySelector(".box_filtro")
+        console.log('BOX FILTRO = ', betting_house)
         betting_house.addEventListener('input', function(){
             table = `${day}/${month}/${year}/${betting_house.value}`;
             tableFilter()
             graphicFilterAll()
             graphicFilterBy()
-            candleRare()
+            candleRareFilter()
         })
 
-        let date = table_content.querySelector("#date")
+        let date = content_house.querySelector("#date")
         date.value = `${year}-${month}-${day}`
+        date.value = `2023-09-25`
+        
         date.addEventListener('input', function(){
             [year, month, day] = date.value.split('-')
             table = `${day}/${month}/${year}/${betting_house.value}`;
             tableFilter()
             graphicFilterAll()
             graphicFilterBy()
-            candleRare()
+            candleRareFilter()
         })
         
-        let candle = table_content.querySelector('#candle')
+        let candle = content_house.querySelector('#candle')
         candle.value = '1.00'
         candle.addEventListener('input', function(){
             tableFilter()
             graphicFilterAll()
             graphicFilterBy()
-            candleRare()
+            candleRareFilter()
         })
 
-        let hour = table_content.querySelector("#time")
+        let hour = content_house.querySelector("#time")
         hour.value ='00:00:00'
         hour.addEventListener('input', function(){
             this.value = this.value.substring(0,2)+":00"
             tableFilter()
             graphicFilterAll()
             graphicFilterBy()
-            candleRare()
+            candleRareFilter()
         })
         
-        table_content.querySelector('[id-page="1"]').style.color = 'black'
+        content_house.querySelector('[id-page="1"]').style.color = 'black'
         
-        const button_list = table_content.querySelectorAll(".tablePagination > button"); 
-        
-        let table = `${day}/${month}/${year}/${betting_house.value}`;
+        const button_list = content_house.querySelectorAll(".tablePagination > button"); 
+        console.log('Lista de Botões', button_list)
+        betting_house.value ='pagbet'
+        let table = `${day}/${'09'}/${year}/${betting_house.value}`;
+        console.log('AAA = ',table)
         let page = 1;
         let page_quantity = 0;  
 
@@ -249,7 +252,7 @@ function indexData(){
                                 i++;
                             }    
                         })
-                        center_position = table_content.querySelector('[id-page="3"]')
+                        center_position = content_house.querySelector('[id-page="3"]')
                         center_position.style.color = 'black'
                     }else if(chosen_page != page && chosen_page < 5){
                         i = 1
@@ -290,7 +293,7 @@ function indexData(){
             tableFilter()
             graphicFilterAll()
             graphicFilterBy()
-            candleRare()
+            candleRareFilter()
 
         });    
         });
@@ -298,7 +301,11 @@ function indexData(){
 
 
         function tableFilter(){
-            
+           button_list[3].style.display = 'none'
+           button_list[4].style.display = 'none'
+           button_list[5].style.display = 'none'
+           button_list[6].style.display = 'none'
+           button_list[7].style.display = 'none'
             fetch("aviator/table",{
                 method:"POST",
                 headers: {
@@ -308,8 +315,8 @@ function indexData(){
             })
             .then(response => response.json())
             .then(data => {
-                let tbody = table_content.querySelector('tbody')
-                let remove_table = table_content.querySelectorAll('.candle-tbody > tr');
+                let tbody = content_house.querySelector('tbody')
+                let remove_table = content_house.querySelectorAll('.candle-tbody > tr');
                 remove_table.forEach($value => $value.remove());
                 page_quantity = Math.ceil(data.quantity_of_candles/12); //  Total velas/linhas por pagina = quantidade de paginas 
                 console.log(data)
@@ -342,7 +349,7 @@ function indexData(){
         }
 
         function graphicFilterAll(){
-            fetch('aviator/graphic=all', {
+            fetch('aviator/graphic-all', {
                 method:"POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -361,9 +368,11 @@ function indexData(){
                   ]);
 
                 let options = {
+                    width: 200,  // Especifica a largura em pixels
+                    height: 200, // Especifica a altura em pixels
                     colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
                     pieHole: 0.4,
-                    pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
+                    pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 7},
                     legend: 'none', 
                     pieSliceText: 'value',
                     pieSliceBorderColor: 'black',
@@ -374,8 +383,7 @@ function indexData(){
                     },
                     position: 'bottom'            
                 };  
-
-                let chart = new google.visualization.PieChart(document.getElementById('piechart-1'));
+                let chart = new google.visualization.PieChart(content_house.getElementsByClassName('piechart')[0]);
                 chart.draw(data, options);
             })
             .catch(error => {
@@ -384,7 +392,7 @@ function indexData(){
         }
 
         function graphicFilterBy(){
-            fetch('aviator/graphic=by', {
+            fetch('aviator/graphic-by', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({table:table, date:date.value, candle:candle.value, hour:hour.value})
@@ -400,6 +408,8 @@ function indexData(){
                   ]);
 
                 let options = {
+                    width: 200,  // Especifica a largura em pixels
+                    height: 200, // Especifica a altura em pixels
                     colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
                     pieHole: 0.4,
                     pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
@@ -413,8 +423,7 @@ function indexData(){
                     },
                     position: 'bottom'            
                 };  
-
-                let chart = new google.visualization.PieChart(document.getElementById('piechart-2'));
+                let chart = new google.visualization.PieChart(content_house.getElementsByClassName('piechart')[1]);
                 chart.draw(data, options);
             })
             .catch(error => {
@@ -422,7 +431,7 @@ function indexData(){
             })
         }
 
-        function candleRare(){
+        function candleRareFilter(){
             fetch('aviator/candle-rare', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -431,6 +440,15 @@ function indexData(){
             .then(response => response.json())
             .then(data => {
                 console.log('AS VELAS RARAS = ',data)
+                let candle_rare = document.querySelectorAll('.candles-rare')
+                let i = 0
+                console.log(candle_rare)
+                data.forEach(value => {
+                   candle_rare[i].querySelector('.how-many-candles-ago').innerText = `Há ${value.quantity} velas atrás`
+                   candle_rare[i].querySelector('.last-candle-time').innerText = value.hour
+                   candle_rare[i].querySelector('.last-candle').innerText = value.candle+'x'
+                   i++
+                })
             })
             .catch(error => {
                 throw new Error('Erro na requisição: ' + error.status)
@@ -438,7 +456,7 @@ function indexData(){
         }
 
 
-        return {tableFilter, graphicFilterAll, graphicFilterBy}
+        return {tableFilter, graphicFilterAll, graphicFilterBy, candleRareFilter}
     }
 
     return {createStructure, initializeData}
@@ -459,8 +477,14 @@ let table = aviator_statitistics.initializeData()
 table.tableFilter()
 table.graphicFilterAll()
 table.graphicFilterBy()
-table.candleRare()
+table.candleRareFilter()
 
+let table2 = aviator_statitistics.initializeData()
+
+table2.tableFilter()
+table2.graphicFilterAll()
+table2.graphicFilterBy()
+table2.candleRareFilter()
 // createNewTable(aviator_statitistics)
 
 

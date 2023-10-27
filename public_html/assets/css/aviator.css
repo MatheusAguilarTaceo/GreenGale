@@ -1,5 +1,5 @@
 
-.info-aviator{
+ /* .info-aviator{
     background-color: var(--bg-color);
     margin-left: 25px;
     margin-right:25px;
@@ -74,9 +74,17 @@
 .aviator-statistics{
     padding: 50px;
     text-align: center;
-    /* border: 2px solid black; */
+    border: 2px solid black;
 }
 
+.content-block{
+    background-color: aqua;
+}
+
+.content-house{
+    background-color: blueviolet;
+    display: inline-block;
+}
 .table-content{        
     margin-right: 70px; 
     border:2px solid var(--bg-color);
@@ -118,15 +126,19 @@ table{
     border-radius: 5px;
     background-color: aliceblue;
     display: inline-table;
-    
+    width: 300px;
+    height: 400px;
 }
+
 
 thead{
     background-color: var(--main-color);
 }
+
 .candle-tbody{
     background-color: rgb(238, 238, 238);
     font-family: Arial, Helvetica, sans-serif;
+    
 }
 
 
@@ -192,7 +204,6 @@ th, td{
 }
 
 .content-candles-rare{
-    /* background-color: rgb(42, 136, 136); */
     display: inline-block;
     margin-left: 30px;
 }
@@ -203,21 +214,290 @@ th, td{
     border: 1px solid black;
     color: black;
     width: 150px; 
-    height: 120px;
-    margin: 30px 25px;      
+    margin: 10px 25px;      
     border-radius: 10px;
     text-align: center;
+    height: fit-content;
 }
 
-.candles-rare > span{
+.candle-range{
+    background-color: blueviolet;
+    color: white;
+    border: 1px 0px solid black;
+    height: 25px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    font-size:x-large;
+    margin: 10px auto;
+}
+
+.last-candle{
     background-color: var(--bg-color);
     color: rgb(255, 32, 144);
-    width: 100px; 
-    height: 35px;
+    width: 70px; 
+    height: 25px;
     display: flex;
-    justify-content: center; /* Centralizar horizontalmente */
-    align-items: center; /* Centralizar verticalmente */
-    font-size:x-large;
-    margin: 30px auto;
+    justify-content: center; 
+    align-items: center; 
+    font-size:small;
+    margin: 5px auto;
     border-radius: 100px;
 }
+ */
+
+
+
+
+
+/* TELA lado a lado */
+
+
+
+
+
+
+
+
+
+
+ .info-aviator{
+    background-color: var(--bg-color);
+    margin-left: 25px;
+    margin-right:25px;
+    padding-bottom: 80px;
+    border-radius: 20px;
+    
+}
+.info-aviator > h1{
+    padding-top: 50px;
+    padding-left: 100px;
+    padding-right: 50px;
+    margin: 0px;
+    text-align: left;
+}
+
+.content{
+    display: inline-block;
+}
+
+.content-text{
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 275px;
+    height: 250px;
+}
+.content-text > img{
+    width: 100px;
+    float: left;
+}
+.content-text > p{
+    font-size: small;
+    float: inline-end;
+    text-align:justify;
+}
+
+.content-image{
+    background-color: rgb(39, 78, 78);
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+    margin-left: 50px;
+}
+.content-image > img{
+    width: 400px ;    
+}
+
+
+
+
+
+
+.new-table{
+    background-color:var(--bg-color);
+    color:var(--text-color);   
+    padding: 10px;
+    border: 1px solid var(--bg-color);
+    border-radius: 5px;
+    margin-top: 50px;
+    cursor: pointer;
+
+}
+.new-table:hover{
+    background-color: var(--bg-color);
+    border-color: var(--bg-color);
+    color: var(--main-color);
+}
+
+
+
+.aviator-statistics{
+    border: 2px solid black;
+}
+
+.content-block{
+    background-color: aqua;
+}
+
+.content-house{
+    background-color: blueviolet;
+    display: inline-block;
+    width: 1000px;
+}
+.table-content{        
+    border:2px solid var(--bg-color);
+    border-radius: 5px;
+    background-color: var(--bg-color);
+    padding: 10px;;
+    display: inline-block;  
+    text-align: center;
+    
+}
+
+.box_filtro{
+    border: solid 2px black;  
+    text-align: center  ;
+}
+
+.input_filters{
+    text-align: center;
+    border: 2px solid black;
+    margin-bottom: 2px;
+}
+
+.main-combobox-date{
+    text-align: center;
+    margin: auto;
+    margin-bottom: 5px;
+    border: solid 2px black;  
+}   
+
+table{
+    border-collapse: 2px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: aliceblue;
+    display: inline-table;
+    width: 250px;
+    height: 300px;
+}
+
+thead{
+    background-color: var(--main-color);
+}
+
+.candle-tbody{
+    background-color: rgb(238, 238, 238);
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+th, td{
+    font-weight: bolder;
+    text-align: center;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+
+.candle-tbody > tr > td{
+    color: rgb(0, 0, 0);
+    
+}
+
+.tablePagination{
+    margin: auto;
+    padding: 0px;
+    padding-top: 5px;
+    width: fit-content;
+}
+.tableButton{
+    display: inline-block;
+    margin: -3px;
+    background-color: var(--main-color);
+    color:rgb(255, 255, 255);
+    border: solid 2px var(--main-color);
+}
+
+
+.candle-blue,.candle-purple,.candle-pink{
+    border-radius: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 2px;
+    background-color: rgba(4, 11, 31, 0.863);
+    border: 1px solid var(--bg-color);
+    text-align: center;
+    margin: auto;
+    
+}
+.candle-blue{
+    color: rgb(19, 101, 255);
+}
+.candle-purple{
+    color: rgb(174, 0, 255);
+}
+.candle-pink{
+    color: rgb(255, 32, 144);
+}
+
+
+.content-graphic{
+    display: inline-block;
+}
+
+.piechart{
+    display: block; 
+}
+
+.content-candles-rare{
+    display: inline-block;
+}
+
+.candles-rare{
+    display: inline-block;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    width: 75px; 
+    margin: 10px 0px;      
+    border-radius: 10px;
+    text-align: center;
+    height: fit-content;
+}
+
+.candle-range{
+    background-color: blueviolet;
+    color: white;
+    border: 1px 0px solid black;
+    height: 25px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    font-size:x-large;
+    margin: 10px auto;
+}
+.how-many-candles-ago{
+    font-size: x-small;
+}
+.last-candle{
+
+}
+
+.last-candle-time{
+
+}
+
+.last-candle{
+    background-color: var(--bg-color);
+    color: rgb(255, 32, 144);
+    width: 70px; 
+    height: 25px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    font-size:small;
+    margin: 5px auto;
+    border-radius: 100px;
+} 

@@ -4,9 +4,9 @@ return [
         '/login' => 'Login@store',
         '/register' => 'Register@create',
         '/aviator/table' => 'Aviator@tableFilter',
-        '/aviator/graphic=all' => 'Aviator@graphicFilterAll',
-        '/aviator/graphic=by' => 'Aviator@graphicFilterBy',
-        '/aviator/candle-rare' => 'Aviator@candleRare'        
+        '/aviator/graphic-all' => 'Aviator@graphicFilterAll',
+        '/aviator/graphic-by' => 'Aviator@graphicFilterBy',
+        '/aviator/candle-rare' => 'Aviator@candleRareFilter'        
     ],
     'GET' =>[
         '/' => 'Home@index',    

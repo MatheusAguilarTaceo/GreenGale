@@ -51,7 +51,7 @@ class Aviator{
         $offset = 0;
         $quantity_of_candles = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);
 
-        $array_data = ['table' => $query, 'quantity_of_candles' => [$quantity_of_candles[0]['count']]];
+        $array_data = ['table' => $query, 'quantity_of_candles' => $quantity_of_candles[0]['count']];
         $json_data = json_encode($array_data);
         echo $json_data;
     }
@@ -143,20 +143,21 @@ class Aviator{
         echo $json;
     }
 
-    public function candleRare(){
+    public function candleRareFilter(){
         $json = file_get_contents('php://input');
         $data = json_decode($json, true);
         $db_name = $_ENV['DB_NAME_AVIATOR'];
         $db_username = $_ENV['DB_USERNAME_AVIATOR'];
         $db_password = $_ENV['DB_PASSWORD_AVIATOR'];
 
-        $select_fields = 'candle, hours';
-        $table = $data['table'];
+        $select_fields = 'candle, hour';
+        $table =  explode('/', $data['table']);
+        $table = implode('_', array_reverse(array_splice($table, 1, 4)));
         $date = $data['date'];
         $where_fields = ['date' => [$date]];
         $operator = ['='];
         $result = findBy($db_name, $db_username, $db_password, $table, $where_fields, $select_fields, $operator);
-        
+        $result = array_reverse($result);
         $candle_800 = true;
         $candle_400 = true;
         $candle_200 = true;
@@ -165,39 +166,37 @@ class Aviator{
         $candle_10 = true;
         $counter = 0;
         $data = [];
-        $candles = $result->candle;
-        $hours = $result->hour;
-        for($i = 0; $i < count($candles); $i++){
-            if($candles[$i] >= 800 && $candle_800){
-                $candle_800 = false;
-                $data['candle_800']['quantity'] = $counter;
-                $data['candle_800']['hour'] = $hours[$i];
-                break; 
-            }
-            if($candles[$i] >= 400 && $candle_400){
-                $candle_400 = false;
-                $data['candle_400']['quantity'] = $counter;
-                $data['candle_400']['hour'] = $hours[$i];
-            }
-            if($candles[$i] >= 200 && $candle_200){
-                $candle_200 = false;
-                $data['candle_200']['quantity'] = $counter;
-                $data['candle_200']['hour'] = $hours[$i];
-            }
-            if($candles[$i] >= 100 && $candle_100){
-                $candle_100 = false;
-                $data['candle_100']['quantity'] = $counter;
-                $data['candle_100']['hour'] = $hours[$i]; 
-            }
-            if($candles[$i] >= 50 && $candle_50){
-                $candle_50 = false;
-                $data['candle_50']['quantity'] = $counter;
-                $data['candle_50']['hour'] = $hours[$i];
-            }
-            if($candles[$i] >= 10 && $candle_10){
+        for($i = 0; $i < count($result); $i++){
+            if($result[$i]->candle >= 10 && $candle_10){
                 $candle_10 = false;
-                $data['candle_10']['quantity'] = $counter;
-                $data['candle_10']['hour'] = $hours[$i];
+                // $data['candle_10']['quantity'] = $counter;
+                // $data['candle_10']['hour'] = $result[$i]->hour;
+                // $data[0]['candle_rare']['quantity'] = $counter;
+                // $data[0]['candle_rare']['hour'] = $result[$i]->hour;
+                // $data[0]['candle_rare']['candle'] = $result[$i]->candle;
+                
+                $data[0] = ['range' => 10, 'quantity' => $counter, 'hour' => $result[$i]->hour, 'candle' => $result[$i]->candle];
+            }
+            if($result[$i]->candle >= 50 && $candle_50){
+                $candle_50 = false;
+                $data[1] = ['range' => 50, 'quantity' => $counter, 'hour' => $result[$i]->hour, 'candle' => $result[$i]->candle];
+            }
+            if($result[$i]->candle >= 100 && $candle_100){
+                $candle_100 = false;
+                $data[2] = ['range' => 100, 'quantity' => $counter, 'hour' => $result[$i]->hour, 'candle' => $result[$i]->candle];
+            }
+            if($result[$i]->candle >= 200 && $candle_200){
+                $candle_200 = false;
+                $data[3] = ['range' => 200, 'quantity' => $counter, 'hour' => $result[$i]->hour, 'candle' => $result[$i]->candle];
+            }
+            if($result[$i]->candle >= 400 && $candle_400){
+                $candle_400 = false;
+                $data[4] = ['range' => 400, 'quantity' => $counter, 'hour' => $result[$i]->hour, 'candle' => $result[$i]->candle];
+            }
+            if($result[$i]->candle >= 800 && $candle_800){
+                $candle_800 = false;
+                $data[5] = ['range' => 800, 'quantity' => $counter, 'hour' => $result[$i]->hour, 'candle' => $result[$i]->candle];
+                break;
             }
             $counter++;
         }
