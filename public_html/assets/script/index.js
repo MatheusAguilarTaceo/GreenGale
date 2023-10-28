@@ -140,7 +140,7 @@ function indexData(){
             
         }
     }
-
+    
     function initializeData(){
         number_of_houses++
         let content_house = document.getElementById(`content-house-${number_of_houses}`)
@@ -157,7 +157,7 @@ function indexData(){
             day = '0'+day  
         }
         
-        let betting_house = content_house.querySelector(".box_filtro")
+        let betting_house = content_house.querySelector(".box-filters-small")
         console.log('BOX FILTRO = ', betting_house)
         betting_house.addEventListener('input', function(){
             table = `${day}/${month}/${year}/${betting_house.value}`;
@@ -301,11 +301,7 @@ function indexData(){
 
 
         function tableFilter(){
-           button_list[3].style.display = 'none'
-           button_list[4].style.display = 'none'
-           button_list[5].style.display = 'none'
-           button_list[6].style.display = 'none'
-           button_list[7].style.display = 'none'
+          
             fetch("aviator/table",{
                 method:"POST",
                 headers: {
@@ -440,9 +436,9 @@ function indexData(){
             .then(response => response.json())
             .then(data => {
                 console.log('AS VELAS RARAS = ',data)
-                let candle_rare = document.querySelectorAll('.candles-rare')
-                let i = 0
+                let candle_rare = content_house.querySelectorAll('.candles-rare')
                 console.log(candle_rare)
+                let i = 0
                 data.forEach(value => {
                    candle_rare[i].querySelector('.how-many-candles-ago').innerText = `Há ${value.quantity} velas atrás`
                    candle_rare[i].querySelector('.last-candle-time').innerText = value.hour
@@ -458,7 +454,6 @@ function indexData(){
 
         return {tableFilter, graphicFilterAll, graphicFilterBy, candleRareFilter}
     }
-
     return {createStructure, initializeData}
 }
 
@@ -472,55 +467,35 @@ function indexData(){
 // }
 
 let aviator_statitistics = indexData()
+try{
 let table = aviator_statitistics.initializeData()
-
 table.tableFilter()
 table.graphicFilterAll()
 table.graphicFilterBy()
 table.candleRareFilter()
-
+}catch{}
+try{
 let table2 = aviator_statitistics.initializeData()
 
 table2.tableFilter()
 table2.graphicFilterAll()
 table2.graphicFilterBy()
 table2.candleRareFilter()
-// createNewTable(aviator_statitistics)
+}catch{}
 
+let table3 = aviator_statitistics.initializeData()
 
-// Gráficos
+table3.tableFilter()
+table3.graphicFilterAll()
+table3.graphicFilterBy()
+table3.candleRareFilter()
 
+let table4 = aviator_statitistics.initializeData()
 
-// function drawChart(data) {
-//     console.log('GRAFICO GRAFICO GRAFICO GRAFICO ')
-    
-//     var data = google.visualization.arrayToDataTable([
-//       ['Task', 'Hours per Day'],
-//       ['Work',     11],
-//       ['Eat',      2],
-//       ['Commute',  2],
-//       ['Watch TV', 2],
-//       ['Sleep',    7]
-//     ]);
-
-//     var options = {
-//         pieHole: 0.4,
-//         legend: 'none', 
-//         backgroundColor: {
-//             fill: 'none',
-//             stroke: 'black', // Cor da borda
-//             strokeWidth: 0.1,   // Largura da borda
-//         },
-//         position: 'bottom',
-        
-//     };
-
-//     var chart = new google.visualization.PieChart(document.getElementById('piechart-1'));
-//     chart.draw(data, options);
-
-//     chart = new google.visualization.PieChart(document.getElementById('piechart-2'));
-//     chart.draw(data, options);
-// }
+table4.tableFilter()
+table4.graphicFilterAll()
+table4.graphicFilterBy()
+table4.candleRareFilter()
 
 
 
