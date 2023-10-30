@@ -24,9 +24,9 @@
     <section class="aviator-statistics">
         <div class="content-block">
             <div class="content-house" id="content-house-1">
-                <section class="table-content" id ='table-content-1'>
-                    <div>
-                        <select class="box-filters-medium">
+                <section class="content-table" >
+                    <div class="content-filters">
+                        <select class="filters-houses-medium">
                             <option value="pagbet">PAGBET</option>
                             <option value="b2xbet">B2XBET</option>
                             <option value="ssgames">SSGAMES</option>
@@ -34,7 +34,7 @@
                         </select>
                         <input class = "input-filters-medium"   id="date" type="date">
                     </div>
-                    <div>
+                    <div class ="content-filters">
                         <input class="input-filters-medium" type="text" id="candle" placeholder="Vela">
                         <input class="input-filters-medium" type="time" id="time" placeholder="Hora">
                     </div>
@@ -49,16 +49,16 @@
                         </tbody>
                     </table>
                     <ul class='tablePagination'>
-                        <button class = 'tableButton-medium' first-page ="first-page"><<</button>
-                        <button class = 'tableButton-medium' previous-page ="previous-page"><</button>
-                        <button class = 'tableButton-medium' id-page ="1">1</button>
-                        <button class = 'tableButton-medium' id-page ="2">2</button>
-                        <button class = 'tableButton-medium' id-page ="3">3</button>
-                        <button class = 'tableButton-medium' id-page ="4">4</button>
-                        <button class = 'tableButton-medium' id-page ="5">5</button>
-                        <button class = 'tableButton-medium' data-page ="...">...</button>
-                        <button class = 'tableButton-medium' next-page ="next-page">></button>
-                        <button class = 'tableButton-medium' last-page ="last-page">>></button>
+                        <button class = 'table-button-medium' first-page ="first-page"><<</button>
+                        <button class = 'table-button-medium' previous-page ="previous-page"><</button>
+                        <button class = 'table-button-medium' id-page ="1">1</button>
+                        <button class = 'table-button-medium' id-page ="2">2</button>
+                        <button class = 'table-button-medium' id-page ="3">3</button>
+                        <button class = 'table-button-medium' id-page ="4">4</button>
+                        <button class = 'table-button-medium' id-page ="5">5</button>
+                        <button class = 'table-button-medium' data-page ="...">...</button>
+                        <button class = 'table-button-medium' next-page ="next-page">></button>
+                        <button class = 'table-button-medium' last-page ="last-page">>></button>
                     </ul>
                 </section>
                 <section class ="content-graphic">
@@ -66,314 +66,52 @@
                     <div class ="piechart"></div>
                 </section>
                 <section class = "content-candles-rare">
-                    <div>
+                    <div class ='conteiner-candle-inline'>
                         <div class="candles-rare-medium">
                             <span class ='candle-range-medium'>10x</span>
                             <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
                             <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
+                            <p class = 'last-time'>Hora aqui</p>
                         </div>
                         <div class="candles-rare-medium">
                             <span class ='candle-range-medium'>50x</span>
                             <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
                             <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
+                            <p class = 'last-time'>Hora aqui</p>
                         </div>
-                    </div>
-                    <div>
+                    </div >
+                    <div class ='conteiner-candle-inline'>
                         <div class="candles-rare-medium">
                             <span class ='candle-range-medium'>100x</span>
                             <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
                             <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
+                            <p class = 'last-time'>Hora aqui</p>
                         </div>
                         <div class="candles-rare-medium">
                             <span class ='candle-range-medium'>200x</span>
                             <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
                             <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
+                            <p class = 'last-time'>Hora aqui</p>
                         </div>
                     </div>
-                    <div>
+                    <div class ='conteiner-candle-inline'>
                         <div class="candles-rare-medium">
                             <span class ='candle-range-medium'>400x</span>
                             <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
                             <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
+                            <p class = 'last-time'>Hora aqui</p>
                         </div>
                         <div class="candles-rare-medium">
                             <span class ='candle-range-medium'>800x</span>
                             <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
                             <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="content-house" id="content-house-2">
-                <section class="table-content" id ='table-content-2'>
-                    <div>
-                        <select class="box-filters-medium">
-                            <option value="pagbet">PAGBET</option>
-                            <option value="b2xbet">B2XBET</option>
-                            <option value="ssgames">SSGAMES</option>
-                            <option value="betnacional">BETNACIONAL</option>
-                        </select>
-                        <input class = "input-filters-medium" id="date" type="date">
-                    </div>
-                    <div>
-                        <input class="input-filters-medium" type="text" id="candle" placeholder="Vela">
-                        <input class="input-filters-medium" type="time" id="time" placeholder="Hora">
-                    </div>
-                    <table class="table-dimension-medium">
-                        <thead>
-                            <tr>
-                                <th>CANDLE</th>
-                                <th>HOURS</th>
-                            </tr>
-                        </thead>
-                        <tbody class="candle-tbody">
-                        </tbody>
-                    </table>
-                    <ul class='tablePagination'>
-                        <button class = 'tableButton-medium' first-page ="first-page"><<</button>
-                        <button class = 'tableButton-medium' previous-page ="previous-page"><</button>
-                        <button class = 'tableButton-medium' id-page ="1">1</button>
-                        <button class = 'tableButton-medium' id-page ="2">2</button>
-                        <button class = 'tableButton-medium' id-page ="3">3</button>
-                        <button class = 'tableButton-medium' id-page ="4">4</button>
-                        <button class = 'tableButton-medium' id-page ="5">5</button>
-                        <button class = 'tableButton-medium' data-page ="...">...</button>
-                        <button class = 'tableButton-medium' next-page ="next-page">></button>
-                        <button class = 'tableButton-medium' last-page ="last-page">>></button>
-                    </ul>
-                </section>
-                <section class ="content-graphic">
-                    <div class ="piechart"></div>
-                    <div class ="piechart"></div>
-                </section>
-                <section class = "content-candles-rare">
-                    <div>
-                        <div class="candles-rare-medium">
-                            <span class ='candle-range-medium'>10x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                        <div class="candles-rare-medium">
-                            <span class ='candle-range-medium'>50x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="candles-rare-medium">
-                            <span class ='candle-range-medium'>100x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                        <div class="candles-rare-medium">
-                            <span class ='candle-range-medium'>200x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="candles-rare-medium">
-                            <span class ='candle-range-medium'>400x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                        <div class="candles-rare-medium">
-                            <span class ='candle-range-medium'>800x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
+                            <p class = 'last-time'>Hora aqui</p>
                         </div>
                     </div>
                 </section>
             </div>
         </div>   
-        <div class="content-block">
-            <div class="content-house" id="content-house-3">
-                <section class="table-content" id ='table-content-3'>
-                    <div>
-                        <select class="box-filters-small">
-                            <option value="pagbet">PAGBET</option>
-                            <option value="b2xbet">B2XBET</option>
-                            <option value="ssgames">SSGAMES</option>
-                            <option value="betnacional">BETNACIONAL</option>
-                        </select>
-                        <input class = "input-filters-small"   id="date" type="date">
-                    </div>
-                    <div>
-                        <input class="input-filters-small" type="text" id="candle" placeholder="Vela">
-                        <input class="input-filters-small" type="time" id="time" placeholder="Hora">
-                    </div>
-                    <table class="table-dimension-small">
-                        <thead>
-                            <tr>
-                                <th>CANDLE</th>
-                                <th>HOURS</th>
-                            </tr>
-                        </thead>
-                        <tbody class="candle-tbody">
-                        </tbody>
-                    </table>
-                    <ul class='tablePagination'>
-                        <button class = 'tableButton-small' first-page ="first-page"><<</button>
-                        <button class = 'tableButton-small' previous-page ="previous-page"><</button>
-                        <button class = 'tableButton-small' id-page ="1">1</button>
-                        <button class = 'tableButton-small' id-page ="2">2</button>
-                        <button class = 'tableButton-small' id-page ="3">3</button>
-                        <button class = 'tableButton-small' id-page ="4">4</button>
-                        <button class = 'tableButton-small' id-page ="5">5</button>
-                        <button class = 'tableButton-small' data-page ="...">...</button>
-                        <button class = 'tableButton-small' next-page ="next-page">></button>
-                        <button class = 'tableButton-small' last-page ="last-page">>></button>
-                    </ul>
-                </section>
-                <section class ="content-graphic">
-                    <div class ="piechart"></div>
-                    <div class ="piechart"></div>
-                </section>
-                <section class = "content-candles-rare">
-                    <div>
-                        <div class="candles-rare-small">
-                            <span class ='candle-range-small'>10x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                        <div class="candles-rare-small">
-                            <span class ='candle-range-small'>50x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="candles-rare-small">
-                            <span class ='candle-range-small'>100x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                        <div class="candles-rare-small">
-                            <span class ='candle-range-small'>200x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="candles-rare-small">
-                            <span class ='candle-range-small'>400x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                        <div class="candles-rare-small">
-                            <span class ='candle-range-small'>800x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="content-house" id="content-house-4">
-                <section class="table-content" id ='table-content-4'>
-                    <div>
-                        <select class="box-filters-small">
-                            <option value="pagbet">PAGBET</option>
-                            <option value="b2xbet">B2XBET</option>
-                            <option value="ssgames">SSGAMES</option>
-                            <option value="betnacional">BETNACIONAL</option>
-                        </select>
-                        <input class = "input-filters-small"   id="date" type="date">
-                    </div>
-                    <div>
-                        <input class="input-filters-small" type="text" id="candle" placeholder="Vela">
-                        <input class="input-filters-small" type="time" id="time" placeholder="Hora">
-                    </div>
-                    <table class="table-dimension-small">
-                        <thead>
-                         <tr>
-                                <th>CANDLE</th>
-                                <th>HOURS</th>
-                            </tr>
-                        </thead>
-                        <tbody class="candle-tbody">
-                        </tbody>
-                    </table>
-                    <ul class='tablePagination'>
-                        <button class = 'tableButton-small' first-page ="first-page"><<</button>
-                        <button class = 'tableButton-small' previous-page ="previous-page"><</button>
-                        <button class = 'tableButton-small' id-page ="1">1</button>
-                        <button class = 'tableButton-small' id-page ="2">2</button>
-                        <button class = 'tableButton-small' id-page ="3">3</button>
-                        <button class = 'tableButton-small' id-page ="4">4</button>
-                        <button class = 'tableButton-small' id-page ="5">5</button>
-                        <button class = 'tableButton-small' data-page ="...">...</button>
-                        <button class = 'tableButton-small' next-page ="next-page">></button>
-                        <button class = 'tableButton-small' last-page ="last-page">>></button>
-                    </ul>
-                </section>
-                <section class ="content-graphic">
-                    <div class ="piechart"></div>
-                    <div class ="piechart"></div>
-                </section>
-                <section class = "content-candles-rare">
-                    <div>
-                        <div class="candles-rare-small">
-                            <span class ='candle-range-small'>10x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                        <div class="candles-rare-small">
-                            <span class ='candle-range-small'>50x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="candles-rare-small">
-                            <span class ='candle-range-small'>100x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                        <div class="candles-rare-small">
-                            <span class ='candle-range-small'>200x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="candles-rare-small">
-                            <span class ='candle-range-small'>400x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                        <div class="candles-rare-small">
-                            <span class ='candle-range-small'>800x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
-                            <span class="last-candle" >10x</span>
-                            <p class = 'last-candle-time'>Hora aqui</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>   
+ 
     </section>
     
 </div>

@@ -1,76 +1,87 @@
 
 function indexData(){
-    let number_of_houses = 0
+    let number_of_houses = 1
 
     function createStructure(){
-        
+        if(number_of_houses % 2 == 0){
+            let content_block = document.createElement('div')
+            content_block.className = 'content-block'
+            let aviator_statistics  = document.querySelector('.aviator-statistics')
+            console.log('AQUI O AVIATOR = ', aviator_statistics)
+            aviator_statistics.appendChild(content_block)
+        }
+        number_of_houses++
+       
+        let content_house =  document.createElement('div')
+        content_house.className = 'content-house'
+        content_house.id = `content-house-${number_of_houses}`
+        if(typeof content_block !== "undefined"){
+            content_block.appendChild(content_house)
+        }else{
+            let previous_content_house = document.getElementById(`content-house-${number_of_houses-1}`)
+            console.log("AQUI HOUSE = ", previous_content_house)
+            previous_content_house.insertAdjacentElement('afterend', content_house)
+        }
+
         function tableStructure(){
-            let section = document.createElement('section')
-            if(content_house % 2 == 0){
-                let main  = document.querySelector("main")
-                let div_table_block = document.createElement('div')
-                main.appendChild(div_table_block)
-                div_table_block.className = 'table-block'
-                div_table_block.appendChild(section)
-            }else{
-                let last_content_house = document.querySelector(`#table-content-${content_house+1}`)
-                last_content_house.insertAdjacentElement('afterend', section);
-            }
-            section.className = 'table-content'
-            section.id = `table-content-${numberOfTables+1}` 
-    
-            let div_1 = document.createElement('div')
-            section.appendChild(div_1)
+            let content_table = document.createElement('section')
+            content_table.className = 'content-table'  
+            content_house.appendChild(content_table)  
+
+            let content_filters_1 = document.createElement('div')
+            content_filters_1.className = 'content-filters'
+            content_table.appendChild(content_filters_1)
             
-            let select = document.createElement('select')
-            div_1.appendChild(select)
-            select.className = 'box_filtro'
+            let filters_houses = document.createElement('select')
+            content_filters_1.appendChild(filters_houses)
+            filters_houses.className = 'filters-houses-medium'
         
             let option_1 = document.createElement('option')
-            select.appendChild(option_1)
+            filters_houses.appendChild(option_1)
         
             option_1.value = 'pagbet'
             option_1.innerText = 'PAGBET'
             
-            
             let option_2 = document.createElement('option')
-            select.appendChild(option_2)
+            filters_houses.appendChild(option_2)
             option_2.value = '2xbet'
             option_2.innerText = '2XBET'
             
             let option_3 = document.createElement('option')
-            select.appendChild(option_3)
+            filters_houses.appendChild(option_3)
             option_3.value = 'ssgames'
             option_3.innerText = 'SSGAMES'
             
             let option_4 = document.createElement('option')
-            select.appendChild(option_4)
+            filters_houses.appendChild(option_4)
             option_4.value = 'betNacional'
             option_4.innerText = 'BETNACIONAL'
             
-            let input_1 = document.createElement('input')
-            div_1.appendChild(input_1)
-            input_1.className = 'input_filters'
-            input_1.id = 'date'
-            input_1.type = 'date'
+            let date_filter = document.createElement('input')
+            content_filters_1.appendChild(date_filter)
+            date_filter.className = 'input-filters-medium'
+            date_filter.id = 'date'
+            date_filter.type = 'date'
             
-            let div_2 = document.createElement('div')
-            section.appendChild(div_2)
+            let content_filters_2 = document.createElement('div')
+            content_filters_2.className = 'content-filters'
+            content_table.appendChild(content_filters_2)
             
-            let input_2 = document.createElement('input') 
-            div_2.appendChild(input_2)
-            input_2.className  = 'input_filters'
-            input_2.id = 'candle'
-            input_2.type = 'text'
+            let candle_filter = document.createElement('input') 
+            content_filters_2.appendChild(candle_filter)
+            candle_filter.className  = 'input-filters-medium'
+            candle_filter.id = 'candle'
+            candle_filter.type = 'text'
             
-            let input_3 = document.createElement('input')
-            div_2.appendChild(input_3)
-            input_3.className  = 'input_filters'
-            input_3.id = 'time'
-            input_3.type = 'time'
+            let time_filter = document.createElement('input')
+            content_filters_2.appendChild(time_filter)
+            time_filter.className  = 'input-filters-medium'
+            time_filter.id = 'time'
+            time_filter.type = 'time'
             
             let table = document.createElement('table')
-            section.appendChild(table)
+            table.className = 'table-dimension-medium'
+            content_table.appendChild(table)
             
             let thead = document.createElement('thead')
             table.appendChild(thead)
@@ -91,7 +102,7 @@ function indexData(){
             tbody.className = 'candle-tbody'
             
             let ul = document.createElement('ul')
-            section.appendChild(ul)
+            content_table.appendChild(ul)
             ul.className = 'tablePagination'
             
             let buttons = []
@@ -102,33 +113,33 @@ function indexData(){
             let id_page = 1
             buttons.forEach((button, index) =>{
                 if(index > 1 && index < 7){
-                    button.className ='tableButton'
+                    button.className ='table-button-medium'
                     button.setAttribute('id-page', id_page)
                     button.innerText = id_page
                     id_page++
                 }
                 else if(index == 0){
-                    button.className ='tableButton'
+                    button.className ='table-button-medium'
                     button.setAttribute('first-page', 'first-page')
                     button.innerText = '<<'
                 }
                 else if(index == 1){
-                    button.className ='tableButton'
+                    button.className ='table-button-medium'
                     button.setAttribute('previous-page', 'previous-page')
                     button.innerText = '<'
                 }
                 else if(index == 7){
-                    button.className ='tableButton'
+                    button.className ='table-button-medium'
                     button.setAttribute('data-page', '...')
                     button.innerText = '...'
                 }
                 else if(index == 8){
-                    button.className ='tableButton'
+                    button.className ='table-button-medium'
                     button.setAttribute('next-page', 'next-page')
                     button.innerText = '>'
                 }
                 else if(index == 9){
-                    button.className ='tableButton'
+                    button.className ='table-button-medium'
                     button.setAttribute('last-page', 'last-page')
                     button.innerText = '>>'
                 }
@@ -137,14 +148,197 @@ function indexData(){
             })
         }
         function graphicStructure(){
+            let content_graphic = document.createElement('section')
+            content_graphic.className = 'content-graphic'
+            content_house.appendChild(content_graphic)
+
+            let piechart_1 = document.createElement('div')
+            piechart_1.className = 'piechart'
+            content_graphic.append(piechart_1)
+            let piechart_2 = document.createElement('div')
+            piechart_2.className = 'piechart'
+            content_graphic.append(piechart_2)
+
+
+
+
+        }
+        function candleRareStructure(){
+            let content_candles_rare = document.createElement('section')
+            content_candles_rare.className = 'content-candles-rare'
+            content_house.appendChild(content_candles_rare)
+
+            let conteiner_candle_inline = document.createElement('div')
+            conteiner_candle_inline.className = 'container-candle-inline'
+            content_candles_rare.appendChild(conteiner_candle_inline)
+            
+            let candles_rare = document.createElement('div')
+            candles_rare.className = 'candles-rare-medium'
+            conteiner_candle_inline.appendChild(candles_rare)
+
+            let candle_range = document.createElement('span')
+            candle_range.className = 'candle-range-medium'
+            candle_range.innerText = '00x'
+            candles_rare.appendChild(candle_range);
+
+            let candles_ago = document.createElement('p')
+            candles_ago.className = 'how-many-candles-ago'
+            candles_ago.innerText = 'Há 0 velas atrás'
+            candles_rare.appendChild(candles_ago)
+
+            let last_candle = document.createElement('span')
+            last_candle.className = 'last-candle'
+            last_candle.innerText = '00x'
+            candles_rare.appendChild(last_candle)
+            
+            let last_time = document.createElement('p')
+            last_time.className = 'last-time'
+            last_time.innerText = '00:00:00'
+            candles_rare.appendChild(last_time)
+
+            candles_rare = document.createElement('div')
+            candles_rare.className = 'candles-rare-medium'
+            conteiner_candle_inline.appendChild(candles_rare)
+
+            candle_range = document.createElement('span')
+            candle_range.className = 'candle-range-medium'
+            candle_range.innerText = '00x'
+            candles_rare.appendChild(candle_range);
+
+            candles_ago = document.createElement('p')
+            candles_ago.className = 'how-many-candles-ago'
+            candles_ago.innerText = 'Há 0 velas atrás'
+            candles_rare.appendChild(candles_ago)
+
+            last_candle = document.createElement('span')
+            last_candle.className = 'last-candle'
+            last_candle.innerText = '00x'
+            candles_rare.appendChild(last_candle)
+            
+            last_time = document.createElement('p')
+            last_time.className = 'last-time'
+            last_time.innerText = '00:00:00'
+            candles_rare.appendChild(last_time)
+
+            conteiner_candle_inline = document.createElement('div')
+            conteiner_candle_inline.className = 'container-candle-inline'
+            content_candles_rare.appendChild(conteiner_candle_inline)
+
+
+            candles_rare = document.createElement('div')
+            candles_rare.className = 'candles-rare-medium'
+            conteiner_candle_inline.appendChild(candles_rare)
+
+            candle_range = document.createElement('span')
+            candle_range.className = 'candle-range-medium'
+            candle_range.innerText = '00x'
+            candles_rare.appendChild(candle_range);
+
+            candles_ago = document.createElement('p')
+            candles_ago.className = 'how-many-candles-ago'
+            candles_ago.innerText = 'Há 0 velas atrás'
+            candles_rare.appendChild(candles_ago)
+
+            last_candle = document.createElement('span')
+            last_candle.className = 'last-candle'
+            last_candle.innerText = '00x'
+            candles_rare.appendChild(last_candle)
+            
+            last_time = document.createElement('p')
+            last_time.className = 'last-time'
+            last_time.innerText = '00:00:00'
+            candles_rare.appendChild(last_time)
+
+            candles_rare = document.createElement('div')
+            candles_rare.className = 'candles-rare-medium'
+            conteiner_candle_inline.appendChild(candles_rare)
+
+            candle_range = document.createElement('span')
+            candle_range.className = 'candle-range-medium'
+            candle_range.innerText = '00x'
+            candles_rare.appendChild(candle_range);
+
+            candles_ago = document.createElement('p')
+            candles_ago.className = 'how-many-candles-ago'
+            candles_ago.innerText = 'Há 0 velas atrás'
+            candles_rare.appendChild(candles_ago)
+
+            last_candle = document.createElement('span')
+            last_candle.className = 'last-candle'
+            last_candle.innerText = '00x'
+            candles_rare.appendChild(last_candle)
+            
+            last_time = document.createElement('p')
+            last_time.className = 'last-time'
+            last_time.innerText = '00:00:00'
+            candles_rare.appendChild(last_time)
+
+            conteiner_candle_inline = document.createElement('div')
+            conteiner_candle_inline.className = 'container-candle-inline'
+            content_candles_rare.appendChild(conteiner_candle_inline)
+
+
+            candles_rare = document.createElement('div')
+            candles_rare.className = 'candles-rare-medium'
+            conteiner_candle_inline.appendChild(candles_rare)
+
+            candle_range = document.createElement('span')
+            candle_range.className = 'candle-range-medium'
+            candle_range.innerText = '00x'
+            candles_rare.appendChild(candle_range);
+
+            candles_ago = document.createElement('p')
+            candles_ago.className = 'how-many-candles-ago'
+            candles_ago.innerText = 'Há 0 velas atrás'
+            candles_rare.appendChild(candles_ago)
+
+            last_candle = document.createElement('span')
+            last_candle.className = 'last-candle'
+            last_candle.innerText = '00x'
+            candles_rare.appendChild(last_candle)
+            
+            last_time = document.createElement('p')
+            last_time.className = 'last-time'
+            last_time.innerText = '00:00:00'
+            candles_rare.appendChild(last_time)
+
+            candles_rare = document.createElement('div')
+            candles_rare.className = 'candles-rare-medium'
+            conteiner_candle_inline.appendChild(candles_rare)
+
+            candle_range = document.createElement('span')
+            candle_range.className = 'candle-range-medium'
+            candle_range.innerText = '00x'
+            candles_rare.appendChild(candle_range);
+
+            candles_ago = document.createElement('p')
+            candles_ago.className = 'how-many-candles-ago'
+            candles_ago.innerText = 'Há 0 velas atrás'
+            candles_rare.appendChild(candles_ago)
+
+            last_candle = document.createElement('span')
+            last_candle.className = 'last-candle'
+            last_candle.innerText = '00x'
+            candles_rare.appendChild(last_candle)
+            
+            last_time = document.createElement('p')
+            last_time.className = 'last-time'
+            last_time.innerText = '00:00:00'
+            candles_rare.appendChild(last_time)
+
+            
+
+
+            
             
         }
-    }
+
+       return {tableStructure, graphicStructure, candleRareStructure}
+}  
     
     function initializeData(){
-        number_of_houses++
         let content_house = document.getElementById(`content-house-${number_of_houses}`)
-        console.log(content_house)
+        console.log('NOVA ISTANCIA = ',content_house)
     
         let date_current = new Date()
         let year = date_current.getFullYear()
@@ -156,8 +350,10 @@ function indexData(){
         if(day < 10){
             day = '0'+day  
         }
-        
-        let betting_house = content_house.querySelector(".box-filters-small")
+        let betting_house = content_house.querySelector(".filters-houses-medium")
+        if (!betting_house){
+            betting_house = content_house.querySelector(".filters-houses-small")
+        }
         console.log('BOX FILTRO = ', betting_house)
         betting_house.addEventListener('input', function(){
             table = `${day}/${month}/${year}/${betting_house.value}`;
@@ -202,6 +398,7 @@ function indexData(){
         content_house.querySelector('[id-page="1"]').style.color = 'black'
         
         const button_list = content_house.querySelectorAll(".tablePagination > button"); 
+        button_list[7].style.display = 'none'
         console.log('Lista de Botões', button_list)
         betting_house.value ='pagbet'
         let table = `${day}/${'09'}/${year}/${betting_house.value}`;
@@ -368,7 +565,7 @@ function indexData(){
                     height: 200, // Especifica a altura em pixels
                     colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
                     pieHole: 0.4,
-                    pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 7},
+                    pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
                     legend: 'none', 
                     pieSliceText: 'value',
                     pieSliceBorderColor: 'black',
@@ -457,45 +654,49 @@ function indexData(){
     return {createStructure, initializeData}
 }
 
-// function createNewTable(start_table){
-//     let  buttonNewTable = document.querySelector('.new-table')
-//     buttonNewTable.addEventListener('click', function(){ 
-//        start_table.createTableStructure()
-//        let table = start_table.initializeData()
-//        table.tableFilter()
-//     })
-// }
+function createNewTable(start_table){
+    let  buttonNewTable = document.querySelector('.new-table')
+    buttonNewTable.addEventListener('click', function(){ 
+        let table = start_table.createStructure()
+        table.tableStructure()
+        table.graphicStructure()
+        table.candleRareStructure()
+        table = start_table.initializeData()
+        table.tableFilter()
+        table.graphicFilterAll()
+        table.graphicFilterBy()
+        table.candleRareFilter()
+    })
+}
 
 let aviator_statitistics = indexData()
-try{
+createNewTable(aviator_statitistics)
 let table = aviator_statitistics.initializeData()
 table.tableFilter()
 table.graphicFilterAll()
 table.graphicFilterBy()
 table.candleRareFilter()
-}catch{}
-try{
-let table2 = aviator_statitistics.initializeData()
 
-table2.tableFilter()
-table2.graphicFilterAll()
-table2.graphicFilterBy()
-table2.candleRareFilter()
-}catch{}
+// let table2 = aviator_statitistics.initializeData()
 
-let table3 = aviator_statitistics.initializeData()
+// table2.tableFilter()
+// table2.graphicFilterAll()
+// table2.graphicFilterBy()
+// table2.candleRareFilter()
 
-table3.tableFilter()
-table3.graphicFilterAll()
-table3.graphicFilterBy()
-table3.candleRareFilter()
+// let table3 = aviator_statitistics.initializeData()
 
-let table4 = aviator_statitistics.initializeData()
+// table3.tableFilter()
+// table3.graphicFilterAll()
+// table3.graphicFilterBy()
+// table3.candleRareFilter()
 
-table4.tableFilter()
-table4.graphicFilterAll()
-table4.graphicFilterBy()
-table4.candleRareFilter()
+// let table4 = aviator_statitistics.initializeData()
+
+// table4.tableFilter()
+// table4.graphicFilterAll()
+// table4.graphicFilterBy()
+// table4.candleRareFilter()
 
 
 

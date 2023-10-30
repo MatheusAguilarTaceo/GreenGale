@@ -72,7 +72,7 @@
 
 
 .aviator-statistics{
-    padding: 50px;
+    padding-top: 50px;
     text-align: center;
     border: 2px solid black;
 }
@@ -86,7 +86,7 @@
     display: inline-block;
     border: 5px solid black;
 }
-.table-content{        
+.content-table{        
     border:2px solid var(--bg-color);
     border-radius: 5px;
     background-color: var(--bg-color);
@@ -96,16 +96,16 @@
     
 }
 
-.box-filters-medium{
+.filters-houses-medium{
     width: 154px;
     height: 29px;
     border: solid 2px black;  
     text-align: center  ;
 }
 
-.box-filters-small{
-    width: 75px;
-    height: 29px;
+.filters-houses-small{
+    width: 100px;
+    height: 25px;
     border: solid 2px black;  
     text-align: center  ;
 }
@@ -120,20 +120,13 @@
 
 .input-filters-small{
     text-align: center;
-    width: 75px;
-    height: 25px;
+    width: 100px;
+    height: 20px;
     border: 2px solid black;
     margin-bottom: 2px;
 }
 
-.main-combobox-date{
-    height: 25px;
-    width: 150px;
-    text-align: center;
-    margin: auto;
-    margin-bottom: 5px;
-    border: solid 2px black;  
-}   
+
 
 .table-dimension-medium{
     border-collapse: 2px;
@@ -151,7 +144,7 @@
     border-radius: 5px;
     background-color: aliceblue;
     display: inline-table;
-    width: 300px;
+    width: 250px;
     height: 300px;
 }
 
@@ -184,7 +177,7 @@ th, td{
     padding-top: 5px;
     width: fit-content;
 }
-.tableButton-medium{
+.table-button-medium{
     display: inline-block;
     margin: -3px;
     padding: 8px 12px;
@@ -193,12 +186,13 @@ th, td{
     border: solid 2px var(--main-color);
 }
 
-.tableButton-small{
+.table-button-small{
     display: inline-block;
     margin: -3px;
     background-color: var(--main-color);
     color:rgb(255, 255, 255);
     border: solid 2px var(--main-color);
+    max-width: 32px;
 }
 
 .candle-blue,.candle-purple,.candle-pink{
