@@ -5,6 +5,7 @@
     margin-right:25px;
     padding-bottom: 80px;
     border-radius: 20px;
+    text-align: center;
     
 }
 .info-aviator > h1{
@@ -27,6 +28,7 @@
     width: 275px;
     height: 250px;
 }
+    
 .content-text > img{
     width: 100px;
     float: left;
@@ -46,6 +48,7 @@
 }
 .content-image > img{
     width: 400px ;    
+    margin-bottom: -150px;
 }
 
 
@@ -74,19 +77,22 @@
 .aviator-statistics{
     padding-top: 50px;
     text-align: center;
-    border: 2px solid black;
+    /* border: 2px solid black; */
 }
 
 .content-block{
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 .content-house{
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
+    border: 2px solid black;
     display: inline-block;
-    border: 5px solid black;
+    margin-right: 5px;
 }
-.content-table{        
+
+.content-table{
+    margin-left: 5px;        
     border:2px solid var(--bg-color);
     border-radius: 5px;
     background-color: var(--bg-color);
@@ -227,7 +233,6 @@ th, td{
 
 .content-candles-rare{
     display: inline-block;
-    /* margin-left: 30px; */
 }
 
 .candles-rare-medium{

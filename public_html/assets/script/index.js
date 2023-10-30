@@ -1,17 +1,30 @@
 
 function indexData(){
     let number_of_houses = 1
+    let size = 'medium'
 
+
+    function modifyClass(id){
+        let content_house = document.getElementById(`content-house-${id}`)
+        let list_elements_medium = content_house.querySelectorAll('[class *= "medium"]')
+        list_elements_medium.forEach(value =>{
+            value.className = value.className.replace('medium', 'small')
+            console.log('MEDIUM =', value.className)
+        })
+
+    }
     function createStructure(){
+        size ='medium'
+        number_of_houses++
         if(number_of_houses % 2 == 0){
+            modifyClass(number_of_houses-1)
+            size = 'small'
             let content_block = document.createElement('div')
             content_block.className = 'content-block'
             let aviator_statistics  = document.querySelector('.aviator-statistics')
             console.log('AQUI O AVIATOR = ', aviator_statistics)
             aviator_statistics.appendChild(content_block)
         }
-        number_of_houses++
-       
         let content_house =  document.createElement('div')
         content_house.className = 'content-house'
         content_house.id = `content-house-${number_of_houses}`
@@ -34,7 +47,7 @@ function indexData(){
             
             let filters_houses = document.createElement('select')
             content_filters_1.appendChild(filters_houses)
-            filters_houses.className = 'filters-houses-medium'
+            filters_houses.className = `filters-houses-${size}`
         
             let option_1 = document.createElement('option')
             filters_houses.appendChild(option_1)
@@ -59,7 +72,7 @@ function indexData(){
             
             let date_filter = document.createElement('input')
             content_filters_1.appendChild(date_filter)
-            date_filter.className = 'input-filters-medium'
+            date_filter.className = `input-filters-${size}`
             date_filter.id = 'date'
             date_filter.type = 'date'
             
@@ -69,18 +82,18 @@ function indexData(){
             
             let candle_filter = document.createElement('input') 
             content_filters_2.appendChild(candle_filter)
-            candle_filter.className  = 'input-filters-medium'
+            candle_filter.className  = `input-filters-${size}`
             candle_filter.id = 'candle'
             candle_filter.type = 'text'
             
             let time_filter = document.createElement('input')
             content_filters_2.appendChild(time_filter)
-            time_filter.className  = 'input-filters-medium'
+            time_filter.className  = `input-filters-${size}`
             time_filter.id = 'time'
             time_filter.type = 'time'
             
             let table = document.createElement('table')
-            table.className = 'table-dimension-medium'
+            table.className = `table-dimension-${size}`
             content_table.appendChild(table)
             
             let thead = document.createElement('thead')
@@ -113,42 +126,49 @@ function indexData(){
             let id_page = 1
             buttons.forEach((button, index) =>{
                 if(index > 1 && index < 7){
-                    button.className ='table-button-medium'
+                    button.className =`table-button-${size}`
                     button.setAttribute('id-page', id_page)
                     button.innerText = id_page
+
                     id_page++
                 }
                 else if(index == 0){
-                    button.className ='table-button-medium'
+                    button.className =`table-button-${size}`
                     button.setAttribute('first-page', 'first-page')
                     button.innerText = '<<'
+
                 }
                 else if(index == 1){
-                    button.className ='table-button-medium'
+                    button.className =`table-button-${size}`
                     button.setAttribute('previous-page', 'previous-page')
                     button.innerText = '<'
+
                 }
                 else if(index == 7){
-                    button.className ='table-button-medium'
+                    button.className =`table-button-${size}`
                     button.setAttribute('data-page', '...')
                     button.innerText = '...'
+
                 }
                 else if(index == 8){
-                    button.className ='table-button-medium'
+                    button.className =`table-button-${size}`              
                     button.setAttribute('next-page', 'next-page')
                     button.innerText = '>'
+
                 }
                 else if(index == 9){
-                    button.className ='table-button-medium'
+                    button.className =`table-button-${size}`
                     button.setAttribute('last-page', 'last-page')
                     button.innerText = '>>'
+
                 }
                 ul.appendChild(button)
                 button.style.marginRight = '0.4px';
             })
         }
-        function graphicStructure(){
+        function graphicStructure(){            
             let content_graphic = document.createElement('section')
+            content_graphic.style.marginRight = '8px'
             content_graphic.className = 'content-graphic'
             content_house.appendChild(content_graphic)
 
@@ -173,11 +193,12 @@ function indexData(){
             content_candles_rare.appendChild(conteiner_candle_inline)
             
             let candles_rare = document.createElement('div')
-            candles_rare.className = 'candles-rare-medium'
+            candles_rare.className = `candles-rare-${size}`
+            candles_rare.style.marginRight = '5px'
             conteiner_candle_inline.appendChild(candles_rare)
-
+            
             let candle_range = document.createElement('span')
-            candle_range.className = 'candle-range-medium'
+            candle_range.className = `candle-range-${size}`
             candle_range.innerText = '00x'
             candles_rare.appendChild(candle_range);
 
@@ -197,11 +218,13 @@ function indexData(){
             candles_rare.appendChild(last_time)
 
             candles_rare = document.createElement('div')
-            candles_rare.className = 'candles-rare-medium'
+            candles_rare.className = `candles-rare-${size}`
+            candles_rare.style.marginRight = '5px'
+
             conteiner_candle_inline.appendChild(candles_rare)
 
             candle_range = document.createElement('span')
-            candle_range.className = 'candle-range-medium'
+            candle_range.className = `candle-range-${size}`
             candle_range.innerText = '00x'
             candles_rare.appendChild(candle_range);
 
@@ -226,11 +249,12 @@ function indexData(){
 
 
             candles_rare = document.createElement('div')
-            candles_rare.className = 'candles-rare-medium'
+            candles_rare.className = `candles-rare-${size}`
+            candles_rare.style.marginRight = '5px'
             conteiner_candle_inline.appendChild(candles_rare)
 
             candle_range = document.createElement('span')
-            candle_range.className = 'candle-range-medium'
+            candle_range.className = `candle-range-${size}`
             candle_range.innerText = '00x'
             candles_rare.appendChild(candle_range);
 
@@ -250,11 +274,12 @@ function indexData(){
             candles_rare.appendChild(last_time)
 
             candles_rare = document.createElement('div')
-            candles_rare.className = 'candles-rare-medium'
+            candles_rare.className = `candles-rare-${size}`
+            candles_rare.style.marginRight = '5px'
             conteiner_candle_inline.appendChild(candles_rare)
 
             candle_range = document.createElement('span')
-            candle_range.className = 'candle-range-medium'
+            candle_range.className = `candle-range-${size}`
             candle_range.innerText = '00x'
             candles_rare.appendChild(candle_range);
 
@@ -279,11 +304,12 @@ function indexData(){
 
 
             candles_rare = document.createElement('div')
-            candles_rare.className = 'candles-rare-medium'
+            candles_rare.className = `candles-rare-${size}`
+            candles_rare.style.marginRight = '5px'
             conteiner_candle_inline.appendChild(candles_rare)
 
             candle_range = document.createElement('span')
-            candle_range.className = 'candle-range-medium'
+            candle_range.className = `candle-range-${size}`
             candle_range.innerText = '00x'
             candles_rare.appendChild(candle_range);
 
@@ -303,11 +329,12 @@ function indexData(){
             candles_rare.appendChild(last_time)
 
             candles_rare = document.createElement('div')
-            candles_rare.className = 'candles-rare-medium'
+            candles_rare.className = `candles-rare-${size}`
+            candles_rare.style.marginRight = '5px'
             conteiner_candle_inline.appendChild(candles_rare)
 
             candle_range = document.createElement('span')
-            candle_range.className = 'candle-range-medium'
+            candle_range.className = `candle-range-${size}`
             candle_range.innerText = '00x'
             candles_rare.appendChild(candle_range);
 
@@ -334,7 +361,7 @@ function indexData(){
         }
 
        return {tableStructure, graphicStructure, candleRareStructure}
-}  
+    }        
     
     function initializeData(){
         let content_house = document.getElementById(`content-house-${number_of_houses}`)
@@ -350,10 +377,8 @@ function indexData(){
         if(day < 10){
             day = '0'+day  
         }
-        let betting_house = content_house.querySelector(".filters-houses-medium")
-        if (!betting_house){
-            betting_house = content_house.querySelector(".filters-houses-small")
-        }
+
+        let betting_house = content_house.querySelector(`.filters-houses-${size}`)
         console.log('BOX FILTRO = ', betting_house)
         betting_house.addEventListener('input', function(){
             table = `${day}/${month}/${year}/${betting_house.value}`;
@@ -633,12 +658,13 @@ function indexData(){
             .then(response => response.json())
             .then(data => {
                 console.log('AS VELAS RARAS = ',data)
-                let candle_rare = content_house.querySelectorAll('.candles-rare')
+                let candle_rare = content_house.querySelectorAll(`.candles-rare-${size}`)
+               
                 console.log(candle_rare)
                 let i = 0
                 data.forEach(value => {
                    candle_rare[i].querySelector('.how-many-candles-ago').innerText = `Há ${value.quantity} velas atrás`
-                   candle_rare[i].querySelector('.last-candle-time').innerText = value.hour
+                   candle_rare[i].querySelector('.last-time').innerText = value.hour
                    candle_rare[i].querySelector('.last-candle').innerText = value.candle+'x'
                    i++
                 })

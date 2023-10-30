@@ -73,17 +73,17 @@ class Aviator{
         // Velas Azuis
         $where_fields = ['date' => [$date], 'candle' => ['2']];
         $operator = ['=', '<'];
-        $blue_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields,$selec_field, $operator);
+        $blue_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $selec_field);
         
         // Velas roxas
         $where_fields = ['date' => [$date], 'candle' => ['2', '10']];
         $operator = ['=', '>=', '<'];
-        $purple_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields,$selec_field, $operator);
+        $purple_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $selec_field);
         
         // Velas rosas
         $where_fields = ['date' => [$date], 'candle' => ['10']];
         $operator = ['=', '>='];
-        $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $selec_field, $operator);
+        $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $selec_field);
 
         $data = ['blue' => $blue_candles->count, 'purple' => $purple_candles->count, 'pink' => $pink_candles->count];
         $json = json_encode($data);
@@ -111,32 +111,32 @@ class Aviator{
             // Velas Azuis
             $where_fields = ['date' => [$date], 'candle' => [$candle, '2'], 'hour' => [$hour]];
             $operator = ['=', '>=', '<', '>='];
-            $blue_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $select_fields, $operator);
+            $blue_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
             // Velas Roxas
             $where_fields = ['date' => [$date], 'candle' => ['2', '10'], 'hour' => [$hour]];
             $operator = ['=', '>=', '<', '>='];
-            $purple_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $select_fields, $operator);
+            $purple_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
             // Velas Rosas
             $where_fields = ['date' => [$date], 'candle' => ['10'], 'hour' => [$hour]];
             $operator = ['=', '>=', '>='];
-            $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $select_fields, $operator);
+            $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
             $data = ['blue' => $blue_candles->count, 'purple' => $purple_candles->count, 'pink' => $pink_candles->count];
         }
         else if($candle < 10){
             // Velas Roxas
             $where_fields = ['date' => [$date], 'candle' => [$candle, '10'], 'hour' => [$hour]];
             $operator = ['=', '>=', '<', '>=']; 
-            $purple_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $select_fields, $operator);
+            $purple_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
             // Velas Rosas
             $where_fields = ['date' => [$date], 'candle' => [$candle], 'hour' => [$hour]];
             $operator = ['=', '>=', '>='];      
-            $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $select_fields, $operator);
+            $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator,  $select_fields);
             $data = ['blue' => $blue_candles, 'purple' => $purple_candles->count, 'pink' => $pink_candles->count];
         }else{
             // Velas Rosas
             $where_fields = ['date' => [$date], 'candle' => [$candle], 'hour' => [$hour]];
             $operator = ['=', '>=', '>='];   
-            $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $select_fields, $operator);
+            $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
             $data = ['blue' => $blue_candles, 'purple' => $purple_candles, 'pink' => $pink_candles->count]; 
         }
         $json = json_encode($data);
@@ -156,7 +156,7 @@ class Aviator{
         $date = $data['date'];
         $where_fields = ['date' => [$date]];
         $operator = ['='];
-        $result = findBy($db_name, $db_username, $db_password, $table, $where_fields, $select_fields, $operator);
+        $result = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
         $result = array_reverse($result);
         $candle_800 = true;
         $candle_400 = true;
@@ -168,13 +168,7 @@ class Aviator{
         $data = [];
         for($i = 0; $i < count($result); $i++){
             if($result[$i]->candle >= 10 && $candle_10){
-                $candle_10 = false;
-                // $data['candle_10']['quantity'] = $counter;
-                // $data['candle_10']['hour'] = $result[$i]->hour;
-                // $data[0]['candle_rare']['quantity'] = $counter;
-                // $data[0]['candle_rare']['hour'] = $result[$i]->hour;
-                // $data[0]['candle_rare']['candle'] = $result[$i]->candle;
-                
+                $candle_10 = false;                
                 $data[0] = ['range' => 10, 'quantity' => $counter, 'hour' => $result[$i]->hour, 'candle' => $result[$i]->candle];
             }
             if($result[$i]->candle >= 50 && $candle_50){

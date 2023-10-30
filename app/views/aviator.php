@@ -1,24 +1,25 @@
 
 
-<div class = "contvainer-fluid">
+<div class = "container-fluid">
     <section class= "info-aviator">
         <h1>Sobre o jogo</h1>
-        <!-- <div style=" padding: 20px; text-align: center;"> -->
-        <div style="text-align: center">
             <div class = content>
                 <div class = "content-text">
                     <img src=<?php echo IMGS."png/aviator-logo.png"?> alt="aviator-logo">
-                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, quia pariatur. Veniam, ad sapiente culpa saepe fugit dicta doloribus animi expedita pariatur dolorum minima rerum ex nemo ab illum reiciendis?</p>
+                    <h2>O que é o Aviator?</h2>
+                    <p>Aviator é um novo tipo de jogo multiplayer social que consiste em uma curva crescente que pode bater a qualquer momento.</p>
+                    <p>Quando a rodada começa, uma escala de multiplicador começa a crescer. Jogador deve sacar antes da sorte avião voa para longe.</p>
                 </div>
                 <div class = "content-text">
                    <img src=<?php echo IMGS."png/spribe-logo.png"?> alt="spribe-logo">
-                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, quia pariatur. Veniam, ad sapiente culpa saepe fugit dicta doloribus animi expedita pariatur dolorum minima rerum ex nemo ab illum reiciendis?</p>
+                   <h2>Quem criou o jogo Aviator?</h2>
+                   <p>A empresa internacional Spribe foi a primeira a atender às demandas do público na área de entretenimento de azar, que desejava jogos mais modernos.</p> 
+                   <p>Tendo estudado a tarefa de forma abrangente, os designers criaram em 2019 um produto exclusivo chamado Aviator.</p>
                 </div>
             </div>
             <div class = "content-image">
                <img src=<?php echo IMGS."png/aviator-amostra.png"?> alt="aviator-logo">
             </div>
-        </div>
     </section>
     <button class="new-table">Nova Tabela</button>
     <section class="aviator-statistics">
@@ -116,4 +117,3 @@
     
 </div>
 
-<input type="text">

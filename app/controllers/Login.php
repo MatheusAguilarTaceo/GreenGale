@@ -26,8 +26,9 @@ class Login{
         $dbUsername = $_ENV['DB_USERNAME_USERS'];
         $dbPassword = $_ENV['DB_PASSWORD_USERS'];
         $table = TABLE_USERS;
-
-        $user = findBy($dbName,$dbUsername, $dbPassword, $table, 'email', $email);
+        $where_fields = ['email' => [$email]];
+        $operator = ['='];
+        $user = findBy($dbName,$dbUsername, $dbPassword, $table, $where_fields, $operator);
         if(!$user){
             return setMessageAndRedirect('messageLogin', 'Email ou senha incorretos', 'login');
         }

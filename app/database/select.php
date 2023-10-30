@@ -12,7 +12,7 @@ function findAll($dbName, $dbUsername, $dbPassword,$table, $fields = '*'){
         var_dump($e->getMessage());
     }
 }
-function findBy($db_name, $db_username, $db_password, $table, $where_fields_values, $select_fields = '*', $operator = ['=']){
+function findBy($db_name, $db_username, $db_password, $table, $where_fields_values, $operator, $select_fields = '*',){
     $connect = connect($db_name, $db_username, $db_password,);    
     try{
         $i = 0;

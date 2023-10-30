@@ -25,7 +25,7 @@
         <?php require 'footer.php'; ?> 
     </footer>
     <script src=<?php echo JS?>></script>    
-    <script src=<?php // echo JS2?>></script>    
+    <script src=<?php //echo JS2?>></script>    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
