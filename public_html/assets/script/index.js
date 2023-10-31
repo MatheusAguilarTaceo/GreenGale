@@ -2,27 +2,37 @@
 function indexData(){
     let number_of_houses = 1
     let size = 'medium'
-
+    let data_limit = null
+    fetch('aviator/data-controller',{
+        method: 'POST',
+        headers: {"Content-Type": "application/json"}
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("DATA_LIMIT_FECTH = ", data)
+        data_limit = data
+    })
+    console.log("DATA_LIMT = ", data_limit)
 
     function modifyClass(id){
         let content_house = document.getElementById(`content-house-${id}`)
         let list_elements_medium = content_house.querySelectorAll('[class *= "medium"]')
         list_elements_medium.forEach(value =>{
             value.className = value.className.replace('medium', 'small')
-            console.log('MEDIUM =', value.className)
         })
 
     }
     function createStructure(){
+        if(number_of_houses  == data_limit) return
         size ='medium'
         number_of_houses++
+        console.log('numero de casas = ', number_of_houses)
         if(number_of_houses % 2 == 0){
             modifyClass(number_of_houses-1)
             size = 'small'
             let content_block = document.createElement('div')
             content_block.className = 'content-block'
             let aviator_statistics  = document.querySelector('.aviator-statistics')
-            console.log('AQUI O AVIATOR = ', aviator_statistics)
             aviator_statistics.appendChild(content_block)
         }
         let content_house =  document.createElement('div')
@@ -32,7 +42,6 @@ function indexData(){
             content_block.appendChild(content_house)
         }else{
             let previous_content_house = document.getElementById(`content-house-${number_of_houses-1}`)
-            console.log("AQUI HOUSE = ", previous_content_house)
             previous_content_house.insertAdjacentElement('afterend', content_house)
         }
 
@@ -371,9 +380,8 @@ function indexData(){
     }        
     
     function initializeData(){
-        let content_house = document.getElementById(`content-house-${number_of_houses}`)
-        console.log('NOVA ISTANCIA = ',content_house)
-    
+        console.log("DATA_LIMT INI_DATA = ", data_limit)
+        let content_house = document.getElementById(`content-house-${number_of_houses}`)    
         let date_current = new Date()
         let year = date_current.getFullYear()
         let month = date_current.getMonth()+1
@@ -386,7 +394,6 @@ function indexData(){
         }
 
         let betting_house = content_house.querySelector(`.filters-houses-${size}`)
-        console.log('BOX FILTRO = ', betting_house)
         betting_house.addEventListener('input', function(){
             table = `${day}/${month}/${year}/${betting_house.value}`;
             tableFilter()
@@ -431,10 +438,8 @@ function indexData(){
         
         const button_list = content_house.querySelectorAll(".tablePagination > button"); 
         button_list[7].style.display = 'none'
-        console.log('Lista de Botões', button_list)
         betting_house.value ='pagbet'
         let table = `${day}/${'09'}/${year}/${betting_house.value}`;
-        console.log('AAA = ',table)
         let page = 1;
         let page_quantity = 0;  
 
@@ -533,9 +538,7 @@ function indexData(){
           
             fetch("aviator/table",{
                 method:"POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({table: table, page: page, fields: {candle: candle.value, hour: hour.value, date: date.value}}),
             })
             .then(response => response.json())
@@ -544,8 +547,6 @@ function indexData(){
                 let remove_table = content_house.querySelectorAll('.candle-tbody > tr');
                 remove_table.forEach($value => $value.remove());
                 page_quantity = Math.ceil(data.quantity_of_candles/12); //  Total velas/linhas por pagina = quantidade de paginas 
-                console.log(data)
-                console.log("Quantidade de Paginas = ", page_quantity)
                 data.table.forEach($value => {
                     let tr = document.createElement('tr');
                     let td =  document.createElement('td');
@@ -583,8 +584,6 @@ function indexData(){
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
-                // console.log("TESTE DE TIPO = ", typeof(data.pink))
                 data = google.visualization.arrayToDataTable([
                     ['Candles', 'Frequencia'],
                     ['Blue', Number(data.blue)],
@@ -624,7 +623,6 @@ function indexData(){
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 data = google.visualization.arrayToDataTable([
                     ['Candles', 'Frequencia'],
                     ['Blue', Number(data.blue)],
@@ -664,10 +662,8 @@ function indexData(){
             })
             .then(response => response.json())
             .then(data => {
-                console.log('AS VELAS RARAS = ',data)
                 let candle_rare = content_house.querySelectorAll(`.candles-rare-${size}`)
                
-                console.log(candle_rare)
                 let i = 0
                 data.forEach(value => {
                    candle_rare[i].querySelector('.how-many-candles-ago').innerText = `Há ${value.quantity} velas atrás`
@@ -684,17 +680,17 @@ function indexData(){
 
         return {tableFilter, graphicFilterAll, graphicFilterBy, candleRareFilter}
     }
-    return {createStructure, initializeData}
+    return {createStructure, initializeData, number_of_houses, data_limit}
 }
 
-function createNewTable(start_table){
+function createNewTable(statistics){
     let  buttonNewTable = document.querySelector('.new-table')
-    buttonNewTable.addEventListener('click', function(){ 
-        let table = start_table.createStructure()
+    buttonNewTable.addEventListener('click', function(){         
+        let table = statistics.createStructure()
         table.tableStructure()
         table.graphicStructure()
         table.candleRareStructure()
-        table = start_table.initializeData()
+        table = statistics.initializeData()
         table.tableFilter()
         table.graphicFilterAll()
         table.graphicFilterBy()

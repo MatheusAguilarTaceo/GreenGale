@@ -12,7 +12,7 @@ class Aviator{
         ];
     }
 
-    public function show($param){
+    public function show($param){ // futuramente esta função vais ser reutilizada 
         $key = array_keys($param)[0];
 
         $value = $param[$key];
@@ -22,7 +22,15 @@ class Aviator{
         return redirect(PUBLIC_HTML.'index.php/aviator');
     }
 
-
+    public function dataController(){
+        if(isset($_SESSION[LOGGED])){
+            echo $data_limit = 4;
+            return;
+        }else{
+            echo $data_limit = 2;
+            return;
+        }
+    }
 
     public function tableFilter(){   
         $json = file_get_contents('php://input');

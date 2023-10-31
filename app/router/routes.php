@@ -6,7 +6,9 @@ return [
         '/aviator/table' => 'Aviator@tableFilter',
         '/aviator/graphic-all' => 'Aviator@graphicFilterAll',
         '/aviator/graphic-by' => 'Aviator@graphicFilterBy',
-        '/aviator/candle-rare' => 'Aviator@candleRareFilter'        
+        '/aviator/candle-rare' => 'Aviator@candleRareFilter',
+        '/aviator/data-controller' => 'Aviator@dataController' ,  
+         
     ],
     'GET' =>[
         '/' => 'Home@index',    
