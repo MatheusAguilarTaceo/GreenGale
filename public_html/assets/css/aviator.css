@@ -54,22 +54,25 @@
 
 
 
-
+.data-controls{
+    margin-top: 50px;
+    background-color: var(--bg-color);
+    text-align: center;
+}
 
 .new-table{
-    background-color:var(--bg-color);
+    background-color:var(--main-color);
     color:var(--text-color);   
     padding: 10px;
     border: 1px solid var(--bg-color);
     border-radius: 5px;
-    margin-top: 50px;
     cursor: pointer;
-
 }
 .new-table:hover{
     background-color: var(--bg-color);
-    border-color: var(--bg-color);
+    border-color: var(--main-color);
     color: var(--main-color);
+   
 }
 
 
@@ -86,9 +89,10 @@
 
 .content-house{
     /* background-color: blueviolet; */
-    border: 2px solid black;
+    border: 1px solid black;
     display: inline-block;
     margin-right: 5px;
+    padding-top: 5px;
 }
 
 .content-table{
@@ -102,6 +106,11 @@
     
 }
 
+.house-logo{
+    width: 100px;
+    height: 33px;
+}
+
 .filters-houses-medium{
     width: 154px;
     height: 29px;
@@ -111,7 +120,7 @@
 
 .filters-houses-small{
     width: 100px;
-    height: 25px;
+    height: 22px;
     border: solid 2px black;  
     text-align: center  ;
 }
@@ -126,8 +135,8 @@
 
 .input-filters-small{
     text-align: center;
-    width: 100px;
-    height: 20px;
+    width: 93px;
+    height: 18px;
     border: 2px solid black;
     margin-bottom: 2px;
 }

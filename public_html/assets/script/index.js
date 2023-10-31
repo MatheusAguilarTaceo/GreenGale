@@ -41,10 +41,17 @@ function indexData(){
             content_table.className = 'content-table'  
             content_house.appendChild(content_table)  
 
+            let house_logo = document.createElement('img')
+            house_logo.className = 'house-logo'
+            house_logo.setAttribute('src', 'assets/img/png/pagbet.png')
+            house_logo.setAttribute('alt', 'Logo casa de aposta')
+            content_table.appendChild(house_logo);
+            
             let content_filters_1 = document.createElement('div')
             content_filters_1.className = 'content-filters'
             content_table.appendChild(content_filters_1)
             
+
             let filters_houses = document.createElement('select')
             content_filters_1.appendChild(filters_houses)
             filters_houses.className = `filters-houses-${size}`
