@@ -24,25 +24,25 @@ function indexData(){
     }
     function createStructure(){
         if(number_of_houses  == data_limit) return
-        size ='medium'
+
         number_of_houses++
         console.log('numero de casas = ', number_of_houses)
+        size = 'small'
+        let content_house =  document.createElement('div')
+        content_house.className = 'content-house'
+        content_house.id = `content-house-${number_of_houses}`
         if(number_of_houses % 2 == 0){
             modifyClass(number_of_houses-1)
-            size = 'small'
+            let previous_content_house = document.getElementById(`content-house-${number_of_houses-1}`)
+            previous_content_house.insertAdjacentElement('afterend', content_house)
+        }else{
+            size = 'medium'
+            console.log("Aqui DIVISÃO")
             let content_block = document.createElement('div')
             content_block.className = 'content-block'
             let aviator_statistics  = document.querySelector('.aviator-statistics')
             aviator_statistics.appendChild(content_block)
-        }
-        let content_house =  document.createElement('div')
-        content_house.className = 'content-house'
-        content_house.id = `content-house-${number_of_houses}`
-        if(typeof content_block !== "undefined"){
             content_block.appendChild(content_house)
-        }else{
-            let previous_content_house = document.getElementById(`content-house-${number_of_houses-1}`)
-            previous_content_house.insertAdjacentElement('afterend', content_house)
         }
 
         function tableStructure(){

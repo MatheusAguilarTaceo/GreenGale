@@ -9,16 +9,16 @@ body{
 
 
 
-:root{
-    --bg-color:#081b29;
+/* :root{
+    --bg-color:#233323;
     --second-bg-color:#112e42;
     --text-color:#ededed;
     --main-color:#00abf0;
     --cor-fundo:#d9e1e4;
     --cor-botao:#60c05d;
     --cor-botao1:#f1ff27;
-    --cor-botao2:#0ad414;
-}
+    --cor-botao2:#1fad26;
+} */
 
 main{
     margin-top: -141px;
@@ -35,7 +35,7 @@ main{
 }
 
 header{
-    background-color: var(--cor-botao2);
+    background-color: var(--primary);
     color: white;
     padding-bottom: 10.8rem;   
 }
@@ -52,8 +52,10 @@ header{
     border: 1px solid var(--text-color);
     border-left: none;
     border-right: none;
-    background-color: var(--bg-color);
-    height: 50px;       
+    background-color: var(--second);
+    height: 50px;      
+    border: 1px solid white; 
+    /* border: 1px solid black;  */
 }
 
 .header-ul-menu {
@@ -102,43 +104,31 @@ header{
 }
 
 a {
-
     text-decoration: none;
-    color: var(--text-color);
+    color: white;
 }
 
 .header-anc1, .header-anc2{
-
-    
-    color: var(--bg-color);
     text-decoration: none;
-    font-weight: 100;                                                                                                                                                                                            ;
+    font-weight: 100;     
+    color: black                                                                                                                                                                                       ;
 }
 
 .header-cad1 {
-
-    background-color: var(--cor-botao1);
+    background-color: var(--emphasis);
+    color: black;
     border-radius: 3px;
     
 }
-.header-cad1:hover {
 
-    background-color: var(--cor-botao1);
-    
-    .header-anc1{
-
-        color: var(--bg-color);
-    }
-}
 .header-cad1:hover{
-
     background-color:#f7d205;
     
 }
 
 .header-cad2{
 
-    background-color: var(--main-color);
+    background-color: var(--button);
     border-radius: 3px;
     transition: .5s;
     
