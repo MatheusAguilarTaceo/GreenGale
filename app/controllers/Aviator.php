@@ -24,10 +24,14 @@ class Aviator{
 
     public function dataController(){
         if(isset($_SESSION[LOGGED])){
-            echo $data_limit = 4;
+            $msg = "Limte de filtros atingdos!"; 
+            $limit = 4;
+            echo json_encode(['limit' => $limit, 'msg' => $msg]);
             return;
         }else{
-            echo $data_limit = 2;
+            $msg = "Limte de filtros atingdos! cadastre-se para adicionar mais"; 
+            $limit = 2;
+            echo json_encode(['limit' => $limit, 'msg' => $msg]);
             return;
         }
     }

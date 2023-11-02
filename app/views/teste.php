@@ -127,64 +127,105 @@
 ?>
 
 <?php 
-// candleRareFilter
-$db_name = $_ENV['DB_NAME_AVIATOR'];
-$db_username = $_ENV['DB_USERNAME_AVIATOR'];
-$db_password = $_ENV['DB_PASSWORD_AVIATOR'];
+// // candleRareFilter
+// $db_name = $_ENV['DB_NAME_AVIATOR'];
+// $db_username = $_ENV['DB_USERNAME_AVIATOR'];
+// $db_password = $_ENV['DB_PASSWORD_AVIATOR'];
 
-$select_fields = 'candle, hour';
-$table = 'pagbet_2023_09';
-$date = '2023-09-25';
-$where_fields = ['date' => [$date]];
-$operator = ['='];
-$result = findBy($db_name, $db_username, $db_password, $table, $where_fields, $select_fields, $operator);
+// $select_fields = 'candle, hour';
+// $table = 'pagbet_2023_09';
+// $date = '2023-09-25';
+// $where_fields = ['date' => [$date]];
+// $operator = ['='];
+// $result = findBy($db_name, $db_username, $db_password, $table, $where_fields, $select_fields, $operator);
 
-$candle_800 = true;
-$candle_400 = true;
-$candle_200 = true;
-$candle_100 = true;
-$candle_50 = true;
-$candle_10 = true;
-$counter = 0;
-$data = [];
-var_dump($result);
-for($i = 0; $i < count($result); $i++){
-    if($result[$i]->candle >= 800 && $candle_800){
-        $candle_800 = false;
-        $data['candle_800']['quantity'] = $counter;
-        $data['candle_800']['hour'] = $result[$i]->hour;
-        break; 
-    }
-    if($result[$i]->candle >= 400 && $candle_400){
-        $candle_400 = false;
-        $data['candle_400']['quantity'] = $counter;
-        $data['candle_400']['hour'] = $result[$i]->hour;
-    }
-    if($result[$i]->candle >= 200 && $candle_200){
-        $candle_200 = false;
-        $data['candle_200']['quantity'] = $counter;
-        $data['candle_200']['hour'] = $result[$i]->hour;
-    }
-    if($result[$i]->candle >= 100 && $candle_100){
-        $candle_100 = false;
-        $data['candle_100']['quantity'] = $counter;
-        $data['candle_100']['hour'] = $result[$i]->hour; 
-    }
-    if($result[$i]->candle >= 50 && $candle_50){
-        $candle_50 = false;
-        $data['candle_50']['quantity'] = $counter;
-        $data['candle_50']['hour'] = $result[$i]->hour;
-    }
-    if($result[$i]->candle >= 10 && $candle_10){
-        $candle_10 = false;
-        $data['candle_10']['quantity'] = $counter;
-        $data['candle_10']['hour'] = $result[$i]->hour;
-    }
-    $counter++;
-}
-$json = json_encode($data);
-echo $json;
+// $candle_800 = true;
+// $candle_400 = true;
+// $candle_200 = true;
+// $candle_100 = true;
+// $candle_50 = true;
+// $candle_10 = true;
+// $counter = 0;
+// $data = [];
+// var_dump($result);
+// for($i = 0; $i < count($result); $i++){
+//     if($result[$i]->candle >= 800 && $candle_800){
+//         $candle_800 = false;
+//         $data['candle_800']['quantity'] = $counter;
+//         $data['candle_800']['hour'] = $result[$i]->hour;
+//         break; 
+//     }
+//     if($result[$i]->candle >= 400 && $candle_400){
+//         $candle_400 = false;
+//         $data['candle_400']['quantity'] = $counter;
+//         $data['candle_400']['hour'] = $result[$i]->hour;
+//     }
+//     if($result[$i]->candle >= 200 && $candle_200){
+//         $candle_200 = false;
+//         $data['candle_200']['quantity'] = $counter;
+//         $data['candle_200']['hour'] = $result[$i]->hour;
+//     }
+//     if($result[$i]->candle >= 100 && $candle_100){
+//         $candle_100 = false;
+//         $data['candle_100']['quantity'] = $counter;
+//         $data['candle_100']['hour'] = $result[$i]->hour; 
+//     }
+//     if($result[$i]->candle >= 50 && $candle_50){
+//         $candle_50 = false;
+//         $data['candle_50']['quantity'] = $counter;
+//         $data['candle_50']['hour'] = $result[$i]->hour;
+//     }
+//     if($result[$i]->candle >= 10 && $candle_10){
+//         $candle_10 = false;
+//         $data['candle_10']['quantity'] = $counter;
+//         $data['candle_10']['hour'] = $result[$i]->hour;
+//     }
+//     $counter++;
+// }
+// $json = json_encode($data);
+// echo $json;
+?>
 
+<?php
+// URL de destino para a requisição POST
+$url = 'aa';
 
+// Dados a serem enviados no corpo da requisição POST
+$data = array(
+    'email' => 'theusaguilar2@gmail.com',
+    'password' => '123s'
+);
 
+// Inicializa a sessão cURL
+$ch = curl_init();
+
+// Configura a URL de destino
+curl_setopt($ch, CURLOPT_URL, $url);
+
+// Configura a requisição para o método POST
+curl_setopt($ch, CURLOPT_POST, 1);
+
+// Define os dados a serem enviados no corpo da requisição
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+
+// Permite receber a resposta como uma string
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// Executa a requisição
+$response = curl_exec($ch);
+print($response);
+
+// Fecha a sessão cURL
+curl_close($ch);
+
+$dom = new DOMDocument();
+
+// Carregue a resposta HTML
+$dom->loadHTML($response);
+
+// Extraia o texto visível
+$textoVisivel = strip_tags($dom->textContent);
+
+// Exiba o texto visível
+var_dump($textoVisivel);
 ?>

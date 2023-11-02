@@ -1,18 +1,56 @@
+function error(msg){
+    console.log('AQUIII NO EEROR')
+    console.log('AQUIII NO EEROR', msg)
+    let error = document.createElement('div')
+    error.classList.add('message','container-fluid')
+    error.innerText = msg
+    let body = document.querySelector("body")
+    body.appendChild(error)
+    setTimeout(()=>{
+        error.remove()
+    },4000)
+}
 
+(function login(){
+    document.getElementById('form-login').onsubmit = function(event) {
+        event.preventDefault()
+        let form = new FormData(this)
+        fetch('login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({'email': form.get('email'), 'password': form.get('password')})
+        }) 
+        .then(response => response.json())
+        .then(data => {
+            if(data.status){
+                console.log("REDRECT = ", data.redirect)
+                window.location.replace(data.redirect)
+                return
+            }
+            console.log('AQUI O FORMULARIO', data.msg)  
+        })
+        .catch(error => {
+            console.log('Erro login => ', error.status)
+        })
+    }
+})()
 function indexData(){
     let number_of_houses = 1
     let size = 'medium'
-    let data_limit = null
+    let limit = null
+    let msg_house = null
     fetch('aviator/data-controller',{
         method: 'POST',
         headers: {"Content-Type": "application/json"}
     })
-    .then(response => response.json())
+    .then(response =>response.json()) 
     .then(data => {
-        console.log("DATA_LIMIT_FECTH = ", data)
-        data_limit = data
+        console.log('AQUI O AVISO = ', data)
+        console.log("DATA_LIMIT_FECTH = ", data.limit)
+        limit = data.limit
+        msg_house = data.msg
     })
-    console.log("DATA_LIMT = ", data_limit)
+    console.log("DATA_LIMT = ", limit)
 
     function modifyClass(id){
         let content_house = document.getElementById(`content-house-${id}`)
@@ -23,7 +61,10 @@ function indexData(){
 
     }
     function createStructure(){
-        if(number_of_houses  == data_limit) return
+        if(number_of_houses  == limit){
+            error(msg_house)
+            return
+        } 
 
         number_of_houses++
         console.log('numero de casas = ', number_of_houses)
@@ -380,7 +421,7 @@ function indexData(){
     }        
     
     function initializeData(){
-        console.log("DATA_LIMT INI_DATA = ", data_limit)
+        console.log("DATA_LIMT INI_DATA = ", limit)
         let content_house = document.getElementById(`content-house-${number_of_houses}`)    
         let date_current = new Date()
         let year = date_current.getFullYear()
@@ -569,8 +610,7 @@ function indexData(){
                 }); 
             })
             .catch(error => {
-                // console.error("Erro ao fazer a requisição:", error);
-                throw new Error('Erro na requisição: ' + error.status);
+                console.log('Erro aviator-statistics => ', error.status )
             }); 
         }
 
@@ -680,7 +720,7 @@ function indexData(){
 
         return {tableFilter, graphicFilterAll, graphicFilterBy, candleRareFilter}
     }
-    return {createStructure, initializeData, number_of_houses, data_limit}
+    return {createStructure, initializeData}
 }
 
 function createNewTable(statistics){
