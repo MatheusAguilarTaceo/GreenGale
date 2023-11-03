@@ -15,6 +15,7 @@ return [
         '/user/[a-z0-9]+' => 'User@index', // talvez eu reutilize isto
         '/register' => 'Register@index',
         '/?key=[a-z0-9]+' => 'Register@emailConfirmation',
+        '/resend-email-confirmation' => 'Register@resendEmail',
         '/login' => 'Login@index',
         '/logout' => 'Login@logout',
         '/account' => 'Account@index',

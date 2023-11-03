@@ -6,9 +6,10 @@ class Aviator{
     public function index(){
         return[
             'views' => 'aviator.php',
-            'data' => ['title-menu' => 'Histórico das casas de apostas | Aviator',
-            'title-page' => 'Aviator Histórico',
-            'css' => 'aviator.css']
+            'data' => [ 'title-menu' => 'Histórico das casas de apostas | Aviator',
+                        'title-page' => 'Aviator Histórico',
+                        'css' => 'aviator.css',
+                        'js' => 'aviator.js']
         ];
     }
 
@@ -29,9 +30,10 @@ class Aviator{
             echo json_encode(['limit' => $limit, 'msg' => $msg]);
             return;
         }else{
-            $msg = "Limte de filtros atingdos! cadastre-se para adicionar mais"; 
             $limit = 2;
-            echo json_encode(['limit' => $limit, 'msg' => $msg]);
+            $msg = "Limte de filtros atingdos! cadastre-se para adicionar mais"; 
+            $time = 4000;
+            echo json_encode(['limit' => $limit, 'msg' => $msg, 'time' => $time]);
             return;
         }
     }

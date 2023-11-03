@@ -8,7 +8,8 @@ class Home{
             'views' => 'home.php',
             'data' => ['title-menu' => 'Greengale | Site de estatísticas para jogos do tipo Crash ',
             'title-page' => 'Jogos Crash',
-            'css' => 'home.css']
+            'css' => 'home.css',
+            'js' => 'none.js']
        ];   
     }
 }

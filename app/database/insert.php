@@ -9,11 +9,11 @@ function insert($dbName, $dbUsername, $dbPassword, $table, $elements){
     $sql = "INSERT INTO $table ($fields) VALUES ($values)";
     $prepare = $connection->prepare($sql);
     
-    $types = [str_repeat('s', count($elements))];
-    $values = array_values($elements);
-    $params = array_merge($types, $values);
-
+    
     if($prepare){
+        $types = [str_repeat('s', count($elements))];
+        $values = array_values($elements);
+        $params = array_merge($types, $values);
         $prepare->bind_param(...$params);
         $prepare->execute();
         if(!empty($prepare->error_list)){

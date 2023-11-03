@@ -46,12 +46,13 @@ function send_mail($email,$name,  $token){
         Você está a um passo de aproveitar todos os recursos e benefícios que oferecemos.<br>
         Para ativar sua conta, por favor, clique no link de confirmação abaixo:<br>
         http://localhost:5000/?key=$token";
-        // https://greengale.com.br?key=$token";
-        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-    
+        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';    
         $mail->send();
-        $_SESSION['error'] = 'Message has been sent';
+        ob_clean();
     } catch (Exception $e) {
-        $_SESSION['error'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        $status = false;
+        // $msg = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        $msg = "Message could not be sent. Mailer Error:";
+        echo json_encode(['status' => $status, 'msg' => $msg]);
     }
 }

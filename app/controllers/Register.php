@@ -8,8 +8,8 @@ class Register{
             'views' => 'register.php',
             'data' => [
                 'title-menu' => 'Registrar-se | Greengale', 
-                'css' => 'register.css'
-            ]
+                'css' => 'register.css',
+                'js' => 'register.js']
         ]; 
     }    
 
@@ -21,7 +21,11 @@ class Register{
         ]);
         
         if(in_array(false, $validate)){
-            return redirect('register');
+            $status = false;
+            $msg = getFlash('name').' '. getFlash('email').' '.getFlash('password');
+            $time = 4000;
+            echo json_encode(['status'=> $status,'msg'=> $msg, 'time' => $time]);
+            return ;
         }
 
         $validate['password'] = password_hash($validate['password'], PASSWORD_DEFAULT);
@@ -33,12 +37,18 @@ class Register{
         $table = TABLE_USERS;
         $result = insert($dbName, $dbUsername, $dbPassword, $table, $validate);
         if($result){
-            # erro de chave estrangeira
-            $_SESSION["error"] = $result;
-            return redirect('register');
+            $status = false;
+            $msg = 'Erro ao cadastrar usuário!';
+            $time = 4000;
+            echo json_encode(['status' => $status, 'msg' => $msg, 'time' => $time]); 
+            return; 
         }
         send_mail($validate['email'], $validate['name'], $validate['token']);
-        redirect('.');
+        $status = true;
+        $msg = 'Cadastro realizado! Confirme sua caixa de email para validar a conta';
+        $time = 10000;
+        $redirect = '.';
+        echo json_encode(['status' => $status, 'msg' => $msg, 'time' => $time, 'redirect' => $redirect],);
     }
     
     public function emailConfirmation(){
@@ -46,17 +56,27 @@ class Register{
         $db_username = $_ENV['DB_USERNAME_USERS'];
         $db_password = $_ENV['DB_PASSWORD_USERS'];
         $table = TABLE_USERS;
-        $where_field = 'token';
         $token = $_GET['key'];
-        $result = findBy($db_name, $db_username, $db_password, $table, $where_field, $token);
+        $where_field = ['token' => ['$token']];
+        $operator = ['='];
+        $result = findBy($db_name, $db_username, $db_password, $table, $where_field, $operator);
         if(isset($result->id)){
             $set_fields_values = ['token' => NULL, 'email_confirmation_id' => '2'];
             $where_fields_values = ['id' => $result->id];
             update($db_name, $db_username, $db_password, $table, $set_fields_values, $where_fields_values);
             
-            return redirect('register'); 
+            return redirect('account'); 
         }
-        setMessageAndRedirect('msg_error', $result, 'register');
+        return redirect('resend-email-confirmation'); 
     }
 
+    public function resendEmail(){
+        return [
+            'views' => 'resend_email.php',
+            'data' =>[
+                        'title-menu' => 'Reenviar email | Greengale',
+                        'css' =>'resend_email.css',
+                        'js' => 'resend_email.js']
+        ];
+    }
 }

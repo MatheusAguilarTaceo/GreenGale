@@ -187,45 +187,42 @@
 ?>
 
 <?php
-// URL de destino para a requisição POST
-$url = 'aa';
+    
+    
+    
+// URL do seu servidor local
+$serverUrl = 'http://localhost:8000/register';
 
-// Dados a serem enviados no corpo da requisição POST
-$data = array(
-    'email' => 'theusaguilar2@gmail.com',
-    'password' => '123s'
+// Dados em formato JSON que você deseja enviar
+$data = json_encode(array(
+    'name' => 'Matheus',
+    'email' => 'b10@gmail.com',
+    'password' => '123'
+));
+
+// Configuração da solicitação POST
+$options = array(
+    'http' => array(
+        'method'  => 'POST',
+        'header'  => 'Content-type: application/json',
+        'content' => $data
+    )
 );
 
-// Inicializa a sessão cURL
-$ch = curl_init();
+$context  = stream_context_create($options);
+$validate = file_get_contents($serverUrl, false, $context);
+var_dump($validate); 
+$json = json_decode($validate);
+var_dump($json);
+// Você pode processar a resposta aqui
 
-// Configura a URL de destino
-curl_setopt($ch, CURLOPT_URL, $url);
-
-// Configura a requisição para o método POST
-curl_setopt($ch, CURLOPT_POST, 1);
-
-// Define os dados a serem enviados no corpo da requisição
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-
-// Permite receber a resposta como uma string
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-// Executa a requisição
-$response = curl_exec($ch);
-print($response);
-
-// Fecha a sessão cURL
-curl_close($ch);
-
-$dom = new DOMDocument();
-
-// Carregue a resposta HTML
-$dom->loadHTML($response);
-
-// Extraia o texto visível
-$textoVisivel = strip_tags($dom->textContent);
-
-// Exiba o texto visível
-var_dump($textoVisivel);
+    
+    //createAccount()
+    // $validate = validate([
+    //     'name' => 'required',
+    //     'email' => 'required|email|unique:registered_users',
+    //     'password' => 'required|maxlen:10'
+    // ]);
+    
+    
 ?>

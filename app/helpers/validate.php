@@ -22,43 +22,53 @@ function validate(array $validations){
 }
 
 function required($field){
-    if($_POST[$field] == ''){
-        setFlash($field,'O campo é obrigatório');
+    $json = file_get_contents('php://input'); 
+    $data = json_decode($json, true);
+    if($data[$field] == ''){
+        setFlash($field,'O campo é obrigatorio!');
         return false;
     }
-    return filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
+    return filter_var($data[$field], FILTER_SANITIZE_STRING);
 }
 
 function email($field){
-    $data = filter_input(INPUT_POST, $field, FILTER_VALIDATE_EMAIL);
-    if(!$data){
-        setFlash($field, 'O email é invalido');
-        return $data;
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);   
+    $value_filtered = filter_var($data[$field], FILTER_VALIDATE_EMAIL);
+    if(!$value_filtered){
+        setFlash($field, 'O email é invalido!');
+        return $value_filtered;
     }
-    return $data;
+    return $value_filtered;
 
 }
 
 function unique($field, $table){
     #14/10/2023, organizar os nomes dos parametros
-    $data  = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $value_filtered  = filter_var($data[$field], FILTER_SANITIZE_STRING);
     $dbName = $_ENV['DB_NAME_USERS'];
     $dbUsername = $_ENV['DB_USERNAME_USERS'];
     $dbPassword = $_ENV['DB_PASSWORD_USERS'];
     $table = TABLE_USERS;
-    $result = findBy($dbName, $dbUsername, $dbPassword, $table, $field, $data, $field);  
+    $where_fields = [$field => [$value_filtered]];
+    $operator = ['='];
+    $result = findBy($dbName, $dbUsername, $dbPassword, $table, $where_fields, $operator);  
     if(isset($result->email)){
-        setFlash($field, 'Email já cadastrado');
+        setFlash($field, 'Email já cadastrado!');
         return false;
     }
-    return  $data;
+    return  $value_filtered;
 }
 
 function maxlen($field, $maxlen){
-    $data = filter_input(INPUT_POST, $field, FILTER_SANITIZE_STRING);
-    if(strlen($data) > $maxlen){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $value_filtered = filter_var($data[$field], FILTER_SANITIZE_STRING);
+    if(strlen($value_filtered) > $maxlen){
         setFlash($field, "A senha deve ter no máximo {$maxlen} caracteres");
         return false;
     }
-    return $data;
+    return $value_filtered;
 } 
