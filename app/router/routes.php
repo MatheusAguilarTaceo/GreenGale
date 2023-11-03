@@ -7,7 +7,8 @@ return [
         '/aviator/graphic-all' => 'Aviator@graphicFilterAll',
         '/aviator/graphic-by' => 'Aviator@graphicFilterBy',
         '/aviator/candle-rare' => 'Aviator@candleRareFilter',
-        '/aviator/data-controller' => 'Aviator@dataController' ,  
+        '/aviator/data-controller' => 'Aviator@dataController',  
+        '/account' => 'Account@editData'
          
     ],
     'GET' =>[

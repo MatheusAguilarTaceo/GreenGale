@@ -14,13 +14,15 @@
 }
 .box-plan {         /*AJUSTA CAIXA PARA FICAREM UMA DO LADO DA OUTRA*/
     
-    margin-top: 100px;
-    margin: auto;
-   display: flex;
-   justify-content:space-evenly;
-   align-items:center ;
-   
-
+margin-top: 100px;
+    
+margin: auto;
+    
+display: flex;
+    
+justify-content:space-evenly;
+    
+align-items:center;
 }
 
 .box-plan div{             /*AJUSTA O TAMANHO DAS CAIXAS*/
@@ -45,6 +47,10 @@
     padding-top: 15px;
 }
 
+.box-plan div input{     /*AJUSTA O TAMANHO DO CONEUDO INTERNO DA CAIXA*/
+    
+    padding-top: 15px;
+}
 
 
 .img {              /*AJUSTA A ALTURA DA IMAGEM DA CAIXA*/
@@ -70,12 +76,12 @@
 
 
 .box-plan .nome{            /* CONSTROI A BORDA E COR DE FUNDO EN VOLTA DE NOME/EMAIL/SENHA...  DO USUARIO */
-
     border: 1px solid white;
     border-radius: 4px;
     background-color: white;
     margin-right: 80px;
-    color: var(--bg-color);
+    color: var(--black);
+    color: blue;
     text-indent: 10px;
     padding-bottom: 6px;
 }

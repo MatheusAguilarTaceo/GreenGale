@@ -7,9 +7,10 @@ class Account{
         return[
             'views' => 'account.php',
             'data' => [
-                'title-menu' => 'ALGO ....',
+                'title-menu' => 'Usuário',
                 'title-page' => 'Account', 
-                'css' => 'account.css'
+                'css' => 'account.css',
+                'js' => 'account.js'
             ]
         ];
     }

@@ -9,7 +9,8 @@
             </div>
             <p><strong>Nome:</strong></p>
             <div class="editar"><img src="<?php echo IMGS?>png/editar.png"></div>
-            <p class=" nome"><?php echo( $_SESSION[LOGGED]->name)?></p> 
+            <p class="nome"><?php echo( $_SESSION[LOGGED]->name)?></p> 
+            <input type="text" class="nome", value="PHP">
             <p><strong>Email:</strong></p>
             <div class="editar"><img src="<?php echo IMGS?>png/editar.png"></div>
             <p class="nome"><?php echo( $_SESSION[LOGGED]->email)?></p>
