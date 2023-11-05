@@ -33,7 +33,6 @@ class Login{
         $operator = ['='];
         $user = findBy($dbName,$dbUsername, $dbPassword, $table, $where_fields, $operator);
         if(!$user){
-            //return setMessageAndRedirect('messageLogin', 'Email ou senha incorretos', 'login');
             $status = false;
             $msg =  'Email ou senha incorretos';
             $time = 4000;
@@ -41,7 +40,6 @@ class Login{
             return;
         }
         if($user->email_confirmation_id == 1){ 
-            // return setMessageAndRedirect('messageLogin', 'Email não confirmado, confirme seu email e tente novamente', 'login');
             $status = false;
             $msg  = 'Email não confirmado, confirme seu email e tente novamente';
             $time = 4000;
@@ -50,7 +48,6 @@ class Login{
         }
     
         if(!password_verify($password, $user->password)){
-            // return  setMessageAndRedirect('messageLogin', 'Email ou senha incorretos', 'login');    
             $status = false;
             $msg  = 'Email ou senha incorretos';
             $time = 4000;

@@ -18,7 +18,7 @@
         <?php require 'header_structure/header.php'?>
     </header>
     <main>
-        <?php require $views; ?> 
+        <?php require $views ?> 
     </main>
     <footer>
         <?php require 'footer.php'; ?> 

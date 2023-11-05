@@ -27,7 +27,8 @@ class Aviator{
         if(isset($_SESSION[LOGGED])){
             $msg = "Limte de filtros atingdos!"; 
             $limit = 4;
-            echo json_encode(['limit' => $limit, 'msg' => $msg]);
+            $time = 4000;
+            echo json_encode(['limit' => $limit, 'msg' => $msg, 'time' => $time]);
             return;
         }else{
             $limit = 2;

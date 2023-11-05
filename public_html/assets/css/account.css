@@ -49,7 +49,7 @@ align-items:center;
 
 .box-plan div input{     /*AJUSTA O TAMANHO DO CONEUDO INTERNO DA CAIXA*/
     
-    padding-top: 15px;
+padding-top: 15px;
 }
 
 
@@ -75,18 +75,20 @@ align-items:center;
 }
 
 
-.box-plan .nome{            /* CONSTROI A BORDA E COR DE FUNDO EN VOLTA DE NOME/EMAIL/SENHA...  DO USUARIO */
+.nome{            /* CONSTROI A BORDA E COR DE FUNDO EN VOLTA DE NOME/EMAIL/SENHA...  DO USUARIO */
     border: 1px solid white;
     border-radius: 4px;
     background-color: white;
-    margin-right: 80px;
+    width: 300px;
     color: var(--black);
     color: blue;
     text-indent: 10px;
     padding-bottom: 6px;
+    padding-top: 15px;
+    display: block;
 }
 
-.box-plan .basico{          /*MESMO PROCESSO ANTEIOR*/
+.basico{          /*MESMO PROCESSO ANTEIOR*/
 
     border: 1px solid white;
     border-radius: 4px;
@@ -95,6 +97,8 @@ align-items:center;
     color: var(--bg-color);
     text-align: center;
     padding-bottom: 6px;
+    padding-top: 15px;
+
     
 }
 

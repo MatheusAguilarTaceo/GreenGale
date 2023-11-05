@@ -15,9 +15,8 @@ return [
         '/' => 'Home@index',    
         '/user/[a-z0-9]+' => 'User@index', // talvez eu reutilize isto
         '/register' => 'Register@index',
-        '/?key=[a-z0-9]+' => 'Register@emailConfirmation',
         '/resend-email-confirmation' => 'Register@resendEmail',
-        '/login' => 'Login@index',
+        '/login?redirect=[a-z]+' => 'Login@index',
         '/logout' => 'Login@logout',
         '/account' => 'Account@index',
         '/aviator' => 'Aviator@index',
@@ -26,6 +25,7 @@ return [
         '/plan?selected=basic' => 'Plan@basic',
         '/plan?selected=medium' => 'Plan@medium',
         '/plan?selected=high' => 'Plan@high',
+        // '/?key=[a-z0-9]+' => 'Register@emailConfirmation',
         '/teste' => 'Teste@index'
     ]
 ];

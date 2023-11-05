@@ -186,18 +186,14 @@
 // echo $json;
 ?>
 
-<?php
-    
-    
-    
+<?php    
 // URL do seu servidor local
-$serverUrl = 'http://localhost:8000/register';
+$serverUrl = 'http://localhost:8000/account';
 
 // Dados em formato JSON que você deseja enviar
 $data = json_encode(array(
-    'name' => 'Matheus',
-    'email' => 'b10@gmail.com',
-    'password' => '123'
+    'field' => 'name',
+    'value' => 'Matheus',
 ));
 
 // Configuração da solicitação POST
@@ -214,15 +210,5 @@ $validate = file_get_contents($serverUrl, false, $context);
 var_dump($validate); 
 $json = json_decode($validate);
 var_dump($json);
-// Você pode processar a resposta aqui
-
-    
-    //createAccount()
-    // $validate = validate([
-    //     'name' => 'required',
-    //     'email' => 'required|email|unique:registered_users',
-    //     'password' => 'required|maxlen:10'
-    // ]);
-    
     
 ?>

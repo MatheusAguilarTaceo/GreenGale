@@ -119,15 +119,15 @@
     <a class="acount1" href="#"><img src="<?php echo IMGS?>png/biscoito.png" alt=""></a>
       <ul class="dropdown-content">                        
         <li>
-            <a class="dropdown-interno" href="#">
+            <a class="dropdown-interno" href="account">
                 <img src="<?php echo IMGS?>png/facebook.png" alt="">
-                <span class="dropdown-interno" href="#">configurações</span>
+                <span class="dropdown-interno">configurações</span>
             </a>
         </li>
         <li>
             <a class="dropdown-interno" href="logout">
                 <img src="<?php echo IMGS?>png/facebook.png" alt="">
-                <a class="dropdown-interno" href="logout">logout</a>
+                <span class="dropdown-interno">logout</span>
             </a>
         </li>
         

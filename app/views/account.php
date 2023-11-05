@@ -9,14 +9,13 @@
             </div>
             <p><strong>Nome:</strong></p>
             <div class="editar"><img src="<?php echo IMGS?>png/editar.png"></div>
-            <p class="nome"><?php echo( $_SESSION[LOGGED]->name)?></p> 
-            <input type="text" class="nome", value="PHP">
+            <p class="nome" id="name"><?php echo( $_SESSION[LOGGED]->name)?></p> 
             <p><strong>Email:</strong></p>
             <div class="editar"><img src="<?php echo IMGS?>png/editar.png"></div>
-            <p class="nome"><?php echo( $_SESSION[LOGGED]->email)?></p>
+            <p class="nome" id="email"><?php echo( $_SESSION[LOGGED]->email)?></p>
             <p><strong>Senha:</strong></p>
             <div class="editar"><img src="<?php echo IMGS?>png/editar.png"></div>
-            <p class="nome">*****************</p>
+            <p class="nome" id="password">*****************</p>
         </div>
 
         <div class="inf">

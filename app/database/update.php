@@ -13,7 +13,7 @@ function update($db_name, $db_username, $db_password, $table, $set_fields_values
     }
 
     $str_where = implode(' AND ', $array_where);
-    $sql = "UPDATE registered_users SET {$str_set} WHERE {$str_where}";
+    $sql = "UPDATE $table SET {$str_set} WHERE {$str_where}";
     
     $prepared_stmt = $connect->prepare($sql);
     if($prepared_stmt){

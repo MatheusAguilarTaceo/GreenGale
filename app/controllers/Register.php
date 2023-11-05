@@ -57,7 +57,7 @@ class Register{
         $db_password = $_ENV['DB_PASSWORD_USERS'];
         $table = TABLE_USERS;
         $token = $_GET['key'];
-        $where_field = ['token' => ['$token']];
+        $where_field = ['token' => [$token]];
         $operator = ['='];
         $result = findBy($db_name, $db_username, $db_password, $table, $where_field, $operator);
         if(isset($result->id)){

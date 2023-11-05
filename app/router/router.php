@@ -16,25 +16,35 @@ function uriDinamicInArrays($uri, $routes){
 // Fiz por enquanto a separação das rotas dinamicas, aquelas direcionada a uma pagina para 
 // vizualização ou operação no BD que contenham barras, por exemplo: /house/aviator/statistcs e aquelas que contenham
 // chaves e valores com o get exemplo: /?nome=Matheus&idade=22&funcao=NaN
-    if(stripos($uri,'?')){
+    // if(stripos($uri,'?')){
+    if(false){
         //Uso do GET para chaves e valores
-        return $mathchedUri = array_filter(
+        return array_filter(
         $routes, 
         function($value) use($uri) {
             if(stripos($uri, "?") && stripos($value, "?") ){
                 $regex = str_replace('/', '\/', ltrim($value, '/'));
-                return preg_match("/^\\$regex$/", ltrim($uri,'/'));
+                // ob_start();//  bloco para impedir que os aviso gere um html no servidor
+                $result = preg_match("/^\\$regex$/", ltrim($uri,'/'));
+                // ob_end_clean();
+                return $result;
             }
         },
         ARRAY_FILTER_USE_KEY,      
         );
+
     }
     // Uso do GET para rotas mais complexas
-    return $mathchedUri = array_filter(
+    return  array_filter(
         $routes, 
         function($value) use($uri) {
             $regex = str_replace('/', '\/', ltrim($value, '/'));
-            return preg_match("/^$regex$/", ltrim($uri,'/'));
+            var_dump($regex);
+            $result =  preg_match("/^$regex$/", ltrim($uri,'/'));
+            echo 'RESULT<br>';
+            var_dump($result);
+            echo 'FIM<br>';
+
         },
         ARRAY_FILTER_USE_KEY,       
     ); 
@@ -78,6 +88,7 @@ function router(){
     $params = [];
     if(empty($mathchedUri)){
         $mathchedUri = uriDinamicInArrays($uri, $routes[$requesMethod]);
+        echo 'AQUII';
         var_dump($mathchedUri);
         $uri = explode('/', ltrim($uri, '/'));
         if(count($uri) != 1 ){    
@@ -88,6 +99,8 @@ function router(){
     
 
     if(!empty($mathchedUri)){
+        var_dump(controller($mathchedUri, $params));
+        // die();
         return controller($mathchedUri, $params);
 
     }
