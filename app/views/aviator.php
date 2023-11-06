@@ -21,11 +21,15 @@
                <img src=<?php echo IMGS."png/aviator-amostra.png"?> alt="aviator-logo">
             </div>
     </section>
-    <button class="new-table">Nova Tabela</button>
+    <div class = 'data-controls'>
+        <button class="new-table">Inserir Dados</button>
+        <button class="new-table">Remover Dados</button>
+    </div>
     <section class="aviator-statistics">
         <div class="content-block">
             <div class="content-house" id="content-house-1">
                 <section class="content-table" >
+                    <img class ="house-logo"src="assets/img/png/2bxbet.png" alt="">
                     <div class="content-filters">
                         <select class="filters-houses-medium">
                             <option value="pagbet">PAGBET</option>

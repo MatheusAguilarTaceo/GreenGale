@@ -19,11 +19,7 @@
 
             <!--BOTÃO MENU-->
         <?php 
-            if(isset($_SESSION[LOGGED])){   
-                require 'logged.php';
-            }else{
-                require 'not_logged.php';
-            }
+           showNavForMenu($views)
         ?>
        
     </ul>

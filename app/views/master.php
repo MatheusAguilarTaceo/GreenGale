@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $data['title-menu']?></title>
-    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script> -->
-    <link rel="stylesheet" href= <?php echo HEADER?>>
-    <link rel="stylesheet" href= <?php echo MAIN.$data['css']?>>
-    <link rel="stylesheet" href= <?php echo FOOTER?>>
+
+    <link rel="stylesheet" href= <?php echo CSS.'root.css'?>>
+    <link rel="stylesheet" href= <?php echo CSS.'header.css'?>>
+    <link rel="stylesheet" href= <?php echo CSS.$data['css']?>>
+    <link rel="stylesheet" href= <?php echo CSS.'footer.css'?>>
 
            
 </head>
@@ -19,18 +18,13 @@
         <?php require 'header_structure/header.php'?>
     </header>
     <main>
-        <?php require $views; ?> 
+        <?php require $views ?> 
     </main>
     <footer>
         <?php require 'footer.php'; ?> 
     </footer>
-    <script src=<?php echo JS?>></script>    
-    <script src=<?php //echo JS2?>></script>    
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-    </script>
+    <script src=<?php echo JS.'index.js'?>></script>    
+    <script src=<?php echo JS.$data['js']?>></script>    
 
 </body> 
 

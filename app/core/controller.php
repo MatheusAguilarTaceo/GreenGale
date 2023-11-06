@@ -1,6 +1,6 @@
 <?php
 
-function controller($mathchedUri, $params){
+function controller($mathchedUri){
     [$controller, $method] = explode('@', array_values($mathchedUri)[0]);
     $controllerWithNamespace = CONTROLLER_PATH.$controller;
     if(!class_exists($controllerWithNamespace)){
@@ -11,7 +11,7 @@ function controller($mathchedUri, $params){
     if(!method_exists($controllerInstance, $method)){
         throw new Exception("Esse metodo {$method} não existe no controller {$controller}");
     }
-    $controller = $controllerInstance->$method($params);
+    $controller = $controllerInstance->$method();
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         die();
     }

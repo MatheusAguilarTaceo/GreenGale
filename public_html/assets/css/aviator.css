@@ -1,11 +1,11 @@
 
  .info-aviator{
-    background-color: var(--bg-color);
-    margin-left: 25px;
-    margin-right:25px;
+    background-color: var(--second);
+    margin: 0px 10px;
     padding-bottom: 80px;
     border-radius: 20px;
     text-align: center;
+    border: 1px solid white;
     
 }
 .info-aviator > h1{
@@ -14,6 +14,7 @@
     padding-right: 50px;
     margin: 0px;
     text-align: left;
+    color: var(--white);
 }
 
 .content{
@@ -27,6 +28,7 @@
     margin-right: 50px;
     width: 275px;
     height: 250px;
+    color: var(--white);
 }
     
 .content-text > img{
@@ -54,52 +56,65 @@
 
 
 
-
+.data-controls{
+    margin-top: 50px;
+    background-color: var(--second);
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 30px 10px;
+}
 
 .new-table{
-    background-color:var(--bg-color);
-    color:var(--text-color);   
+    background-color:var(--third);
+    color:var(--white);   
     padding: 10px;
     border: 1px solid var(--bg-color);
     border-radius: 5px;
-    margin-top: 50px;
     cursor: pointer;
-
 }
 .new-table:hover{
-    background-color: var(--bg-color);
-    border-color: var(--bg-color);
-    color: var(--main-color);
+    background-color: var(--fourth);
+    border-color: var(--third);
+    color: var(--white);
+   
 }
 
 
 
 .aviator-statistics{
-    padding-top: 50px;
     text-align: center;
-    /* border: 2px solid black; */
+
 }
 
 .content-block{
-    /* background-color: aqua; */
+    background-color: var(--second) ;
+    margin: 30px 10px;
+    border-radius: 20px;
+
 }
 
 .content-house{
-    /* background-color: blueviolet; */
-    border: 2px solid black;
+    /* border: 1px solid black; */
     display: inline-block;
     margin-right: 5px;
+    padding-top: 5px;
 }
 
 .content-table{
     margin-left: 5px;        
     border:2px solid var(--bg-color);
     border-radius: 5px;
-    background-color: var(--bg-color);
+    background-color: var(--third);
     padding: 10px;;
     display: inline-block;  
     text-align: center;
     
+}
+
+.house-logo{
+    width: 100px;
+    height: 33px;
 }
 
 .filters-houses-medium{
@@ -111,7 +126,7 @@
 
 .filters-houses-small{
     width: 100px;
-    height: 25px;
+    height: 22px;
     border: solid 2px black;  
     text-align: center  ;
 }
@@ -126,8 +141,8 @@
 
 .input-filters-small{
     text-align: center;
-    width: 100px;
-    height: 20px;
+    width: 93px;
+    height: 18px;
     border: 2px solid black;
     margin-bottom: 2px;
 }
@@ -150,8 +165,8 @@
     border-radius: 5px;
     background-color: aliceblue;
     display: inline-table;
-    width: 250px;
-    height: 300px;
+    width: 240px;
+    height: 350px;
 }
 
 thead{
@@ -187,18 +202,20 @@ th, td{
     display: inline-block;
     margin: -3px;
     padding: 8px 12px;
-    background-color: var(--main-color);
+    background-color: var(--fourth);
     color:rgb(255, 255, 255);
-    border: solid 2px var(--main-color);
+    /* border: solid 2px var(--main-color); */
+    max-width: 210px;
 }
 
 .table-button-small{
     display: inline-block;
     margin: -3px;
-    background-color: var(--main-color);
+    background-color: var(--fourth);
     color:rgb(255, 255, 255);
-    border: solid 2px var(--main-color);
+    /* border: solid 2px var(--main-color); */
     max-width: 32px;
+    font-size: 12px;
 }
 
 .candle-blue,.candle-purple,.candle-pink{
@@ -260,7 +277,7 @@ th, td{
 }
 
 .candle-range-medium{
-    background-color: rgb(55, 43, 226);
+    background-color: var(--fifth);
     color: white;
     border: 1px 0px solid black;
     height: 25px;
@@ -271,7 +288,7 @@ th, td{
     margin: 10px auto;
 }
 .candle-range-small{
-    background-color: blueviolet;
+    background-color: var(--fifth);
     color: white;
     border: 1px 0px solid black;
     height: 25px;

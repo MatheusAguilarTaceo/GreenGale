@@ -6,23 +6,38 @@ class Aviator{
     public function index(){
         return[
             'views' => 'aviator.php',
-            'data' => ['title-menu' => 'Histórico das casas de apostas | Aviator',
-            'title-page' => 'Aviator Histórico',
-            'css' => 'aviator.css']
+            'data' => [ 'title-menu' => 'Histórico das casas de apostas | Aviator',
+                        'title-page' => 'Aviator Histórico',
+                        'css' => 'aviator.css',
+                        'js' => 'aviator.js']
         ];
     }
 
-    public function show($param){
-        $key = array_keys($param)[0];
+    // public function show($param){ // futuramente esta função vais ser reutilizada 
+    //     $key = array_keys($param)[0];
 
-        $value = $param[$key];
-        if(method_exists($this,$value)){
-            return $this->$value();      
+    //     $value = $param[$key];
+    //     if(method_exists($this,$value)){
+    //         return $this->$value();      
+    //     }
+    //     return redirect(PUBLIC_HTML.'index.php/aviator');
+    // }
+
+    public function dataController(){
+        if(isset($_SESSION[LOGGED])){
+            $msg = "Limte de filtros atingdos!"; 
+            $limit = 4;
+            $time = 4000;
+            echo json_encode(['limit' => $limit, 'msg' => $msg, 'time' => $time]);
+            return;
+        }else{
+            $limit = 2;
+            $msg = "Limte de filtros atingdos! cadastre-se para adicionar mais"; 
+            $time = 4000;
+            echo json_encode(['limit' => $limit, 'msg' => $msg, 'time' => $time]);
+            return;
         }
-        return redirect(PUBLIC_HTML.'index.php/aviator');
     }
-
-
 
     public function tableFilter(){   
         $json = file_get_contents('php://input');

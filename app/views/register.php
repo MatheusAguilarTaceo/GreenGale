@@ -6,7 +6,7 @@
     }
 ?>
 <div class="container">
-    <form action="register" method="POST">
+    <form id="form-register">
             <h2>Cadastro de Usuário</h2>
             <br><br>
             <div class="inputBox"> 
