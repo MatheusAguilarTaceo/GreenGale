@@ -9,6 +9,6 @@
     }
 
     function redirectLogin(){
-        return ltrim($_SERVER['REQUEST_URI'], '/');
+        return str_replace('/', '%2F', $_SERVER['REQUEST_URI']);
     }
 ?>

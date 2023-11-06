@@ -2,7 +2,6 @@
 <div class="container">
     <h2 class="container-h2">Login de Usuário</h2>
     <form id='form-login'>
-        <?php //echo getFlash('messageLogin')?>
         <label class="container-label" for="email">E-mail:</label>
         <input type="email" id="email" name="email" required>
         

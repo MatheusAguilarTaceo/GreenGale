@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 class Login{
-    public function index($params){
+    public function index(){
         if(isset($_SESSION[LOGGED])){
             redirect('.');
         }
@@ -57,7 +57,9 @@ class Login{
 
         $_SESSION[LOGGED] = $user;
         $status = true;
-        $redirect = '.';
+        $redirect = $_SERVER['REQUEST_URI'];
+        $redirect = $_GET['redirect'];
+
         echo json_encode(['status' => $status , 'redirect' => $redirect]);
         return;
     }

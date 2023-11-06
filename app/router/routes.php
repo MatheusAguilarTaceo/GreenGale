@@ -1,7 +1,7 @@
 <?php
 return [
     'POST'=> [
-        '/login' => 'Login@store',
+        '/login?redirect=[a-zA-Z0-9%]+' => 'Login@store',
         '/register' => 'Register@create',
         '/aviator/table' => 'Aviator@tableFilter',
         '/aviator/graphic-all' => 'Aviator@graphicFilterAll',
@@ -16,7 +16,7 @@ return [
         '/user/[a-z0-9]+' => 'User@index', // talvez eu reutilize isto
         '/register' => 'Register@index',
         '/resend-email-confirmation' => 'Register@resendEmail',
-        '/login?redirect=[a-z]+' => 'Login@index',
+        '/login?redirect=[a-zA-Z0-9%]+' => 'Login@index',
         '/logout' => 'Login@logout',
         '/account' => 'Account@index',
         '/aviator' => 'Aviator@index',
@@ -25,7 +25,7 @@ return [
         '/plan?selected=basic' => 'Plan@basic',
         '/plan?selected=medium' => 'Plan@medium',
         '/plan?selected=high' => 'Plan@high',
-        // '/?key=[a-z0-9]+' => 'Register@emailConfirmation',
+        '/?key=[a-z0-9]+' => 'Register@emailConfirmation',
         '/teste' => 'Teste@index'
     ]
 ];

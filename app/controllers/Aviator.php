@@ -13,15 +13,15 @@ class Aviator{
         ];
     }
 
-    public function show($param){ // futuramente esta função vais ser reutilizada 
-        $key = array_keys($param)[0];
+    // public function show($param){ // futuramente esta função vais ser reutilizada 
+    //     $key = array_keys($param)[0];
 
-        $value = $param[$key];
-        if(method_exists($this,$value)){
-            return $this->$value();      
-        }
-        return redirect(PUBLIC_HTML.'index.php/aviator');
-    }
+    //     $value = $param[$key];
+    //     if(method_exists($this,$value)){
+    //         return $this->$value();      
+    //     }
+    //     return redirect(PUBLIC_HTML.'index.php/aviator');
+    // }
 
     public function dataController(){
         if(isset($_SESSION[LOGGED])){

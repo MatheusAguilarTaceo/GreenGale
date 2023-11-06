@@ -2,7 +2,7 @@
     document.getElementById('form-login').onsubmit = function(event) {
         event.preventDefault()
         let form = new FormData(this)
-        fetch('login', {
+        fetch('login'+window.location.search, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({'email': form.get('email'), 'password': form.get('password')})
@@ -20,3 +20,5 @@
         })
     }
 })()
+
+console.log()

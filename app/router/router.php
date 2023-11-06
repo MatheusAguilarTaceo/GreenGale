@@ -17,65 +17,48 @@ function uriDinamicInArrays($uri, $routes){
 // vizualização ou operação no BD que contenham barras, por exemplo: /house/aviator/statistcs e aquelas que contenham
 // chaves e valores com o get exemplo: /?nome=Matheus&idade=22&funcao=NaN
     // if(stripos($uri,'?')){
-    if(false){
-        //Uso do GET para chaves e valores
-        return array_filter(
-        $routes, 
-        function($value) use($uri) {
-            if(stripos($uri, "?") && stripos($value, "?") ){
-                $regex = str_replace('/', '\/', ltrim($value, '/'));
-                // ob_start();//  bloco para impedir que os aviso gere um html no servidor
-                $result = preg_match("/^\\$regex$/", ltrim($uri,'/'));
-                // ob_end_clean();
-                return $result;
-            }
-        },
-        ARRAY_FILTER_USE_KEY,      
-        );
-
-    }
+ 
     // Uso do GET para rotas mais complexas
     return  array_filter(
         $routes, 
         function($value) use($uri) {
             $regex = str_replace('/', '\/', ltrim($value, '/'));
-            var_dump($regex);
+            $regex = str_replace('?', '\?', ltrim($regex, '/'));
             $result =  preg_match("/^$regex$/", ltrim($uri,'/'));
-            echo 'RESULT<br>';
-            var_dump($result);
-            echo 'FIM<br>';
+            return $result;
 
         },
         ARRAY_FILTER_USE_KEY,       
-    ); 
+    );
 }
+//// FUNÇÃOES QUE POR ENQUNATO N VEJO UTILIDADE 06/11/2023
+// function params($uri, $mathchedUri){
+//     echo 'params<br>';
+//     var_dump($mathchedUri);
+//     if(!empty($mathchedUri)){
+//         $matchedToGetParams = array_keys($mathchedUri)[0];
+//         //array_diff mantem os indices do array retornado
+//         return array_diff(
+//             $uri,
+//             explode('/', ltrim($matchedToGetParams, '/'))
+//         );
+//     }
+// }
 
-function params($uri, $mathchedUri){
+// function paramsFormat($uri, $params){
+//     echo"AQUI<br>";
+//     var_dump($uri);
+//     var_dump($params);
+//     $paramsData = [];
+//     // O params tem indices que o array_diff retornou,  exemplo de retorno [2 => 'A', 4 => 'B', 8 =>'C']
+//     // ele é especifico para uma logica em que seus valores e seus nomes estejam em nessa sequência na URI
+//     //exemplo  nome/matheus/idade/22/ , pórem eu mudar isto nas versões futuras
+//     foreach($params as $index => $param){
+//         $paramsData[$uri[$index -1]] = $param;
+//     };
    
-    if(!empty($mathchedUri)){
-        $matchedToGetParams = array_keys($mathchedUri)[0];
-        //array_diff mantem os indices do array retornado
-        return array_diff(
-            $uri,
-            explode('/', ltrim($matchedToGetParams, '/'))
-        );
-    }
-}
-
-function paramsFormat($uri, $params){
-    echo"AQUI<br>";
-    var_dump($uri);
-    var_dump($params);
-    $paramsData = [];
-    // O params tem indices que o array_diff retornou,  exemplo de retorno [2 => 'A', 4 => 'B', 8 =>'C']
-    // ele é especifico para uma logica em que seus valores e seus nomes estejam em nessa sequência na URI
-    //exemplo  nome/matheus/idade/22/ , pórem eu mudar isto nas versões futuras
-    foreach($params as $index => $param){
-        $paramsData[$uri[$index -1]] = $param;
-    };
-   
-    return $paramsData;
-}    
+//     return $paramsData;
+// }    
 
 
 function router(){
@@ -88,20 +71,14 @@ function router(){
     $params = [];
     if(empty($mathchedUri)){
         $mathchedUri = uriDinamicInArrays($uri, $routes[$requesMethod]);
-        echo 'AQUII';
-        var_dump($mathchedUri);
-        $uri = explode('/', ltrim($uri, '/'));
-        if(count($uri) != 1 ){    
-            $params = params($uri, $mathchedUri);
-            $params = paramsFormat($uri, $params);
-        }
+        // $uri = explode('/', ltrim($uri, '/'));
+        // $params = params($uri, $mathchedUri);
+        // $params = paramsFormat($uri, $params);
     }
     
 
     if(!empty($mathchedUri)){
-        var_dump(controller($mathchedUri, $params));
-        // die();
-        return controller($mathchedUri, $params);
+        return controller($mathchedUri);
 
     }
     throw new Exception("Algo deu errado!");
