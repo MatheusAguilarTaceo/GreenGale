@@ -21,7 +21,7 @@ function indexData(){
         method: 'POST',
         headers: {"Content-Type": "application/json"}
     })
-    .then(response =>response.json()) 
+    .then(response => response.json()) 
     .then(data => {
         console.log('AQUI O AVISO = ', data)
         console.log("DATA_LIMIT_FECTH = ", data.limit)
@@ -29,10 +29,11 @@ function indexData(){
         msg = data.msg
         time = data.time
     })
-    console.log("DATA_LIMT = ", limit)
+    console.log("DATA_LIMT = ", limit);
+    
 
     (function createHouse(){
-        let btn_create = document.querySelctor('#btn-create')
+        let btn_create = document.querySelector('#btn-create')
         btn_create.addEventListener('click', () =>{
             let new_house = createStructure()
             new_house.tableStructure()
@@ -45,14 +46,16 @@ function indexData(){
             new_house.graphicFilterBy()
             new_house.candleRareFilter()
         })
-    })()
+    })();
+
     (function deleteHouse(){   
         let btn_delete = document.querySelector('#btn-delete')
         btn_delete.addEventListener('click', () =>{
             let drop_house = document.querySelector(`#content-house-${number_of_houses}`)
             drop_house.remove()
-            })
-    })()
+            number_of_houses--
+        })
+    })();
 
     function modifyClass(id){
         let content_house = document.getElementById(`content-house-${id}`)
@@ -718,34 +721,10 @@ function indexData(){
         return {tableFilter, graphicFilterAll, graphicFilterBy, candleRareFilter}
     }
 
-    return {createStructure, initializeData, createHouse, deleteHouse}
+    return {createStructure, initializeData}
 }
 
-// function createNewHouse(statistics){
-//     let  btn_create = document.querySelector('#btn-create')
-//     btn_create.addEventListener('click', () =>{         
-//         let table = statistics.createStructure()
-//         if(table){
-//             table.tableStructure()
-//             table.graphicStructure()
-//             table.candleRareStructure()
-//             table = statistics.initializeData()
-//             table.tableFilter()
-//             table.graphicFilterAll()
-//             table.graphicFilterBy()
-//             table.candleRareFilter()
-//         }
-//     })
-// }
-// function deleteHouse(){
-//     let btn_delete = document.querySelector("#btn-delete")
-//     console.log(btn_delete)
-//     btn_delete.addEventListener("click", () =>{
-//         let content_house = document.querySelector('#content-house-4')
-//         content_house.remove()
 
-//     })
-// }
 
 let aviator_statitistics = indexData()
 let table = aviator_statitistics.initializeData()
@@ -754,5 +733,3 @@ table.graphicFilterAll()
 table.graphicFilterBy()
 table.candleRareFilter()
 
-
-// createNewHouse(aviator_statitistics)
