@@ -5,7 +5,7 @@ namespace app\controllers;
 class Account{
     public function index(){
         if(!isset($_SESSION[LOGGED])){
-            redirect('login');
+            redirect('login?redirect=%2Faccount');
         }
         return[
             'views' => 'account.php',

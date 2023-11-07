@@ -178,10 +178,9 @@ a {
 }
 
 .dropdown {
-    
     align-items: center;
-    margin-right: 31px;
-    
+    margin-right: 50px;
+    position: relative;
 } 
 .dropdown-menu{
 
@@ -210,16 +209,16 @@ a {
 /* Estilos para o menu suspenso */
 .dropdown-content{
     display: none;
+    z-index: 1;
     position: absolute;
     background-color: #f7f3f3;
     min-width: 20px;
     width: 144px;
     height: 99px;
-    z-index: 1;
     border-radius: 4px;
     list-style-type: none;
     padding-left: 4px;
-    left: 1199px;
+    left: -30px;
 }
 
 .dropdown:hover {
@@ -227,7 +226,7 @@ a {
 }
 
 .dropdown-content li {
-    padding-top: 16px;
+    padding-top: 20px;
     height: fit-content;
     width: fit-content;
 } 

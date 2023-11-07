@@ -22,8 +22,8 @@
             </div>
     </section>
     <div class = 'data-controls'>
-        <button class="new-table">Inserir Dados</button>
-        <button class="new-table">Remover Dados</button>
+        <button class="new-table" id="btn-create">Inserir Dados</button>
+        <button class="new-table" id="btn-delete">Remover Dados</button>
     </div>
     <section class="aviator-statistics">
         <div class="content-block">

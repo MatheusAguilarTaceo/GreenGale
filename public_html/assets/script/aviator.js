@@ -31,6 +31,29 @@ function indexData(){
     })
     console.log("DATA_LIMT = ", limit)
 
+    (function createHouse(){
+        let btn_create = document.querySelctor('#btn-create')
+        btn_create.addEventListener('click', () =>{
+            let new_house = createStructure()
+            new_house.tableStructure()
+            new_house.graphicStructure()
+            new_house.candleRareStructure()
+
+            new_house = initializeData()
+            new_house.tableFilter()
+            new_house.graphicFilterAll()
+            new_house.graphicFilterBy()
+            new_house.candleRareFilter()
+        })
+    })()
+    (function deleteHouse(){   
+        let btn_delete = document.querySelector('#btn-delete')
+        btn_delete.addEventListener('click', () =>{
+            let drop_house = document.querySelector(`#content-house-${number_of_houses}`)
+            drop_house.remove()
+            })
+    })()
+
     function modifyClass(id){
         let content_house = document.getElementById(`content-house-${id}`)
         let list_elements_medium = content_house.querySelectorAll('[class *= "medium"]')
@@ -694,58 +717,42 @@ function indexData(){
 
         return {tableFilter, graphicFilterAll, graphicFilterBy, candleRareFilter}
     }
-    return {createStructure, initializeData}
+
+    return {createStructure, initializeData, createHouse, deleteHouse}
 }
 
-function createNewTable(statistics){
-    let  buttonNewTable = document.querySelector('.new-table')
-    buttonNewTable.addEventListener('click', function(){         
-        let table = statistics.createStructure()
-        if(table){
-            table.tableStructure()
-            table.graphicStructure()
-            table.candleRareStructure()
-            table = statistics.initializeData()
-            table.tableFilter()
-            table.graphicFilterAll()
-            table.graphicFilterBy()
-            table.candleRareFilter()
-        }
-    })
-}
+// function createNewHouse(statistics){
+//     let  btn_create = document.querySelector('#btn-create')
+//     btn_create.addEventListener('click', () =>{         
+//         let table = statistics.createStructure()
+//         if(table){
+//             table.tableStructure()
+//             table.graphicStructure()
+//             table.candleRareStructure()
+//             table = statistics.initializeData()
+//             table.tableFilter()
+//             table.graphicFilterAll()
+//             table.graphicFilterBy()
+//             table.candleRareFilter()
+//         }
+//     })
+// }
+// function deleteHouse(){
+//     let btn_delete = document.querySelector("#btn-delete")
+//     console.log(btn_delete)
+//     btn_delete.addEventListener("click", () =>{
+//         let content_house = document.querySelector('#content-house-4')
+//         content_house.remove()
+
+//     })
+// }
 
 let aviator_statitistics = indexData()
-createNewTable(aviator_statitistics)
 let table = aviator_statitistics.initializeData()
 table.tableFilter()
 table.graphicFilterAll()
 table.graphicFilterBy()
 table.candleRareFilter()
 
-// let table2 = aviator_statitistics.initializeData()
 
-// table2.tableFilter()
-// table2.graphicFilterAll()
-// table2.graphicFilterBy()
-// table2.candleRareFilter()
-
-// let table3 = aviator_statitistics.initializeData()
-
-// table3.tableFilter()
-// table3.graphicFilterAll()
-// table3.graphicFilterBy()
-// table3.candleRareFilter()
-
-// let table4 = aviator_statitistics.initializeData()
-
-// table4.tableFilter()
-// table4.graphicFilterAll()
-// table4.graphicFilterBy()
-// table4.candleRareFilter()
-
-
-
-  
-
-
-
+// createNewHouse(aviator_statitistics)
