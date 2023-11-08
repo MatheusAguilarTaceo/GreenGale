@@ -5,21 +5,27 @@
         <h1>Sobre o jogo</h1>
             <div class = content>
                 <div class = "content-text">
-                    <img src=<?php echo IMGS."png/aviator-logo.png"?> alt="aviator-logo">
+                    <div><img src=<?php echo IMGS."png/aviator-logo.png"?> alt="aviator-logo"></div>
                     <h2>O que é o Aviator?</h2>
                     <p>Aviator é um novo tipo de jogo multiplayer social que consiste em uma curva crescente que pode bater a qualquer momento.</p>
                     <p>Quando a rodada começa, uma escala de multiplicador começa a crescer. Jogador deve sacar antes da sorte avião voa para longe.</p>
                 </div>
                 <div class = "content-text">
-                   <img src=<?php echo IMGS."png/spribe-logo.png"?> alt="spribe-logo">
+                   <div><img src=<?php echo IMGS."svg/bootstrap-reboot.svg"?> alt="spribe-logo"></div>
+                   <h2>RTP Do Aviator?</h2>
+                   <p>O RTP do Aviator é de 97%, sendo um valor acima da média geral do mercado. O valor é apenas um comparativo, traçando uma média de quanto você pode ter de retorno durante longos períodos de apostas</p> 
+                   <p>O valor, por exemplo, pode chegar em até 200 ou 300% a mais do que a média da sua aposta. Os resultados dentro do aviator são justos, porém totalmente aleatórios,</p>
+                </div>
+                <div class = "content-text">
+                   <div><img src=<?php echo IMGS."png/spribe-logo.png"?> alt="spribe-logo"></div>
                    <h2>Quem criou o jogo Aviator?</h2>
                    <p>A empresa internacional Spribe foi a primeira a atender às demandas do público na área de entretenimento de azar, que desejava jogos mais modernos.</p> 
                    <p>Tendo estudado a tarefa de forma abrangente, os designers criaram em 2019 um produto exclusivo chamado Aviator.</p>
                 </div>
             </div>
-            <div class = "content-image">
+            <!-- <div class = "content-image">
                <img src=<?php echo IMGS."png/aviator-amostra.png"?> alt="aviator-logo">
-            </div>
+            </div> -->
     </section>
     <div class = 'data-controls'>
         <button class="new-table" id="btn-create">Inserir Dados</button>
@@ -116,8 +122,6 @@
                 </section>
             </div>
         </div>   
- 
     </section>
-    
 </div>
 

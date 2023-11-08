@@ -25,10 +25,10 @@
     text-align: center;
     background-color: var(--fifth);
     color: var(--white);
-    animation: error 1s both;
+    animation: msg 1s both;
 }
 
-@keyframes error{
+@keyframes msg{
     0%{
         trasnforme:translateY(0%);
         opacity: 1;
@@ -37,4 +37,15 @@
         transform: translate(-50%, -400%);
         opacity: 1;
     }
+}
+
+
+.container-fluid{
+    max-width: 1600px;
+    margin: auto;
+}
+
+.text-a{
+    color: white;
+    text-decoration: none;
 }

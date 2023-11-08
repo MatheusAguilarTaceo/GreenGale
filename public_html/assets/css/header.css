@@ -24,15 +24,8 @@ main{
     margin-top: -141px;
 }
 
-.main-h1{
 
-    margin-left: 6rem;
-}
 
-.container-fluid{
-    max-width: 1600px;
-    margin: auto;
-}
 
 header{
     background-color: var(--primary);
@@ -80,10 +73,8 @@ header{
 .header-menu {
     display: inline;
     margin: 5px;
-
-
-    
 }
+
 
 
 .header-icon{
@@ -103,10 +94,7 @@ header{
     
 }
 
-a {
-    text-decoration: none;
-    color: white;
-}
+
 
 .header-anc1, .header-anc2{
     text-decoration: none;

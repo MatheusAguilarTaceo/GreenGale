@@ -26,6 +26,8 @@ return [
         '/plan?selected=medium' => 'Plan@medium',
         '/plan?selected=high' => 'Plan@high',
         '/?key=[a-z0-9]+' => 'Register@emailConfirmation',
+        '/privacy-policy' => 'Document@privacyPolicy',
+        '/terms-of-use' => 'Document@termsOfUse',
         '/teste' => 'Teste@index'
     ]
 ];
