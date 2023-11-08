@@ -98,7 +98,7 @@ function indexData(){
 
             let house_logo = document.createElement('img')
             house_logo.className = 'house-logo'
-            house_logo.setAttribute('src', 'assets/img/png/pagbet.png')
+            house_logo.setAttribute('src', 'assets/img/png/2bxbet.png')
             house_logo.setAttribute('alt', 'Logo casa de aposta')
             content_table.appendChild(house_logo);
             
@@ -110,27 +110,16 @@ function indexData(){
             let filters_houses = document.createElement('select')
             content_filters_1.appendChild(filters_houses)
             filters_houses.className = `filters-houses-${size}`
+
+            let list_houses = ['2bxbet', 'pagbet', 'betano']
+            
+            list_houses.forEach(value =>{
+                let option = document.createElement('option')
+                filters_houses.appendChild(option)
+                option.value = value
+                option.innerText = value.toUpperCase()     
+            })
         
-            let option_1 = document.createElement('option')
-            filters_houses.appendChild(option_1)
-        
-            option_1.value = 'pagbet'
-            option_1.innerText = 'PAGBET'
-            
-            let option_2 = document.createElement('option')
-            filters_houses.appendChild(option_2)
-            option_2.value = '2xbet'
-            option_2.innerText = '2XBET'
-            
-            let option_3 = document.createElement('option')
-            filters_houses.appendChild(option_3)
-            option_3.value = 'ssgames'
-            option_3.innerText = 'SSGAMES'
-            
-            let option_4 = document.createElement('option')
-            filters_houses.appendChild(option_4)
-            option_4.value = 'betNacional'
-            option_4.innerText = 'BETNACIONAL'
             
             let date_filter = document.createElement('input')
             content_filters_1.appendChild(date_filter)
@@ -479,7 +468,6 @@ function indexData(){
         
         const button_list = content_house.querySelectorAll(".tablePagination > button"); 
         button_list[7].style.display = 'none'
-        betting_house.value ='pagbet'
         let table = `${day}/${'09'}/${year}/${betting_house.value}`;
         let page = 1;
         let page_quantity = 0;  

@@ -38,10 +38,10 @@
                     <img class ="house-logo"src="assets/img/png/2bxbet.png" alt="">
                     <div class="content-filters">
                         <select class="filters-houses-medium">
-                            <option value="pagbet">PAGBET</option>
                             <option value="b2xbet">B2XBET</option>
-                            <option value="ssgames">SSGAMES</option>
-                            <option value="betnacional">BETNACIONAL</option>
+                            <!-- <option value="pagbet">PAGBET</option> -->
+                            <!-- <option value="ssgames">SSGAMES</option> -->
+                            <!-- <option value="betnacional">BETNACIONAL</option> -->
                         </select>
                         <input class = "input-filters-medium"   id="date" type="date">
                     </div>
