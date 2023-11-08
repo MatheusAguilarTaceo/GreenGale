@@ -29,19 +29,54 @@ function indexData(){
         msg = data.msg
         time = data.time
     })
-    console.log("DATA_LIMT = ", limit);
     
+    function modifyClass(id, size, replace_size){  
+        let content_house = document.getElementById(`content-house-${id}`)
+        let list_elements_medium = content_house.querySelectorAll(`[class *= "${size}"]`)
+        list_elements_medium.forEach(value =>{
+            value.className = value.className.replace(size, replace_size)
+        })
+    }
 
     (function createHouse(){
+        function contentHouse(){     
+            number_of_houses++
+            let content_house =  document.createElement('div')
+            content_house.className = 'content-house'
+            content_house.id = `content-house-${number_of_houses}`
+           
+            if(number_of_houses % 2 == 0){
+                modifyClass(number_of_houses-1, size, 'small' )
+                size = 'small'
+                let previous_content_house = document.getElementById(`content-house-${number_of_houses-1}`)
+                previous_content_house.insertAdjacentElement('afterend', content_house)
+            }else{
+                size = 'medium'
+                let content_block = document.createElement('div')
+                content_block.className = 'content-block'
+                let aviator_statistics  = document.querySelector('.aviator-statistics')
+                aviator_statistics.appendChild(content_block)
+                content_block.appendChild(content_house)
+            }
+            return content_house
+        }
+
         let btn_create = document.querySelector('#btn-create')
         btn_create.addEventListener('click', () =>{
-            let new_house = createStructure()
+            if(number_of_houses  == limit){
+                showMessage(msg, time)
+                return 
+            } 
+            let content_house = contentHouse()
+
+            let new_house = createStructure(content_house)
             new_house.tableStructure()
             new_house.graphicStructure()
             new_house.candleRareStructure()
 
-            new_house = initializeData()
+            new_house = initializeData(content_house)
             new_house.tableFilter()
+
             new_house.graphicFilterAll()
             new_house.graphicFilterBy()
             new_house.candleRareFilter()
@@ -54,43 +89,17 @@ function indexData(){
             let drop_house = document.querySelector(`#content-house-${number_of_houses}`)
             drop_house.remove()
             number_of_houses--
+            if(number_of_houses % 2 == 0 ){
+                size = 'small'
+            }else{
+                modifyClass(number_of_houses, size, 'medium')
+                size = 'medium'
+            }
         })
     })();
 
-    function modifyClass(id){
-        let content_house = document.getElementById(`content-house-${id}`)
-        let list_elements_medium = content_house.querySelectorAll('[class *= "medium"]')
-        list_elements_medium.forEach(value =>{
-            value.className = value.className.replace('medium', 'small')
-        })
-
-    }
-    function createStructure(){
-        if(number_of_houses  == limit){
-            showMessage(msg, time)
-            return 
-        } 
-
-        number_of_houses++
-        console.log('numero de casas = ', number_of_houses)
-        size = 'small'
-        let content_house =  document.createElement('div')
-        content_house.className = 'content-house'
-        content_house.id = `content-house-${number_of_houses}`
-        if(number_of_houses % 2 == 0){
-            modifyClass(number_of_houses-1)
-            let previous_content_house = document.getElementById(`content-house-${number_of_houses-1}`)
-            previous_content_house.insertAdjacentElement('afterend', content_house)
-        }else{
-            size = 'medium'
-            console.log("Aqui DIVISÃO")
-            let content_block = document.createElement('div')
-            content_block.className = 'content-block'
-            let aviator_statistics  = document.querySelector('.aviator-statistics')
-            aviator_statistics.appendChild(content_block)
-            content_block.appendChild(content_house)
-        }
-
+    
+    function createStructure(content_house){
         function tableStructure(){
             let content_table = document.createElement('section')
             content_table.className = 'content-table'  
@@ -173,7 +182,7 @@ function indexData(){
             for (let i = 0; i < 10; i++){
                 buttons.push(document.createElement('button'))
             }  
-            
+            buttons[2].style.color = 'black'
             let id_page = 1
             buttons.forEach((button, index) =>{
                 if(index > 1 && index < 7){
@@ -216,6 +225,7 @@ function indexData(){
                 ul.appendChild(button)
                 button.style.marginRight = '0.4px';
             })
+
         }
         function graphicStructure(){            
             let content_graphic = document.createElement('section')
@@ -235,183 +245,59 @@ function indexData(){
 
         }
         function candleRareStructure(){
+
             let content_candles_rare = document.createElement('section')
             content_candles_rare.className = 'content-candles-rare'
             content_house.appendChild(content_candles_rare)
-
-            let conteiner_candle_inline = document.createElement('div')
-            conteiner_candle_inline.className = 'container-candle-inline'
-            content_candles_rare.appendChild(conteiner_candle_inline)
             
-            let candles_rare = document.createElement('div')
-            candles_rare.className = `candles-rare-${size}`
-            candles_rare.style.marginRight = '5px'
-            conteiner_candle_inline.appendChild(candles_rare)
-            
-            let candle_range = document.createElement('span')
-            candle_range.className = `candle-range-${size}`
-            candle_range.innerText = '00x'
-            candles_rare.appendChild(candle_range);
+            let list_conteiner_candle_inline = []
+            for(i = 0; i < 3; i++){
+                list_conteiner_candle_inline.push(document.createElement('div'))
+            }
+            let list_candles_rare = []
 
-            let candles_ago = document.createElement('p')
-            candles_ago.className = 'how-many-candles-ago'
-            candles_ago.innerText = 'Há 0 velas atrás'
-            candles_rare.appendChild(candles_ago)
+            for (i = 0; i < 6; i++){
+                list_candles_rare.push(document.createElement('div'));
+            }
+            values_candle_range = ['10x', '50x', '100x', '200x', '400x', '800x']
+            let j = 0
+            list_conteiner_candle_inline.forEach(value =>{
+                value.className = 'container_candle_inline'
+                content_candles_rare.appendChild(value)
+                for(i = 0; i < 2; i++){
+                    list_candles_rare[j].className = `candles-rare-${size}`
+                    list_candles_rare[j].style.marginRight = '5px'
+                    value.appendChild(list_candles_rare[j])
+                    
 
-            let last_candle = document.createElement('span')
-            last_candle.className = 'last-candle'
-            last_candle.innerText = '00x'
-            candles_rare.appendChild(last_candle)
-            
-            let last_time = document.createElement('p')
-            last_time.className = 'last-time'
-            last_time.innerText = '00:00:00'
-            candles_rare.appendChild(last_time)
+                    let candle_range = document.createElement('span')
+                    candle_range.className = `candle-range-${size}`
+                    candle_range.innerText = values_candle_range[j]
+                    list_candles_rare[j].appendChild(candle_range);
 
-            candles_rare = document.createElement('div')
-            candles_rare.className = `candles-rare-${size}`
-            candles_rare.style.marginRight = '5px'
+                    let candles_ago = document.createElement('p')
+                    candles_ago.className = 'how-many-candles-ago'
+                    candles_ago.innerText = 'Há 0 velas atrás'
+                    list_candles_rare[j].appendChild(candles_ago)
 
-            conteiner_candle_inline.appendChild(candles_rare)
-
-            candle_range = document.createElement('span')
-            candle_range.className = `candle-range-${size}`
-            candle_range.innerText = '00x'
-            candles_rare.appendChild(candle_range);
-
-            candles_ago = document.createElement('p')
-            candles_ago.className = 'how-many-candles-ago'
-            candles_ago.innerText = 'Há 0 velas atrás'
-            candles_rare.appendChild(candles_ago)
-
-            last_candle = document.createElement('span')
-            last_candle.className = 'last-candle'
-            last_candle.innerText = '00x'
-            candles_rare.appendChild(last_candle)
-            
-            last_time = document.createElement('p')
-            last_time.className = 'last-time'
-            last_time.innerText = '00:00:00'
-            candles_rare.appendChild(last_time)
-
-            conteiner_candle_inline = document.createElement('div')
-            conteiner_candle_inline.className = 'container-candle-inline'
-            content_candles_rare.appendChild(conteiner_candle_inline)
-
-
-            candles_rare = document.createElement('div')
-            candles_rare.className = `candles-rare-${size}`
-            candles_rare.style.marginRight = '5px'
-            conteiner_candle_inline.appendChild(candles_rare)
-
-            candle_range = document.createElement('span')
-            candle_range.className = `candle-range-${size}`
-            candle_range.innerText = '00x'
-            candles_rare.appendChild(candle_range);
-
-            candles_ago = document.createElement('p')
-            candles_ago.className = 'how-many-candles-ago'
-            candles_ago.innerText = 'Há 0 velas atrás'
-            candles_rare.appendChild(candles_ago)
-
-            last_candle = document.createElement('span')
-            last_candle.className = 'last-candle'
-            last_candle.innerText = '00x'
-            candles_rare.appendChild(last_candle)
-            
-            last_time = document.createElement('p')
-            last_time.className = 'last-time'
-            last_time.innerText = '00:00:00'
-            candles_rare.appendChild(last_time)
-
-            candles_rare = document.createElement('div')
-            candles_rare.className = `candles-rare-${size}`
-            candles_rare.style.marginRight = '5px'
-            conteiner_candle_inline.appendChild(candles_rare)
-
-            candle_range = document.createElement('span')
-            candle_range.className = `candle-range-${size}`
-            candle_range.innerText = '00x'
-            candles_rare.appendChild(candle_range);
-
-            candles_ago = document.createElement('p')
-            candles_ago.className = 'how-many-candles-ago'
-            candles_ago.innerText = 'Há 0 velas atrás'
-            candles_rare.appendChild(candles_ago)
-
-            last_candle = document.createElement('span')
-            last_candle.className = 'last-candle'
-            last_candle.innerText = '00x'
-            candles_rare.appendChild(last_candle)
-            
-            last_time = document.createElement('p')
-            last_time.className = 'last-time'
-            last_time.innerText = '00:00:00'
-            candles_rare.appendChild(last_time)
-
-            conteiner_candle_inline = document.createElement('div')
-            conteiner_candle_inline.className = 'container-candle-inline'
-            content_candles_rare.appendChild(conteiner_candle_inline)
-
-
-            candles_rare = document.createElement('div')
-            candles_rare.className = `candles-rare-${size}`
-            candles_rare.style.marginRight = '5px'
-            conteiner_candle_inline.appendChild(candles_rare)
-
-            candle_range = document.createElement('span')
-            candle_range.className = `candle-range-${size}`
-            candle_range.innerText = '00x'
-            candles_rare.appendChild(candle_range);
-
-            candles_ago = document.createElement('p')
-            candles_ago.className = 'how-many-candles-ago'
-            candles_ago.innerText = 'Há 0 velas atrás'
-            candles_rare.appendChild(candles_ago)
-
-            last_candle = document.createElement('span')
-            last_candle.className = 'last-candle'
-            last_candle.innerText = '00x'
-            candles_rare.appendChild(last_candle)
-            
-            last_time = document.createElement('p')
-            last_time.className = 'last-time'
-            last_time.innerText = '00:00:00'
-            candles_rare.appendChild(last_time)
-
-            candles_rare = document.createElement('div')
-            candles_rare.className = `candles-rare-${size}`
-            candles_rare.style.marginRight = '5px'
-            conteiner_candle_inline.appendChild(candles_rare)
-
-            candle_range = document.createElement('span')
-            candle_range.className = `candle-range-${size}`
-            candle_range.innerText = '00x'
-            candles_rare.appendChild(candle_range);
-
-            candles_ago = document.createElement('p')
-            candles_ago.className = 'how-many-candles-ago'
-            candles_ago.innerText = 'Há 0 velas atrás'
-            candles_rare.appendChild(candles_ago)
-
-            last_candle = document.createElement('span')
-            last_candle.className = 'last-candle'
-            last_candle.innerText = '00x'
-            candles_rare.appendChild(last_candle)
-            
-            last_time = document.createElement('p')
-            last_time.className = 'last-time'
-            last_time.innerText = '00:00:00'
-            candles_rare.appendChild(last_time)
-            
+                    let last_candle = document.createElement('span')
+                    last_candle.className = 'last-candle'
+                    last_candle.innerText = '00x'
+                    list_candles_rare[j].appendChild(last_candle)
+                    
+                    let last_time = document.createElement('p')
+                    last_time.className = 'last-time'
+                    last_time.innerText = '00:00:00'
+                    list_candles_rare[j].appendChild(last_time)
+                    j++
+                }
+            })
         }
 
        return {tableStructure, graphicStructure, candleRareStructure}
     }        
     
-    function initializeData(){
-        console.log("DATA_LIMT INI_DATA = ", limit)
-        let content_house = document.getElementById(`content-house-${number_of_houses}`)    
+    function initializeData(content_house){
         let date_current = new Date()
         let year = date_current.getFullYear()
         let month = date_current.getMonth()+1
@@ -434,7 +320,6 @@ function indexData(){
 
         let date = content_house.querySelector("#date")
         date.value = `${year}-${month}-${day}`
-        date.value = `2023-09-25`
         
         date.addEventListener('input', function(){
             [year, month, day] = date.value.split('-')
@@ -464,103 +349,103 @@ function indexData(){
             candleRareFilter()
         })
         
-        content_house.querySelector('[id-page="1"]').style.color = 'black'
-        
+        // content_house.querySelector('[id-page="1"]').style.color = 'black'
         const button_list = content_house.querySelectorAll(".tablePagination > button"); 
         button_list[7].style.display = 'none'
-        let table = `${day}/${'09'}/${year}/${betting_house.value}`;
+        
+        let table = `${day}/${month}/${year}/${betting_house.value}`;
         let page = 1;
         let page_quantity = 0;  
-
-        // function paginacao(){
-        button_list.forEach((button) =>{ 
-        button.addEventListener("click", function(){
-                let quick_navigation = button.attributes[1].value
-                let chosen_page = null
-                let i = 0
-                switch(quick_navigation){
-                    case 'first-page':
-                        chosen_page = 1
-                        break
-                    case 'previous-page':
-                        chosen_page = page
-                        button_list.forEach(button =>{
-                            if((button.innerText == page-1)){
-                                chosen_page = Number(button.innerText)
-                            }
-                        })    
-                        break
-                    case 'next-page':
-                        chosen_page = page
-                        button_list.forEach(button =>{
-                            if((button.innerText == page+1)){
-                                chosen_page = Number(button.innerText)
-                            }
-                    })   
-                        break
-                    case 'last-page':
-                        chosen_page = page_quantity
-                        break
-                    default:
-                        chosen_page = Number(button.innerText)
-                        
-                }
-                if(chosen_page != page){
-                    if(chosen_page>= 5 && button.innerText != page && chosen_page <= page_quantity - 4){
-                        i = 0
-                        button_list.forEach((button) =>  {
-                            button.style.color = 'white'
-                            if(!isNaN(Number(button.innerText)) ) {
-                                button.innerText = chosen_page - 2 + i
-                                i++;
-                            }    
-                        })
-                        center_position = content_house.querySelector('[id-page="3"]')
-                        center_position.style.color = 'black'
-                    }else if(chosen_page != page && chosen_page < 5){
-                        i = 1
-                        button_list.forEach((button) =>{
-                            button.style.color = 'white'
-                            if(!isNaN(Number(button.innerText))){   
-                                button.innerText = i
-                                i++  
-                            }
-                        })
-                        
-                        button_list.forEach(button => { 
-                            if(button.innerText == chosen_page){
-                                button.style.color = 'black';
-                            }
-                        })
-                        
-                    }else if(chosen_page > page_quantity - 4){
-                        i = page_quantity - 4;
-                        button_list.forEach((button) =>{
-                            button.style.color = 'white'
-                            if(!isNaN(Number(button.innerText))){   
-                                button.innerText = i
-                                i++
-                            }
-                        })
-                        
-                        button_list.forEach(button => { 
-                            if(button.innerText == chosen_page){
-                            button.style.color = 'black'; 
-                            }
-                        
-                        })
+        
+        (function paginacao(){
+            button_list.forEach((button) =>{ 
+            button.addEventListener("click", function(){
+                    let quick_navigation = button.attributes[1].value
+                    let chosen_page = null
+                    let i = 0
+                    switch(quick_navigation){
+                        case 'first-page':
+                            chosen_page = 1
+                            break
+                        case 'previous-page':
+                            chosen_page = page
+                            button_list.forEach(button =>{
+                                if((button.innerText == page-1)){
+                                    chosen_page = Number(button.innerText)
+                                }
+                            })    
+                            break
+                        case 'next-page':
+                            chosen_page = page
+                            button_list.forEach(button =>{
+                                if((button.innerText == page+1)){
+                                    chosen_page = Number(button.innerText)
+                                }
+                        })   
+                            break
+                        case 'last-page':
+                            chosen_page = page_quantity
+                            break
+                        default:
+                            chosen_page = Number(button.innerText)
+                            
                     }
-                    page =  chosen_page
-                }
-            
-            tableFilter()
-            graphicFilterAll()
-            graphicFilterBy()
-            candleRareFilter()
+                    if(chosen_page != page){
+                        if(chosen_page>= 5 && button.innerText != page && chosen_page <= page_quantity - 4){
+                            i = 0
+                            button_list.forEach((button) =>  {
+                                button.style.color = 'white'
+                                if(!isNaN(Number(button.innerText)) ) {
+                                    button.innerText = chosen_page - 2 + i
+                                    i++;
+                                }    
+                            })
+                            center_position = content_house.querySelector('[id-page="3"]')
+                            center_position.style.color = 'black'
+                        }else if(chosen_page != page && chosen_page < 5){
+                            i = 1
+                            button_list.forEach((button) =>{
+                                button.style.color = 'white'
+                                if(!isNaN(Number(button.innerText))){   
+                                    button.innerText = i
+                                    i++  
+                                }
+                            })
+                            
+                            button_list.forEach(button => { 
+                                if(button.innerText == chosen_page){
+                                    button.style.color = 'black';
+                                }
+                            })
+                            
+                        }else if(chosen_page > page_quantity - 4){
+                            i = page_quantity - 4;
+                            button_list.forEach((button) =>{
+                                button.style.color = 'white'
+                                if(!isNaN(Number(button.innerText))){   
+                                    button.innerText = i
+                                    i++
+                                }
+                            })
+                            
+                            button_list.forEach(button => { 
+                                if(button.innerText == chosen_page){
+                                button.style.color = 'black'; 
+                                }
+                            
+                            })
+                        }
+                        page =  chosen_page
+                    }
+                
+                tableFilter()
+                graphicFilterAll()
+                graphicFilterBy()
+                candleRareFilter()
 
-        });    
-        });
-        // }
+            });    
+            });
+        })()
 
 
         function tableFilter(){
@@ -603,6 +488,8 @@ function indexData(){
         }
 
         function graphicFilterAll(){
+            console.log('Table filter chamada  = ')
+
             fetch('aviator/graphic-all', {
                 method:"POST",
                 headers: {
@@ -612,6 +499,7 @@ function indexData(){
             })
             .then(response => response.json())
             .then(data => {
+                console.log('Grafico aqui  = ', data)
                 data = google.visualization.arrayToDataTable([
                     ['Candles', 'Frequencia'],
                     ['Blue', Number(data.blue)],
@@ -715,9 +603,11 @@ function indexData(){
 
 
 let aviator_statitistics = indexData()
-let table = aviator_statitistics.initializeData()
+let table = aviator_statitistics.initializeData(document.querySelector('#content-house-1'))
 table.tableFilter()
+
 table.graphicFilterAll()
+
 table.graphicFilterBy()
 table.candleRareFilter()
 
