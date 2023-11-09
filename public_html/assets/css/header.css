@@ -1,28 +1,4 @@
 
-body{
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: var(--text-color);
-    background-color: var(--cor-fundo);
-}
-
-
-
-/* :root{
-    --bg-color:#233323;
-    --second-bg-color:#112e42;
-    --text-color:#ededed;
-    --main-color:#00abf0;
-    --cor-fundo:#d9e1e4;
-    --cor-botao:#60c05d;
-    --cor-botao1:#f1ff27;
-    --cor-botao2:#1fad26;
-} */
-
-main{
-    margin-top: -141px;
-}
 
 
 
@@ -194,7 +170,7 @@ header{
     display: none;
     z-index: 1;
     position: absolute;
-    background-color: #f7f3f3;
+    background-color: var(--cor-fundo);
     min-width: 20px;
     width: 144px;
     height: 99px;

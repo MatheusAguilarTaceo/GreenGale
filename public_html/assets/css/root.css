@@ -9,7 +9,7 @@
     --emphasis-hover: #f7bd00;;
     --black: black;
     --white: white;
-    --bg-color:#233323;
+    --bg-color:#081b29;
 }
 
 
@@ -38,6 +38,19 @@
         transform: translate(-50%, -400%);
         opacity: 1;
     }
+}
+
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background-color: var(--cor-fundo);
+}
+
+
+main{
+    margin-top: -141px;
 }
 
 
