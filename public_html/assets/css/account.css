@@ -1,13 +1,4 @@
-:root{
-    --bg-color:#081b29;
-    --second-bg-color:#112e42;
-    --text-color:#ededed;
-    --main-color:#00abf0;
-    --cor-fundo:#d9e1e4;
-    --cor-botao:  #60c05d;
-    --cor-botao1:#f1ff27;
-    --cor-botao2:#0ad414;
-}
+
 .container_plan {          /*AJUSTA A ALTURA DAS CAIXAS COM RELAÇAO A HEADER*/
     margin-top: 70px;
     
@@ -43,7 +34,6 @@ align-items:center;
 }
 
 .box-plan div p{     /*AJUSTA O TAMANHO DO CONEUDO INTERNO DA CAIXA*/
-
     padding-top: 15px;
 }
 
@@ -80,8 +70,7 @@ padding-top: 15px;
     border-radius: 4px;
     background-color: white;
     width: 300px;
-    color: var(--black);
-    color: blue;
+    color: black;
     text-indent: 10px;
     padding-bottom: 6px;
     padding-top: 15px;

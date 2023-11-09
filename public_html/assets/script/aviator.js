@@ -17,54 +17,92 @@ function indexData(){
     let limit = null
     let msg = null
     let time = null
+    let list_houses = null
     fetch('aviator/data-controller',{
         method: 'POST',
         headers: {"Content-Type": "application/json"}
     })
-    .then(response =>response.json()) 
+    .then(response => response.json()) 
     .then(data => {
         console.log('AQUI O AVISO = ', data)
         console.log("DATA_LIMIT_FECTH = ", data.limit)
         limit = data.limit
         msg = data.msg
         time = data.time
+        list_houses = data.list_houses
+        console.log("LIST_HOUSES = ", data.list_houses)
+
     })
-    console.log("DATA_LIMT = ", limit)
-
-    function modifyClass(id){
+    
+    function modifyClass(id, size, replace_size){  
         let content_house = document.getElementById(`content-house-${id}`)
-        let list_elements_medium = content_house.querySelectorAll('[class *= "medium"]')
+        let list_elements_medium = content_house.querySelectorAll(`[class *= "${size}"]`)
         list_elements_medium.forEach(value =>{
-            value.className = value.className.replace('medium', 'small')
+            value.className = value.className.replace(size, replace_size)
         })
-
     }
-    function createStructure(){
-        if(number_of_houses  == limit){
-            showMessage(msg, time)
-            return 
-        } 
 
-        number_of_houses++
-        console.log('numero de casas = ', number_of_houses)
-        size = 'small'
-        let content_house =  document.createElement('div')
-        content_house.className = 'content-house'
-        content_house.id = `content-house-${number_of_houses}`
-        if(number_of_houses % 2 == 0){
-            modifyClass(number_of_houses-1)
-            let previous_content_house = document.getElementById(`content-house-${number_of_houses-1}`)
-            previous_content_house.insertAdjacentElement('afterend', content_house)
-        }else{
-            size = 'medium'
-            console.log("Aqui DIVISÃO")
-            let content_block = document.createElement('div')
-            content_block.className = 'content-block'
-            let aviator_statistics  = document.querySelector('.aviator-statistics')
-            aviator_statistics.appendChild(content_block)
-            content_block.appendChild(content_house)
+    (function createHouse(){
+        function contentHouse(){     
+            number_of_houses++
+            let content_house =  document.createElement('div')
+            content_house.className = 'content-house'
+            content_house.id = `content-house-${number_of_houses}`
+           
+            if(number_of_houses % 2 == 0){
+                modifyClass(number_of_houses-1, size, 'small' )
+                size = 'small'
+                let previous_content_house = document.getElementById(`content-house-${number_of_houses-1}`)
+                previous_content_house.insertAdjacentElement('afterend', content_house)
+            }else{
+                size = 'medium'
+                let content_block = document.createElement('div')
+                content_block.className = 'content-block'
+                let aviator_statistics  = document.querySelector('.aviator-statistics')
+                aviator_statistics.appendChild(content_block)
+                content_block.appendChild(content_house)
+            }
+            return content_house
         }
 
+        let btn_create = document.querySelector('#btn-create')
+        btn_create.addEventListener('click', () =>{
+            if(number_of_houses  == limit){
+                showMessage(msg, time)
+                return 
+            } 
+            let content_house = contentHouse()
+
+            let new_house = createStructure(content_house)
+            new_house.tableStructure()
+            new_house.graphicStructure()
+            new_house.candleRareStructure()
+
+            new_house = initializeData(content_house)
+            new_house.tableFilter()
+            new_house.graphicFilterAll()
+            new_house.graphicFilterBy()
+            new_house.candleRareFilter()
+        })
+    })();
+
+    (function deleteHouse(){   
+        let btn_delete = document.querySelector('#btn-delete')
+        btn_delete.addEventListener('click', () =>{
+            let drop_house = document.querySelector(`#content-house-${number_of_houses}`)
+            drop_house.remove()
+            number_of_houses--
+            if(number_of_houses % 2 == 0 ){
+                size = 'small'
+            }else{
+                modifyClass(number_of_houses, size, 'medium')
+                size = 'medium'
+            }
+        })
+    })();
+
+    
+    function createStructure(content_house){
         function tableStructure(){
             let content_table = document.createElement('section')
             content_table.className = 'content-table'  
@@ -72,8 +110,8 @@ function indexData(){
 
             let house_logo = document.createElement('img')
             house_logo.className = 'house-logo'
-            house_logo.setAttribute('src', 'assets/img/png/pagbet.png')
-            house_logo.setAttribute('alt', 'Logo casa de aposta')
+            house_logo.src = `assets/img/png/${list_houses[0]}.png`
+            house_logo.alt = 'casa de aposta'
             content_table.appendChild(house_logo);
             
             let content_filters_1 = document.createElement('div')
@@ -84,33 +122,21 @@ function indexData(){
             let filters_houses = document.createElement('select')
             content_filters_1.appendChild(filters_houses)
             filters_houses.className = `filters-houses-${size}`
+            
+            list_houses.forEach(value =>{
+                let option = document.createElement('option')
+                filters_houses.appendChild(option)
+                option.value = value
+                option.innerText = value.toUpperCase()     
+            })
         
-            let option_1 = document.createElement('option')
-            filters_houses.appendChild(option_1)
-        
-            option_1.value = 'pagbet'
-            option_1.innerText = 'PAGBET'
-            
-            let option_2 = document.createElement('option')
-            filters_houses.appendChild(option_2)
-            option_2.value = '2xbet'
-            option_2.innerText = '2XBET'
-            
-            let option_3 = document.createElement('option')
-            filters_houses.appendChild(option_3)
-            option_3.value = 'ssgames'
-            option_3.innerText = 'SSGAMES'
-            
-            let option_4 = document.createElement('option')
-            filters_houses.appendChild(option_4)
-            option_4.value = 'betNacional'
-            option_4.innerText = 'BETNACIONAL'
             
             let date_filter = document.createElement('input')
             content_filters_1.appendChild(date_filter)
             date_filter.className = `input-filters-${size}`
             date_filter.id = 'date'
             date_filter.type = 'date'
+            date_filter.value = new Date().toISOString().split('T')[0]
             
             let content_filters_2 = document.createElement('div')
             content_filters_2.className = 'content-filters'
@@ -121,12 +147,14 @@ function indexData(){
             candle_filter.className  = `input-filters-${size}`
             candle_filter.id = 'candle'
             candle_filter.type = 'text'
+            candle_filter.value  = '1.00';
             
             let time_filter = document.createElement('input')
             content_filters_2.appendChild(time_filter)
             time_filter.className  = `input-filters-${size}`
             time_filter.id = 'time'
             time_filter.type = 'time'
+            time_filter.value = '00:00:00'
             
             let table = document.createElement('table')
             table.className = `table-dimension-${size}`
@@ -147,60 +175,56 @@ function indexData(){
             th_time.innerText = 'HOURS'
             
             let tbody = document.createElement('tbody')
-            table.appendChild(tbody)
+            table.appendChild(tbody);
             tbody.className = 'candle-tbody'
             
             let ul = document.createElement('ul')
             content_table.appendChild(ul)
-            ul.className = 'tablePagination'
-            
-            let buttons = []
-            for (let i = 0; i < 10; i++){
-                buttons.push(document.createElement('button'))
-            }  
-            
-            let id_page = 1
-            buttons.forEach((button, index) =>{
-                if(index > 1 && index < 7){
-                    button.className =`table-button-${size}`
-                    button.setAttribute('id-page', id_page)
-                    button.innerText = id_page
+            ul.className = 'tablePagination';
 
-                    id_page++
-                }
-                else if(index == 0){
-                    button.className =`table-button-${size}`
-                    button.setAttribute('first-page', 'first-page')
-                    button.innerText = '<<'
+            (function paginacao(){
+                let buttons = []
+                for (let i = 0; i < 9; i++){
+                    buttons.push(document.createElement('button'))
+                }  
+                buttons[2].style.color = 'black'
+                let id_page = 1
+                buttons.forEach((button, index) =>{
+                    if(index > 1 && index < 7){
+                        button.className =`table-button-${size}`
+                        button.setAttribute('id-page', id_page)
+                        button.innerText = id_page
 
-                }
-                else if(index == 1){
-                    button.className =`table-button-${size}`
-                    button.setAttribute('previous-page', 'previous-page')
-                    button.innerText = '<'
+                        id_page++
+                    }
+                    else if(index == 0){
+                        button.className =`table-button-${size}`
+                        button.setAttribute('first-page', 'first-page')
+                        button.innerText = '<<'
 
-                }
-                else if(index == 7){
-                    button.className =`table-button-${size}`
-                    button.setAttribute('data-page', '...')
-                    button.innerText = '...'
+                    }
+                    else if(index == 1){
+                        button.className =`table-button-${size}`
+                        button.setAttribute('previous-page', 'previous-page')
+                        button.innerText = '<'
 
-                }
-                else if(index == 8){
-                    button.className =`table-button-${size}`              
-                    button.setAttribute('next-page', 'next-page')
-                    button.innerText = '>'
+                    }
+                    else if(index == 7){
+                        button.className =`table-button-${size}`              
+                        button.setAttribute('next-page', 'next-page')
+                        button.innerText = '>'
 
-                }
-                else if(index == 9){
-                    button.className =`table-button-${size}`
-                    button.setAttribute('last-page', 'last-page')
-                    button.innerText = '>>'
+                    }
+                    else if(index == 8){
+                        button.className =`table-button-${size}`
+                        button.setAttribute('last-page', 'last-page')
+                        button.innerText = '>>'
 
-                }
-                ul.appendChild(button)
-                button.style.marginRight = '0.4px';
-            })
+                    }
+                    ul.appendChild(button)
+                    button.style.marginRight = '0.4px';
+                })                
+            })();
         }
         function graphicStructure(){            
             let content_graphic = document.createElement('section')
@@ -210,6 +234,8 @@ function indexData(){
 
             let piechart_1 = document.createElement('div')
             piechart_1.className = 'piechart'
+            piechart_1.style.marginBottom = '80px'
+
             content_graphic.append(piechart_1)
             let piechart_2 = document.createElement('div')
             piechart_2.className = 'piechart'
@@ -220,196 +246,64 @@ function indexData(){
 
         }
         function candleRareStructure(){
+
             let content_candles_rare = document.createElement('section')
             content_candles_rare.className = 'content-candles-rare'
             content_house.appendChild(content_candles_rare)
-
-            let conteiner_candle_inline = document.createElement('div')
-            conteiner_candle_inline.className = 'container-candle-inline'
-            content_candles_rare.appendChild(conteiner_candle_inline)
             
-            let candles_rare = document.createElement('div')
-            candles_rare.className = `candles-rare-${size}`
-            candles_rare.style.marginRight = '5px'
-            conteiner_candle_inline.appendChild(candles_rare)
-            
-            let candle_range = document.createElement('span')
-            candle_range.className = `candle-range-${size}`
-            candle_range.innerText = '00x'
-            candles_rare.appendChild(candle_range);
+            let list_conteiner_candle_inline = []
+            for(i = 0; i < 3; i++){
+                list_conteiner_candle_inline.push(document.createElement('div'))
+            }
+            let list_candles_rare = []
 
-            let candles_ago = document.createElement('p')
-            candles_ago.className = 'how-many-candles-ago'
-            candles_ago.innerText = 'Há 0 velas atrás'
-            candles_rare.appendChild(candles_ago)
+            for (i = 0; i < 6; i++){
+                list_candles_rare.push(document.createElement('div'));
+            }
+            values_candle_range = ['10x', '50x', '100x', '200x', '400x', '800x']
+            let j = 0
+            list_conteiner_candle_inline.forEach(value =>{
+                value.className = 'container_candle_inline'
+                content_candles_rare.appendChild(value)
+                for(i = 0; i < 2; i++){
+                    list_candles_rare[j].className = `candles-rare-${size}`
+                    list_candles_rare[j].style.marginRight = '5px'
+                    value.appendChild(list_candles_rare[j])
+                    
 
-            let last_candle = document.createElement('span')
-            last_candle.className = 'last-candle'
-            last_candle.innerText = '00x'
-            candles_rare.appendChild(last_candle)
-            
-            let last_time = document.createElement('p')
-            last_time.className = 'last-time'
-            last_time.innerText = '00:00:00'
-            candles_rare.appendChild(last_time)
+                    let candle_range = document.createElement('span')
+                    candle_range.className = `candle-range-${size}`
+                    candle_range.innerText = values_candle_range[j]
+                    list_candles_rare[j].appendChild(candle_range);
 
-            candles_rare = document.createElement('div')
-            candles_rare.className = `candles-rare-${size}`
-            candles_rare.style.marginRight = '5px'
+                    let candles_ago = document.createElement('p')
+                    candles_ago.className = 'how-many-candles-ago'
+                    candles_ago.innerText = 'Há 0 velas atrás'
+                    list_candles_rare[j].appendChild(candles_ago)
 
-            conteiner_candle_inline.appendChild(candles_rare)
-
-            candle_range = document.createElement('span')
-            candle_range.className = `candle-range-${size}`
-            candle_range.innerText = '00x'
-            candles_rare.appendChild(candle_range);
-
-            candles_ago = document.createElement('p')
-            candles_ago.className = 'how-many-candles-ago'
-            candles_ago.innerText = 'Há 0 velas atrás'
-            candles_rare.appendChild(candles_ago)
-
-            last_candle = document.createElement('span')
-            last_candle.className = 'last-candle'
-            last_candle.innerText = '00x'
-            candles_rare.appendChild(last_candle)
-            
-            last_time = document.createElement('p')
-            last_time.className = 'last-time'
-            last_time.innerText = '00:00:00'
-            candles_rare.appendChild(last_time)
-
-            conteiner_candle_inline = document.createElement('div')
-            conteiner_candle_inline.className = 'container-candle-inline'
-            content_candles_rare.appendChild(conteiner_candle_inline)
-
-
-            candles_rare = document.createElement('div')
-            candles_rare.className = `candles-rare-${size}`
-            candles_rare.style.marginRight = '5px'
-            conteiner_candle_inline.appendChild(candles_rare)
-
-            candle_range = document.createElement('span')
-            candle_range.className = `candle-range-${size}`
-            candle_range.innerText = '00x'
-            candles_rare.appendChild(candle_range);
-
-            candles_ago = document.createElement('p')
-            candles_ago.className = 'how-many-candles-ago'
-            candles_ago.innerText = 'Há 0 velas atrás'
-            candles_rare.appendChild(candles_ago)
-
-            last_candle = document.createElement('span')
-            last_candle.className = 'last-candle'
-            last_candle.innerText = '00x'
-            candles_rare.appendChild(last_candle)
-            
-            last_time = document.createElement('p')
-            last_time.className = 'last-time'
-            last_time.innerText = '00:00:00'
-            candles_rare.appendChild(last_time)
-
-            candles_rare = document.createElement('div')
-            candles_rare.className = `candles-rare-${size}`
-            candles_rare.style.marginRight = '5px'
-            conteiner_candle_inline.appendChild(candles_rare)
-
-            candle_range = document.createElement('span')
-            candle_range.className = `candle-range-${size}`
-            candle_range.innerText = '00x'
-            candles_rare.appendChild(candle_range);
-
-            candles_ago = document.createElement('p')
-            candles_ago.className = 'how-many-candles-ago'
-            candles_ago.innerText = 'Há 0 velas atrás'
-            candles_rare.appendChild(candles_ago)
-
-            last_candle = document.createElement('span')
-            last_candle.className = 'last-candle'
-            last_candle.innerText = '00x'
-            candles_rare.appendChild(last_candle)
-            
-            last_time = document.createElement('p')
-            last_time.className = 'last-time'
-            last_time.innerText = '00:00:00'
-            candles_rare.appendChild(last_time)
-
-            conteiner_candle_inline = document.createElement('div')
-            conteiner_candle_inline.className = 'container-candle-inline'
-            content_candles_rare.appendChild(conteiner_candle_inline)
-
-
-            candles_rare = document.createElement('div')
-            candles_rare.className = `candles-rare-${size}`
-            candles_rare.style.marginRight = '5px'
-            conteiner_candle_inline.appendChild(candles_rare)
-
-            candle_range = document.createElement('span')
-            candle_range.className = `candle-range-${size}`
-            candle_range.innerText = '00x'
-            candles_rare.appendChild(candle_range);
-
-            candles_ago = document.createElement('p')
-            candles_ago.className = 'how-many-candles-ago'
-            candles_ago.innerText = 'Há 0 velas atrás'
-            candles_rare.appendChild(candles_ago)
-
-            last_candle = document.createElement('span')
-            last_candle.className = 'last-candle'
-            last_candle.innerText = '00x'
-            candles_rare.appendChild(last_candle)
-            
-            last_time = document.createElement('p')
-            last_time.className = 'last-time'
-            last_time.innerText = '00:00:00'
-            candles_rare.appendChild(last_time)
-
-            candles_rare = document.createElement('div')
-            candles_rare.className = `candles-rare-${size}`
-            candles_rare.style.marginRight = '5px'
-            conteiner_candle_inline.appendChild(candles_rare)
-
-            candle_range = document.createElement('span')
-            candle_range.className = `candle-range-${size}`
-            candle_range.innerText = '00x'
-            candles_rare.appendChild(candle_range);
-
-            candles_ago = document.createElement('p')
-            candles_ago.className = 'how-many-candles-ago'
-            candles_ago.innerText = 'Há 0 velas atrás'
-            candles_rare.appendChild(candles_ago)
-
-            last_candle = document.createElement('span')
-            last_candle.className = 'last-candle'
-            last_candle.innerText = '00x'
-            candles_rare.appendChild(last_candle)
-            
-            last_time = document.createElement('p')
-            last_time.className = 'last-time'
-            last_time.innerText = '00:00:00'
-            candles_rare.appendChild(last_time)
-            
+                    let last_candle = document.createElement('span')
+                    last_candle.className = 'last-candle'
+                    last_candle.innerText = '00x'
+                    list_candles_rare[j].appendChild(last_candle)
+                    
+                    let last_time = document.createElement('p')
+                    last_time.className = 'last-time'
+                    last_time.innerText = '00:00:00'
+                    list_candles_rare[j].appendChild(last_time)
+                    j++
+                }
+            })
         }
 
        return {tableStructure, graphicStructure, candleRareStructure}
     }        
     
-    function initializeData(){
-        console.log("DATA_LIMT INI_DATA = ", limit)
-        let content_house = document.getElementById(`content-house-${number_of_houses}`)    
-        let date_current = new Date()
-        let year = date_current.getFullYear()
-        let month = date_current.getMonth()+1
-        let day = date_current.getDate()
-        if(month < 10){
-            month = '0'+month  
-        }
-        if(day < 10){
-            day = '0'+day  
-        }
-
+    function initializeData(content_house){
         let betting_house = content_house.querySelector(`.filters-houses-${size}`)
         betting_house.addEventListener('input', function(){
+            let house_logo = content_house.querySelector('img')
+            house_logo.src = `assets/img/png/${betting_house.value}.png`            
+            let [year, month, day] = date.value.split('-')
             table = `${day}/${month}/${year}/${betting_house.value}`;
             tableFilter()
             graphicFilterAll()
@@ -418,9 +312,6 @@ function indexData(){
         })
 
         let date = content_house.querySelector("#date")
-        date.value = `${year}-${month}-${day}`
-        date.value = `2023-09-25`
-        
         date.addEventListener('input', function(){
             [year, month, day] = date.value.split('-')
             table = `${day}/${month}/${year}/${betting_house.value}`;
@@ -431,7 +322,6 @@ function indexData(){
         })
         
         let candle = content_house.querySelector('#candle')
-        candle.value = '1.00'
         candle.addEventListener('input', function(){
             tableFilter()
             graphicFilterAll()
@@ -440,7 +330,6 @@ function indexData(){
         })
 
         let hour = content_house.querySelector("#time")
-        hour.value ='00:00:00'
         hour.addEventListener('input', function(){
             this.value = this.value.substring(0,2)+":00"
             tableFilter()
@@ -449,112 +338,20 @@ function indexData(){
             candleRareFilter()
         })
         
-        content_house.querySelector('[id-page="1"]').style.color = 'black'
-        
-        const button_list = content_house.querySelectorAll(".tablePagination > button"); 
-        button_list[7].style.display = 'none'
-        betting_house.value ='pagbet'
-        let table = `${day}/${'09'}/${year}/${betting_house.value}`;
+
+        let [year, month, day] = date.value.split('-')
+        let table = `${day}/${month}/${year}/${betting_house.value}`;
         let page = 1;
         let page_quantity = 0;  
-
-        // function paginacao(){
-        button_list.forEach((button) =>{ 
-        button.addEventListener("click", function(){
-                let quick_navigation = button.attributes[1].value
-                let chosen_page = null
-                let i = 0
-                switch(quick_navigation){
-                    case 'first-page':
-                        chosen_page = 1
-                        break
-                    case 'previous-page':
-                        chosen_page = page
-                        button_list.forEach(button =>{
-                            if((button.innerText == page-1)){
-                                chosen_page = Number(button.innerText)
-                            }
-                        })    
-                        break
-                    case 'next-page':
-                        chosen_page = page
-                        button_list.forEach(button =>{
-                            if((button.innerText == page+1)){
-                                chosen_page = Number(button.innerText)
-                            }
-                    })   
-                        break
-                    case 'last-page':
-                        chosen_page = page_quantity
-                        break
-                    default:
-                        chosen_page = Number(button.innerText)
-                        
-                }
-                if(chosen_page != page){
-                    if(chosen_page>= 5 && button.innerText != page && chosen_page <= page_quantity - 4){
-                        i = 0
-                        button_list.forEach((button) =>  {
-                            button.style.color = 'white'
-                            if(!isNaN(Number(button.innerText)) ) {
-                                button.innerText = chosen_page - 2 + i
-                                i++;
-                            }    
-                        })
-                        center_position = content_house.querySelector('[id-page="3"]')
-                        center_position.style.color = 'black'
-                    }else if(chosen_page != page && chosen_page < 5){
-                        i = 1
-                        button_list.forEach((button) =>{
-                            button.style.color = 'white'
-                            if(!isNaN(Number(button.innerText))){   
-                                button.innerText = i
-                                i++  
-                            }
-                        })
-                        
-                        button_list.forEach(button => { 
-                            if(button.innerText == chosen_page){
-                                button.style.color = 'black';
-                            }
-                        })
-                        
-                    }else if(chosen_page > page_quantity - 4){
-                        i = page_quantity - 4;
-                        button_list.forEach((button) =>{
-                            button.style.color = 'white'
-                            if(!isNaN(Number(button.innerText))){   
-                                button.innerText = i
-                                i++
-                            }
-                        })
-                        
-                        button_list.forEach(button => { 
-                            if(button.innerText == chosen_page){
-                            button.style.color = 'black'; 
-                            }
-                        
-                        })
-                    }
-                    page =  chosen_page
-                }
-            
-            tableFilter()
-            graphicFilterAll()
-            graphicFilterBy()
-            candleRareFilter()
-
-        });    
-        });
-        // }
-
+        
 
         function tableFilter(){
           
             fetch("aviator/table",{
                 method:"POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({table: table, page: page, fields: {candle: candle.value, hour: hour.value, date: date.value}}),
+                // body: JSON.stringify({table: table, page: page, fields: {candle: candle.value, hour: hour.value, date: date.value}}),
+                body: JSON.stringify({table: '25/09/2023/pagbet', page: page, fields: {candle: candle.value, hour: hour.value, date: '2023-09-25'}}),
             })
             .then(response => response.json())
             .then(data => {
@@ -594,24 +391,37 @@ function indexData(){
                 headers: {
                     'Content-Type': 'application/json'
                 },                            
-                body: JSON.stringify({table: table, date: date.value})
+                // body: JSON.stringify({table: table, date: date.value})
+                body: JSON.stringify({table: '25/09/2023/pagbet', date: '2023-09-25'})
             })
             .then(response => response.json())
             .then(data => {
+                console.log('Grafico aqui  = ', data)
                 data = google.visualization.arrayToDataTable([
                     ['Candles', 'Frequencia'],
-                    ['Blue', Number(data.blue)],
-                    ['Purple',Number(data.purple)],
-                    ['Pink', Number(data.pink)]
+                    ['Azul', Number(data.blue)],
+                    ['Roxo',Number(data.purple)],
+                    ['Rosa', Number(data.pink)]
                   ]);
 
                 let options = {
+                    title: 'Filtro Geral',
+                    titleTextStyle: {
+                        fontSize: 13, // Ajuste o tamanho do título conforme necessário
+                        bold: true,   // Deixa o título em negrito
+                        color: 'white', // Cor do título
+                        italic: false, // Não deixa o título em itálico
+                      },
                     width: 200,  // Especifica a largura em pixels
                     height: 200, // Especifica a altura em pixels
                     colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
                     pieHole: 0.4,
+                    pieSliceTextStyle: {
+                        color: 'white',
+                      },
                     pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
-                    legend: 'none', 
+                    // legend:{ position: 'top', textStyle: { fontSize: 8 } },
+                    legend: 'none',
                     pieSliceText: 'value',
                     pieSliceBorderColor: 'black',
                     backgroundColor: {
@@ -633,24 +443,33 @@ function indexData(){
             fetch('aviator/graphic-by', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({table:table, date:date.value, candle:candle.value, hour:hour.value})
+                // body: JSON.stringify({table:table, date:date.value, candle:candle.value, hour:hour.value})
+                body: JSON.stringify({table: '25/09/2023/pagbet', date: '2023-09-25', candle:candle.value, hour:hour.value})
             })
             .then(response => response.json())
             .then(data => {
                 data = google.visualization.arrayToDataTable([
                     ['Candles', 'Frequencia'],
-                    ['Blue', Number(data.blue)],
-                    ['Purple',Number(data.purple)],
-                    ['Pink', Number(data.pink)]
+                    ['Azul', Number(data.blue)],
+                    ['Roxo',Number(data.purple)],
+                    ['Rosa', Number(data.pink)]
                   ]);
 
                 let options = {
+                    title: 'Filtro da Tabela',
+                    titleTextStyle: {
+                        fontSize: 13, // Ajuste o tamanho do título conforme necessário
+                        bold: true,   // Deixa o título em negrito
+                        color: 'white', // Cor do título
+                        italic: false, // Não deixa o título em itálico
+                      },
                     width: 200,  // Especifica a largura em pixels
                     height: 200, // Especifica a altura em pixels
                     colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
                     pieHole: 0.4,
                     pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
-                    legend: 'none', 
+                    legend:{ position: 'top', textStyle: { fontSize: 8 } }, 
+                    legend:'none', 
                     pieSliceText: 'value',
                     pieSliceBorderColor: 'black',
                     backgroundColor: {
@@ -672,7 +491,9 @@ function indexData(){
             fetch('aviator/candle-rare', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({table: table, date: date.value})
+                // body: JSON.stringify({table: table, date: date.value})
+                body: JSON.stringify({table: '25/09/2023/pagbet', date: '2023-09-25'})
+
             })
             .then(response => response.json())
             .then(data => {
@@ -691,61 +512,112 @@ function indexData(){
             })
         }
 
+        let button_list = content_house.querySelectorAll(".tablePagination > button");
+        (function paginacao(){
+            button_list.forEach((button) =>{ 
+            button.addEventListener("click", function(){
+                    let quick_navigation = button.attributes[1].value
+                    let chosen_page = null
+                    let i = 0
+                    switch(quick_navigation){
+                        case 'first-page':
+                            chosen_page = 1
+                            break
+                        case 'previous-page':
+                            chosen_page = page
+                            button_list.forEach(button =>{
+                                if((button.innerText == page-1)){
+                                    chosen_page = Number(button.innerText)
+                                }
+                            })    
+                            break
+                        case 'next-page':
+                            chosen_page = page
+                            button_list.forEach(button =>{
+                                if((button.innerText == page+1)){
+                                    chosen_page = Number(button.innerText)
+                                }
+                        })   
+                            break
+                        case 'last-page':
+                            chosen_page = page_quantity
+                            break
+                        default:
+                            chosen_page = Number(button.innerText)
+                            
+                    }
+                    if(chosen_page != page){
+                        if(chosen_page>= 5 && button.innerText != page && chosen_page <= page_quantity - 4){
+                            i = 0
+                            button_list.forEach((button) =>  {
+                                button.style.color = 'white'
+                                if(!isNaN(Number(button.innerText)) ) {
+                                    button.innerText = chosen_page - 2 + i
+                                    i++;
+                                }    
+                            })
+                            center_position = content_house.querySelector('[id-page="3"]')
+                            center_position.style.color = 'black'
+                        }else if(chosen_page != page && chosen_page < 5){
+                            i = 1
+                            button_list.forEach((button) =>{
+                                button.style.color = 'white'
+                                if(!isNaN(Number(button.innerText))){   
+                                    button.innerText = i
+                                    i++  
+                                }
+                            })
+                            
+                            button_list.forEach(button => { 
+                                if(button.innerText == chosen_page){
+                                    button.style.color = 'black';
+                                }
+                            })
+                            
+                        }else if(chosen_page > page_quantity - 4){
+                            i = page_quantity - 4;
+                            button_list.forEach((button) =>{
+                                button.style.color = 'white'
+                                if(!isNaN(Number(button.innerText))){   
+                                    button.innerText = i
+                                    i++
+                                }
+                            })
+                            
+                            button_list.forEach(button => { 
+                                if(button.innerText == chosen_page){
+                                button.style.color = 'black'; 
+                                }
+                            
+                            })
+                        }
+                        page =  chosen_page
+                    }
+                
+                tableFilter()
+                graphicFilterAll()
+                graphicFilterBy()
+                candleRareFilter()
+
+            });    
+            });
+        })()
+
 
         return {tableFilter, graphicFilterAll, graphicFilterBy, candleRareFilter}
     }
+
     return {createStructure, initializeData}
 }
 
-function createNewTable(statistics){
-    let  buttonNewTable = document.querySelector('.new-table')
-    buttonNewTable.addEventListener('click', function(){         
-        let table = statistics.createStructure()
-        if(table){
-            table.tableStructure()
-            table.graphicStructure()
-            table.candleRareStructure()
-            table = statistics.initializeData()
-            table.tableFilter()
-            table.graphicFilterAll()
-            table.graphicFilterBy()
-            table.candleRareFilter()
-        }
-    })
-}
+
 
 let aviator_statitistics = indexData()
-createNewTable(aviator_statitistics)
-let table = aviator_statitistics.initializeData()
-table.tableFilter()
-table.graphicFilterAll()
-table.graphicFilterBy()
-table.candleRareFilter()
-
-// let table2 = aviator_statitistics.initializeData()
-
-// table2.tableFilter()
-// table2.graphicFilterAll()
-// table2.graphicFilterBy()
-// table2.candleRareFilter()
-
-// let table3 = aviator_statitistics.initializeData()
-
-// table3.tableFilter()
-// table3.graphicFilterAll()
-// table3.graphicFilterBy()
-// table3.candleRareFilter()
-
-// let table4 = aviator_statitistics.initializeData()
-
-// table4.tableFilter()
-// table4.graphicFilterAll()
-// table4.graphicFilterBy()
-// table4.candleRareFilter()
-
-
-
-  
-
+    let table = aviator_statitistics.initializeData(document.querySelector('#content-house-1'))
+    table.tableFilter()
+    table.graphicFilterAll()
+    
+    table.graphicFilterBy()
+    table.candleRareFilter()
 
 

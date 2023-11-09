@@ -6,6 +6,7 @@ class Login{
     public function index(){
         if(isset($_SESSION[LOGGED])){
             redirect('.');
+            return;
         }
         return[
             'views' => 'login.php',
@@ -31,15 +32,15 @@ class Login{
         $table = TABLE_USERS;
         $where_fields = ['email' => [$email]];
         $operator = ['='];
-        $user = findBy($dbName,$dbUsername, $dbPassword, $table, $where_fields, $operator);
-        if(!$user){
+        $result = findBy($dbName,$dbUsername, $dbPassword, $table, $where_fields, $operator);
+        if(!$result){
             $status = false;
             $msg =  'Email ou senha incorretos';
             $time = 4000;
             echo  json_encode(['status' =>  $status, 'msg' => $msg, 'time' => $time]);
             return;
         }
-        if($user->email_confirmation_id == 1){ 
+        if($result->email_confirmation_id == 1){ 
             $status = false;
             $msg  = 'Email não confirmado, confirme seu email e tente novamente';
             $time = 4000;
@@ -47,7 +48,7 @@ class Login{
             return;
         }
     
-        if(!password_verify($password, $user->password)){
+        if(!password_verify($password, $result->password)){
             $status = false;
             $msg  = 'Email ou senha incorretos';
             $time = 4000;
@@ -55,7 +56,7 @@ class Login{
             return;
         }
 
-        $_SESSION[LOGGED] = $user;
+        $_SESSION[LOGGED] = $result;
         $status = true;
         $redirect = $_SERVER['REQUEST_URI'];
         $redirect = $_GET['redirect'];

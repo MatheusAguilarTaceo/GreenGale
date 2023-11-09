@@ -1,6 +1,5 @@
-<main>
 
-<div class="container_plan">
+<div class="container_plan container-fluid">
     
     <div class="box-plan">
         <div class="inf" id="user-info-popup">
@@ -18,7 +17,7 @@
             <p class="nome" id="password">*****************</p>
         </div>
 
-        <div class="inf">
+        <!-- <div class="inf">
             <div class="img">
                 <img src= "<?php echo IMGS?>png/configdados.png">
             </div>
@@ -77,7 +76,6 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>  
-</main>

@@ -114,19 +114,19 @@
 
 <ul class="container-dropdown">
   <li class="dropdown">
-    <a class="acount" href="#"><img src="<?php echo IMGS?>png/coroa.png" alt=""></a>
-    <a class="dropdown-menu" href="#" >Conta</a>
-    <a class="acount1" href="#"><img src="<?php echo IMGS?>png/biscoito.png" alt=""></a>
+    <a class="acount"><img src="<?php echo IMGS?>png/perfildados.png" alt=""></a>
+    <a class="dropdown-menu" >Conta</a>
+    <a class="acount1"><img src="<?php echo IMGS?>svg/caret-down-fill.svg" alt=""></a>
       <ul class="dropdown-content">                        
         <li>
-            <a class="dropdown-interno" href="account">
-                <img src="<?php echo IMGS?>png/facebook.png" alt="">
+            <a class="dropdown-interno text-a" href="account">
+                <img src="<?php echo IMGS?>svg/gear.svg" alt="">
                 <span class="dropdown-interno">configurações</span>
             </a>
         </li>
         <li>
-            <a class="dropdown-interno" href="logout">
-                <img src="<?php echo IMGS?>png/facebook.png" alt="">
+            <a class="dropdown-interno text-a" href="logout">
+                <img src="<?php echo IMGS?>svg/box-arrow-left.svg" alt="">
                 <span class="dropdown-interno">logout</span>
             </a>
         </li>

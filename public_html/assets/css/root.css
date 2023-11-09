@@ -5,10 +5,11 @@
     --fourth: #AD1F5A;
     --fifth: #b34d79;
     --cor-fundo:#d9e1e4;
+    --emphasis: #f78e05;
+    --emphasis-hover: #f7bd00;;
     --black: black;
     --white: white;
-    --bg-color:#233323;
-    --emphasis: #f7d205;
+    --bg-color:#081b29;
 }
 
 
@@ -25,10 +26,10 @@
     text-align: center;
     background-color: var(--fifth);
     color: var(--white);
-    animation: error 1s both;
+    animation: msg 1s both;
 }
 
-@keyframes error{
+@keyframes msg{
     0%{
         trasnforme:translateY(0%);
         opacity: 1;
@@ -37,4 +38,28 @@
         transform: translate(-50%, -400%);
         opacity: 1;
     }
+}
+
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background-color: var(--cor-fundo);
+}
+
+
+main{
+    margin-top: -141px;
+}
+
+
+.container-fluid{
+    max-width: 1600px;
+    margin: auto;
+}
+
+.text-a{
+    color: white;
+    text-decoration: none;
 }

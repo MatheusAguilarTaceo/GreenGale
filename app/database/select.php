@@ -26,12 +26,12 @@ function findBy($db_name, $db_username, $db_password, $table, $where_fields_valu
         $array_where = implode(' AND ', $array_where);
 
         $sql = "SELECT {$select_fields} FROM {$table} WHERE {$array_where}";
-        $prepare = $connect->prepare($sql);
-        if($prepare){
+        $prepared_stmt = $connect->prepare($sql);
+        if($prepared_stmt){
             $params = array_merge( [str_repeat('s', count($where_values))] , $where_values);
-            $prepare->bind_param(...$params);
-            $prepare->execute();
-            $result = $prepare->get_result(); 
+            $prepared_stmt->bind_param(...$params);
+            $prepared_stmt->execute();
+            $result = $prepared_stmt->get_result(); 
             if($result->num_rows == 1){
                 return $result->fetch_object();
             }else{

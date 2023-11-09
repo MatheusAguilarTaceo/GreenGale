@@ -27,13 +27,20 @@
     margin-left: 50px;
     margin-right: 50px;
     width: 275px;
-    height: 250px;
+    /* height: 250px; */
     color: var(--white);
 }
     
-.content-text > img{
+.content-text > div{
+    display:inline;
+}
+.content-text > div > img{
     width: 100px;
+    height: 100px;
     float: left;
+    background-color: white;
+    padding: 8px;
+    border-radius: 5px;
 }
 .content-text > p{
     font-size: small;

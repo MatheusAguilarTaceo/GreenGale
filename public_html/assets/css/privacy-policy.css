@@ -1,0 +1,13 @@
+.title-page{
+    margin-left: 150px;
+    color: var(--white);
+}
+.privacy-policy{
+    background-color: var(--white);
+    max-width: 1000px;
+    padding: 40px;
+    border-radius: 5px;
+    margin: auto;
+}
+
+

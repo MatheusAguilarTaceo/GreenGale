@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $data['title-menu']?></title>
-
+    <link rel="icon" href=<?php echo IMGS.'icon/favicon.ico'?> type="image/x-icon">
     <link rel="stylesheet" href= <?php echo CSS.'root.css'?>>
     <link rel="stylesheet" href= <?php echo CSS.'header.css'?>>
     <link rel="stylesheet" href= <?php echo CSS.$data['css']?>>

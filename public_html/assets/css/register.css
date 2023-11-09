@@ -7,25 +7,25 @@
     padding-right: 43px;
     padding: 20px;
     padding-bottom: 127px;
-    background-color: #fff;
+    background-color: var(--second);
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: auto;
     margin-top: 50px;
     padding: 20px;
     height: fit-content;
+    border: 1px solid var(--white);
+    color: white;
 }
 
 h2 {
 text-align: center;
 margin-bottom: 20px;
-color: black;
 }
 
 label {
 display: block;
 font-weight: bold;
-color: black;
 }
 
 input[type="text"],
@@ -40,14 +40,15 @@ border-radius: 3px;
 
 
 #submit{
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--fifth);;
+    color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 3px;
     cursor: pointer;
+    border: 1px solid var(--white);
 }
 
 #submit:hover{
-    background-image: linear-gradient(to left, violet, blue);
+   background-color: var(--fourth);
 }
