@@ -232,6 +232,8 @@ function indexData(){
 
             let piechart_1 = document.createElement('div')
             piechart_1.className = 'piechart'
+            piechart_1.style.marginBottom = '80px'
+
             content_graphic.append(piechart_1)
             let piechart_2 = document.createElement('div')
             piechart_2.className = 'piechart'
@@ -393,18 +395,29 @@ function indexData(){
                 console.log('Grafico aqui  = ', data)
                 data = google.visualization.arrayToDataTable([
                     ['Candles', 'Frequencia'],
-                    ['Blue', Number(data.blue)],
-                    ['Purple',Number(data.purple)],
-                    ['Pink', Number(data.pink)]
+                    ['Azul', Number(data.blue)],
+                    ['Roxo',Number(data.purple)],
+                    ['Rosa', Number(data.pink)]
                   ]);
 
                 let options = {
+                    title: 'Filtro Geral',
+                    titleTextStyle: {
+                        fontSize: 13, // Ajuste o tamanho do título conforme necessário
+                        bold: true,   // Deixa o título em negrito
+                        color: 'white', // Cor do título
+                        italic: false, // Não deixa o título em itálico
+                      },
                     width: 200,  // Especifica a largura em pixels
                     height: 200, // Especifica a altura em pixels
                     colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
                     pieHole: 0.4,
+                    pieSliceTextStyle: {
+                        color: 'white',
+                      },
                     pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
-                    legend: 'none', 
+                    // legend:{ position: 'top', textStyle: { fontSize: 8 } },
+                    legend: 'none',
                     pieSliceText: 'value',
                     pieSliceBorderColor: 'black',
                     backgroundColor: {
@@ -432,18 +445,26 @@ function indexData(){
             .then(data => {
                 data = google.visualization.arrayToDataTable([
                     ['Candles', 'Frequencia'],
-                    ['Blue', Number(data.blue)],
-                    ['Purple',Number(data.purple)],
-                    ['Pink', Number(data.pink)]
+                    ['Azul', Number(data.blue)],
+                    ['Roxo',Number(data.purple)],
+                    ['Rosa', Number(data.pink)]
                   ]);
 
                 let options = {
+                    title: 'Filtro da Tabela',
+                    titleTextStyle: {
+                        fontSize: 13, // Ajuste o tamanho do título conforme necessário
+                        bold: true,   // Deixa o título em negrito
+                        color: 'white', // Cor do título
+                        italic: false, // Não deixa o título em itálico
+                      },
                     width: 200,  // Especifica a largura em pixels
                     height: 200, // Especifica a altura em pixels
                     colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
                     pieHole: 0.4,
                     pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
-                    legend: 'none', 
+                    legend:{ position: 'top', textStyle: { fontSize: 8 } }, 
+                    legend:'none', 
                     pieSliceText: 'value',
                     pieSliceBorderColor: 'black',
                     backgroundColor: {
