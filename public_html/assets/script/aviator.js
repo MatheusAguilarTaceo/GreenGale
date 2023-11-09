@@ -78,7 +78,6 @@ function indexData(){
 
             new_house = initializeData(content_house)
             new_house.tableFilter()
-
             new_house.graphicFilterAll()
             new_house.graphicFilterBy()
             new_house.candleRareFilter()
@@ -109,8 +108,8 @@ function indexData(){
 
             let house_logo = document.createElement('img')
             house_logo.className = 'house-logo'
-            house_logo.setAttribute('src', 'assets/img/png/2bxbet.png')
-            house_logo.setAttribute('alt', 'Logo casa de aposta')
+            house_logo.src = `assets/img/png/${list_houses[0]}.png`
+            house_logo.alt = 'casa de aposta'
             content_table.appendChild(house_logo);
             
             let content_filters_1 = document.createElement('div')
@@ -135,6 +134,7 @@ function indexData(){
             date_filter.className = `input-filters-${size}`
             date_filter.id = 'date'
             date_filter.type = 'date'
+            date_filter.value = new Date().toISOString().split('T')[0]
             
             let content_filters_2 = document.createElement('div')
             content_filters_2.className = 'content-filters'
@@ -145,12 +145,14 @@ function indexData(){
             candle_filter.className  = `input-filters-${size}`
             candle_filter.id = 'candle'
             candle_filter.type = 'text'
+            candle_filter.value  = '1.00';
             
             let time_filter = document.createElement('input')
             content_filters_2.appendChild(time_filter)
             time_filter.className  = `input-filters-${size}`
             time_filter.id = 'time'
             time_filter.type = 'time'
+            time_filter.value = '00:00:00'
             
             let table = document.createElement('table')
             table.className = `table-dimension-${size}`
@@ -171,61 +173,56 @@ function indexData(){
             th_time.innerText = 'HOURS'
             
             let tbody = document.createElement('tbody')
-            table.appendChild(tbody)
+            table.appendChild(tbody);
             tbody.className = 'candle-tbody'
             
             let ul = document.createElement('ul')
             content_table.appendChild(ul)
-            ul.className = 'tablePagination'
-            
-            let buttons = []
-            for (let i = 0; i < 10; i++){
-                buttons.push(document.createElement('button'))
-            }  
-            buttons[2].style.color = 'black'
-            let id_page = 1
-            buttons.forEach((button, index) =>{
-                if(index > 1 && index < 7){
-                    button.className =`table-button-${size}`
-                    button.setAttribute('id-page', id_page)
-                    button.innerText = id_page
+            ul.className = 'tablePagination';
 
-                    id_page++
-                }
-                else if(index == 0){
-                    button.className =`table-button-${size}`
-                    button.setAttribute('first-page', 'first-page')
-                    button.innerText = '<<'
+            (function paginacao(){
+                let buttons = []
+                for (let i = 0; i < 9; i++){
+                    buttons.push(document.createElement('button'))
+                }  
+                buttons[2].style.color = 'black'
+                let id_page = 1
+                buttons.forEach((button, index) =>{
+                    if(index > 1 && index < 7){
+                        button.className =`table-button-${size}`
+                        button.setAttribute('id-page', id_page)
+                        button.innerText = id_page
 
-                }
-                else if(index == 1){
-                    button.className =`table-button-${size}`
-                    button.setAttribute('previous-page', 'previous-page')
-                    button.innerText = '<'
+                        id_page++
+                    }
+                    else if(index == 0){
+                        button.className =`table-button-${size}`
+                        button.setAttribute('first-page', 'first-page')
+                        button.innerText = '<<'
 
-                }
-                else if(index == 7){
-                    button.className =`table-button-${size}`
-                    button.setAttribute('data-page', '...')
-                    button.innerText = '...'
+                    }
+                    else if(index == 1){
+                        button.className =`table-button-${size}`
+                        button.setAttribute('previous-page', 'previous-page')
+                        button.innerText = '<'
 
-                }
-                else if(index == 8){
-                    button.className =`table-button-${size}`              
-                    button.setAttribute('next-page', 'next-page')
-                    button.innerText = '>'
+                    }
+                    else if(index == 7){
+                        button.className =`table-button-${size}`              
+                        button.setAttribute('next-page', 'next-page')
+                        button.innerText = '>'
 
-                }
-                else if(index == 9){
-                    button.className =`table-button-${size}`
-                    button.setAttribute('last-page', 'last-page')
-                    button.innerText = '>>'
+                    }
+                    else if(index == 8){
+                        button.className =`table-button-${size}`
+                        button.setAttribute('last-page', 'last-page')
+                        button.innerText = '>>'
 
-                }
-                ul.appendChild(button)
-                button.style.marginRight = '0.4px';
-            })
-
+                    }
+                    ul.appendChild(button)
+                    button.style.marginRight = '0.4px';
+                })                
+            })();
         }
         function graphicStructure(){            
             let content_graphic = document.createElement('section')
@@ -298,19 +295,11 @@ function indexData(){
     }        
     
     function initializeData(content_house){
-        let date_current = new Date()
-        let year = date_current.getFullYear()
-        let month = date_current.getMonth()+1
-        let day = date_current.getDate()
-        if(month < 10){
-            month = '0'+month  
-        }
-        if(day < 10){
-            day = '0'+day  
-        }
-
         let betting_house = content_house.querySelector(`.filters-houses-${size}`)
         betting_house.addEventListener('input', function(){
+            let house_logo = content_house.querySelector('img')
+            house_logo.src = `assets/img/png/${betting_house.value}.png`            
+            let [year, month, day] = date.value.split('-')
             table = `${day}/${month}/${year}/${betting_house.value}`;
             tableFilter()
             graphicFilterAll()
@@ -319,8 +308,6 @@ function indexData(){
         })
 
         let date = content_house.querySelector("#date")
-        date.value = `${year}-${month}-${day}`
-        
         date.addEventListener('input', function(){
             [year, month, day] = date.value.split('-')
             table = `${day}/${month}/${year}/${betting_house.value}`;
@@ -331,7 +318,6 @@ function indexData(){
         })
         
         let candle = content_house.querySelector('#candle')
-        candle.value = '1.00'
         candle.addEventListener('input', function(){
             tableFilter()
             graphicFilterAll()
@@ -340,7 +326,6 @@ function indexData(){
         })
 
         let hour = content_house.querySelector("#time")
-        hour.value ='00:00:00'
         hour.addEventListener('input', function(){
             this.value = this.value.substring(0,2)+":00"
             tableFilter()
@@ -349,104 +334,12 @@ function indexData(){
             candleRareFilter()
         })
         
-        // content_house.querySelector('[id-page="1"]').style.color = 'black'
-        const button_list = content_house.querySelectorAll(".tablePagination > button"); 
-        button_list[7].style.display = 'none'
-        
+
+        let [year, month, day] = date.value.split('-')
         let table = `${day}/${month}/${year}/${betting_house.value}`;
         let page = 1;
         let page_quantity = 0;  
         
-        (function paginacao(){
-            button_list.forEach((button) =>{ 
-            button.addEventListener("click", function(){
-                    let quick_navigation = button.attributes[1].value
-                    let chosen_page = null
-                    let i = 0
-                    switch(quick_navigation){
-                        case 'first-page':
-                            chosen_page = 1
-                            break
-                        case 'previous-page':
-                            chosen_page = page
-                            button_list.forEach(button =>{
-                                if((button.innerText == page-1)){
-                                    chosen_page = Number(button.innerText)
-                                }
-                            })    
-                            break
-                        case 'next-page':
-                            chosen_page = page
-                            button_list.forEach(button =>{
-                                if((button.innerText == page+1)){
-                                    chosen_page = Number(button.innerText)
-                                }
-                        })   
-                            break
-                        case 'last-page':
-                            chosen_page = page_quantity
-                            break
-                        default:
-                            chosen_page = Number(button.innerText)
-                            
-                    }
-                    if(chosen_page != page){
-                        if(chosen_page>= 5 && button.innerText != page && chosen_page <= page_quantity - 4){
-                            i = 0
-                            button_list.forEach((button) =>  {
-                                button.style.color = 'white'
-                                if(!isNaN(Number(button.innerText)) ) {
-                                    button.innerText = chosen_page - 2 + i
-                                    i++;
-                                }    
-                            })
-                            center_position = content_house.querySelector('[id-page="3"]')
-                            center_position.style.color = 'black'
-                        }else if(chosen_page != page && chosen_page < 5){
-                            i = 1
-                            button_list.forEach((button) =>{
-                                button.style.color = 'white'
-                                if(!isNaN(Number(button.innerText))){   
-                                    button.innerText = i
-                                    i++  
-                                }
-                            })
-                            
-                            button_list.forEach(button => { 
-                                if(button.innerText == chosen_page){
-                                    button.style.color = 'black';
-                                }
-                            })
-                            
-                        }else if(chosen_page > page_quantity - 4){
-                            i = page_quantity - 4;
-                            button_list.forEach((button) =>{
-                                button.style.color = 'white'
-                                if(!isNaN(Number(button.innerText))){   
-                                    button.innerText = i
-                                    i++
-                                }
-                            })
-                            
-                            button_list.forEach(button => { 
-                                if(button.innerText == chosen_page){
-                                button.style.color = 'black'; 
-                                }
-                            
-                            })
-                        }
-                        page =  chosen_page
-                    }
-                
-                tableFilter()
-                graphicFilterAll()
-                graphicFilterBy()
-                candleRareFilter()
-
-            });    
-            });
-        })()
-
 
         function tableFilter(){
           
@@ -488,8 +381,6 @@ function indexData(){
         }
 
         function graphicFilterAll(){
-            console.log('Table filter chamada  = ')
-
             fetch('aviator/graphic-all', {
                 method:"POST",
                 headers: {
@@ -592,6 +483,96 @@ function indexData(){
                 throw new Error('Erro na requisição: ' + error.status)
             })
         }
+        let button_list = content_house.querySelectorAll(".tablePagination > button");
+        (function paginacao(){
+            button_list.forEach((button) =>{ 
+            button.addEventListener("click", function(){
+                    let quick_navigation = button.attributes[1].value
+                    let chosen_page = null
+                    let i = 0
+                    switch(quick_navigation){
+                        case 'first-page':
+                            chosen_page = 1
+                            break
+                        case 'previous-page':
+                            chosen_page = page
+                            button_list.forEach(button =>{
+                                if((button.innerText == page-1)){
+                                    chosen_page = Number(button.innerText)
+                                }
+                            })    
+                            break
+                        case 'next-page':
+                            chosen_page = page
+                            button_list.forEach(button =>{
+                                if((button.innerText == page+1)){
+                                    chosen_page = Number(button.innerText)
+                                }
+                        })   
+                            break
+                        case 'last-page':
+                            chosen_page = page_quantity
+                            break
+                        default:
+                            chosen_page = Number(button.innerText)
+                            
+                    }
+                    if(chosen_page != page){
+                        if(chosen_page>= 5 && button.innerText != page && chosen_page <= page_quantity - 4){
+                            i = 0
+                            button_list.forEach((button) =>  {
+                                button.style.color = 'white'
+                                if(!isNaN(Number(button.innerText)) ) {
+                                    button.innerText = chosen_page - 2 + i
+                                    i++;
+                                }    
+                            })
+                            center_position = content_house.querySelector('[id-page="3"]')
+                            center_position.style.color = 'black'
+                        }else if(chosen_page != page && chosen_page < 5){
+                            i = 1
+                            button_list.forEach((button) =>{
+                                button.style.color = 'white'
+                                if(!isNaN(Number(button.innerText))){   
+                                    button.innerText = i
+                                    i++  
+                                }
+                            })
+                            
+                            button_list.forEach(button => { 
+                                if(button.innerText == chosen_page){
+                                    button.style.color = 'black';
+                                }
+                            })
+                            
+                        }else if(chosen_page > page_quantity - 4){
+                            i = page_quantity - 4;
+                            button_list.forEach((button) =>{
+                                button.style.color = 'white'
+                                if(!isNaN(Number(button.innerText))){   
+                                    button.innerText = i
+                                    i++
+                                }
+                            })
+                            
+                            button_list.forEach(button => { 
+                                if(button.innerText == chosen_page){
+                                button.style.color = 'black'; 
+                                }
+                            
+                            })
+                        }
+                        page =  chosen_page
+                    }
+                
+                tableFilter()
+                graphicFilterAll()
+                graphicFilterBy()
+                candleRareFilter()
+
+            });    
+            });
+        })()
 
 
         return {tableFilter, graphicFilterAll, graphicFilterBy, candleRareFilter}
@@ -603,11 +584,13 @@ function indexData(){
 
 
 let aviator_statitistics = indexData()
-let table = aviator_statitistics.initializeData(document.querySelector('#content-house-1'))
-table.tableFilter()
+// setTimeout(() =>{
+    let table = aviator_statitistics.initializeData(document.querySelector('#content-house-1'))
+    table.tableFilter()
+    table.graphicFilterAll()
+    
+    table.graphicFilterBy()
+    table.candleRareFilter()
+// }, 4000) 
 
-table.graphicFilterAll()
-
-table.graphicFilterBy()
-table.candleRareFilter()
 
