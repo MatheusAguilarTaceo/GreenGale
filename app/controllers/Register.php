@@ -4,6 +4,10 @@ namespace app\controllers;
 
 class Register{
     public function index(){
+        if(isset($_SESSION[LOGGED])){
+            redirect('.');
+            return;
+        }
         return [
             'views' => 'register.php',
             'data' => [

@@ -6,6 +6,7 @@ class Login{
     public function index(){
         if(isset($_SESSION[LOGGED])){
             redirect('.');
+            return;
         }
         return[
             'views' => 'login.php',

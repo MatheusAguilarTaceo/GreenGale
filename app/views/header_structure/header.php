@@ -19,7 +19,7 @@
 
             <!--BOTÃO MENU-->
         <?php 
-           showNavForMenu($views)
+            require showNavForMenu()
         ?>
        
     </ul>

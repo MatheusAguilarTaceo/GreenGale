@@ -114,9 +114,9 @@
 
 <ul class="container-dropdown">
   <li class="dropdown">
-    <a class="acount" href="#"><img src="<?php echo IMGS?>png/perfildados.png" alt=""></a>
-    <a class="dropdown-menu" href="#" >Conta</a>
-    <a class="acount1" href="#"><img src="<?php echo IMGS?>svg/caret-down-fill.svg" alt=""></a>
+    <a class="acount"><img src="<?php echo IMGS?>png/perfildados.png" alt=""></a>
+    <a class="dropdown-menu" >Conta</a>
+    <a class="acount1"><img src="<?php echo IMGS?>svg/caret-down-fill.svg" alt=""></a>
       <ul class="dropdown-content">                        
         <li>
             <a class="dropdown-interno text-a" href="account">
