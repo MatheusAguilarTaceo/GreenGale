@@ -187,28 +187,39 @@
 ?>
 
 <?php    
-// URL do seu servidor local
-$serverUrl = 'http://localhost:8000/account';
+// // URL do seu servidor local
+// $serverUrl = 'http://localhost:8000/account';
 
-// Dados em formato JSON que você deseja enviar
-$data = json_encode(array(
-    'field' => 'name',
-    'value' => 'Matheus',
-));
+// // Dados em formato JSON que você deseja enviar
+// $data = json_encode(array(
+//     'field' => 'name',
+//     'value' => 'Matheus',
+// ));
 
-// Configuração da solicitação POST
-$options = array(
-    'http' => array(
-        'method'  => 'POST',
-        'header'  => 'Content-type: application/json',
-        'content' => $data
-    )
-);
+// // Configuração da solicitação POST
+// $options = array(
+//     'http' => array(
+//         'method'  => 'POST',
+//         'header'  => 'Content-type: application/json',
+//         'content' => $data
+//     )
+// );
 
-$context  = stream_context_create($options);
-$validate = file_get_contents($serverUrl, false, $context);
-var_dump($validate); 
-$json = json_decode($validate);
-var_dump($json);
+// $context  = stream_context_create($options);
+// $validate = file_get_contents($serverUrl, false, $context);
+// var_dump($validate); 
+// $json = json_decode($validate);
+// var_dump($json);
     
 ?>
+rafico aqui  =  <br />
+<font size='1'><table class='xdebug-error xe-uncaught-exception' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Fatal error: Uncaught Error: Attempt to assign property "teste" on array in C:\Users\theus\Documents\Projetos_PHP\site_php\app\controllers\Aviator.php on line <i>98</i></th></tr>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Error: Attempt to assign property "teste" on array in C:\Users\theus\Documents\Projetos_PHP\site_php\app\controllers\Aviator.php on line <i>98</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0002</td><td bgcolor='#eeeeec' align='right'>359976</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\Users\theus\Documents\Projetos_PHP\site_php\public_html\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0132</td><td bgcolor='#eeeeec' align='right'>390320</td><td bgcolor='#eeeeec'>router(  )</td><td title='C:\Users\theus\Documents\Projetos_PHP\site_php\public_html\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>4</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0132</td><td bgcolor='#eeeeec' align='right'>390696</td><td bgcolor='#eeeeec'>controller( <span>$mathchedUri = </span><span>[&#39;/aviator/graphic-all&#39; =&gt; &#39;Aviator@graphicFilterAll&#39;]</span> )</td><td title='C:\Users\theus\Documents\Projetos_PHP\site_php\app\router\router.php' bgcolor='#eeeeec'>...\router.php<b>:</b>81</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0133</td><td bgcolor='#eeeeec' align='right'>390864</td><td bgcolor='#eeeeec'>app\controllers\Aviator->graphicFilterAll(  )</td><td title='C:\Users\theus\Documents\Projetos_PHP\site_php\app\core\controller.php' bgcolor='#eeeeec'>...\controller.php<b>:</b>14</td></tr>
+</table></font>

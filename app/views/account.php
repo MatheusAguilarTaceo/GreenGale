@@ -1,6 +1,5 @@
-<main>
 
-<div class="container_plan">
+<div class="container_plan container-fluid">
     
     <div class="box-plan">
         <div class="inf" id="user-info-popup">
@@ -80,4 +79,3 @@
         </div>
     </div>
 </div>  
-</main>

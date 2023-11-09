@@ -28,7 +28,8 @@ class Aviator{
             $msg = "Limte de filtros atingdos!"; 
             $limit = 4;
             $time = 4000;
-            echo json_encode(['limit' => $limit, 'msg' => $msg, 'time' => $time]);
+            $list_houses = ['b2xbet', 'pagbet', 'betano'];
+            echo json_encode(['limit' => $limit, 'msg' => $msg, 'time' => $time,'list_houses' => $list_houses]);
             return;
         }else{
             $limit = 2;
@@ -83,23 +84,24 @@ class Aviator{
         $date = $data['date'];
 
 
-        $selec_field = 'count(*) as count';
+        $select_field = 'count(*) as count';
 
         // Velas Azuis
         $where_fields = ['date' => [$date], 'candle' => ['2']];
         $operator = ['=', '<'];
-        $blue_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $selec_field);
-        
+        $blue_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_field);
         // Velas roxas
         $where_fields = ['date' => [$date], 'candle' => ['2', '10']];
         $operator = ['=', '>=', '<'];
-        $purple_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $selec_field);
-        
+        $purple_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_field);
         // Velas rosas
         $where_fields = ['date' => [$date], 'candle' => ['10']];
         $operator = ['=', '>='];
-        $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $selec_field);
-
+        $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_field);
+        if(!$blue_candles || !$purple_candles || !$pink_candles){
+            echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
+            return;
+        }
         $data = ['blue' => $blue_candles->count, 'purple' => $purple_candles->count, 'pink' => $pink_candles->count];
         $json = json_encode($data);
         echo $json;
@@ -135,6 +137,11 @@ class Aviator{
             $where_fields = ['date' => [$date], 'candle' => ['10'], 'hour' => [$hour]];
             $operator = ['=', '>=', '>='];
             $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
+            
+            if(!$blue_candles || !$purple_candles || !$pink_candles){
+                echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
+                return;
+            }
             $data = ['blue' => $blue_candles->count, 'purple' => $purple_candles->count, 'pink' => $pink_candles->count];
         }
         else if($candle < 10){
@@ -146,16 +153,28 @@ class Aviator{
             $where_fields = ['date' => [$date], 'candle' => [$candle], 'hour' => [$hour]];
             $operator = ['=', '>=', '>='];      
             $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator,  $select_fields);
+            
+            if($purple_candles || !$pink_candles){
+                echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
+                return;
+            }
+
             $data = ['blue' => $blue_candles, 'purple' => $purple_candles->count, 'pink' => $pink_candles->count];
         }else{
             // Velas Rosas
             $where_fields = ['date' => [$date], 'candle' => [$candle], 'hour' => [$hour]];
             $operator = ['=', '>=', '>='];   
             $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
+            if(!$pink_candles){
+                echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
+                return;
+            }
             $data = ['blue' => $blue_candles, 'purple' => $purple_candles, 'pink' => $pink_candles->count]; 
         }
+
         $json = json_encode($data);
         echo $json;
+        return;
     }
 
     public function candleRareFilter(){

@@ -119,13 +119,13 @@
     <a class="acount1" href="#"><img src="<?php echo IMGS?>svg/caret-down-fill.svg" alt=""></a>
       <ul class="dropdown-content">                        
         <li>
-            <a class="dropdown-interno" href="account">
+            <a class="dropdown-interno text-a" href="account">
                 <img src="<?php echo IMGS?>svg/gear.svg" alt="">
                 <span class="dropdown-interno">configurações</span>
             </a>
         </li>
         <li>
-            <a class="dropdown-interno" href="logout">
+            <a class="dropdown-interno text-a" href="logout">
                 <img src="<?php echo IMGS?>svg/box-arrow-left.svg" alt="">
                 <span class="dropdown-interno">logout</span>
             </a>

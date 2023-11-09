@@ -59,12 +59,13 @@ class Register{
         $token = $_GET['key'];
         $where_field = ['token' => [$token]];
         $operator = ['='];
-        $result = findBy($db_name, $db_username, $db_password, $table, $where_field, $operator);
+        $select_fields = 'id, name, email';
+        $result = findBy($db_name, $db_username, $db_password, $table, $where_field, $operator, $select_fields);
         if(isset($result->id)){
             $set_fields_values = ['token' => NULL, 'email_confirmation_id' => '2'];
             $where_fields_values = ['id' => $result->id];
             update($db_name, $db_username, $db_password, $table, $set_fields_values, $where_fields_values);
-            
+            $_SESSION[LOGGED] = $result;
             return redirect('account'); 
         }
         return redirect('resend-email-confirmation'); 
