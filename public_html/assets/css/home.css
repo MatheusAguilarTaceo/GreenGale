@@ -40,7 +40,7 @@
 .main-button {
     background-color: var(--third);
     box-shadow: 0px 0px 10px rgba(146, 145, 145, 0.5);
-    border-radius: 5px;
+    border-radius: 0px 0px 5px 5px;
     padding: 0;
     margin-top: 15px;
     height: 60px;
@@ -49,7 +49,7 @@
 }
 
 
-.box-button:nth-child(1) {
+.box-button{
     box-shadow: 0px 0px 10px rgba(105, 109, 105, 0.5);
     display: inline-block;
     margin-top: 9px;
@@ -57,20 +57,14 @@
     padding-top: 11px;
     padding-left: 18px;
     padding-right: 18px;
+    background-color: var(--emphasis);
+    border-radius: 3px;
 }
 
-
-.box-button:nth-child(2) {
-    /* background-color: var(--fourth); */
-    box-shadow: 0px 0px 10px rgba(105, 109, 105, 0.5);
-    display: inline-block;
-    margin-top: 9px;
-    height: 30px;
-    padding-top: 11px;
-    margin-left: 0px;
-    padding-left: 18px;
-    padding-right: 18px;
+.box-button:hover{
+    background-color: var(--emphasis-hover);
 }
+
 
 .box-button img {
     width: 15px;    

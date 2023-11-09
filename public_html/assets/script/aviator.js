@@ -17,6 +17,7 @@ function indexData(){
     let limit = null
     let msg = null
     let time = null
+    let list_houses = null
     fetch('aviator/data-controller',{
         method: 'POST',
         headers: {"Content-Type": "application/json"}
@@ -28,6 +29,7 @@ function indexData(){
         limit = data.limit
         msg = data.msg
         time = data.time
+        list_houses = data.list_houses
     })
     
     function modifyClass(id, size, replace_size){  
@@ -119,8 +121,6 @@ function indexData(){
             let filters_houses = document.createElement('select')
             content_filters_1.appendChild(filters_houses)
             filters_houses.className = `filters-houses-${size}`
-
-            let list_houses = ['2bxbet', 'pagbet', 'betano']
             
             list_houses.forEach(value =>{
                 let option = document.createElement('option')

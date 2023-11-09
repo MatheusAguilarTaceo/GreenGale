@@ -110,32 +110,27 @@ header{
 }
 
 .header-cad1:hover{
-    background-color:#f7d205;
+    background-color:var(--emphasis-hover)
     
 }
 
 .header-cad2{
 
-    background-color: var(--button);
+    background-color: var(--third);
     border-radius: 3px;
     transition: .5s;
     
 }
 
 .header-anc2{
-
     color: var(--text-color);
 }
 
 
 .header-cad2:hover {
 
-    background-color: var(--text-color);
-
-    .header-anc2{
-
-        color: var(--bg-color);
-    }
+    background-color: var(--fifth);
+    color: white;
 }
 
 
