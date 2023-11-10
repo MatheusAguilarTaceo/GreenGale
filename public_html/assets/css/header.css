@@ -1,121 +1,14 @@
 
-
-
-
-
 header{
     background-color: var(--primary);
     color: white;
     padding-bottom: 10.8rem;   
 }
 
-.header-logo img{
-    width: 233px;
-    height: 157px;
-    margin-top: -40px;
-    margin-bottom:-40px ;
-}
 
-.header-container{
-    margin-top: 4px;
-    border: 1px solid var(--text-color);
-    border-left: none;
-    border-right: none;
-    background-color: var(--second);
-    height: 50px;      
-    border: 1px solid white; 
-    /* border: 1px solid black;  */
-}
-
-.header-ul-menu {
-    list-style: none;
-    margin-top: 0;
-    padding: 2px;
-}
-
-.header-icon{
-
-    display: inline;
-    padding: 9px;
-}
-
-.header-icon  img{
-
-    width: 20px;
-    margin-top: 9px;
-
-}
-
-.header-menu {
-    display: inline;
-    margin: 5px;
-}
-
-
-
-.header-icon{
-
-    margin-left: 2rem;
-}
-
-.header-cad1,.header-cad2{
-    
-    display: inline;
-    margin: 0 10px;
-    float: right;    
-    border: 1px solid rgb(234, 229, 238);
-    padding: 5px;
-    margin-top: 9px;
-    
-    
-}
-
-
-
-.header-anc1, .header-anc2{
-    text-decoration: none;
-    font-weight: 100;     
-    color: black                                                                                                                                                                                       ;
-}
-
-.header-cad1 {
-    background-color: var(--emphasis);
-    color: black;
-    border-radius: 3px;
-    
-}
-
-.header-cad1:hover{
-    background-color:var(--emphasis-hover)
-    
-}
-
-.header-cad2{
-
-    background-color: var(--third);
-    border-radius: 3px;
-    transition: .5s;
-    
-}
-
-.header-anc2{
-    color: var(--text-color);
-}
-
-
-.header-cad2:hover {
-
-    background-color: var(--fifth);
-    color: white;
-}
-
-
+/* Dropdown da caixa do usuario qunado logado */
 .container-dropdown {
     list-style-type: none;
-    float: right;
-    margin: 0;
-    padding: 0;
-    margin-top: -27 px;
     cursor: pointer;
 }
 
@@ -152,7 +45,6 @@ header{
     text-decoration: none;
     text-align: center;
     color: #f7f3f3;
-    /* display: inline-block; */
     margin-left: 2px;
     margin-top: 1px;
     margin-bottom: 1px;
@@ -200,5 +92,158 @@ header{
     width: 15px;
 }
 
-/*CAIXA INFORMAÇÃO DE RECURSOS*/
+/*TESTE Nova nav bar*/
+
+.nav-bar{
+}
+
+.menu-logo{
+    width: 230px;
+    margin-top: -40px;
+    margin-bottom:-40px ;
+}
+.menu-button{
+    display: none;
+}
+
+.nav-list{
+    background-color: var(--second);
+    display: flex;
+    align-items: center;
+}
+
+.nav-list> ul{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.nav-item{
+    margin: 0 15px;
+}
+.nav-link{
+    text-decoration: none;
+    color: white;
+    width: 48px;
+    height: 18px;
+}
+
+.nav-link img{
+    width: 20px;
+}
+
+.nav-session{
+    margin-left: auto;
+    text-align: right;
+}
+
+
+.button-login, .button-register{
+    width: 100px;
+    height: 30px;
+    padding: 1px;
+    border: 1px solid var(--white);
+    border-radius: 3px;
+    transition: .5s;
+    font-size: medium;
+    margin: 5px;
+}
+.button-login{
+    background-color: var(--third);
+}
+.button-login:hover{
+    background-color: var(--fourth);
+}
+
+.button-register{
+    background-color: var(--emphasis);
+    color: black;
+}
+.button-register:hover{
+    background-color: var(--emphasis-hover);
+}
+
+
+
+.mobile-menu{
+    display: none;
+}
+
+.dropdown-content-mobile{
+    display: none;
+}        
+
+
+@media screen and (max-width:730px) {
+
+    .nav-list{
+       display: none;
+    }
+   
+    .header-logo{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;  
+    }
+    .menu-logo{
+        width: 230px;
+        margin-top: -40px;
+        margin-bottom:-40px ;
+    }
+    .menu-button{
+        display: block;
+        width: 40px;
+        padding: 10px;
+    }
+    .mobile-menu .nav-session{
+        display: block;
+    }
+
+    .mobile-menu .container-dropdown{
+        margin: 0px;
+    }
+
+    .mobile-menu .dropdown-content-mobile{
+        display: none;
+        background-color: var(--cor-fundo);
+        list-style-type: none;
+        padding-left: 4px;
+    }
+
+    .mobile-menu .dropdown-content-mobile li{
+        text-align:center;
+        padding: 10px;
+    }
+    
+    .mobile-nav-list{
+        width: fit-content;
+        display: block;
+        margin: auto;
+
+    }
+    .mobile-nav-list ul{
+        display: block;
+        padding-bottom: 5px;
+        padding: 10px;
+        margin: 0px;
+    }
+    
+    .mobile-menu .nav-session{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    
+
+    .mobile-menu ul .nav-item{
+        display: block;
+        padding: 10px;
+    }
+
+    .open{
+        display: block;
+        background-color: var(--second);
+    }
+}
 
