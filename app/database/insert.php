@@ -4,10 +4,14 @@ function insert($dbName, $dbUsername, $dbPassword, $table, $elements){
     $fields = implode(',', array_keys($elements));
     $values = str_repeat('?,' , count($elements));
     $values = substr($values,0, -1);
+    
+    $connect = connect($dbName, $dbUsername, $dbPassword,);
+    if(is_array($connect)){
+        return $connect;
+    }
 
-    $connection = connect($dbName, $dbUsername, $dbPassword,);
     $sql = "INSERT INTO $table ($fields) VALUES ($values)";
-    $prepare = $connection->prepare($sql);
+    $prepare = $connect->prepare($sql);
     
     
     if($prepare){
@@ -15,10 +19,11 @@ function insert($dbName, $dbUsername, $dbPassword, $table, $elements){
         $values = array_values($elements);
         $params = array_merge($types, $values);
         $prepare->bind_param(...$params);
-        $prepare->execute();
-        if(!empty($prepare->error_list)){
-            return $prepare->error_list[0]['error'];
+        $result = $prepare->execute();
+        if(!$result){
+            return ['errno' => $prepare->error_list['errno'], 'error' => $prepare->error_list['error']];
         }
+        return $result;
     }
 }
 function makeValuesReferenced(array & $array) {

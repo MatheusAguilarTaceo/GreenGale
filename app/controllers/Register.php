@@ -40,13 +40,14 @@ class Register{
         $dbPassword = $_ENV['DB_PASSWORD_USERS'];
         $table = TABLE_USERS;
         $result = insert($dbName, $dbUsername, $dbPassword, $table, $validate);
-        if($result){
+        if(is_array($result)){
             $status = false;
             $msg = 'Erro ao cadastrar usuário!';
             $time = 4000;
             echo json_encode(['status' => $status, 'msg' => $msg, 'time' => $time]); 
             return; 
         }
+        
         send_mail($validate['email'], $validate['name'], $validate['token']);
         $status = true;
         $msg = 'Cadastro realizado! Confirme sua caixa de email para validar a conta';

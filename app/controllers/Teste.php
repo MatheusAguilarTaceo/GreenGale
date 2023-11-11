@@ -9,7 +9,8 @@ class Teste{
             'data' => [
                 'title-menu' => 'Teste| Greengale',
                 'title-page' => 'Teste de saida',
-                'css' => ''
+                'css' => 'teste.css',
+                'js' => 'none.js'
             ]
         ];
     }

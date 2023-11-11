@@ -14,6 +14,9 @@ function findAll($dbName, $dbUsername, $dbPassword,$table, $fields = '*'){
 }
 function findBy($db_name, $db_username, $db_password, $table, $where_fields_values, $operator, $select_fields = '*',){
     $connect = connect($db_name, $db_username, $db_password,);    
+    if(is_array($connect)){
+        return $connect;
+    }
     try{
         $i = 0;
         forEach($where_fields_values as $field => $array){
@@ -39,10 +42,9 @@ function findBy($db_name, $db_username, $db_password, $table, $where_fields_valu
                 return json_decode(json_encode($result));
             }
         }
-        return [];
-    }catch(mysqli_sql_exception $error){ 
-        echo "erro $error";
-        return $error;
+        return ['errno' => $connect->errno, 'error'=>$connect->error];
+    }catch(mysqli_sql_exception $e){ 
+        return  ['errno' => $e->getCode(), 'error'=>$e->getMessage()];
     }
 }
 

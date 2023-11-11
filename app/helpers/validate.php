@@ -55,6 +55,10 @@ function unique($field, $table){
     $where_fields = [$field => [$value_filtered]];
     $operator = ['='];
     $result = findBy($dbName, $dbUsername, $dbPassword, $table, $where_fields, $operator);  
+    if(is_array($result)){
+        setFlash($field, 'Erro ao cadastrar usuário!');
+        return false;
+    }
     if(isset($result->email)){
         setFlash($field, 'Email já cadastrado!');
         return false;
