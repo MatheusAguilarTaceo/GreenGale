@@ -26,6 +26,7 @@ function indexData(){
     let msg = null
     let time = null
     let list_houses = null
+    let options  = null
     fetch('aviator/data-controller',{
         method: 'POST',
         headers: {"Content-Type": "application/json"}
@@ -242,13 +243,69 @@ function indexData(){
 
             let piechart_1 = document.createElement('div')
             piechart_1.className = 'piechart'
-            piechart_1.style.marginBottom = '80px'
+            // piechart_1.style.marginBottom = '80px'
 
             content_graphic.append(piechart_1)
             let piechart_2 = document.createElement('div')
             piechart_2.className = 'piechart'
             content_graphic.append(piechart_2)
-
+            
+            console.log("GRAFICO AQUI")
+            console.log(window.innerWidth)
+            if(window.innerWidth <= 600){
+                options = {
+                title: 'TITULO AQUI',
+                titleTextStyle: {
+                    fontSize: 20, // Ajuste o tamanho do título conforme necessário
+                    bold: true,   // Deixa o título em negrito
+                    color: 'white', // Cor do título
+                    italic: false, // Não deixa o título em itálico
+                  },
+                width: 340,  // Especifica a largura em pixels
+                height: 340, // Especifica a altura em pixels
+                colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
+                pieHole: 0.4,
+                pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 15},
+                // legend:{ position: 'top', textStyle: { fontSize: 8 } },
+                legend: 'none',
+                pieSliceText: 'value',
+                pieSliceBorderColor: 'black',
+                backgroundColor: {
+                    fill: 'none',
+                    stroke: 'black ', // Cor da borda
+                    strokeWidth: 0.1,   // Largura da borda
+                },
+                position: 'bottom'            
+                }
+            }else{
+                options = {
+                    title: 'Filtro Geral',
+                    titleTextStyle: {
+                        fontSize: 13, // Ajuste o tamanho do título conforme necessário
+                        bold: true,   // Deixa o título em negrito
+                        color: 'white', // Cor do título
+                        italic: false, // Não deixa o título em itálico
+                      },
+                    width: 200,  // Especifica a largura em pixels
+                    height: 200, // Especifica a altura em pixels
+                    colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
+                    pieHole: 0.4,
+                    pieSliceTextStyle: {
+                        color: 'white',
+                      },
+                    pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
+                    // legend:{ position: 'top', textStyle: { fontSize: 8 } },
+                    legend: 'none',
+                    pieSliceText: 'value',
+                    pieSliceBorderColor: 'black',
+                    backgroundColor: {
+                        fill: 'none',
+                        stroke: 'black ', // Cor da borda
+                        strokeWidth: 0.1,   // Largura da borda
+                    },
+                    position: 'bottom'            
+                    }
+            }     
 
 
 
@@ -412,34 +469,9 @@ function indexData(){
                     ['Rosa', Number(data.pink)]
                   ]);
 
-                let options = {
-                    title: 'Filtro Geral',
-                    titleTextStyle: {
-                        fontSize: 13, // Ajuste o tamanho do título conforme necessário
-                        bold: true,   // Deixa o título em negrito
-                        color: 'white', // Cor do título
-                        italic: false, // Não deixa o título em itálico
-                      },
-                    width: 200,  // Especifica a largura em pixels
-                    height: 200, // Especifica a altura em pixels
-                    colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
-                    pieHole: 0.4,
-                    pieSliceTextStyle: {
-                        color: 'white',
-                      },
-                    pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
-                    // legend:{ position: 'top', textStyle: { fontSize: 8 } },
-                    legend: 'none',
-                    pieSliceText: 'value',
-                    pieSliceBorderColor: 'black',
-                    backgroundColor: {
-                        fill: 'none',
-                        stroke: 'black ', // Cor da borda
-                        strokeWidth: 0.1,   // Largura da borda
-                    },
-                    position: 'bottom'            
-                };  
+                
                 let chart = new google.visualization.PieChart(content_house.getElementsByClassName('piechart')[0]);
+                options.title = 'Filtro Geral'
                 chart.draw(data, options);
             })
             .catch(error => {
@@ -464,31 +496,9 @@ function indexData(){
                     ['Rosa', Number(data.pink)]
                   ]);
 
-                let options = {
-                    title: 'Filtro da Tabela',
-                    titleTextStyle: {
-                        fontSize: 13, // Ajuste o tamanho do título conforme necessário
-                        bold: true,   // Deixa o título em negrito
-                        color: 'white', // Cor do título
-                        italic: false, // Não deixa o título em itálico
-                      },
-                    width: 200,  // Especifica a largura em pixels
-                    height: 200, // Especifica a altura em pixels
-                    colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
-                    pieHole: 0.4,
-                    pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
-                    legend:{ position: 'top', textStyle: { fontSize: 8 } }, 
-                    legend:'none', 
-                    pieSliceText: 'value',
-                    pieSliceBorderColor: 'black',
-                    backgroundColor: {
-                        fill: 'none',
-                        stroke: 'black ', // Cor da borda
-                        strokeWidth: 0.1,   // Largura da borda
-                    },
-                    position: 'bottom'            
-                };  
+               
                 let chart = new google.visualization.PieChart(content_house.getElementsByClassName('piechart')[1]);
+                options.title = 'Filtro Tabela'
                 chart.draw(data, options);
             })
             .catch(error => {

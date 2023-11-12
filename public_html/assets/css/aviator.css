@@ -320,6 +320,9 @@ th, td{
     border-radius: 100px;
 }
 
+
+
+
 @media screen and (max-width:730px){
     .table-dimension-medium{
         width: 330px;
@@ -371,4 +374,7 @@ th, td{
         padding: 5px;
 
     }
+
 }
+
+    /* Grafico */
