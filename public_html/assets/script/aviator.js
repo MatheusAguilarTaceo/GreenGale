@@ -1,13 +1,21 @@
 (function googleGraphic(){
-    let url = document.createElement('script')
+    let script = document.createElement('script')
 
-    url.type = 'text/javascript'
-    url.src = 'https://www.gstatic.com/charts/loader.js'
-    url.onload = () =>{
+    script.type = 'text/javascript'
+    script.src = 'https://www.gstatic.com/charts/loader.js'
+    script.onload = () =>{
         google.charts.load('current', {'packages':['corechart']});
+        google.setOnLoadCallback(() =>{
+            let aviator_statitistics = indexData()
+            let table = aviator_statitistics.initializeData(document.querySelector('#content-house-1'))
+            table.tableFilter()
+            table.graphicFilterAll()
+            table.graphicFilterBy()
+            table.candleRareFilter()
+        })
         
     }
-    document.body.appendChild(url);
+    document.body.appendChild(script);
 })()
 
 
@@ -396,7 +404,7 @@ function indexData(){
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Grafico aqui  = ', data)
+                console.log("GraphicAll = ", data)
                 data = google.visualization.arrayToDataTable([
                     ['Candles', 'Frequencia'],
                     ['Azul', Number(data.blue)],
@@ -435,7 +443,7 @@ function indexData(){
                 chart.draw(data, options);
             })
             .catch(error => {
-                console.log('Erro na requisição: ' + error.status);
+                console.log('Erro na requisição: ' + error);
             })
         }
 
@@ -448,6 +456,7 @@ function indexData(){
             })
             .then(response => response.json())
             .then(data => {
+                console.log("GraphicBy = ", data)
                 data = google.visualization.arrayToDataTable([
                     ['Candles', 'Frequencia'],
                     ['Azul', Number(data.blue)],
@@ -612,12 +621,6 @@ function indexData(){
 
 
 
-let aviator_statitistics = indexData()
-    let table = aviator_statitistics.initializeData(document.querySelector('#content-house-1'))
-    table.tableFilter()
-    table.graphicFilterAll()
-    
-    table.graphicFilterBy()
-    table.candleRareFilter()
+
 
 

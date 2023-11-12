@@ -212,15 +212,16 @@
 // var_dump($json);
     
 ?>
-AQUI O REGISTER <br />
-<font size='1'><table class='xdebug-error xe-uncaught-exception' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Fatal error: Uncaught Error: Call to a member function prepare() on array in C:\Users\theus\Documents\Projetos_PHP\greengale\GreenGale\app\database\insert.php on line <i>10</i></th></tr>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Error: Call to a member function prepare() on array in C:\Users\theus\Documents\Projetos_PHP\greengale\GreenGale\app\database\insert.php on line <i>10</i></th></tr>
-<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
-<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
-<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0003</td><td bgcolor='#eeeeec' align='right'>360560</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\Users\theus\Documents\Projetos_PHP\greengale\GreenGale\public_html\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>0</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0178</td><td bgcolor='#eeeeec' align='right'>389944</td><td bgcolor='#eeeeec'>router(  )</td><td title='C:\Users\theus\Documents\Projetos_PHP\greengale\GreenGale\public_html\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>7</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0181</td><td bgcolor='#eeeeec' align='right'>390320</td><td bgcolor='#eeeeec'>controller( <span>$mathchedUri = </span><span>[&#39;/register&#39; =&gt; &#39;Register@create&#39;]</span> )</td><td title='C:\Users\theus\Documents\Projetos_PHP\greengale\GreenGale\app\router\router.php' bgcolor='#eeeeec'>...\router.php<b>:</b>81</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0182</td><td bgcolor='#eeeeec' align='right'>390488</td><td bgcolor='#eeeeec'>app\controllers\Register->create(  )</td><td title='C:\Users\theus\Documents\Projetos_PHP\greengale\GreenGale\app\core\controller.php' bgcolor='#eeeeec'>...\controller.php<b>:</b>14</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>0.1686</td><td bgcolor='#eeeeec' align='right'>391600</td><td bgcolor='#eeeeec'>insert( <span>$dbName = </span><span>&#39;app_gg_user&#39;</span>, <span>$dbUsername = </span><span>&#39;gg_users&#39;</span>, <span>$dbPassword = </span><span>&#39;users_21152926&#39;</span>, <span>$table = </span><span>&#39;registered_users&#39;</span>, <span>$elements = </span><span>[&#39;name&#39; =&gt; &#39;Matheus Aguilar Taceo&#39;, &#39;email&#39; =&gt; &#39;theusaguilar2@gmail.com&#39;, &#39;password&#39; =&gt; &#39;$2y$10$qcPwYPg2neJlMD3Iwkh5ue5pZEyt9sR3Rr5ako/ByUz4ToqlabeWu&#39;, &#39;token&#39; =&gt; &#39;fe41212859a9799db2320c5f2e3f91836e32e2d61f17013d47f72aa02c56&#39;, &#39;email_confirmation_id&#39; =&gt; 1]</span> )</td><td title='C:\Users\theus\Documents\Projetos_PHP\greengale\GreenGale\app\controllers\Register.php' bgcolor='#eeeeec'>...\Register.php<b>:</b>42</td></tr>
-</table></font>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desenho da Letra G</title>
+</head>
+<body>
+  <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 10 H30 V30 H20 V20 H10 Z" fill="black" />
+  </svg>
+</body>
+</html>

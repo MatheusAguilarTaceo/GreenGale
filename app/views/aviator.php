@@ -23,9 +23,6 @@
                    <p>Tendo estudado a tarefa de forma abrangente, os designers criaram em 2019 um produto exclusivo chamado Aviator.</p>
                 </div>
             </div>
-            <!-- <div class = "content-image">
-               <img src=<?php echo IMGS."png/aviator-amostra.png"?> alt="aviator-logo">
-            </div> -->
     </section>
     <div class = 'data-controls'>
         <button class="new-table" id="btn-create">Inserir Dados</button>
