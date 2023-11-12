@@ -116,6 +116,7 @@
     padding: 10px;;
     display: inline-block;  
     text-align: center;
+    width: fit-content;
     
 }
 
@@ -212,7 +213,8 @@ th, td{
     background-color: var(--fourth);
     color:rgb(255, 255, 255);
     /* border: solid 2px var(--main-color); */
-    max-width: 210px;
+    max-width: 50px;
+    min-width: 45px;
 }
 
 .table-button-small{
@@ -318,3 +320,55 @@ th, td{
     border-radius: 100px;
 }
 
+@media screen and (max-width:730px){
+    .table-dimension-medium{
+        width: 330px;
+        height: 400px;
+    }
+
+    .table-dimension-small{
+        width: 330px;
+        height: 400px;
+    }
+
+    .filters-houses-medium{
+        width: 159px;
+        height: 29px;   
+    }
+
+    .filters-houses-small{
+        width: 159px;
+        height: 29px;   
+    }
+
+    .input-filters-medium{
+        text-align: center;
+        width: 151px;
+        height: 25px;
+        border: 2px solid black;
+        margin-bottom: 2px;
+    }
+    
+    .input-filters-small{
+        text-align: center;
+        width: 151px;
+        height: 25px;
+        border: 2px solid black;
+        margin-bottom: 2px;
+    }
+    
+    .table-button-medium{
+        max-width: 40px;
+        min-width: 35px;
+        font-size: 16px;
+        padding: 5px;
+    }
+    
+    .table-button-small{
+        max-width: 40px;
+        min-width: 35px;
+        font-size: 16px;
+        padding: 5px;
+
+    }
+}
