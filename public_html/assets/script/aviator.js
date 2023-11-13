@@ -5,15 +5,7 @@
     script.src = 'https://www.gstatic.com/charts/loader.js'
     script.onload = () =>{
         google.charts.load('current', {'packages':['corechart']});
-        google.setOnLoadCallback(() =>{
-            let aviator_statitistics = indexData()
-            let table = aviator_statitistics.initializeData(document.querySelector('#content-house-1'))
-            table.tableFilter()
-            table.graphicFilterAll()
-            table.graphicFilterBy()
-            table.candleRareFilter()
-        })
-        
+        google.setOnLoadCallback(indexData)
     }
     document.body.appendChild(script);
 })()
@@ -41,7 +33,66 @@ function indexData(){
         list_houses = data.list_houses
         console.log("LIST_HOUSES = ", data.list_houses)
 
-    })
+    });
+
+    (function firstTable(){
+        let content_house  = initializeData(document.querySelector('#content-house-1'))
+        if(window.innerWidth <= 600){
+            options = {
+            title: 'TITULO AQUI',
+            titleTextStyle: {
+                fontSize: 20, // Ajuste o tamanho do título conforme necessário
+                bold: true,   // Deixa o título em negrito
+                color: 'white', // Cor do título
+                italic: false, // Não deixa o título em itálico
+              },
+            width: 340,  // Especifica a largura em pixels
+            height: 340, // Especifica a altura em pixels
+            colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
+            pieHole: 0.4,
+            pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 15},
+            legend:{ position: 'top', textStyle: { fontSize: 10 } },
+            // legend: 'none',
+            pieSliceText: 'value',
+            pieSliceBorderColor: 'black',
+            backgroundColor: {
+                fill: 'none',
+                stroke: 'black ', // Cor da borda
+                strokeWidth: 0.1,   // Largura da borda
+            },
+            position: 'bottom'            
+            }
+        }else{   
+            options = {
+                title: 'TITULO AQUI',
+                titleTextStyle: {
+                    fontSize: 20, // Ajuste o tamanho do título conforme necessário
+                    bold: true,   // Deixa o título em negrito
+                    color: 'white', // Cor do título
+                    italic: false, // Não deixa o título em itálico
+                    },
+                width: 200,  // Especifica a largura em pixels
+                height: 200, // Especifica a altura em pixels
+                colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
+                pieHole: 0.4,
+                pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
+                legend:{ position: 'top', textStyle: { fontSize: 8 } },
+                // legend: 'none',
+                pieSliceText: 'value',
+                pieSliceBorderColor: 'black',
+                backgroundColor: {
+                    fill: 'none',
+                    stroke: 'black ', // Cor da borda
+                    strokeWidth: 0.1,   // Largura da borda
+                },
+                position: 'bottom'            
+                }
+        }
+            content_house.tableFilter()
+            content_house.graphicFilterAll()
+            content_house.graphicFilterBy()
+            content_house.candleRareFilter()
+    })();
     
     function modifyClass(id, size, replace_size){  
         let content_house = document.getElementById(`content-house-${id}`)
@@ -57,19 +108,23 @@ function indexData(){
             let content_house =  document.createElement('div')
             content_house.className = 'content-house'
             content_house.id = `content-house-${number_of_houses}`
-           
-            if(number_of_houses % 2 == 0){
-                modifyClass(number_of_houses-1, size, 'small' )
-                size = 'small'
+            if(document.innerWidth > 730){
+                if(number_of_houses % 2 == 0){
+                    modifyClass(number_of_houses-1, size, 'small' )
+                    size = 'small'
+                    let previous_content_house = document.getElementById(`content-house-${number_of_houses-1}`)
+                    previous_content_house.insertAdjacentElement('afterend', content_house)
+                }else{
+                    size = 'medium'
+                    let content_block = document.createElement('div')
+                    content_block.className = 'content-block'
+                    let aviator_statistics  = document.querySelector('.aviator-statistics')
+                    aviator_statistics.appendChild(content_block)
+                    content_block.appendChild(content_house)
+                }
+            }else{
                 let previous_content_house = document.getElementById(`content-house-${number_of_houses-1}`)
                 previous_content_house.insertAdjacentElement('afterend', content_house)
-            }else{
-                size = 'medium'
-                let content_block = document.createElement('div')
-                content_block.className = 'content-block'
-                let aviator_statistics  = document.querySelector('.aviator-statistics')
-                aviator_statistics.appendChild(content_block)
-                content_block.appendChild(content_house)
             }
             return content_house
         }
@@ -243,7 +298,6 @@ function indexData(){
 
             let piechart_1 = document.createElement('div')
             piechart_1.className = 'piechart'
-            // piechart_1.style.marginBottom = '80px'
 
             content_graphic.append(piechart_1)
             let piechart_2 = document.createElement('div')
@@ -252,7 +306,7 @@ function indexData(){
             
             console.log("GRAFICO AQUI")
             console.log(window.innerWidth)
-            if(window.innerWidth <= 600){
+            if(window.innerWidth <= 730){
                 options = {
                 title: 'TITULO AQUI',
                 titleTextStyle: {
@@ -266,8 +320,8 @@ function indexData(){
                 colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
                 pieHole: 0.4,
                 pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 15},
-                // legend:{ position: 'top', textStyle: { fontSize: 8 } },
-                legend: 'none',
+                legend:{ position: 'top', textStyle: { fontSize: 10 } },
+                // legend: 'none',
                 pieSliceText: 'value',
                 pieSliceBorderColor: 'black',
                 backgroundColor: {
@@ -294,7 +348,7 @@ function indexData(){
                         color: 'white',
                       },
                     pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
-                    // legend:{ position: 'top', textStyle: { fontSize: 8 } },
+                    legend:{ position: 'top', textStyle: { fontSize: 8 } },
                     legend: 'none',
                     pieSliceText: 'value',
                     pieSliceBorderColor: 'black',

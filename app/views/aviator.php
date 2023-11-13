@@ -68,7 +68,7 @@
                     </ul>
                 </section>
                 <section class ="content-graphic">
-                    <div class ="piechart" style="margin-bottom:80px"></div>
+                    <div class ="piechart"></div>
                     <div class ="piechart"></div>
                 </section>
                 <section class = "content-candles-rare">

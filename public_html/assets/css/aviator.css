@@ -251,6 +251,7 @@ th, td{
 
 .content-graphic{
     display: inline-block;
+    min-height: 450px;
 }
 
 .piechart{
@@ -270,7 +271,6 @@ th, td{
     margin: 10px 25px;      
     border-radius: 10px;
     text-align: center;
-    height: fit-content;
 }
 
 .candles-rare-small{
@@ -282,7 +282,6 @@ th, td{
     margin: 10px 0px;      
     border-radius: 10px;
     text-align: center;
-    height: fit-content;
 }
 
 .candle-range-medium{
@@ -324,12 +323,16 @@ th, td{
 
 
 @media screen and (max-width:730px){
-    .table-dimension-medium{
-        width: 330px;
-        height: 400px;
+    .content-block{
+        background-color: transparent;
     }
-
-    .table-dimension-small{
+    .content-house{
+        background-color: var(--second);
+        margin: 20px 0px;
+        padding: 20px 0px;
+        border-radius: 20px;
+    }
+    .table-dimension-medium{
         width: 330px;
         height: 400px;
     }
@@ -339,11 +342,7 @@ th, td{
         height: 29px;   
     }
 
-    .filters-houses-small{
-        width: 159px;
-        height: 29px;   
-    }
-
+    
     .input-filters-medium{
         text-align: center;
         width: 151px;
@@ -352,14 +351,7 @@ th, td{
         margin-bottom: 2px;
     }
     
-    .input-filters-small{
-        text-align: center;
-        width: 151px;
-        height: 25px;
-        border: 2px solid black;
-        margin-bottom: 2px;
-    }
-    
+   
     .table-button-medium{
         max-width: 40px;
         min-width: 35px;
@@ -367,14 +359,13 @@ th, td{
         padding: 5px;
     }
     
-    .table-button-small{
-        max-width: 40px;
-        min-width: 35px;
-        font-size: 16px;
-        padding: 5px;
-
+    
+    .candles-rare-medium {
+        margin: 10px 10px;
     }
+   
 
 }
 
-    /* Grafico */
+
+ 
