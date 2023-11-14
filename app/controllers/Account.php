@@ -34,6 +34,14 @@ class Account{
             $set_field = [$field => $value];
             $where_field =  ['id' => $_SESSION[LOGGED]->id];
             $result = update($db_name, $db_username, $db_password, $table, $set_field, $where_field);
+            if(is_array($result)){
+                $status = false;
+                $msg = 'Erro, algo inesperado aconteceu';
+                $time = 4000;
+                echo json_encode(['status' => $status, 'msg' => $msg, 'time' => $time]);
+                return;
+            }
+
             if($result){
                 $_SESSION[LOGGED]->$field = $value;
                 $status = true;
@@ -42,11 +50,7 @@ class Account{
                 echo json_encode(['status' => $status, 'msg' => $msg, 'time' => $time]);
                 return;
             }
-            $status = false;
-            $msg = $result;
-            $time = 4000;
-            echo json_encode(['status' => $status, 'msg' => $msg, 'time' => $time]);
-            return;
+           
 
         }
 

@@ -53,7 +53,6 @@ padding-top: 15px;
     width: 90px;
     height: 90px;
     margin: 0 auto;
-    margin-left: 115px;
     padding: 10px;
     background-color: var(--bg-color);
     border: 5px solid #999494; /* Adicione uma borda azul, opcional */
@@ -72,6 +71,18 @@ padding-top: 15px;
     padding-bottom: 6px;
     padding-top: 15px;
     display: block;
+}
+
+.input-nome{
+    border: 1px solid white;
+    border-radius: 4px;
+    background-color: white;
+    width: 300px;
+    color: black;
+    text-indent: 10px;
+    padding-bottom: 6px;
+    padding-top: 15px;
+    display: none;
 }
 
 .basico{          /*MESMO PROCESSO ANTEIOR*/
@@ -95,6 +106,17 @@ padding-top: 15px;
    margin-left: 320px;
    position: absolute;
    cursor: pointer;
+}
+
+.desfazer{
+    display: none;
+}
+.desfazer img {
+    width: 30px;
+    margin-top: 9px;
+    margin-left: 320px;
+    position: absolute;
+    cursor: pointer;  
 }
 
 .plano img {
@@ -138,14 +160,21 @@ label{
 
     .box-plan div{
         width: 325px;
-    };
+    }
 
     .nome{
-        width: 265px;
+        width: 270px;
+    }
+
+    .input-nome{
+        width: 270px;
     }
 
     .editar img{
-        margin-left: 265px;
+        margin-left: 290px;
+    }
+    .desfazer img{
+        margin-left: 290px;
     }
 
 }

@@ -8,13 +8,19 @@
             </div>
             <p><strong>Nome:</strong></p>
             <div class="editar"><img src="<?php echo IMGS?>png/editar.png"></div>
+            <div class="desfazer"><img src="<?php echo IMGS?>png/botao-fechar.png"></div>
             <p class="nome" id="name"><?php echo( $_SESSION[LOGGED]->name)?></p> 
+            <input class="input-nome"></input> 
             <p><strong>Email:</strong></p>
             <div class="editar"><img src="<?php echo IMGS?>png/editar.png"></div>
+            <div class="desfazer"><img src="<?php echo IMGS?>png/botao-fechar.png"></div>
             <p class="nome" id="email"><?php echo( $_SESSION[LOGGED]->email)?></p>
+            <input class="input-nome"></input>  
             <p><strong>Senha:</strong></p>
             <div class="editar"><img src="<?php echo IMGS?>png/editar.png"></div>
+            <div class="desfazer"><img src="<?php echo IMGS?>png/botao-fechar.png"></div>
             <p class="nome" id="password">*****************</p>
+            <input class="input-nome"></input> 
         </div>
 
     <!-- <div class="inf">
