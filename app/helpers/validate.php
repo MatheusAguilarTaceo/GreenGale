@@ -56,7 +56,7 @@ function unique($field, $table){
     $operator = ['='];
     $result = findBy($dbName, $dbUsername, $dbPassword, $table, $where_fields, $operator);  
     if(is_array($result)){
-        setFlash($field, 'Erro ao cadastrar usuário!');
+        setFlash($field, 'Erro ao validar usuário!');
         return false;
     }
     if(isset($result->email)){

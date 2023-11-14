@@ -139,7 +139,7 @@ class Aviator{
             $operator = ['=', '>=', '>='];
             $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
             
-            if(!$blue_candles || !$purple_candles || !$pink_candles){
+            if(is_array($blue_candles) || is_array($purple_candles) || is_array($pink_candles)){
                 echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
                 return;
             }
@@ -155,7 +155,7 @@ class Aviator{
             $operator = ['=', '>=', '>='];      
             $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator,  $select_fields);
             
-            if($purple_candles || !$pink_candles){
+            if(is_array($purple_candles) || is_array($pink_candles)){
                 echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
                 return;
             }
@@ -166,7 +166,7 @@ class Aviator{
             $where_fields = ['date' => [$date], 'candle' => [$candle], 'hour' => [$hour]];
             $operator = ['=', '>=', '>='];   
             $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
-            if(!$pink_candles){
+            if(is_array($pink_candles)){
                 echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
                 return;
             }

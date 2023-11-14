@@ -15,17 +15,12 @@
             <li class="nav-item"><a  class="nav-link" href="#"><img src="<?php echo IMGS?>png/grafico-button.png" alt="LOGO"> Estatisticas</a></li>
             <li class="nav-item"><a  class="nav-link" href="#"><img src="<?php echo IMGS?>png/sobre.png" alt="LOGO"> Sobre</a></li>
         </ul>
-
-        <div class="nav-session">
-            <?php require showNavForMenu()?>
-        </div>        
+        <?php require showNavForMenu()?>
     </div>
 </nav>
 
-<div class="mobile-menu">
-    <div class="nav-session">
-        <?php require showNavForMenu()?>
-    </div>
+<div class="mobile-menu">    
+    <?php require showNavForMenu()?>
     <div class= "mobile-nav-list">
         <ul>
             <li class="nav-item"><a  class="nav-link" href="."><img src="<?php echo IMGS?>png/casa.png" alt="LOGO"> Home</a></li>

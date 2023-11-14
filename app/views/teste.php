@@ -212,16 +212,20 @@
 // var_dump($json);
     
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Desenho da Letra G</title>
-</head>
-<body>
-  <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 10 H30 V30 H20 V20 H10 Z" fill="black" />
-  </svg>
-</body>
-</html>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>C:\Users\theus\Documents\Projetos_PHP\greengale\GreenGale\app\database\select.php:39:</small>
+<b>object</b>(<i>mysqli_result</i>)[<i>46</i>]
+  <i>public</i> 'current_field' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>0</font>
+  <i>public</i> 'field_count' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
+  <i>public</i> 'lengths' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+  <i>public</i> 'num_rows' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
+  <i>public</i> 'type' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>0</font>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>C:\Users\theus\Documents\Projetos_PHP\greengale\GreenGale\app\database\select.php:39:</small>
+<b>object</b>(<i>mysqli_result</i>)[<i>48</i>]
+  <i>public</i> 'current_field' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>0</font>
+  <i>public</i> 'field_count' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
+  <i>public</i> 'lengths' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+  <i>public</i> 'num_rows' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
+  <i>public</i> 'type' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>0</font>
+</pre>{"blue":0,"purple":0,"pink":694}

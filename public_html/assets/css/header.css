@@ -149,6 +149,7 @@ header{
 }
 .button-login{
     background-color: var(--third);
+    /* margin: auto; */
 }
 .button-login:hover{
     background-color: var(--fourth);
@@ -230,7 +231,7 @@ header{
     .mobile-menu .nav-session{
         display: flex;
         justify-content: center;
-        flex-direction: column;
+        flex-direction: row;
     }
 
     

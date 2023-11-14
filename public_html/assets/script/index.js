@@ -5,6 +5,9 @@
         input.forEach((value, index) =>{
             function toggleDropdown() {
                 let dropdownContent = document.querySelectorAll(list_tags[index])[index];
+                console.log(dropdownContent)
+                // let Content = document.querySelectorAll('.dropdown-content-mobile')[0];
+                // console.log(Content)
                 dropdownContent.style.display = (dropdownContent.style.display === 'block') ? 'none' : 'block';
             }
              value.addEventListener("click", toggleDropdown)

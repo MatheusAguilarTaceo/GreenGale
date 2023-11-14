@@ -16,6 +16,11 @@
             <div class="inputBox">
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" >
+            </div>
+            <br><br>    
+            <div class="inputBox">
+                <label for="comfirm-password">Confirmar Senha</label>
+                <input type="password" id="comfirm-password" name="comfirm-password" >
             </div>    
             <br>
             <input type="submit" name ="submit" id="submit" value="Cadastrar">

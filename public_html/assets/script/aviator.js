@@ -549,7 +549,7 @@ function indexData(){
                 chart.draw(data, options);
             })
             .catch(error => {
-                throw new Error('Erro aviator-statistics - graphicAll => ' + error);
+                throw new Error('Erro aviator-statistics - graphicBy => ' + error);
                 // console.log('Erro aviator-statistics - graphicBy =>', error);
 
             })

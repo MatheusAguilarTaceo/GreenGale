@@ -37,10 +37,11 @@ function findBy($db_name, $db_username, $db_password, $table, $where_fields_valu
             $result = $prepared_stmt->get_result(); 
             if($result->num_rows == 1){
                 return $result->fetch_object();
-            }else{
+            }else if($result->num_rows > 1){
                 $result = $result->fetch_all(MYSQLI_ASSOC);
                 return json_decode(json_encode($result));
             }
+            return  $result->fetch_object();
         }
         return ['errno' => $connect->errno, 'error'=>$connect->error];
     }catch(mysqli_sql_exception $e){ 

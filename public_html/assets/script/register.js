@@ -2,6 +2,10 @@
     document.getElementById('form-register').onsubmit = function(event) {
         event.preventDefault()
         let form = new FormData(this)
+        if(form.get('password') != form.get('comfirm-password')){
+            showMessage('senhas diferentes', 4000)
+            return
+        }
         fetch('register', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
