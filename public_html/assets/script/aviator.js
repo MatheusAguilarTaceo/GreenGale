@@ -25,14 +25,10 @@ function indexData(){
     })
     .then(response => response.json()) 
     .then(data => {
-        console.log('AQUI O AVISO = ', data)
-        console.log("DATA_LIMIT_FECTH = ", data.limit)
         limit = data.limit
         msg = data.msg
         time = data.time
         list_houses = data.list_houses
-        console.log("LIST_HOUSES = ", data.list_houses)
-
     });
 
     (function firstTable(){
@@ -304,8 +300,6 @@ function indexData(){
             piechart_2.className = 'piechart'
             content_graphic.append(piechart_2)
             
-            console.log("GRAFICO AQUI")
-            console.log(window.innerWidth)
             if(window.innerWidth <= 730){
                 options = {
                 title: 'TITULO AQUI',
@@ -464,8 +458,7 @@ function indexData(){
         let page_quantity = 0;  
         
 
-        function tableFilter(){
-          
+        function tableFilter(){      
             fetch("aviator/table",{
                 method:"POST",
                 headers: {"Content-Type": "application/json"},
@@ -500,7 +493,8 @@ function indexData(){
                 }); 
             })
             .catch(error => {
-                console.log('Erro aviator-statistics => ', error.status )
+                throw new Error('Erro aviator-statistics - table => ' + error);
+                // console.log('Erro aviator-statistics - table => ', error)
             }); 
         }
 
@@ -515,7 +509,6 @@ function indexData(){
             })
             .then(response => response.json())
             .then(data => {
-                console.log("GraphicAll = ", data)
                 data = google.visualization.arrayToDataTable([
                     ['Candles', 'Frequencia'],
                     ['Azul', Number(data.blue)],
@@ -529,7 +522,8 @@ function indexData(){
                 chart.draw(data, options);
             })
             .catch(error => {
-                console.log('Erro na requisição: ' + error);
+                throw new Error('Erro aviator-statistics - graphicAll => ' + error);
+                // console.log('Erro aviator-statistics - graphicAll =>', error);
             })
         }
 
@@ -542,7 +536,6 @@ function indexData(){
             })
             .then(response => response.json())
             .then(data => {
-                console.log("GraphicBy = ", data)
                 data = google.visualization.arrayToDataTable([
                     ['Candles', 'Frequencia'],
                     ['Azul', Number(data.blue)],
@@ -556,7 +549,9 @@ function indexData(){
                 chart.draw(data, options);
             })
             .catch(error => {
-                throw new Error('Erro na requisição: ' + error.status);
+                throw new Error('Erro aviator-statistics - graphicAll => ' + error);
+                // console.log('Erro aviator-statistics - graphicBy =>', error);
+
             })
         }
 
@@ -581,7 +576,9 @@ function indexData(){
                 })
             })
             .catch(error => {
-                throw new Error('Erro na requisição: ' + error.status)
+                throw new Error('Erro aviator-statistics - candleRare => ' + error)
+                // console.log('Erro aviator-statistics - candleRare =>', error);
+
             })
         }
 
@@ -682,8 +679,6 @@ function indexData(){
 
     return {createStructure, initializeData}
 }
-
-
 
 
 

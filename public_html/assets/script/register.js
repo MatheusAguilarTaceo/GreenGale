@@ -10,7 +10,6 @@
         .then(response => response.json())
         .then(data => {
             if(data.status){
-                console.log('AQUI O REGISTER', data)
                 showMessage(data.msg, data.time)
                 setTimeout(() => {
                     window.location.replace(data.redirect)
@@ -18,10 +17,10 @@
                 return
             }
             showMessage(data.msg, data.time)
-            console.log('AQUI O REGISTER', data)
         })
         .catch(error => {
-            console.log('Erro cadastro => ', error.status)
+            throw new Error('Erro cadastro' + error)
+            // console.log('Erro cadastro => ', error.status)
         })
     }
 })()

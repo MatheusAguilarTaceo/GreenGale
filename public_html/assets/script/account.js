@@ -1,4 +1,4 @@
-function editData(){
+(function editData(){
     let list_button = document.querySelectorAll('.editar')
     let list_data = document.querySelectorAll('.nome')
     list_button.forEach((button, index) =>{
@@ -8,18 +8,15 @@ function editData(){
                 
             let value_user = list_data.item(index)
             value_user.style.display = 'none'
-            console.log('ID  = ', value_user.id)
             let input = document.createElement('input');
             input.classList.add('nome') 
             input.type = 'text'
             input.placeholder = 'Digite seu nome'
-            //max de caracteres 30
+            //max de caracteres 35
             input.id  = 'input-'+index
-            console.log(input.id)
             value_user.insertAdjacentElement('afterend', input)
             input.addEventListener('keydown', (event) =>{
                 if (event.key === 'Enter'){
-                    console.log("ENTER")
                     if(input.value.length > 35){
                         let msg = 'Erro! Limte máximo caracteres atingidos!'
                         let time = 5000
@@ -48,18 +45,10 @@ function editData(){
                         return
                     })
                     .catch(error =>{
-                        console.log('erro  ', error)
+                        throw new Error('erro na requição => ' + error)
                     })
                 }
             })
         })
     })
-    // fetch('account',{
-    //     method: 'POST',
-    //     headers: {'Content-Type': 'application'},
-    //     body: {''}
-    // })
-   
-
-}
-editData()
+})();

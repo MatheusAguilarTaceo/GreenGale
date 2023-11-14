@@ -16,9 +16,8 @@
             showMessage(data.msg, data.time)
         })
         .catch(error => {
-            console.log('Erro login => ', error.status)
+            throw new Error('Erro login => ' + error)
+            // console.log('Erro login => ', error.status)
         })
     }
 })()
-
-console.log()
