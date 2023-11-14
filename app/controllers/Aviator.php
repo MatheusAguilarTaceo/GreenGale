@@ -231,5 +231,6 @@ class Aviator{
         }
         $json = json_encode($data);
         echo $json;
+        return;
     }
 }

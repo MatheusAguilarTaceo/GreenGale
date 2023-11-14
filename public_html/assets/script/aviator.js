@@ -104,7 +104,7 @@ function indexData(){
             let content_house =  document.createElement('div')
             content_house.className = 'content-house'
             content_house.id = `content-house-${number_of_houses}`
-            if(document.innerWidth > 730){
+            if(window.innerWidth > 730){
                 if(number_of_houses % 2 == 0){
                     modifyClass(number_of_houses-1, size, 'small' )
                     size = 'small'
