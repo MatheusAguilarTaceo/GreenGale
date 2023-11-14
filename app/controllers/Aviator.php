@@ -56,24 +56,24 @@ class Aviator{
         $limit = 12;
         $offset = $limit * ($page - 1);
         
-        $query = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);   
-        if(empty($query)){
+        $result = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);   
+        if(is_array($result) || $result == 0){
             $table = 'vazio';
             $where_fields['candle'] = '0';
             $where_fields['hour'] = '00:00:00';
             $where_fields['date'] = '0000-00-00';
-            $query = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);   
+            $result = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);   
         }
         $select_fields = 'count(*) as count';
         $offset = 0;
         $quantity_of_candles = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);
 
-        $array_data = ['table' => $query, 'quantity_of_candles' => $quantity_of_candles[0]['count']];
+        $array_data = ['table' => $result, 'quantity_of_candles' => $quantity_of_candles->count];
         $json_data = json_encode($array_data);
         echo $json_data;
     }
 
-    public function graphicFilterAll(){
+        public function graphicFilterAll(){
         $json = file_get_contents('php://input');
         $data = json_decode($json, true);
         $db_name = $_ENV['DB_NAME_AVIATOR'];
@@ -99,7 +99,7 @@ class Aviator{
         $where_fields = ['date' => [$date], 'candle' => ['10']];
         $operator = ['=', '>='];
         $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_field);
-        if(!$blue_candles || !$purple_candles || !$pink_candles){
+        if(is_array($blue_candles) || is_array($purple_candles) || is_array($pink_candles)){
             echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
             return;
         }
@@ -192,6 +192,14 @@ class Aviator{
         $where_fields = ['date' => [$date]];
         $operator = ['='];
         $result = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
+        $data = [];
+        if(is_array($result) || $result == 0){
+            for( $i = 0; $i < 6; $i++){
+                $data[] = ['range' => 0, 'quantity' => 0, 'hour' => '00:00:00', 'candle' => '00.00'];
+            }
+            echo json_encode($data);
+            return;
+        }
         $result = array_reverse($result);
         $candle_800 = true;
         $candle_400 = true;
@@ -200,7 +208,6 @@ class Aviator{
         $candle_50 = true;
         $candle_10 = true;
         $counter = 0;
-        $data = [];
         for($i = 0; $i < count($result); $i++){
             if($result[$i]->candle >= 10 && $candle_10){
                 $candle_10 = false;                
