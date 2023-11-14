@@ -462,8 +462,7 @@ function indexData(){
             fetch("aviator/table",{
                 method:"POST",
                 headers: {"Content-Type": "application/json"},
-                // body: JSON.stringify({table: table, page: page, fields: {candle: candle.value, hour: hour.value, date: date.value}}),
-                body: JSON.stringify({table: '25/09/2023/pagbet', page: page, fields: {candle: candle.value, hour: hour.value, date: '2023-09-25'}}),
+                body: JSON.stringify({table: table, page: page, fields: {candle: candle.value, hour: hour.value, date: date.value}}),
             })
             .then(response => response.json())
             .then(data => {
@@ -504,8 +503,7 @@ function indexData(){
                 headers: {
                     'Content-Type': 'application/json'
                 },                            
-                // body: JSON.stringify({table: table, date: date.value})
-                body: JSON.stringify({table: '25/09/2023/pagbet', date: '2023-09-25'})
+                body: JSON.stringify({table: table, date: date.value})
             })
             .then(response => response.json())
             .then(data => {
@@ -531,8 +529,7 @@ function indexData(){
             fetch('aviator/graphic-by', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                // body: JSON.stringify({table:table, date:date.value, candle:candle.value, hour:hour.value})
-                body: JSON.stringify({table: '25/09/2023/pagbet', date: '2023-09-25', candle:candle.value, hour:hour.value})
+                body: JSON.stringify({table:table, date:date.value, candle:candle.value, hour:hour.value})
             })
             .then(response => response.json())
             .then(data => {
@@ -559,8 +556,7 @@ function indexData(){
             fetch('aviator/candle-rare', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                // body: JSON.stringify({table: table, date: date.value})
-                body: JSON.stringify({table: '25/09/2023/pagbet', date: '2023-09-25'})
+                body: JSON.stringify({table: table, date: date.value})
 
             })
             .then(response => response.json())
