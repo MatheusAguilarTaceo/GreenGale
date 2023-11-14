@@ -16,7 +16,7 @@ justify-content:space-evenly;
 align-items:center;
 }
 
-.box-plan div{             /*AJUSTA O TAMANHO DAS CAIXAS*/
+.box-plan > div{             /*AJUSTA O TAMANHO DAS CAIXAS*/
     width: 390px;
     margin-bottom: 10px;
     border-radius: 20px;
@@ -25,12 +25,9 @@ align-items:center;
     
 }
 
-.inf {                  /*AJUSTA A ALTURA E COR DA CAIXA*/
-
-    
+.inf {                  /*AJUSTA A ALTURA E COR DA CAIXA*/    
     background-color: var(--bg-color);
     height: 450px;
-    
 }
 
 .box-plan div p{     /*AJUSTA O TAMANHO DO CONEUDO INTERNO DA CAIXA*/
@@ -93,11 +90,6 @@ padding-top: 15px;
 
 
 .editar img {
-
-    width: 20px;
-}
-
-.editar img {
    width: 30px;
    margin-top: 9px;
    margin-left: 320px;
@@ -134,4 +126,26 @@ padding-top: 15px;
 label{
 
     margin: 5px;
+}
+
+@media screen and (max-width: 730px){
+    .box-plan{
+        width: fit-content;
+    }
+    .img img{
+        margin: auto;
+    }
+
+    .box-plan div{
+        width: 325px;
+    };
+
+    .nome{
+        width: 265px;
+    }
+
+    .editar img{
+        margin-left: 265px;
+    }
+
 }
