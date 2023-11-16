@@ -213,19 +213,11 @@
     
 ?>
 <pre class='xdebug-var-dump' dir='ltr'>
-<small>C:\Users\theus\Documents\Projetos_PHP\greengale\GreenGale\app\database\select.php:39:</small>
+<small>C:\Users\theus\Documents\Projetos_PHP\greengale\GreenGale\app\database\select.php:73:</small>
 <b>object</b>(<i>mysqli_result</i>)[<i>46</i>]
   <i>public</i> 'current_field' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>0</font>
-  <i>public</i> 'field_count' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
+  <i>public</i> 'field_count' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>2</font>
   <i>public</i> 'lengths' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
-  <i>public</i> 'num_rows' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
+  <i>public</i> 'num_rows' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>0</font>
   <i>public</i> 'type' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>0</font>
-</pre><pre class='xdebug-var-dump' dir='ltr'>
-<small>C:\Users\theus\Documents\Projetos_PHP\greengale\GreenGale\app\database\select.php:39:</small>
-<b>object</b>(<i>mysqli_result</i>)[<i>48</i>]
-  <i>public</i> 'current_field' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>0</font>
-  <i>public</i> 'field_count' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
-  <i>public</i> 'lengths' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
-  <i>public</i> 'num_rows' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
-  <i>public</i> 'type' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>0</font>
-</pre>{"blue":0,"purple":0,"pink":694}
+</pre>

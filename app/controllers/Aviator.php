@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+use LDAP\Result;
 
 class Aviator{
     public function index(){
@@ -56,24 +57,24 @@ class Aviator{
         $limit = 12;
         $offset = $limit * ($page - 1);
         
-        $result = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);   
-        if(is_array($result) || $result == 0){
+        $data_table = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);   
+        if(!$data_table['status'] || !$data_table['result']){
             $table = 'vazio';
             $where_fields['candle'] = '0';
             $where_fields['hour'] = '00:00:00';
             $where_fields['date'] = '0000-00-00';
-            $result = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);   
+            $data_table = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);   
         }
         $select_fields = 'count(*) as count';
         $offset = 0;
         $quantity_of_candles = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);
 
-        $array_data = ['table' => $result, 'quantity_of_candles' => $quantity_of_candles->count];
+        $array_data = ['table' => $data_table['result'], 'quantity_of_candles' => $quantity_of_candles['result']->count];
         $json_data = json_encode($array_data);
         echo $json_data;
     }
 
-        public function graphicFilterAll(){
+    public function graphicFilterAll(){
         $json = file_get_contents('php://input');
         $data = json_decode($json, true);
         $db_name = $_ENV['DB_NAME_AVIATOR'];
@@ -99,11 +100,11 @@ class Aviator{
         $where_fields = ['date' => [$date], 'candle' => ['10']];
         $operator = ['=', '>='];
         $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_field);
-        if(is_array($blue_candles) || is_array($purple_candles) || is_array($pink_candles)){
+        if(!$blue_candles['status'] || !$purple_candles['status'] || !$pink_candles['status']){
             echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
             return;
         }
-        $data = ['blue' => $blue_candles->count, 'purple' => $purple_candles->count, 'pink' => $pink_candles->count];
+        $data = ['blue' => $blue_candles['result']->count, 'purple' => $purple_candles['result']->count, 'pink' => $pink_candles['result']->count];
         $json = json_encode($data);
         echo $json;
     }
@@ -139,11 +140,11 @@ class Aviator{
             $operator = ['=', '>=', '>='];
             $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
             
-            if(is_array($blue_candles) || is_array($purple_candles) || is_array($pink_candles)){
+            if(!$blue_candles['status'] || !$purple_candles['status'] || !$pink_candles['status']){
                 echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
                 return;
             }
-            $data = ['blue' => $blue_candles->count, 'purple' => $purple_candles->count, 'pink' => $pink_candles->count];
+            $data = ['blue' => $blue_candles['result']->count, 'purple' => $purple_candles['result']->count, 'pink' => $pink_candles['result']->count];
         }
         else if($candle < 10){
             // Velas Roxas
@@ -155,22 +156,22 @@ class Aviator{
             $operator = ['=', '>=', '>='];      
             $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator,  $select_fields);
             
-            if(is_array($purple_candles) || is_array($pink_candles)){
+            if(!$purple_candles['status'] || !$pink_candles['status']){
                 echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
                 return;
             }
 
-            $data = ['blue' => $blue_candles, 'purple' => $purple_candles->count, 'pink' => $pink_candles->count];
+            $data = ['blue' => $blue_candles, 'purple' => $purple_candles['result']->count, 'pink' => $pink_candles['result']->count];
         }else{
             // Velas Rosas
             $where_fields = ['date' => [$date], 'candle' => [$candle], 'hour' => [$hour]];
             $operator = ['=', '>=', '>='];   
             $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
-            if(is_array($pink_candles)){
+            if(!$pink_candles['status']){
                 echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
                 return;
             }
-            $data = ['blue' => $blue_candles, 'purple' => $purple_candles, 'pink' => $pink_candles->count]; 
+            $data = ['blue' => $blue_candles, 'purple' => $purple_candles, 'pink' => $pink_candles['result']->count]; 
         }
 
         $json = json_encode($data);
@@ -191,16 +192,16 @@ class Aviator{
         $date = $data['date'];
         $where_fields = ['date' => [$date]];
         $operator = ['='];
-        $result = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
+        $data_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
         $data = [];
-        if(is_array($result) || $result == 0){
+        if(!$data_candles['status'] || !$data_candles['result']){
             for( $i = 0; $i < 6; $i++){
                 $data[] = ['range' => 0, 'quantity' => 0, 'hour' => '00:00:00', 'candle' => '00.00'];
             }
             echo json_encode($data);
             return;
         }
-        $result = array_reverse($result);
+        $data_candles = array_reverse($data_candles['result']);
         $candle_800 = true;
         $candle_400 = true;
         $candle_200 = true;
@@ -208,30 +209,30 @@ class Aviator{
         $candle_50 = true;
         $candle_10 = true;
         $counter = 0;
-        for($i = 0; $i < count($result); $i++){
-            if($result[$i]->candle >= 10 && $candle_10){
+        for($i = 0; $i < count($data_candles); $i++){
+            if($data_candles[$i]->candle >= 10 && $candle_10){
                 $candle_10 = false;                
-                $data[0] = ['range' => 10, 'quantity' => $counter, 'hour' => $result[$i]->hour, 'candle' => $result[$i]->candle];
+                $data[0] = ['range' => 10, 'quantity' => $counter, 'hour' => $data_candles[$i]->hour, 'candle' => $data_candles[$i]->candle];
             }
-            if($result[$i]->candle >= 50 && $candle_50){
+            if($data_candles[$i]->candle >= 50 && $candle_50){
                 $candle_50 = false;
-                $data[1] = ['range' => 50, 'quantity' => $counter, 'hour' => $result[$i]->hour, 'candle' => $result[$i]->candle];
+                $data[1] = ['range' => 50, 'quantity' => $counter, 'hour' => $data_candles[$i]->hour, 'candle' => $data_candles[$i]->candle];
             }
-            if($result[$i]->candle >= 100 && $candle_100){
+            if($data_candles[$i]->candle >= 100 && $candle_100){
                 $candle_100 = false;
-                $data[2] = ['range' => 100, 'quantity' => $counter, 'hour' => $result[$i]->hour, 'candle' => $result[$i]->candle];
+                $data[2] = ['range' => 100, 'quantity' => $counter, 'hour' => $data_candles[$i]->hour, 'candle' => $data_candles[$i]->candle];
             }
-            if($result[$i]->candle >= 200 && $candle_200){
+            if($data_candles[$i]->candle >= 200 && $candle_200){
                 $candle_200 = false;
-                $data[3] = ['range' => 200, 'quantity' => $counter, 'hour' => $result[$i]->hour, 'candle' => $result[$i]->candle];
+                $data[3] = ['range' => 200, 'quantity' => $counter, 'hour' => $data_candles[$i]->hour, 'candle' => $data_candles[$i]->candle];
             }
-            if($result[$i]->candle >= 400 && $candle_400){
+            if($data_candles[$i]->candle >= 400 && $candle_400){
                 $candle_400 = false;
-                $data[4] = ['range' => 400, 'quantity' => $counter, 'hour' => $result[$i]->hour, 'candle' => $result[$i]->candle];
+                $data[4] = ['range' => 400, 'quantity' => $counter, 'hour' => $data_candles[$i]->hour, 'candle' => $data_candles[$i]->candle];
             }
-            if($result[$i]->candle >= 800 && $candle_800){
+            if($data_candles[$i]->candle >= 800 && $candle_800){
                 $candle_800 = false;
-                $data[5] = ['range' => 800, 'quantity' => $counter, 'hour' => $result[$i]->hour, 'candle' => $result[$i]->candle];
+                $data[5] = ['range' => 800, 'quantity' => $counter, 'hour' => $data_candles[$i]->hour, 'candle' => $data_candles[$i]->candle];
                 break;
             }
             $counter++;

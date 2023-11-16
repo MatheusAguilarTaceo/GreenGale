@@ -36,15 +36,15 @@ function findBy($db_name, $db_username, $db_password, $table, $where_fields_valu
             $prepared_stmt->execute();
             $result = $prepared_stmt->get_result(); 
             if($result->num_rows == 1){
-                return $result->fetch_object();
+                return ['status' => true, 'result' => $result->fetch_object()];
             }else if($result->num_rows > 1){;
-                return json_decode(json_encode($result->fetch_all(MYSQLI_ASSOC)));
+                return ['status' => true , 'result' => json_decode(json_encode($result->fetch_all(MYSQLI_ASSOC)))];
             }
-            return  $result->fetch_object();
+            return  ['status' => true, 'result' => $result->fetch_object()];
         }
-        return ['errno' => $connect->errno, 'error'=>$connect->error];
+        return ['status'=> false, 'result' => ['errno' => $connect->errno, 'error'=>$connect->error]];
     }catch(mysqli_sql_exception $e){ 
-        return  ['errno' => $e->getCode(), 'error'=>$e->getMessage()];
+        return ['status' => false, 'result' => ['errno' => $e->getCode(), 'error'=>$e->getMessage()]];
     }
 }
 
@@ -64,16 +64,17 @@ function findTableData($dbName, $dbUsername, $dbPassword, $table, $selectFields,
             $prepare->execute();
             $result = $prepare->get_result(); 
             if($result->num_rows == 1){
-                return $result->fetch_object(); 
+                return ['status' => true, 'result' => $result->fetch_object()];
             }else if($result->num_rows > 1){
-                return json_decode(json_encode($result->fetch_all(MYSQLI_ASSOC)));
+                return ['status' => true , 'result' => json_decode(json_encode($result->fetch_all(MYSQLI_ASSOC)))];
             }
-            return $result->fetch_object(); 
+            return ['status' => true, 'result' => $result->fetch_object()]; 
         }
-        return ['errno' => $connect->errno, 'error'=>$connect->error];
+
+        return ['status' => false, 'result' => ['errno' => $connect->errno, 'error'=>$connect->error]];
         
     }catch(Exception $e){
-        return ['errno' => $e->getCode(), 'error'=>$e->getMessage()];
+        return ['status' => false, 'result' => ['errno' => $e->getCode(), 'error'=>$e->getMessage()]];
     }    
 }
 
