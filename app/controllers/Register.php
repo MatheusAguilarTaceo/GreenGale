@@ -66,14 +66,19 @@ class Register{
         $operator = ['='];
         $select_fields = 'id, name, email';
         $result = findBy($db_name, $db_username, $db_password, $table, $where_field, $operator, $select_fields);
-        if(isset($result->id)){
+        if(!$result['status'] || !$result['result']){
+            return redirect('resend-email-confirmation');    
+        }
+        if(isset($result['result']->id)){
             $set_fields_values = ['token' => NULL, 'email_confirmation_id' => '2'];
-            $where_fields_values = ['id' => $result->id];
-            update($db_name, $db_username, $db_password, $table, $set_fields_values, $where_fields_values);
+            $where_fields_values = ['id' => $result['result']->id];
+            $result = update($db_name, $db_username, $db_password, $table, $set_fields_values, $where_fields_values);
+            if(is_array($result)){
+                return redirect('resend-email-confirmation'); 
+            }
             $_SESSION[LOGGED] = $result;
             return redirect('account'); 
         }
-        return redirect('resend-email-confirmation'); 
     }
 
     public function resendEmail(){

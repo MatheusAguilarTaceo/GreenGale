@@ -26,21 +26,28 @@ class Login{
             return setMessageAndRedirect('messageLogin', 'Email ou senha incorretos', 'login');
         }
 
-        $dbName = $_ENV['DB_NAME_USERS'];
-        $dbUsername = $_ENV['DB_USERNAME_USERS'];
-        $dbPassword = $_ENV['DB_PASSWORD_USERS'];
+        $db_name = $_ENV['DB_NAME_USERS'];
+        $db_username = $_ENV['DB_USERNAME_USERS'];
+        $db_password = $_ENV['DB_PASSWORD_USERS'];
         $table = TABLE_USERS;
         $where_fields = ['email' => [$email]];
         $operator = ['='];
-        $result = findBy($dbName,$dbUsername, $dbPassword, $table, $where_fields, $operator);
-        if(!$result){
+        $result = findBy($db_name,$db_username, $db_password, $table, $where_fields, $operator);
+        if(!$result['status']){
+            $status = false;
+            $msg =  'Erro ao fazer login';
+            $time = 4000;
+            echo  json_encode(['status' =>  $status, 'msg' => $msg, 'time' => $time]);
+            return;
+        }
+        if(!$result['result']){
             $status = false;
             $msg =  'Email ou senha incorretos';
             $time = 4000;
             echo  json_encode(['status' =>  $status, 'msg' => $msg, 'time' => $time]);
             return;
         }
-        if($result->email_confirmation_id == 1){ 
+        if($result['result']->email_confirmation_id == 1){ 
             $status = false;
             $msg  = 'Email não confirmado, confirme seu email e tente novamente';
             $time = 4000;
@@ -48,7 +55,7 @@ class Login{
             return;
         }
     
-        if(!password_verify($password, $result->password)){
+        if(!password_verify($password, $result['result']->password)){
             $status = false;
             $msg  = 'Email ou senha incorretos';
             $time = 4000;
@@ -58,7 +65,6 @@ class Login{
 
         $_SESSION[LOGGED] = $result;
         $status = true;
-        $redirect = $_SERVER['REQUEST_URI'];
         $redirect = $_GET['redirect'];
 
         echo json_encode(['status' => $status , 'redirect' => $redirect]);

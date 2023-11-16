@@ -44,22 +44,21 @@ function email($field){
 }
 
 function unique($field, $table){
-    #14/10/2023, organizar os nomes dos parametros
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
     $value_filtered  = filter_var($data[$field], FILTER_SANITIZE_STRING);
-    $dbName = $_ENV['DB_NAME_USERS'];
-    $dbUsername = $_ENV['DB_USERNAME_USERS'];
-    $dbPassword = $_ENV['DB_PASSWORD_USERS'];
+    $db_name = $_ENV['DB_NAME_USERS'];
+    $db_username = $_ENV['DB_USERNAME_USERS'];
+    $db_password = $_ENV['DB_PASSWORD_USERS'];
     $table = TABLE_USERS;
     $where_fields = [$field => [$value_filtered]];
     $operator = ['='];
-    $result = findBy($dbName, $dbUsername, $dbPassword, $table, $where_fields, $operator);  
-    if(is_array($result)){
+    $result = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator);  
+    if((!$result['status'])){
         setFlash($field, 'Erro ao validar usuário!');
         return false;
     }
-    if(isset($result->email)){
+    if(isset($result['result'])){
         setFlash($field, 'Email já cadastrado!');
         return false;
     }
