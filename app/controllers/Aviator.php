@@ -1,7 +1,6 @@
 <?php
 
 namespace app\controllers;
-use LDAP\Result;
 
 class Aviator{
     public function index(){
