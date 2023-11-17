@@ -202,6 +202,7 @@ class Aviator{
             echo json_encode($data);
             return;
         }
+    
         $data_candles = $data_candles['result']; 
         $candle_800 = true;
         $candle_400 = true;
