@@ -186,13 +186,14 @@ class Aviator{
         $db_username = $_ENV['DB_USERNAME_AVIATOR'];
         $db_password = $_ENV['DB_PASSWORD_AVIATOR'];
 
-        $select_fields = 'candle, hour';
         $table =  explode('/', $data['table']);
         $table = implode('_', array_reverse(array_splice($table, 1, 4)));
         $date = $data['date'];
         $where_fields = ['date' => [$date]];
         $operator = ['='];
-        $data_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
+        $select_fields = 'candle, hour';
+        $order_by = 'order by id desc';
+        $data_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields, $order_by);
         $data = [];
         if(!$data_candles['status'] || !$data_candles['result']){
             for( $i = 0; $i < 6; $i++){
@@ -201,7 +202,7 @@ class Aviator{
             echo json_encode($data);
             return;
         }
-        $data_candles = array_reverse($data_candles['result']);
+        $data_candles = $data_candles['result']; 
         $candle_800 = true;
         $candle_400 = true;
         $candle_200 = true;

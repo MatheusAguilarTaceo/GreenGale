@@ -12,7 +12,7 @@ function findAll($dbName, $dbUsername, $dbPassword,$table, $fields = '*'){
         var_dump($e->getMessage());
     }
 }
-function findBy($db_name, $db_username, $db_password, $table, $where_fields_values, $operator, $select_fields = '*',){
+function findBy($db_name, $db_username, $db_password, $table, $where_fields_values, $operator, $select_fields = '*', $order_by = null){
     $connect = connect($db_name, $db_username, $db_password,);    
     if(is_array($connect)){
         return $connect;
@@ -28,7 +28,7 @@ function findBy($db_name, $db_username, $db_password, $table, $where_fields_valu
         }
         $array_where = implode(' AND ', $array_where);
 
-        $sql = "SELECT {$select_fields} FROM {$table} WHERE {$array_where}";
+        $sql = "SELECT {$select_fields} FROM {$table} WHERE {$array_where} {$order_by}";
         $prepared_stmt = $connect->prepare($sql);
         if($prepared_stmt){
             $params = array_merge( [str_repeat('s', count($where_values))] , $where_values);

@@ -11,6 +11,7 @@
 })()
 
 
+
 function indexData(){
     let number_of_houses = 1
     let size = 'medium'
@@ -434,8 +435,16 @@ function indexData(){
     }        
     
     function initializeData(content_house){
+        let reload_button = content_house.querySelector('button')
+        reload_button.addEventListener('click', function(){
+            tableFilter()
+            graphicFilterAll()
+            graphicFilterBy()
+            candleRareFilter()
+        })
+        
+        
         let betting_house = content_house.querySelector(`.filters-houses-${size}`)
-
         betting_house.addEventListener('input', function(){
             let house_logo = content_house.querySelector('.house-logo')
             house_logo.src = `assets/img/png/${betting_house.value}.png`            
@@ -489,7 +498,6 @@ function indexData(){
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 let tbody = content_house.querySelector('tbody')
                 let remove_table = content_house.querySelectorAll('.candle-tbody > tr');
                 remove_table.forEach($value => $value.remove());

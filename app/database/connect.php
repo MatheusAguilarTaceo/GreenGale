@@ -8,7 +8,7 @@ function connect($dbName, $dbUsername, $dbPassword){
         return $conexao;
     }
     catch(Exception $e){
-        return ['errno' => $e->getCode(), 'error'=> $e->getMessage()];
+        return ['status' => false, 'result' => ['errno' => $e->getCode(), 'error'=> $e->getMessage()]];
         
     }
     
