@@ -64,10 +64,7 @@ function findTableData($dbName, $dbUsername, $dbPassword, $table, $selectFields,
             $prepare->execute();
             $result = $prepare->get_result(); 
             if($result->num_rows == 1){
-                // var_dump(['status' => true, 'result' => [$result->fetch_object()]]);
-                // die();
                 return ['status' => true, 'result' => [$result->fetch_object()]];
-                // return ['status' => true, 'result' => json_decode(json_encode($result->fetch_assoc()))];
             }else if($result->num_rows > 1){
                 return ['status' => true , 'result' => json_decode(json_encode($result->fetch_all(MYSQLI_ASSOC)))];
             }
