@@ -83,13 +83,13 @@
                     <div class ='conteiner-candle-inline'>
                         <div class="candles-rare-medium">
                             <span class ='candle-range-medium'>10x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
+                            <p class ='how-many-candles-ago'>Há 0 velas atrás</p>
                             <span class="last-candle" >00x</span>
                             <p class = 'last-time'>Hora aqui</p>
                         </div>
                         <div class="candles-rare-medium">
                             <span class ='candle-range-medium'>50x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
+                            <p class ='how-many-candles-ago'>Há 0 velas atrás</p>
                             <span class="last-candle" >00x</span>
                             <p class = 'last-time'>Hora aqui</p>
                         </div>
@@ -97,13 +97,13 @@
                     <div class ='conteiner-candle-inline'>
                         <div class="candles-rare-medium">
                             <span class ='candle-range-medium'>100x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
+                            <p class ='how-many-candles-ago'>Há 0 velas atrás</p>
                             <span class="last-candle" >00x</span>
                             <p class = 'last-time'>Hora aqui</p>
                         </div>
                         <div class="candles-rare-medium">
                             <span class ='candle-range-medium'>200x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
+                            <p class ='how-many-candles-ago'>Há 0 velas atrás</p>
                             <span class="last-candle" >00x</span>
                             <p class = 'last-time'>Hora aqui</p>
                         </div>
@@ -111,13 +111,13 @@
                     <div class ='conteiner-candle-inline'>
                         <div class="candles-rare-medium">
                             <span class ='candle-range-medium'>400x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
+                            <p class ='how-many-candles-ago'>Há 0 velas atrás</p>
                             <span class="last-candle" >00x</span>
                             <p class = 'last-time'>Hora aqui</p>
                         </div>
                         <div class="candles-rare-medium">
                             <span class ='candle-range-medium'>800x</span>
-                            <p class ='how-many-candles-ago'>Há 4 velas atrás</p>
+                            <p class ='how-many-candles-ago'>Há 0 velas atrás</p>
                             <span class="last-candle" >00x</span>
                             <p class = 'last-time'>Hora aqui</p>
                         </div>
