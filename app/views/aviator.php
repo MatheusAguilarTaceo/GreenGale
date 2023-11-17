@@ -32,7 +32,15 @@
         <div class="content-block">
             <div class="content-house" id="content-house-1">
                 <section class="content-table" >
-                    <img class ="house-logo" src="assets/img/png/b2xbet.png" alt="casa de aposta">
+                    <div class="interaction-buttons">
+                        <button class="reload-button">
+                            <img src=<?php echo IMGS."png/rotate-arrow.png"?> alt="recarregar-pagina">
+                        </button>
+                        <img class ="house-logo" src="assets/img/png/b2xbet.png" alt="casa-de-aposta">
+                        <button class="play-button">
+                            <img src=<?php echo IMGS."png/play-button.png"?> alt="">
+                        </button>
+                    </div>
                     <div class="content-filters">
                         <select class="filters-houses-medium">
                             <option value="b2xbet">B2XBET</option>

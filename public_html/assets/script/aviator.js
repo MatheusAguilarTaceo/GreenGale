@@ -168,12 +168,34 @@ function indexData(){
             content_table.className = 'content-table'  
             content_house.appendChild(content_table)  
 
+            let interaction_buttons = document.createElement('div')
+            interaction_buttons.className = 'interaction-buttons';
+            content_table.appendChild(interaction_buttons)
+
+            let reload_button = document.createElement('button')
+            reload_button.className = 'reload-button'
+            content_table.appendChild(reload_button)
+
+            let img_reload = document.createElement('img')
+            img_reload.src = 'assets/img/png/rotate-arrow.png'
+            img_reload.alt = 'recarregar-pagina'
+            reload_button.appendChild(img_reload)
+
             let house_logo = document.createElement('img')
             house_logo.className = 'house-logo'
             house_logo.src = `assets/img/png/${list_houses[0]}.png`
-            house_logo.alt = 'casa de aposta'
+            house_logo.alt = 'casa-de-aposta'
             content_table.appendChild(house_logo);
+
+            let play_button = document.createElement('button')
+            play_button.className = 'play-button'
+            content_table.appendChild(play_button)
             
+            let img_play = document.createElement('img')
+            img_play.src = 'assets/img/png/play-button.png'
+            img_play.alt = 'jogar'
+            play_button.appendChild(img_play)
+
             let content_filters_1 = document.createElement('div')
             content_filters_1.className = 'content-filters'
             content_table.appendChild(content_filters_1)
@@ -413,8 +435,9 @@ function indexData(){
     
     function initializeData(content_house){
         let betting_house = content_house.querySelector(`.filters-houses-${size}`)
+
         betting_house.addEventListener('input', function(){
-            let house_logo = content_house.querySelector('img')
+            let house_logo = content_house.querySelector('.house-logo')
             house_logo.src = `assets/img/png/${betting_house.value}.png`            
             let [year, month, day] = date.value.split('-')
             table = `${day}/${month}/${year}/${betting_house.value}`;

@@ -1,4 +1,13 @@
-
+@keyframes reload{
+    to{
+        transform: rotate(0deg);
+    }
+    from{
+        transform: rotate(-360deg);
+    }
+}
+ 
+ 
  .info-aviator{
     background-color: var(--second);
     margin: 0px 10px;
@@ -27,7 +36,6 @@
     margin-left: 50px;
     margin-right: 50px;
     width: 275px;
-    /* height: 250px; */
     color: var(--white);
 }
     
@@ -117,8 +125,37 @@
     display: inline-block;  
     text-align: center;
     width: fit-content;
-    
 }
+.interaction-buttons{
+    /* background-color: greenyellow;  */
+}
+
+ .reload-button{
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    /* animation: reload 1.5s linear infinite; */
+ }
+
+ .reload-button > img:hover{
+    background-color:  var(--fifth);
+    border-radius: 30%;
+ }
+
+ .play-button{
+    display: inline-block;
+    background-color: transparent;
+    padding: 5px;
+    border: none;
+    color: white;
+ }
+ .play-button > img:hover{
+    background-color: var(--fifth);
+    border-radius: 50px;
+ }
+
+
+ 
 
 .house-logo{
     width: 100px;
@@ -212,7 +249,6 @@ th, td{
     padding: 8px 12px;
     background-color: var(--fourth);
     color:rgb(255, 255, 255);
-    /* border: solid 2px var(--main-color); */
     max-width: 50px;
     min-width: 45px;
 }
@@ -222,7 +258,6 @@ th, td{
     margin: -3px;
     background-color: var(--fourth);
     color:rgb(255, 255, 255);
-    /* border: solid 2px var(--main-color); */
     max-width: 32px;
     font-size: 12px;
 }
