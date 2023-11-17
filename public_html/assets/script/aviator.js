@@ -498,6 +498,7 @@ function indexData(){
             })
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 let tbody = content_house.querySelector('tbody')
                 let remove_table = content_house.querySelectorAll('.candle-tbody > tr');
                 remove_table.forEach($value => $value.remove());

@@ -67,9 +67,8 @@ class Aviator{
         }
         $select_fields = 'count(*) as count';
         $offset = 0;
-        $quantity_of_candles = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);
-
-        $array_data = ['table' => $data_table['result'], 'quantity_of_candles' => $quantity_of_candles['result']->count];
+        $quantity_of_candles = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset); 
+        $array_data = ['table' => $data_table['result'], 'quantity_of_candles' => $quantity_of_candles['result'][0]->count];
         $json_data = json_encode($array_data);
         echo $json_data;
     }
