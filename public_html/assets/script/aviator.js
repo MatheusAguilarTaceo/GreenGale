@@ -219,8 +219,10 @@ function indexData(){
             date_filter.className = `input-filters-${size}`
             date_filter.id = 'date'
             date_filter.type = 'date'
-            date_filter.value = new Date().toISOString().split('T')[0]
-            
+            let time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone
+            let [day, month, year] = new Date().toLocaleDateString('pt-BR', time_zone).split('/')
+            date_filter.value = `${year}-${month}-${day}`
+
             let content_filters_2 = document.createElement('div')
             content_filters_2.className = 'content-filters'
             content_table.appendChild(content_filters_2)
