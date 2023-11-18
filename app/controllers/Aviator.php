@@ -150,7 +150,7 @@ class Aviator{
             $operator = ['=', '>=', '<', '>=']; 
             $purple_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
             // Velas Rosas
-            $where_fields = ['date' => [$date], 'candle' => [$candle], 'hour' => [$hour]];
+            $where_fields = ['date' => [$date], 'candle' => ['10'], 'hour' => [$hour]];
             $operator = ['=', '>=', '>='];      
             $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator,  $select_fields);
             
