@@ -48,39 +48,59 @@ class Aviator{
         $db_username = $_ENV['DB_USERNAME_AVIATOR'];
         $db_password = $_ENV['DB_PASSWORD_AVIATOR'];
 
+        $time_zone = new \DateTimeZone($data['time_zone']);
         $table =  explode('/', $data['table']);
-        $table = implode('_', array_reverse(array_splice($table, 1, 4)));
+        $table = implode('_', array_reverse(array_splice($table, 2, 3)));
+        // $table = 'b2xbet_2023';
         
         $select_fields = 'candle, date_time';
 
-        $candle = $data['fields']['candle'];
         $date_time_str = implode('', $data['fields']['date_time']);
-        $date_time_small = new \DateTime($date_time_str, new \DateTimeZone($data['time_zone']));
-        $date_time_small->setTimezone(new \DateTimeZone('UTC'));
-
-        $date_time_large = clone $date_time_small;
-        $date_time_large->setTime(0,0,0);
-
-        $date_time_small->modify('+1 hour');
         
-        $data['fields']['date_time'] = [$date_time_large, $date_time_small];
+        $date_time_large = new \DateTime($date_time_str, $time_zone);
+        $date_time_large->setTime(0,0,0);
+        $date_time_large->setTimezone(new \DateTimeZone('UTC'));
+
+        $date_time_small = new \DateTime($date_time_str, $time_zone);
+        $date_time_small->setTimezone(new \DateTimeZone('UTC'));
+        $date_time_small->modify('+1 hour');
+
+
+        $data['fields']['date_time'] = [$date_time_large->format('Y-m-d H:i:s'), $date_time_small->format('Y-m-d H:i:s')];
 
         $where_fields = $data['fields'];        
-            
+        $operator = ['>=', '>=', '<'];
+
         $page = $data['page'];
         $limit = 12;
         $offset = $limit * ($page - 1);
 
-        $data_table = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);   
+        $data_table = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $operator, $limit, $offset);   
+        if($data_table['result']){
+            foreach($data_table['result'] as $value){
+                $utc = new \DateTime($value->date_time, new \DateTimeZone('UTC'));
+                $utc->setTimezone($time_zone);
+                $value->date_time = $utc->format('H:i:s');
+
+            }
+        }
+
         if(!$data_table['status'] || !$data_table['result']){
             $table = 'vazio2';
-            $where_fields['candle'] = '0';
-            $where_fields['date_time'] = ['0000-00-00 00:00:00','0000-00-00 00:00:00'];
-            $data_table = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);   
+            $where_fields['candle'] = ['0'];
+            $where_fields['date_time'] = ['0000-00-00 00:00:00'];
+            $operator = ['=', '='];
+            $data_table = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $operator, $limit, $offset);   
+            if($data_table['result']){
+                foreach($data_table['result'] as $value){
+                    $value->date_time = '00:00:00';
+    
+                }
+            }
         }
         $select_fields = 'count(*) as count';
         $offset = 0;
-        $quantity_of_candles = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset); 
+        $quantity_of_candles = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $operator, $limit, $offset); 
         $array_data = ['table' => $data_table['result'], 'quantity_of_candles' => $quantity_of_candles['result'][0]->count];
         $json_data = json_encode($array_data);
         echo $json_data;

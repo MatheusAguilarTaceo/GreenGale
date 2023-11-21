@@ -22,16 +22,16 @@ function findBy($db_name, $db_username, $db_password, $table, $where_fields_valu
         forEach($where_fields_values as $field => $array){
             forEach($array as $value){
                 $array_where[] = "{$field} {$operator[$i]} ?";
-                $where_values[] = $value; 
+                $array_values[] = $value; 
                 $i++;
             }   
         }
-        $array_where = implode(' AND ', $array_where);
+        $string_where = implode(' AND ', $array_where);
 
-        $sql = "SELECT {$select_fields} FROM {$table} WHERE {$array_where} {$order_by}";
+        $sql = "SELECT {$select_fields} FROM {$table} WHERE {$string_where} {$order_by}";
         $prepared_stmt = $connect->prepare($sql);
         if($prepared_stmt){
-            $params = array_merge( [str_repeat('s', count($where_values))] , $where_values);
+            $params = array_merge( [str_repeat('s', count($array_values))] , $array_values);
             $prepared_stmt->bind_param(...$params);
             $prepared_stmt->execute();
             $result = $prepared_stmt->get_result(); 
@@ -48,21 +48,27 @@ function findBy($db_name, $db_username, $db_password, $table, $where_fields_valu
     }
 }
 
-function findTableData($db_name, $db_sername, $db_password, $table, $select_fields, $where_fields, $limit, $offset){
-    $connect = connect($db_name, $db_sername, $db_password);
+function findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $operator, $limit, $offset){
+    $connect = connect($db_name, $db_username, $db_password);
     if(is_array($connect)){
         return $connect;
     }
+
     try{
-        [$candle, $date_time] = array_keys($where_fields);
-        $where_fields = [$where_fields[$candle], $where_fields[$date_time][0], $where_fields[$date_time][1]];
-      
-    
-        $sql = "SELECT {$select_fields} FROM {$table}
-        WHERE {$candle} >= ? AND {$date_time} >= ? AND {$date_time} <= ? ORDER BY id desc LIMIT {$limit} OFFSET {$offset}";
+        $i = 0;
+        foreach($where_fields as $field => $array){
+            foreach($array as $value){
+                $array_where[] = "{$field} {$operator[$i]} ?" ;
+                $array_values[] = $value;
+                $i++;
+            }
+        }
+        $string_where = implode(' AND ', $array_where); 
+
+        $sql = "SELECT {$select_fields} FROM {$table} WHERE $string_where  ORDER BY id desc LIMIT {$limit} OFFSET {$offset}";
         $prepare = $connect->prepare($sql);
         if($prepare){
-            $params = array_merge([str_repeat('s', count($where_fields))], array_values($where_fields));
+            $params = array_merge([str_repeat('s', count($array_values))], $array_values);
             $prepare->bind_param(...$params);
             $prepare->execute();
             $result = $prepare->get_result(); 

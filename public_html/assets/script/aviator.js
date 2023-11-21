@@ -34,7 +34,6 @@ function indexData(){
     });
 
     (function firstTable(){
-        let content_house  = initializeData(document.querySelector('#content-house-1'))
         if(window.innerWidth <= 600){
             options = {
             title: 'TITULO AQUI',
@@ -86,10 +85,21 @@ function indexData(){
                 position: 'bottom'            
                 }
         }
-            content_house.tableFilter()
-            content_house.graphicFilterAll()
-            content_house.graphicFilterBy()
-            content_house.candleRareFilter()
+
+        let content_house = document.querySelector('#content-house-1');
+ 
+        let date_filter = content_house.querySelector('#date')
+        let [day, month, year] = new Date().toLocaleDateString('pt-BR', time_zone).split('/');
+        date_filter.value = `${year}-${month}-${day}`
+ 
+        let time_filter = content_house.querySelector('#time')
+        time_filter.value = new Date().getHours() + ':00'
+
+        let primary_instance  = initializeData(content_house)
+        primary_instance.tableFilter()
+        primary_instance.graphicFilterAll()
+        primary_instance.graphicFilterBy()
+        primary_instance.candleRareFilter()
     })();
     
     function modifyClass(id, size, replace_size){  
@@ -220,7 +230,6 @@ function indexData(){
             date_filter.className = `input-filters-${size}`
             date_filter.id = 'date'
             date_filter.type = 'date'
-            let time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone
             let [day, month, year] = new Date().toLocaleDateString('pt-BR', time_zone).split('/')
             date_filter.value = `${year}-${month}-${day}`
 
@@ -240,7 +249,7 @@ function indexData(){
             time_filter.className  = `input-filters-${size}`
             time_filter.id = 'time'
             time_filter.type = 'time'
-            time_filter.value = '00:00:00'
+            time_filter.value = new Date().getHours() + ':00';  
             
             let table = document.createElement('table')
             table.className = `table-dimension-${size}`
@@ -497,7 +506,7 @@ function indexData(){
             fetch("aviator/table",{
                 method:"POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({table: 'b2xbet_2023', page: page, time_zone: time_zone, fields: {candle: candle.value, date_time:[date.value, hour.value]}}),
+                body: JSON.stringify({table: table, page: page, time_zone: time_zone, fields: {candle: [candle.value], date_time:[date.value, hour.value]}}),
             })
             .then(response => response.json())
             .then(data => {
