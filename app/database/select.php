@@ -48,18 +48,21 @@ function findBy($db_name, $db_username, $db_password, $table, $where_fields_valu
     }
 }
 
-function findTableData($dbName, $dbUsername, $dbPassword, $table, $selectFields, $whereFields, $limit, $offset){
-    $connect = connect($dbName, $dbUsername, $dbPassword);
+function findTableData($db_name, $db_sername, $db_password, $table, $select_fields, $where_fields, $limit, $offset){
+    $connect = connect($db_name, $db_sername, $db_password);
     if(is_array($connect)){
         return $connect;
     }
     try{
-        [$candle, $hour, $date] = array_keys($whereFields);
-        $sql = "SELECT {$selectFields} FROM {$table}
-        WHERE {$candle} >= ? AND {$hour} >= ? AND  {$date} = ?  ORDER BY id desc LIMIT {$limit} OFFSET {$offset}";
+        [$candle, $date_time] = array_keys($where_fields);
+        $where_fields = [$where_fields[$candle], $where_fields[$date_time][0], $where_fields[$date_time][1]];
+      
+    
+        $sql = "SELECT {$select_fields} FROM {$table}
+        WHERE {$candle} >= ? AND {$date_time} >= ? AND {$date_time} <= ? ORDER BY id desc LIMIT {$limit} OFFSET {$offset}";
         $prepare = $connect->prepare($sql);
         if($prepare){
-            $params = array_merge([str_repeat('s', count($whereFields))], array_values($whereFields));
+            $params = array_merge([str_repeat('s', count($where_fields))], array_values($where_fields));
             $prepare->bind_param(...$params);
             $prepare->execute();
             $result = $prepare->get_result(); 

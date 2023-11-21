@@ -212,13 +212,68 @@
 // var_dump($json);
     
 ?>
-<pre class='xdebug-var-dump' dir='ltr'>
-<small>C:\Users\theus\Documents\Projetos_PHP\greengale\app\database\select.php:67:</small>
-<b>array</b> <i>(size=2)</i>
-  'status' <font color='#888a85'>=&gt;</font> <small>boolean</small> <font color='#75507b'>true</font>
-  'result' <font color='#888a85'>=&gt;</font> 
-    <b>array</b> <i>(size=1)</i>
-      0 <font color='#888a85'>=&gt;</font> 
-        <b>object</b>(<i>stdClass</i>)[<i>33</i>]
-          <i>public</i> 'count' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>111</font>
-</pre>
+
+<?php
+
+$data_time = '2023-11-2023:18:34';
+echo 'TOKYO<br>';
+$dataHoraAtual = new DateTime($data_time, new DateTimeZone('Asia/Tokyo'));
+echo $dataHoraAtual->format('Y-m-d H:i:s');
+echo '<br>';
+$dataHoraAtual->setTimezone(new DateTimeZone('UTC'));
+echo $dataHoraAtual->format('Y-m-d H:i:s');
+echo '<br>';
+
+
+echo 'CUIBA<br>';
+$data_time = '2023-11-2023:18';
+$dataHoraAtual = new DateTime($data_time, new DateTimeZone('America/Cuiaba'));
+echo $dataHoraAtual->format('Y-m-d H:i:s'); 
+echo '<br>';
+$dataHoraAtual->setTimezone(new DateTimeZone('UTC'));
+echo $dataHoraAtual->format('Y-m-d H:i:s'); 
+
+
+echo '<br>';
+
+echo 'PADRÃO<br>';
+$data_time = '2023-11-20 23:18';
+$dataHoraAtual = new DateTime();
+echo $dataHoraAtual->format('Y-m-d H:i:s'); 
+echo '<br>';
+$dataHoraAtual->setTimezone(new DateTimeZone('UTC'));
+echo $dataHoraAtual->format('Y-m-d H:i:s'); 
+
+
+
+
+?>
+
+
+br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: Undefined array key 0 in C:\Users\theus\Documents\Projetos_PHP\greengale\app\controllers\Aviator.php on line <i>84</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0002</td><td bgcolor='#eeeeec' align='right'>360272</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\Users\theus\Documents\Projetos_PHP\greengale\public_html\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0127</td><td bgcolor='#eeeeec' align='right'>389264</td><td bgcolor='#eeeeec'>router(  )</td><td title='C:\Users\theus\Documents\Projetos_PHP\greengale\public_html\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>8</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0128</td><td bgcolor='#eeeeec' align='right'>389640</td><td bgcolor='#eeeeec'>controller( <span>$mathchedUri = </span><span>[&#39;/aviator/table&#39; =&gt; &#39;Aviator@tableFilter&#39;]</span> )</td><td title='C:\Users\theus\Documents\Projetos_PHP\greengale\app\router\router.php' bgcolor='#eeeeec'>...\router.php<b>:</b>81</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0128</td><td bgcolor='#eeeeec' align='right'>389800</td><td bgcolor='#eeeeec'>app\controllers\Aviator->tableFilter(  )</td><td title='C:\Users\theus\Documents\Projetos_PHP\greengale\app\core\controller.php' bgcolor='#eeeeec'>...\controller.php<b>:</b>14</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: Attempt to read property "count" on null in C:\Users\theus\Documents\Projetos_PHP\greengale\app\controllers\Aviator.php on line <i>84</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0002</td><td bgcolor='#eeeeec' align='right'>360272</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\Users\theus\Documents\Projetos_PHP\greengale\public_html\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0127</td><td bgcolor='#eeeeec' align='right'>389264</td><td bgcolor='#eeeeec'>router(  )</td><td title='C:\Users\theus\Documents\Projetos_PHP\greengale\public_html\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>8</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0128</td><td bgcolor='#eeeeec' align='right'>389640</td><td bgcolor='#eeeeec'>controller( <span>$mathchedUri = </span><span>[&#39;/aviator/table&#39; =&gt; &#39;Aviator@tableFilter&#39;]</span> )</td><td title='C:\Users\theus\Documents\Projetos_PHP\greengale\app\router\router.php' bgcolor='#eeeeec'>...\router.php<b>:</b>81</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0128</td><td bgcolor='#eeeeec' align='right'>389800</td><td bgcolor='#eeeeec'>app\controllers\Aviator->tableFilter(  )</td><td title='C:\Users\theus\Documents\Projetos_PHP\greengale\app\core\controller.php' bgcolor='#eeeeec'>...\controller.php<b>:</b>14</td></tr>
+</table></font>
+{"table":{"errno":1054,"error":"Unknown column 'date_time' in 'where clause'"},"quantity_of_candles":null}
+<?php
+echo '<br>';
+$A = ['SS', 'EE'];
+
+echo implode(' ', $A);
+?>

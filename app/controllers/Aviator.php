@@ -47,21 +47,35 @@ class Aviator{
         $db_name = $_ENV['DB_NAME_AVIATOR'];
         $db_username = $_ENV['DB_USERNAME_AVIATOR'];
         $db_password = $_ENV['DB_PASSWORD_AVIATOR'];
+
         $table =  explode('/', $data['table']);
         $table = implode('_', array_reverse(array_splice($table, 1, 4)));
-        $page = $data['page'];
-        $where_fields = $data['fields'];
+        
+        $select_fields = 'candle, date_time';
 
-        $select_fields = 'candle, hour';
+        $candle = $data['fields']['candle'];
+        $date_time_str = implode('', $data['fields']['date_time']);
+        $date_time_small = new \DateTime($date_time_str, new \DateTimeZone($data['time_zone']));
+        $date_time_small->setTimezone(new \DateTimeZone('UTC'));
+
+        $date_time_large = clone $date_time_small;
+        $date_time_large->setTime(0,0,0);
+
+        $date_time_small->modify('+1 hour');
+        
+        $data['fields']['date_time'] = [$date_time_large, $date_time_small];
+
+        $where_fields = $data['fields'];        
+            
+        $page = $data['page'];
         $limit = 12;
         $offset = $limit * ($page - 1);
-        
+
         $data_table = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);   
         if(!$data_table['status'] || !$data_table['result']){
-            $table = 'vazio';
+            $table = 'vazio2';
             $where_fields['candle'] = '0';
-            $where_fields['hour'] = '00:00:00';
-            $where_fields['date'] = '0000-00-00';
+            $where_fields['date_time'] = ['0000-00-00 00:00:00','0000-00-00 00:00:00'];
             $data_table = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $limit, $offset);   
         }
         $select_fields = 'count(*) as count';

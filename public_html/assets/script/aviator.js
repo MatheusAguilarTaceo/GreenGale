@@ -20,6 +20,7 @@ function indexData(){
     let time = null
     let list_houses = null
     let options  = null
+    let time_zone = new Intl.DateTimeFormat().resolvedOptions().timeZone
     fetch('aviator/data-controller',{
         method: 'POST',
         headers: {"Content-Type": "application/json"}
@@ -496,10 +497,11 @@ function indexData(){
             fetch("aviator/table",{
                 method:"POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({table: table, page: page, fields: {candle: candle.value, hour: hour.value, date: date.value}}),
+                body: JSON.stringify({table: 'b2xbet_2023', page: page, time_zone: time_zone, fields: {candle: candle.value, date_time:[date.value, hour.value]}}),
             })
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 let tbody = content_house.querySelector('tbody')
                 let remove_table = content_house.querySelectorAll('.candle-tbody > tr');
                 remove_table.forEach($value => $value.remove());
@@ -521,7 +523,7 @@ function indexData(){
                     td.appendChild(span)
                     
                     td =  document.createElement('td');
-                    td.textContent = $value.hour ;
+                    td.textContent = $value.date_time ;
                     tr.appendChild(td);
                 }); 
             })
