@@ -48,28 +48,30 @@ class Aviator{
         $db_username = $_ENV['DB_USERNAME_AVIATOR'];
         $db_password = $_ENV['DB_PASSWORD_AVIATOR'];
 
-        $time_zone = new \DateTimeZone($data['time_zone']);
         $table =  explode('/', $data['table']);
         $table = implode('_', array_reverse(array_splice($table, 2, 3)));
-        // $table = 'b2xbet_2023';
         
         $select_fields = 'candle, date_time';
-
-        $date_time_str = implode('', $data['fields']['date_time']);
+        $where_fields = $data['fields'];
+        
+        $time_zone = new \DateTimeZone($data['time_zone']);
+        $date_time_str = implode('', $where_fields['date_time']);
         
         $date_time_large = new \DateTime($date_time_str, $time_zone);
         $date_time_large->setTime(0,0,0);
         $date_time_large->setTimezone(new \DateTimeZone('UTC'));
+        $date_time_large = $date_time_large->format('Y-m-d H:i:s');
+
 
         $date_time_small = new \DateTime($date_time_str, $time_zone);
-        $date_time_small->setTimezone(new \DateTimeZone('UTC'));
         $date_time_small->modify('+1 hour');
+        $date_time_small->setTimezone(new \DateTimeZone('UTC'));
+        $date_time_small = $date_time_small->format('Y-m-d H:i:s');
 
 
-        $data['fields']['date_time'] = [$date_time_large->format('Y-m-d H:i:s'), $date_time_small->format('Y-m-d H:i:s')];
+        $where_fields['date_time'] = [$date_time_large, $date_time_small];
 
-        $where_fields = $data['fields'];        
-        $operator = ['>=', '>=', '<'];
+        $operator = ['>=', '<', '>='];
 
         $page = $data['page'];
         $limit = 12;
@@ -114,23 +116,38 @@ class Aviator{
         $db_password = $_ENV['DB_PASSWORD_AVIATOR'];
 
         $table =  explode('/', $data['table']);
-        $table = implode('_', array_reverse(array_splice($table, 1, 4)));
-        $date = $data['date'];
-
-
+        $table = implode('_', array_reverse(array_splice($table, 2, 3)));
         $select_field = 'count(*) as count';
+        $where_fields = $data['fields'];
+        
+
+        $time_zone = new \DateTimeZone($data['time_zone']);
+        $date_time_str = implode('', $where_fields['date_time']);
+
+        $date_time_large = new \DateTime($date_time_str, $time_zone); 
+        $date_time_large->setTime(0,0,0);
+        $date_time_large->setTimezone(new \DateTimeZone('UTC'));
+        $date_time_large = $date_time_large->format('Y-m-d H:i:s');
+
+        $date_time_small  = new \DateTime($date_time_str, $time_zone);
+        $date_time_small->modify('+1 hours');
+        $date_time_small->setTimezone(new \DateTimeZone('UTC'));
+        $date_time_small = $date_time_small->format('Y-m-d H:i:s');
 
         // Velas Azuis
-        $where_fields = ['date' => [$date], 'candle' => ['2']];
-        $operator = ['=', '<'];
+        $where_fields['date_time'] = [$date_time_large, $date_time_small]; 
+        $where_fields['candle'] =  ['2'];
+        $operator = ['>=', '<', '<'];
         $blue_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_field);
-        // Velas roxas
-        $where_fields = ['date' => [$date], 'candle' => ['2', '10']];
-        $operator = ['=', '>=', '<'];
+        
+        // Velas roxas        
+        $where_fields['candle'] =  ['2', '10'];
+        $operator = ['>=', '<', '>=', '<'];
         $purple_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_field);
+        
         // Velas rosas
-        $where_fields = ['date' => [$date], 'candle' => ['10']];
-        $operator = ['=', '>='];
+        $where_fields['candle'] =  ['10'];
+        $operator = ['>=', '<', '>='];
         $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_field);
         if(!$blue_candles['status'] || !$purple_candles['status'] || !$pink_candles['status']){
             echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
@@ -150,26 +167,47 @@ class Aviator{
         $db_password = $_ENV['DB_PASSWORD_AVIATOR'];
         
         $select_fields = 'count(*) as count';
+        $where_fields = $data['fields'];
+
         $table =  explode('/', $data['table']);
-        $table = implode('_', array_reverse(array_splice($table, 1, 4)));
-        $date = $data['date'];
-        $candle = $data['candle'];
-        $hour = $data['hour'];
+        $table = implode('_', array_reverse(array_splice($table, 2, 3)));
+        
+        $time_zone  = new \DateTimeZone($data['time_zone']);
+        $date_time_str = implode('', $where_fields['date_time']);
+        
+        $date_time_large = new \DateTime($date_time_str, $time_zone);
+        $date_time_large->setTime(0,0,0);
+        $date_time_large->setTimeZone(new \DateTimeZone('UTC'));
+        $date_time_large = $date_time_large->format('Y-m-d H:i:s');
+
+        $date_time_small = new \DateTime($date_time_str, $time_zone);
+        $date_time_small->modify('+1 hours');
+        $date_time_small->setTimezone(new \DateTimeZone('UTC'));
+        $date_time_small = $date_time_small->format('Y-m-d H:i:s');
+
+        
+        $candle = $where_fields['candle'][0];
         $blue_candles = 0;
         $purple_candles = 0;
         $pink_candles = 0;
+
+        $where_fields = $data['fields'];
+        $where_fields['date_time'] = [$date_time_large, $date_time_small];
+        
         if($candle < 2){
             // Velas Azuis
-            $where_fields = ['date' => [$date], 'candle' => [$candle, '2'], 'hour' => [$hour]];
-            $operator = ['=', '>=', '<', '>='];
+            $where_fields['candle']  = [$candle,'2'];
+            $operator = ['>=', '<', '>=', '<'];
             $blue_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
+
             // Velas Roxas
-            $where_fields = ['date' => [$date], 'candle' => ['2', '10'], 'hour' => [$hour]];
-            $operator = ['=', '>=', '<', '>='];
+            $where_fields['candle']  = ['2','10'];
+            $operator = ['>=', '<', '>=', '<'];
             $purple_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
+            
             // Velas Rosas
-            $where_fields = ['date' => [$date], 'candle' => ['10'], 'hour' => [$hour]];
-            $operator = ['=', '>=', '>='];
+            $where_fields['candle'] = ['10'];
+            $operator = ['>=', '<', '>='];
             $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
             
             if(!$blue_candles['status'] || !$purple_candles['status'] || !$pink_candles['status']){
@@ -180,12 +218,13 @@ class Aviator{
         }
         else if($candle < 10){
             // Velas Roxas
-            $where_fields = ['date' => [$date], 'candle' => [$candle, '10'], 'hour' => [$hour]];
-            $operator = ['=', '>=', '<', '>=']; 
+            $where_fields = ['date_time' => [$date_time_large, $date_time_small], 'candle' => [$candle, '10']];
+            $operator = ['>=', '<', '>=', '<']; 
             $purple_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
+            
             // Velas Rosas
-            $where_fields = ['date' => [$date], 'candle' => ['10'], 'hour' => [$hour]];
-            $operator = ['=', '>=', '>='];      
+            $where_fields = ['date_time' => [$date_time_large, $date_time_small], 'candle' => ['10']];
+            $operator = ['>=', '<', '>='];      
             $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator,  $select_fields);
             
             if(!$purple_candles['status'] || !$pink_candles['status']){
@@ -196,9 +235,10 @@ class Aviator{
             $data = ['blue' => $blue_candles, 'purple' => $purple_candles['result']->count, 'pink' => $pink_candles['result']->count];
         }else{
             // Velas Rosas
-            $where_fields = ['date' => [$date], 'candle' => [$candle], 'hour' => [$hour]];
-            $operator = ['=', '>=', '>='];   
+            $where_fields = ['date_time' => [$date_time_large, $date_time_small], 'candle' => [$candle]];
+            $operator = ['>=', '<', '>='];   
             $pink_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields);
+
             if(!$pink_candles['status']){
                 echo  json_encode(['blue' => 0, 'purple' => 0, 'pink' => 0]);
                 return;
@@ -212,6 +252,7 @@ class Aviator{
     }
 
     public function candleRareFilter(){
+
         $json = file_get_contents('php://input');
         $data = json_decode($json, true);
         $db_name = $_ENV['DB_NAME_AVIATOR'];
@@ -219,13 +260,30 @@ class Aviator{
         $db_password = $_ENV['DB_PASSWORD_AVIATOR'];
 
         $table =  explode('/', $data['table']);
-        $table = implode('_', array_reverse(array_splice($table, 1, 4)));
-        $date = $data['date'];
-        $where_fields = ['date' => [$date]];
-        $operator = ['='];
-        $select_fields = 'candle, hour';
+        $table = implode('_', array_reverse(array_splice($table, 2, 3)));
+        $select_fields = 'candle, date_time';
+
+        $where_fields = $data['fields'];
+        
+        $time_zone = new \DateTimeZone($data['time_zone']);
+        $date_time_str = implode('', $where_fields['date_time']);
+
+        $date_time_large = new \DateTime($date_time_str, $time_zone);
+        $date_time_large->setTime(0,0,0);
+        $date_time_large->setTimezone(new \DateTimeZone('UTC'));
+        $date_time_large = $date_time_large->format('Y-m-d H:i:s');
+
+        $date_time_small = new \DateTime($date_time_str, $time_zone);
+        $date_time_small->modify('+1 hours');
+        $date_time_small->setTimeZone(new \DateTimeZone('UTC'));
+        $date_time_small = $date_time_small->format('Y-m-d H:i:s');
+
+        $where_fields['date_time'] = [$date_time_large, $date_time_small];
+        $operator = ['>=', '<'];
         $order_by = 'order by id desc';
+
         $data_candles = findBy($db_name, $db_username, $db_password, $table, $where_fields, $operator, $select_fields, $order_by);
+        
         $data = [];
         if(!$data_candles['status'] || !$data_candles['result']){
             for( $i = 0; $i < 6; $i++){
@@ -243,30 +301,48 @@ class Aviator{
         $candle_50 = true;
         $candle_10 = true;
         $counter = 0;
-        for($i = 0; $i < count($data_candles); $i++){
-            if($data_candles[$i]->candle >= 10 && $candle_10){
+        foreach($data_candles as $value){
+            if($value->candle >= 10 && $candle_10){
                 $candle_10 = false;                
-                $data[0] = ['range' => 10, 'quantity' => $counter, 'hour' => $data_candles[$i]->hour, 'candle' => $data_candles[$i]->candle];
+                $hour = new \DateTime($value->date_time, new \DateTimeZone('UTC'));
+                $hour->setTimeZone($time_zone);
+                $hour = $hour->format('H:i:s');
+                $data[0] = ['range' => 10, 'quantity' => $counter, 'hour' => $hour, 'candle' => $value->candle];
             }
-            if($data_candles[$i]->candle >= 50 && $candle_50){
+            if($value->candle >= 50 && $candle_50){
                 $candle_50 = false;
-                $data[1] = ['range' => 50, 'quantity' => $counter, 'hour' => $data_candles[$i]->hour, 'candle' => $data_candles[$i]->candle];
+                $hour = new \DateTime($value->date_time, new \DateTimeZone('UTC'));
+                $hour->setTimeZone($time_zone);
+                $hour = $hour->format('H:i:s');
+                $data[1] = ['range' => 50, 'quantity' => $counter, 'hour' =>$hour, 'candle' => $value->candle];
             }
-            if($data_candles[$i]->candle >= 100 && $candle_100){
+            if($value->candle >= 100 && $candle_100){
                 $candle_100 = false;
-                $data[2] = ['range' => 100, 'quantity' => $counter, 'hour' => $data_candles[$i]->hour, 'candle' => $data_candles[$i]->candle];
+                $hour = new \DateTime($value->date_time, new \DateTimeZone('UTC'));
+                $hour->setTimeZone($time_zone);
+                $hour = $hour->format('H:i:s');
+                $data[2] = ['range' => 100, 'quantity' => $counter, 'hour' =>$hour, 'candle' => $value->candle];
             }
-            if($data_candles[$i]->candle >= 200 && $candle_200){
+            if($value->candle >= 200 && $candle_200){
                 $candle_200 = false;
-                $data[3] = ['range' => 200, 'quantity' => $counter, 'hour' => $data_candles[$i]->hour, 'candle' => $data_candles[$i]->candle];
+                $hour = new \DateTime($value->date_time, new \DateTimeZone('UTC'));
+                $hour->setTimeZone($time_zone);
+                $hour = $hour->format('H:i:s');
+                $data[3] = ['range' => 200, 'quantity' => $counter, 'hour' =>$hour, 'candle' => $value->candle];
             }
-            if($data_candles[$i]->candle >= 400 && $candle_400){
+            if($value->candle >= 400 && $candle_400){
                 $candle_400 = false;
-                $data[4] = ['range' => 400, 'quantity' => $counter, 'hour' => $data_candles[$i]->hour, 'candle' => $data_candles[$i]->candle];
+                $hour = new \DateTime($value->date_time, new \DateTimeZone('UTC'));
+                $hour->setTimeZone($time_zone);
+                $hour = $hour->format('H:i:s');
+                $data[4] = ['range' => 400, 'quantity' => $counter, 'hour' =>$hour, 'candle' => $value->candle];
             }
-            if($data_candles[$i]->candle >= 800 && $candle_800){
+            if($value->candle >= 800 && $candle_800){
                 $candle_800 = false;
-                $data[5] = ['range' => 800, 'quantity' => $counter, 'hour' => $data_candles[$i]->hour, 'candle' => $data_candles[$i]->candle];
+                $hour = new \DateTime($value->date_time, new \DateTimeZone('UTC'));
+                $hour->setTimeZone($time_zone);
+                $hour = $hour->format('H:i:s');
+                $data[5] = ['range' => 800, 'quantity' => $counter, 'hour' =>$hour, 'candle' => $value->candle];
                 break;
             }
             $counter++;

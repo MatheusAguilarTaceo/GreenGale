@@ -244,12 +244,12 @@ function indexData(){
             candle_filter.type = 'text'
             candle_filter.value  = '1.00';
             
-            let time_filter = document.createElement('input')
-            content_filters_2.appendChild(time_filter)
-            time_filter.className  = `input-filters-${size}`
-            time_filter.id = 'time'
-            time_filter.type = 'time'
-            time_filter.value = new Date().getHours() + ':00';  
+            let hour_filter = document.createElement('input')
+            content_filters_2.appendChild(hour_filter)
+            hour_filter.className  = `input-filters-${size}`
+            hour_filter.id = 'time'
+            hour_filter.type = 'time'
+            hour_filter.value = new Date().getHours() + ':00';  
             
             let table = document.createElement('table')
             table.className = `table-dimension-${size}`
@@ -506,11 +506,10 @@ function indexData(){
             fetch("aviator/table",{
                 method:"POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({table: table, page: page, time_zone: time_zone, fields: {candle: [candle.value], date_time:[date.value, hour.value]}}),
+                body: JSON.stringify({'table': table, 'page': page, 'time_zone': time_zone, 'fields': {'date_time':[date.value, hour.value], 'candle': [candle.value]}}),
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 let tbody = content_house.querySelector('tbody')
                 let remove_table = content_house.querySelectorAll('.candle-tbody > tr');
                 remove_table.forEach($value => $value.remove());
@@ -548,7 +547,7 @@ function indexData(){
                 headers: {
                     'Content-Type': 'application/json'
                 },                            
-                body: JSON.stringify({table: table, date: date.value})
+                body: JSON.stringify({'table': table, 'time_zone': time_zone, 'fields':{'date_time': [date.value, hour.value]} })
             })
             .then(response => response.json())
             .then(data => {
@@ -574,7 +573,7 @@ function indexData(){
             fetch('aviator/graphic-by', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({table:table, date:date.value, candle:candle.value, hour:hour.value})
+                body: JSON.stringify({'table':table, 'time_zone':time_zone, 'fields':{'date_time':[date.value, hour.value], 'candle':[candle.value]} } )
             })
             .then(response => response.json())
             .then(data => {
@@ -601,8 +600,7 @@ function indexData(){
             fetch('aviator/candle-rare', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({table: table, date: date.value})
-
+                body: JSON.stringify({'table': table, 'time_zone': time_zone, 'fields':{'date_time': [date.value, hour.value]}})
             })
             .then(response => response.json())
             .then(data => {
