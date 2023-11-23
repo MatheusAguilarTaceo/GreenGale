@@ -92,8 +92,8 @@ function indexData(){
         let [day, month, year] = new Date().toLocaleDateString('pt-BR', time_zone).split('/');
         date_filter.value = `${year}-${month}-${day}`
  
-        let time_filter = content_house.querySelector('#time')
-        time_filter.value = new Date().getHours() + ':00'
+        let hour_filter = content_house.querySelector('#time')
+        hour_filter.value = new Date().toLocaleTimeString('pt-BR', {hour12: false, hour:'2-digit'}) + ':00'  
 
         let primary_instance  = initializeData(content_house)
         primary_instance.tableFilter()
@@ -249,8 +249,8 @@ function indexData(){
             hour_filter.className  = `input-filters-${size}`
             hour_filter.id = 'time'
             hour_filter.type = 'time'
-            hour_filter.value = new Date().getHours() + ':00';  
-            
+            hour_filter.value = new Date().toLocaleTimeString('pt-BR', {hour12: false, hour:'2-digit'}) + ':00'  
+                        
             let table = document.createElement('table')
             table.className = `table-dimension-${size}`
             content_table.appendChild(table)
