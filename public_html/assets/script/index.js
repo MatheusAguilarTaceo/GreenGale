@@ -42,4 +42,3 @@ function showMessage(msg, time){
 }
 
 
-console.log('DATA === ', new Intl.DateTimeFormat().resolvedOptions().timeZone )
