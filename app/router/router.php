@@ -13,12 +13,7 @@ function exactMathUriInArrays($uri, $routes){
 }
 
 function uriDinamicInArrays($uri, $routes){
-// Fiz por enquanto a separação das rotas dinamicas, aquelas direcionada a uma pagina para 
-// vizualização ou operação no BD que contenham barras, por exemplo: /house/aviator/statistcs e aquelas que contenham
-// chaves e valores com o get exemplo: /?nome=Matheus&idade=22&funcao=NaN
-    // if(stripos($uri,'?')){
- 
-    // Uso do GET para rotas mais complexas
+
     return  array_filter(
         $routes, 
         function($value) use($uri) {
