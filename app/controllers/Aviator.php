@@ -87,7 +87,7 @@ class Aviator{
             }
         }
 
-        if(!$data_table['status'] || !$data_table['result']){
+        if(!$data_table['status']){
             $table = 'vazio';
             $where_fields['candle'] = ['0'];
             $where_fields['date_time'] = ['0000-00-00 00:00:00'];
