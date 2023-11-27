@@ -77,7 +77,7 @@ function findTableData($db_name, $db_username, $db_password, $table, $select_fie
             }else if($result->num_rows > 1){
                 return ['status' => true , 'result' => json_decode(json_encode($result->fetch_all(MYSQLI_ASSOC)))];
             }
-            return ['status' => true, 'result' => $result->fetch_object()]; 
+            return ['status' => false, 'result' => $result->fetch_object()]; 
         }
 
         return ['status' => false, 'result' => ['errno' => $connect->errno, 'error'=>$connect->error]];

@@ -78,7 +78,7 @@ class Aviator{
         $offset = $limit * ($page - 1);
 
         $data_table = findTableData($db_name, $db_username, $db_password, $table, $select_fields, $where_fields, $operator, $limit, $offset);   
-        if($data_table['result']){
+        if($data_table['status']){
             foreach($data_table['result'] as $value){
                 $utc = new \DateTime($value->date_time, new \DateTimeZone('UTC'));
                 $utc->setTimezone($time_zone);
@@ -88,7 +88,7 @@ class Aviator{
         }
 
         if(!$data_table['status'] || !$data_table['result']){
-            $table = 'vazio2';
+            $table = 'vazio';
             $where_fields['candle'] = ['0'];
             $where_fields['date_time'] = ['0000-00-00 00:00:00'];
             $operator = ['=', '='];
