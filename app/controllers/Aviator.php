@@ -28,14 +28,14 @@ class Aviator{
             $msg = "Limte de filtros atingdos!"; 
             $limit = 4;
             $time = 4000;
-            $list_houses = ['b2xbet', 'pagbet', 'betano'];
+            $list_houses = ['b2xbet', 'goldebet', 'betano'];
             echo json_encode(['limit' => $limit, 'msg' => $msg, 'time' => $time,'list_houses' => $list_houses]);
             return;
         }else{
             $limit = 2;
             $msg = "Limte de filtros atingdos! cadastre-se para adicionar mais"; 
             $time = 4000;
-            $list_houses = ['b2xbet', 'pagbet', 'betano'];
+            $list_houses = ['b2xbet', 'goldebet', 'betano'];
             echo json_encode(['limit' => $limit, 'msg' => $msg, 'time' => $time, 'list_houses' => $list_houses]);
             return;
         }

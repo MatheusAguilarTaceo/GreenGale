@@ -44,7 +44,7 @@
                     <div class="content-filters">
                         <select class="filters-houses-medium">
                             <option value="b2xbet">B2XBET</option>
-                            <option value="pagbet">PAGBET</option>
+                            <option value="goldebet">GOLDEBET</option>
                             <option value="betano">BETANO</option>
                         </select>
                         <input class = "input-filters-medium"  id="date" value=<?php echo date('Y-m-d')?> type="date">
