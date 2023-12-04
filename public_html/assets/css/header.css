@@ -92,9 +92,8 @@ header{
     width: 15px;
 }
 
-/*TESTE Nova nav bar*/
 
-
+/*Nova nav bar*/
 
 .menu-logo{
     width: 230px;
@@ -149,11 +148,14 @@ header{
 }
 .button-login{
     background-color: var(--third);
-    /* margin: auto; */
+    color: black;
 }
+
 .button-login:hover{
     background-color: var(--fourth);
+    color: white;
 }
+
 
 .button-register{
     background-color: var(--emphasis);

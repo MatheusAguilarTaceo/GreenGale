@@ -1,8 +1,7 @@
 
 footer{
-
     text-align: center;
-    
+    color: var(--bg-color);
 }
 
 .container-footer {
@@ -27,6 +26,5 @@ footer{
 }
 
 .direitos{
-    color: var(--bg-color);
     text-align: center;
 }

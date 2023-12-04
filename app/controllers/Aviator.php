@@ -28,14 +28,21 @@ class Aviator{
             $msg = "Limte de filtros atingdos!"; 
             $limit = 4;
             $time = 4000;
-            $list_houses = ['b2xbet', 'goldebet', 'betano'];
+            $list_houses =  [['house' => 'b2xbet',   'href' => 'https://www.b2xbet.net/pb/'],
+                             ['house' => 'goldebet', 'href' => 'https://goldebet.com//register?ref=theusaguilar2@gmail.com'],
+                             ['house' => 'betano',   'href' => '#']
+                            ];
+            
             echo json_encode(['limit' => $limit, 'msg' => $msg, 'time' => $time,'list_houses' => $list_houses]);
             return;
         }else{
             $limit = 2;
             $msg = "Limte de filtros atingdos! cadastre-se para adicionar mais"; 
             $time = 4000;
-            $list_houses = ['b2xbet', 'goldebet', 'betano'];
+            $list_houses =  [['house' => 'b2xbet',   'href' => 'https://www.b2xbet.net/pb/'],
+                             ['house' => 'goldebet', 'href' => 'https://goldebet.com//register?ref=theusaguilar2@gmail.com'],
+                             ['house' => 'betano',   'href' => '#']
+                            ];
             echo json_encode(['limit' => $limit, 'msg' => $msg, 'time' => $time, 'list_houses' => $list_houses]);
             return;
         }

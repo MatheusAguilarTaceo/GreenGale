@@ -189,24 +189,28 @@ function indexData(){
             content_table.appendChild(reload_button)
 
             let img_reload = document.createElement('img')
-            img_reload.src = 'assets/img/png/rotate-arrow.png'
+            img_reload.src = 'assets/img/png/rotate-arrow-black.png'
             img_reload.alt = 'recarregar-pagina'
             reload_button.appendChild(img_reload)
 
             let house_logo = document.createElement('img')
             house_logo.className = 'house-logo'
-            house_logo.src = `assets/img/png/${list_houses[0]}.png`
+            house_logo.src = `assets/img/png/${list_houses[0].house}.png`
             house_logo.alt = 'casa-de-aposta'
             content_table.appendChild(house_logo);
 
             let play_button = document.createElement('button')
             play_button.className = 'play-button'
             content_table.appendChild(play_button)
-            
+
+            let tag_a = document.createElement('a')
+            tag_a.setAttribute('href', list_houses[0].href)
+            play_button.appendChild(tag_a)
+
             let img_play = document.createElement('img')
-            img_play.src = 'assets/img/png/play-button.png'
+            img_play.src = 'assets/img/png/play-button-black.png'
             img_play.alt = 'jogar'
-            play_button.appendChild(img_play)
+            tag_a.appendChild(img_play)
 
             let content_filters_1 = document.createElement('div')
             content_filters_1.className = 'content-filters'
@@ -220,8 +224,8 @@ function indexData(){
             list_houses.forEach(value =>{
                 let option = document.createElement('option')
                 filters_houses.appendChild(option)
-                option.value = value
-                option.innerText = value.toUpperCase()     
+                option.value = value.house
+                option.innerText = value.house.toUpperCase()     
             })
         
             
@@ -449,17 +453,31 @@ function indexData(){
     function initializeData(content_house){
         let reload_button = content_house.querySelector('button')
         reload_button.addEventListener('click', function(){
-            tableFilter()
-            graphicFilterAll()
-            graphicFilterBy()
-            candleRareFilter()
+            this.style.animation = ' reload 1.5s linear 3ms'
+            setTimeout( function(){
+                tableFilter()
+                graphicFilterAll()
+                graphicFilterBy()
+                candleRareFilter()
+                reload_button.style.animation = 'none'
+            }, 1000)
         })
         
         
         let betting_house = content_house.querySelector(`.filters-houses-${size}`)
         betting_house.addEventListener('input', function(){
             let house_logo = content_house.querySelector('.house-logo')
-            house_logo.src = `assets/img/png/${betting_house.value}.png`            
+            house_logo.src = `assets/img/png/${betting_house.value}.png`
+            
+            let play_button = content_house.querySelector('.play-button')
+            let href = play_button.querySelector('a') 
+            
+            list_houses.forEach(value => {
+                if(value.house == betting_house.value){
+                    href.setAttribute('href', value.href)
+                }
+            })
+            
             let [year, month, day] = date.value.split('-')
             table = `${day}/${month}/${year}/${betting_house.value}`;
             tableFilter()

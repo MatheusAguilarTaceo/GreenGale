@@ -82,7 +82,7 @@
 
 .new-table{
     background-color:var(--third);
-    color:var(--white);   
+    color:var(--black);   
     padding: 10px;
     border: 1px solid var(--bg-color);
     border-radius: 5px;
@@ -106,7 +106,7 @@
     background-color: var(--second) ;
     margin: 30px 10px;
     border-radius: 20px;
-
+    color: black;
 }
 
 .content-house{
@@ -130,29 +130,40 @@
     /* background-color: greenyellow;  */
 }
 
- .reload-button{
+.reload-button{
     background-color: transparent;
     border: none;
     padding: 5px;
-    /* animation: reload 1.5s linear infinite; */
+    /* animation: reload 1.5s linear 3ms; */
  }
 
- .reload-button > img:hover{
+.reload-button > img{
+    width: 40px;
+    height: 40px;
+}
+ 
+.reload-button > img:hover{
     background-color:  var(--fifth);
-    border-radius: 30%;
- }
+    border-radius: 30px;
+}
 
- .play-button{
+.play-button{
     display: inline-block;
     background-color: transparent;
     padding: 5px;
     border: none;
     color: white;
- }
- .play-button > img:hover{
+}
+
+.play-button img{
+    width: 40px;
+    height: 40px;
+}
+
+.play-button  img:hover{
     background-color: var(--fifth);
     border-radius: 50px;
- }
+}
 
 
  
@@ -229,11 +240,12 @@ th, td{
     font-weight: bolder;
     text-align: center;
     border: 1px solid rgb(0, 0, 0);
+    color: white;
 }
 
 
 .candle-tbody > tr > td{
-    color: rgb(0, 0, 0);
+    color: black;
     
 }
 
@@ -258,8 +270,13 @@ th, td{
     margin: -3px;
     background-color: var(--fourth);
     color:rgb(255, 255, 255);
-    max-width: 32px;
-    font-size: 12px;
+    font-size: 10px;
+    text-align: center;
+    max-width: 28px;
+    width: 25px;
+    height: 27px;
+    border: 2px solid black;
+    margin-bottom: 2px;
 }
 
 .candle-blue,.candle-purple,.candle-pink{

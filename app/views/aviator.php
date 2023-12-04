@@ -34,11 +34,13 @@
                 <section class="content-table" >
                     <div class="interaction-buttons">
                         <button class="reload-button">
-                            <img src=<?php echo IMGS."png/rotate-arrow.png"?> alt="recarregar-pagina">
+                            <img src=<?php echo IMGS."png/rotate-arrow-black.png"?> alt="recarregar-pagina">
                         </button>
                         <img class ="house-logo" src="assets/img/png/b2xbet.png" alt="casa-de-aposta">
                         <button class="play-button">
-                            <img src=<?php echo IMGS."png/play-button.png"?> alt="">
+                            <a href="https://www.b2xbet.net/pb/" target = '_blank'>
+                                <img src=<?php echo IMGS."png/play-button-black.png"?> alt="Jogar">
+                            </a>
                         </button>
                     </div>
                     <div class="content-filters">
