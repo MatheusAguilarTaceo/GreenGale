@@ -24,6 +24,17 @@
                 </div>
             </div>
     </section>
+    <section class="container-donation container-fluid">
+        <p class="text-donation">Aceitamos doações para manter o site no ar</p>
+        <div class= "bank-donation">
+            <img class="img-logo-donation" src=<?php echo IMGS.'png/picpay-logo-small.png'?> alt="picpay-logo">
+            <img class="img-qrcode-donation" src=<?php echo IMGS.'png/picpay-qrcode-small.png'?> alt="picpay-qrcode">
+        </div>
+        <div class="bank-donation">
+            <img class="img-logo-donation" src=<?php echo IMGS.'png/pinetwork-logo-small.png'?> alt="pinetwork-logo">
+            <img class="img-qrcode-donation" src=<?php echo IMGS.'png/pinetwork-qrcode-small.png'?> alt="pinetwork-qrcode">
+        </div>
+    </section>
     <div class = 'data-controls'>
         <button class="new-table" id="btn-create">Inserir Dados</button>
         <button class="new-table" id="btn-delete">Remover Dados</button>

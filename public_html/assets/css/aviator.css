@@ -68,6 +68,35 @@
     margin-bottom: -150px;
 }
 
+.container-donation{
+    background-color: var(--second);
+    text-align: center;
+    margin: 10px;
+    border-radius: 20px;
+    padding-bottom: 30px;
+}
+
+.text-donation{
+    font-size: x-large;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 15px;
+}
+
+.bank-donation{
+    display: inline-block;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.img-logo-donation{
+    width: fit-content;
+    margin: 80px 0px;
+    padding: 10px; 
+}
+
+.img-qrcode-donation{
+  width: fit-content;
+}
 
 
 
@@ -147,6 +176,11 @@
     border-radius: 30px;
 }
 
+.house-logo{
+    width: 100px;
+    height: 33px;
+}
+
 .play-button{
     display: inline-block;
     background-color: transparent;
@@ -168,10 +202,6 @@
 
  
 
-.house-logo{
-    width: 100px;
-    height: 33px;
-}
 
 .filters-houses-medium{
     width: 154px;
@@ -375,6 +405,13 @@ th, td{
 
 
 @media screen and (max-width:730px){
+
+    .img-logo-donation{
+        width: fit-content;
+        margin: 35px 0px;
+        padding: 0px; 
+    }
+
     .content-block{
         background-color: transparent;
     }
