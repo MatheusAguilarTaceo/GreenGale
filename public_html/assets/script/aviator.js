@@ -47,7 +47,7 @@ function indexData(){
             height: 340, // Especifica a altura em pixels
             colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
             pieHole: 0.4,
-            pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 15},
+            pieSliceTextStyle: {color: 'white', fontName: 'Arial', fontSize: 15},
             legend:{ position: 'top', textStyle: { fontSize: 10 } },
             // legend: 'none',
             pieSliceText: 'value',
@@ -72,7 +72,7 @@ function indexData(){
                 height: 200, // Especifica a altura em pixels
                 colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
                 pieHole: 0.4,
-                pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
+                pieSliceTextStyle: {color: 'white', fontName: 'Arial', fontSize: 10},
                 legend:{ position: 'top', textStyle: { fontSize: 8 } },
                 // legend: 'none',
                 pieSliceText: 'value',
@@ -352,7 +352,7 @@ function indexData(){
                 height: 340, // Especifica a altura em pixels
                 colors: ['rgb(19, 101, 255)', 'rgb(174, 0, 255)', 'rgb(255, 32, 144)'],
                 pieHole: 0.4,
-                pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 15},
+                pieSliceTextStyle: {color: 'white', fontName: 'Arial', fontSize: 15},
                 legend:{ position: 'top', textStyle: { fontSize: 10 } },
                 // legend: 'none',
                 pieSliceText: 'value',
@@ -366,7 +366,7 @@ function indexData(){
                 }
             }else{
                 options = {
-                    title: 'Filtro Geral',
+                    title: 'TITULO AQUI',
                     titleTextStyle: {
                         fontSize: 13, // Ajuste o tamanho do título conforme necessário
                         bold: true,   // Deixa o título em negrito
@@ -380,7 +380,7 @@ function indexData(){
                     pieSliceTextStyle: {
                         color: 'white',
                       },
-                    pieSliceTextStyle: {color: 'black', fontName: 'Arial', fontSize: 10},
+                    pieSliceTextStyle: {color: 'white', fontName: 'Arial', fontSize: 10},
                     legend:{ position: 'top', textStyle: { fontSize: 8 } },
                     legend: 'none',
                     pieSliceText: 'value',
